@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl * https://api.cloudflare.com/client/v4/accounts/*/workers/scripts/*/secrets*)",
+      "Bash(curl * https://api.cloudflare.com/client/v4/accounts/*/access/*)"
+    ]
+  }
+}
