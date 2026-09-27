@@ -364,7 +364,7 @@ export const icjCerdIcsft: DecisionSummary = {
       /* «Схід України», not «Східна Україна» — review's correction. The
          adjective names a region as though it were a fixed entity; the
          genitive names a part of the country, which is what the theatre is. */
-      place: { uk: "Схід України", en: "Eastern Ukraine" },
+      place: { uk: "Схід України", en: "East of Ukraine" },
       tag: "ICSFT",
       markerKeys: ["donetsk", "luhansk"],
       areas: ["east"],

@@ -332,7 +332,7 @@ export const icjGenocide: DecisionSummary = {
       },
       note: {
         uk: "У Донбаському регіоні на сході України — між збройними силами України та силами, пов'язаними з двома утвореннями, які називають себе «Донецька Народна Республіка» (ДНР) і «Луганська Народна Республіка» (ЛНР). Попри спроби досягти мирного врегулювання збройний конфлікт тривав з 2014 до 2022 року (§ 29).",
-        en: "In the Donbas region of eastern Ukraine, between Ukrainian armed forces and forces linked to two entities that refer to themselves as the “Donetsk People's Republic” (DPR) and the “Luhansk People's Republic” (LPR). Despite attempts to achieve a peaceful resolution, the armed conflict continued between 2014 and 2022 (§ 29).",
+        en: "In the Donbas region in the east of Ukraine, between Ukrainian armed forces and forces linked to two entities that refer to themselves as the “Donetsk People's Republic” (DPR) and the “Luhansk People's Republic” (LPR). Despite attempts to achieve a peaceful resolution, the armed conflict continued between 2014 and 2022 (§ 29).",
       },
     },
     {

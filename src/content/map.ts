@@ -520,7 +520,7 @@ export const MAP_EVENTS: MapEvent[] = [
     cases: ["echr-ukraine-netherlands", "icj-cerd-icsft", "icj-genocide", "finland-torden"],
     weight: 4,
     when: { uk: "Схід · 2014", en: "The east · 2014" },
-    title: { uk: "Схід України", en: "Eastern Ukraine" },
+    title: { uk: "Схід України", en: "East of Ukraine" },
     // Three of the four are inter-State applications; the fourth, Finland v
     // Petrovsky, is a national criminal trial of one man. The note used to say
     // only "inter-State applications", which described the card's own link

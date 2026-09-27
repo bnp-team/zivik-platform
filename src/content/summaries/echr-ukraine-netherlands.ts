@@ -77,7 +77,7 @@ export const echrUkraineNetherlands: DecisionSummary = {
   plain: {
     tldr: {
       uk: "Чотири міждержавні скарги — три від України, одна від Нідерландів через збиття MH17 — Велика палата ЄСПЛ розглянула разом і 9 липня 2025 року винесла рішення по суті. Суд визнав Росію відповідальною за системні порушення прав людини на сході України з 2014 року і по всій країні з 2022-го: від збиття MH17 і страт полонених до катувань, депортації дітей і заборони української освіти. Сатисфакцію (компенсації) буде визначено окремим рішенням.",
-      en: "Four inter-State applications — three by Ukraine, one by the Netherlands over the downing of MH17 — were decided together by the ECtHR's Grand Chamber on 9 July 2025. The Court held Russia responsible for systemic human-rights violations in eastern Ukraine since 2014 and across the country from 2022: from the downing of MH17 and executions of prisoners to torture, the deportation of children and the ban on Ukrainian-language education. Just satisfaction is reserved for a separate ruling.",
+      en: "Four inter-State applications — three by Ukraine, one by the Netherlands over the downing of MH17 — were decided together by the ECtHR's Grand Chamber on 9 July 2025. The Court held Russia responsible for systemic human-rights violations in the east of Ukraine since 2014 and across the country from 2022: from the downing of MH17 and executions of prisoners to torture, the deportation of children and the ban on Ukrainian-language education. Just satisfaction is reserved for a separate ruling.",
     },
   },
 
