@@ -58,3 +58,8 @@ worker-configuration.d.ts
 # Pictures uploaded in the admin, written by the Cloudflare build
 # (scripts/cf/media.mts) — never committed.
 /public/media/
+
+# Playwright (tests/e2e)
+/test-results/
+/playwright-report/
+/blob-report/

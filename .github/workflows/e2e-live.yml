@@ -1,0 +1,53 @@
+# Функціональні тести живого сайту (tests/e2e, див. tests/e2e/README.md).
+#
+# Щоночі й на вимогу (Actions → e2e-live → Run workflow) проходить сайт так,
+# як його бачать читач і редактор: сторінки, меню, бібліотека, сторінки
+# рішень, заголовки, robots.txt, вхід в адмінку. Лише GET-запити до
+# публічних адрес — без входу, без секретів, нічого не пише.
+#
+# PR не блокує: перевіряє те, що вже задеплоєно, а не гілку. Зміни в коді
+# ловить ci.yml; цей — те, що сталося з сайтом після деплою або публікації
+# з адмінки.
+name: e2e-live
+on:
+  schedule:
+    # 03:41 UTC — після нічного бекапу D1, не на рівній годині (о :00 черга
+    # scheduled-запусків GitHub найдовша).
+    - cron: "41 3 * * *"
+  workflow_dispatch:
+    inputs:
+      base_url:
+        description: "Адреса сайту (порожньо — tests/e2e/env.ts DEFAULT_LIVE_URL)"
+        required: false
+        default: ""
+
+concurrency:
+  group: e2e-live
+  cancel-in-progress: true
+
+# Job лише читає дерево — див. ci.yml, чому це важливо.
+permissions:
+  contents: read
+
+jobs:
+  e2e:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      # Лише Chromium: набір не запускає інших браузерів.
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:e2e:live
+        env:
+          BASE_URL: ${{ inputs.base_url }}
+      - uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 14
