@@ -8,6 +8,7 @@ import {
   pathAlternates,
   ogImage,
   defaultOgImage,
+  descriptionFromProse,
 } from "@/lib/seo";
 import { localeOpenGraph, alternateOpenGraphLocales } from "@/i18n/config";
 import { pick } from "@/content/types";
@@ -36,7 +37,10 @@ export async function generateMetadata({
   if (!isLocale(locale)) return {};
   const dict = await getDictionary(locale);
   const title = dict.mapSection.pageTitle;
-  const description = dict.mapSection.pageLede;
+  /* The lede under the heading, fitted to a search snippet: the English one
+     runs 178 characters, and a description over 160 is cut off mid-word in
+     the results (the functional tests caught it, tests/e2e/pages.spec.ts). */
+  const description = descriptionFromProse(dict.mapSection.pageLede);
   return {
     metadataBase: new URL(siteUrl),
     title,

@@ -77,10 +77,7 @@ async function checkSeo(page: import("@playwright/test").Page, route: Route) {
  * else about the page is excused — every check before the failing one still
  * runs.
  */
-const KNOWN_DEFECTS: Record<string, string> = {
-  "/en/map":
-    "meta description is 178 characters, over META_MAX (160): the page uses map.pageLede from src/i18n/dictionaries/en.ts as its description",
-};
+const KNOWN_DEFECTS: Record<string, string> = {};
 
 for (const route of routes) {
   test(`${route.path} (${route.kind})`, async ({ page }, testInfo) => {
