@@ -366,6 +366,72 @@ export const SHAPES: Record<string, Shape> = {
   },
 };
 
+/* ── The other collections' JSON fields ─────────────────────────────────── */
+
+const linkList = (lang: string): Shape => ({
+  kind: "list",
+  label: `Посилання — ${lang}`,
+  noun: "посилання",
+  title: ["text"],
+  item: {
+    kind: "object",
+    fields: {
+      text: text("Фрагмент абзацу", {
+        hint: "Має дослівно збігатися з частиною абзацу вище — інакше збірка зупиниться.",
+      }),
+      href: text("Адреса", { hint: "https://…" }),
+    },
+  },
+});
+
+Object.assign(SHAPES, {
+  /* Провадження → «Дата рішення» (CaseDate in src/content/types.ts). */
+  decidedOn: {
+    kind: "object",
+    fields: {
+      precision: {
+        kind: "select",
+        label: "Точність",
+        options: [
+          { value: "day", label: "Відомий день" },
+          { value: "year", label: "Відомий лише рік" },
+        ],
+      },
+      iso: text("Дата (РРРР-ММ-ДД)", { optional: true, hint: "Лише коли відомий день." }),
+      year: num("Рік"),
+    },
+  },
+  /* Про проєкт → «Посилання в тексті». */
+  aboutLinks: { kind: "object", fields: { uk: linkList("UA"), en: linkList("EN") } },
+  /* Мапа: ключі міст судів (MAP_COURTS) — події й країни. */
+  courtKeys: { kind: "lines", label: "Міста судів (ключі, по одному в рядку)", hint: "Напр. hague, strasbourg, paris" },
+  /* Мапа: події → «Огляди». */
+  caseSlugs: { kind: "lines", label: "Огляди (slug, по одному в рядку)", hint: "Напр. icj-genocide" },
+  /* Мапа: суди. */
+  institutionIds: { kind: "lines", label: "Інституції (id з реєстру, по одному в рядку)", hint: "Напр. icj, icc" },
+  seats: {
+    kind: "list",
+    label: "Суди в цьому місті",
+    noun: "суд",
+    title: ["name"],
+    item: {
+      kind: "object",
+      fields: {
+        name: loc("Назва"),
+        abbr: { kind: "either", label: "Скорочення", optional: true },
+        institutionId: text("Інституція (id з реєстру)", { optional: true }),
+      },
+    },
+  },
+  offAt: {
+    kind: "object",
+    fields: {
+      x: num("Напрям по горизонталі (x)"),
+      y: num("Напрям по вертикалі (y)"),
+    },
+  },
+} satisfies Record<string, Shape>);
+
 /* ── Values ───────────────────────────────────────────────────────────── */
 
 type Json = unknown;

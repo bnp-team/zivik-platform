@@ -253,11 +253,18 @@ async function schema(write: boolean, prune: boolean) {
   const token = process.env.EMDASH_TOKEN;
   if (!base || !token) throw new Error("schema needs EMDASH_URL and EMDASH_TOKEN");
   const api = async (method: string, path: string, body?: unknown) => {
-    const res = await fetch(`${base}/_emdash/api${path}`, {
-      method,
-      headers: { authorization: `Bearer ${token}`, "content-type": "application/json" },
-      body: body === undefined ? undefined : JSON.stringify(body),
-    });
+    /* A cold Worker or a busy D1 answers the odd 5xx; one or two retries
+       keep a run of dozens of calls from stopping half-way. */
+    let res!: Response;
+    for (let attempt = 0; attempt < 3; attempt++) {
+      res = await fetch(`${base}/_emdash/api${path}`, {
+        method,
+        headers: { authorization: `Bearer ${token}`, "content-type": "application/json" },
+        body: body === undefined ? undefined : JSON.stringify(body),
+      });
+      if (res.status < 500) break;
+      await new Promise((r) => setTimeout(r, 1500 * (attempt + 1)));
+    }
     const json = (await res.json().catch(() => ({}))) as {
       data?: { item?: { fields?: RemoteField[]; admin?: { listColumns?: string[] } } };
       error?: { message?: string };
