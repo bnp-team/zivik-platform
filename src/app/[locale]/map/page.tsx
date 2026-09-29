@@ -12,7 +12,7 @@ import {
 } from "@/lib/seo";
 import { localeOpenGraph, alternateOpenGraphLocales } from "@/i18n/config";
 import { pick } from "@/content/types";
-import { MAP_COURTS, courtMarks, seatsLine } from "@/content/map";
+import { MAP_COURTS, MAP_PLACES, courtMarks, seatsLine } from "@/content/map";
 import { countryPanelsFor, courtCaseloadFor, seatRows } from "@/content/map-links";
 import EventsMap from "@/components/nasvitlo/EventsMap";
 import "./map-page.css";
@@ -120,6 +120,7 @@ const stageWord = (k: string | undefined) =>
                travelled in this page's flight payload as well as in the markup
                it renders. See the note above `geo` in EventsMap.tsx. */
             countries={countryPanelsFor(locale)}
+            places={MAP_PLACES.map((p) => ({ key: p.key, city: pick(p.city, locale) }))}
             courts={MAP_COURTS.map((c) => ({
               key: c.key,
               city: pick(c.city, locale),

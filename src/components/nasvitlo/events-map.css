@@ -302,6 +302,19 @@
 .emap-court:hover .emap-court-dot {
   stroke: var(--brand-gold-pale);
 }
+.emap-place circle {
+  fill: var(--brand-muted-dark);
+  stroke: none;
+  pointer-events: none;
+}
+.emap-place text {
+  font-family: var(--brand-font-body), sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  fill: var(--brand-muted-dark);
+  pointer-events: none;
+}
 .emap-court text {
   /* No font-size here: it is set on the element in projection units computed
      from the rendered scale, the same way the site labels are, so a city name

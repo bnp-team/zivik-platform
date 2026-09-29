@@ -552,6 +552,7 @@ export default function EventsMap({
   events = [],
   countries = [],
   courts,
+  places = [],
   labels,
   locale,
   variant = "full",
@@ -585,6 +586,12 @@ export default function EventsMap({
    */
   countries?: MapCountryR[];
   courts: MapCourtR[];
+  /**
+   * Cities named for orientation – a dot and a name, nothing to press. Not
+   * seats and not proceedings, so they take no part in framing, keyboard
+   * order or the cards.
+   */
+  places?: { key: string; city: string }[];
   labels: {
     alt: string;
     close: string;
@@ -2327,6 +2334,25 @@ export default function EventsMap({
             />
           )}
           <path className="emap-regions" d={geo.regions} clipPath="url(#emap-ua-clip)" />
+
+          {/* Cities for orientation, under the reach lines and the markers.
+              A small ring and a name, in the quiet ink of the labels: they
+              say where in the country the proceedings are, and claim
+              nothing about them. */}
+          {places.map((pl) => {
+            const p = geo.markers[pl.key];
+            if (!p) return null;
+            return (
+              <g key={pl.key} className="emap-place">
+                <circle cx={p[0]} cy={p[1]} r={3.2} />
+                {citied && (
+                  <text x={p[0] + 8} y={p[1] + 0.4 * cityF} fontSize={cityF}>
+                    {pl.city}
+                  </text>
+                )}
+              </g>
+            );
+          })}
 
           {/* Reach lines: from each site to the courts hearing it. Drawn
               before the markers so they pass under, not over. */}

@@ -80,6 +80,9 @@ const POINTS = {
   energy: [34.6, 47.5],
   mariupol: [37.55, 47.1],
   kyiv: [30.52, 50.45],
+  // A reference city for the map page, not a court: Ukraine's two best-known
+  // cities, so a reader who does not know the country can find their way in it.
+  lviv: [24.03, 49.84],
   /**
    * Points this atlas carries and the events map never draws.
    *
