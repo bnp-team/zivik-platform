@@ -63,7 +63,12 @@ export interface LegalDocument {
   sections: LegalSection[];
 }
 
-export const legalDocs: LegalDocument[] = [
+/**
+ * The documents as the code has them. `legalDocs` below is what the Cloudflare
+ * build swaps for the published rows; this stays, so a page whose row is
+ * missing from the database is still a page, not a failed build.
+ */
+const defaults: LegalDocument[] = [
   {
     slug: "privacy",
     title: { uk: "Політика конфіденційності", en: "Privacy policy" },
@@ -631,3 +636,8 @@ export const legalDocs: LegalDocument[] = [
     ],
   },
 ];
+
+export const legalDocsDefault: LegalDocument[] = defaults;
+
+/** The content of the collection – the published rows replace this initializer. */
+export const legalDocs: LegalDocument[] = defaults;

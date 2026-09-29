@@ -1,5 +1,5 @@
 import type { Localized } from "./types";
-import { legalDocs, type LegalBlock, type LegalDocument, type LegalSection } from "./legal-docs";
+import { legalDocs, legalDocsDefault, type LegalBlock, type LegalDocument, type LegalSection } from "./legal-docs";
 import { locales, type Locale } from "@/i18n/config";
 import { registryProceedings, registryCases } from "./cases";
 import { SUMMARIES } from "./summaries";
@@ -181,7 +181,8 @@ export type { LegalBlock, LegalDocument, LegalSection };
  * code writes – cookies and analytics – filled in for this build.
  */
 function resolveDoc(slug: LegalDocument["slug"]): LegalDocument {
-  const doc = legalDocs.find((d) => d.slug === slug);
+  /* The published row, or the code's own text if the database has none yet. */
+  const doc = legalDocs.find((d) => d.slug === slug) ?? legalDocsDefault.find((d) => d.slug === slug);
   if (!doc) throw new Error(`legal: no document "${slug}" in legal-docs.ts`);
   const filled = fillIn(doc);
   return {
