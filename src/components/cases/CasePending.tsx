@@ -393,8 +393,7 @@ export default function CasePending({
             >
               {entry.decisionUrlKind
                 ? T.linkKind[locale === "uk" ? "uk" : "en"][entry.decisionUrlKind]
-                : t.official}{" "}
-              ↗
+                : t.official}
             </a>
           )}
           <Link className="pend-back" href={`/${locale}/registry`}>

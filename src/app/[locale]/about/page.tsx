@@ -450,14 +450,8 @@ export default async function AboutPage({
               <p className="abt-res">
                 <time dateTime="2014-03-27">{L(T.resDate)}</time>
                 <span>{L(T.resText)}</span>
-                {/* ↗, не →. На цьому сайті стрілка вправо означає «далі
-                    сюди ж» — сторінка команди, бібліотека, мапа, — а скісна
-                    означає «звідси геть». Ця веде в Цифрову бібліотеку ООН і
-                    носила не свою. І в `aria-hidden`, як усі решта: це знак,
-                    а не слово, і озвучувати його нема чого. */}
                 <a href={RESOLUTION_URL} target="_blank" rel="noopener noreferrer">
                   {L(T.resLink)}
-                  <span aria-hidden="true"> ↗</span>
                 </a>
               </p>
             </div>
@@ -596,9 +590,6 @@ export default async function AboutPage({
                 />
                 <span className="abt-fac-t">
                   {L(T.centreLink)}
-                  <span className="abt-fac-a" aria-hidden="true">
-                    {" ↗"}
-                  </span>
                 </span>
               </a>
             </div>

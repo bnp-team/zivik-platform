@@ -328,22 +328,15 @@ export default function Header({
             rel="noopener noreferrer"
           >
             {supportLabel}
-            {/* Знак виходу назовні — той самий, яким сторінка «Про проєкт»
-                позначає посилання на сайт факультету. Доти цей контрол
-                відкривав нову вкладку без жодного попередження, і читач,
-                який тиснув його з середини огляду, повертався жестом
-                «назад» нікуди. */}
-            <span className="nsv-support-out" aria-hidden="true">
-              {" ↗"}
-            </span>
           </a>
           {langSwitch()}
-          {/* На телефоні — те саме прохання, згорнуте в знак: серце на
-              вишневому, як у шапці сайту Факультету права, щоб читач, який
-              прийшов звідти, упізнав його. Текстова кнопка вище на цій
+          {/* На телефоні — те саме прохання, згорнуте в знак: серце, як у
+              шапці сайту Факультету права. Текстова кнопка вище на цій
               ширині схована (shared.css), а в меню її треба ще знайти;
-              власниця: «зроби в нас також». Підпис — для скрінрідера й
-              підказки, бо на кнопці немає слів. */}
+              власниця: «зроби в нас також». Спершу воно було суцільним
+              вишневим квадратом — «дуже велика і не вписується в кольорову
+              гаму», — тож тепер це те саме золоте коло-контур, що й текстова
+              кнопка. Підпис — для скрінрідера й підказки, бо слів немає. */}
           <a
             className="nsv-support-icon"
             href={supportHref}
@@ -352,7 +345,7 @@ export default function Header({
             aria-label={supportLabel}
             title={supportLabel}
           >
-            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
+            <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false">
               <path
                 fill="currentColor"
                 d="M12 21s-7.5-4.6-9.6-9.3C.9 8.3 2.9 4.5 6.6 4.1c2.1-.2 3.9.9 5.4 2.7 1.5-1.8 3.3-2.9 5.4-2.7 3.7.4 5.7 4.2 4.2 7.6C19.5 16.4 12 21 12 21z"
@@ -400,9 +393,6 @@ export default function Header({
           onClick={() => setOpen(false)}
         >
           {supportLabel}
-          <span className="nsv-support-out" aria-hidden="true">
-            {" ↗"}
-          </span>
         </a>
         {/* The same switch, for the widths where the bar cannot hold it. Below
             420px it is the only one displayed — header.css shows one and hides

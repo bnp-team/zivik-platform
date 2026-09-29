@@ -1731,7 +1731,6 @@ export default function RegistryTable({
                         rel="noopener noreferrer"
                       >
                         {t.doc}
-                        <span aria-hidden="true"> ↗</span>
                       </a>
                     )}
                     {inDoc.length > 0 && (

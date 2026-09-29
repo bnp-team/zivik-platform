@@ -203,9 +203,6 @@ export default function Footer({
             rel="noopener noreferrer"
           >
             {f.support}
-            <span className="nsv-support-out" aria-hidden="true">
-              {" ↗"}
-            </span>
           </a>
           <span style={footLink}>{f.address}</span>
           {/* Social boxes return when there are real accounts to point at.

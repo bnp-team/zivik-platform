@@ -1853,11 +1853,9 @@ export default async function CasePage({
           ))}
           <a className="hm-cta" href={judgment.url} target="_blank" rel="noopener noreferrer">
             {pick(judgment.readLabel ?? T.readJudgment, locale)}
-            <span aria-hidden="true">↗</span>
           </a>
           <a className="hm-cta hm-cta-2" href={judgment.caseUrl} target="_blank" rel="noopener noreferrer">
             {pick(judgment.fileLabel ?? T.caseFile, locale)}
-            <span aria-hidden="true">↗</span>
           </a>
         </div>
         </div>

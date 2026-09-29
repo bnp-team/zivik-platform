@@ -42,28 +42,9 @@
   white-space: nowrap;
   transition: border-color 0.2s ease, color 0.2s ease;
 }
-/* Стрілка назовні: трохи менша за підпис і трохи вища за базову лінію —
-   знак, а не слово. Розрядка підпису лишає праворуч зайвий проміжок, тож
-   стрілка його забирає назад. Рух при наведенні — той самий, що в `.nsv-cta`
-   поруч: контрол, який виводить із сайту, показує куди. */
-.nsv-support-out {
-  margin-left: -0.06em;
-  font-size: 0.92em;
-  transition: transform var(--dur) var(--ease);
-}
-.nsv-support:hover .nsv-support-out,
-.nsv-support:focus-visible .nsv-support-out {
-  transform: translate(2px, -2px);
-}
-@media (prefers-reduced-motion: reduce) {
-  .nsv-support-out {
-    transition: none;
-  }
-  .nsv-support:hover .nsv-support-out,
-  .nsv-support:focus-visible .nsv-support-out {
-    transform: none;
-  }
-}
+/* Без стрілки «↗» після підпису. Вона мала попереджати, що кнопка відкриває
+   нову вкладку, і власниці не сподобалась: кнопка веде на сторінку Центру
+   на сайті Факультету права, і підпис «Підтримати нас» уже все каже. */
 .nsv-support:hover,
 .nsv-support:focus-visible {
   border-color: var(--brand-gold-pale);
@@ -87,29 +68,49 @@
     display: none;
   }
 }
-/* The same ask on a phone, as a mark: a heart on the UCU cherry, the button
-   the Faculty of Law's own site puts in its bar — owner's request, so a reader
-   who came from there recognises it. Filled, unlike the outline chip on the
-   desktop bar, because on a phone it has no words to carry it; 44×44 like the
-   burger beside it. Hidden where the text chip shows. */
+/* The same ask on a phone, as a mark: a heart, the button the Faculty of Law's
+   own site puts in its bar — owner's request, so a reader who came from there
+   recognises it.
+
+   It was first a filled 44px square on the UCU cherry, and the owner said it
+   was «дуже велика і не вписується в кольорову гаму»: on the dark bar a red
+   block outweighed the wordmark, and red is this site's colour for a finding
+   of breach (DESIGN.md), not for an ask. So it is the desktop chip's own
+   outline — the bar's gold at 42%, a pill — with a gold heart, 36px across.
+   The tap target stays 44px, like the burger beside it: the link is 44×44
+   and the ring is drawn inside it by ::before, 4px in from every edge, so
+   the button is smaller to look at and no smaller to hit. (A first version
+   drew a 36px link and stretched its hit area with ::after; measured, two
+   of the four sides did not take a tap.) Hidden where the text chip shows. */
 .nsv-support-icon {
+  position: relative;
   display: none;
   align-items: center;
   justify-content: center;
   width: 44px;
   height: 44px;
   flex: none;
-  border-radius: var(--r-sm);
-  background: var(--brand-red);
-  color: var(--brand-cream-warm);
-  transition: background-color var(--dur) var(--ease);
+  color: var(--brand-gold-pale);
+  transition: color 0.2s ease;
+}
+.nsv-support-icon::before {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  border: 1px solid color-mix(in srgb, var(--brand-gold-pale) 42%, transparent);
+  border-radius: 999px;
+  transition: border-color 0.2s ease;
 }
 .nsv-support-icon:hover {
-  background: var(--brand-red-dark);
+  color: var(--brand-cream-warm);
+}
+.nsv-support-icon:hover::before {
+  border-color: var(--brand-gold-pale);
 }
 .nsv-support-icon:focus-visible {
   outline: 2px solid var(--brand-gold-lit);
-  outline-offset: 2px;
+  outline-offset: -2px;
+  border-radius: 999px;
 }
 @media (max-width: 1079px) {
   .nsv-support-icon {

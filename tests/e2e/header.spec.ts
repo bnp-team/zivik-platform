@@ -100,6 +100,10 @@ for (const path of switchPaths) {
     await page.locator('.nsv-langsw a[hreflang="en"]:visible').click();
     await expect(page).toHaveURL(new RegExp(`/en${path.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}$`));
     await expect(page.locator("html")).toHaveAttribute("lang", "en");
+    /* `lang` is in the HTML, so it is true before the stylesheet has arrived;
+       until then the mobile drawer is not hidden yet and `:visible` finds two
+       switches. Wait for `load`, which waits for the stylesheets. */
+    await page.waitForLoadState("load");
 
     if (isMobile(testInfo.project.name)) await openDrawer(page);
     await page.locator('.nsv-langsw a[hreflang="uk"]:visible').click();

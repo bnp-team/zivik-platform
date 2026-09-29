@@ -131,7 +131,6 @@ export default function Quote({
           rel="noopener noreferrer"
         >
           {dict.quote.read}
-          <span aria-hidden="true"> ↗</span>
         </a>
       </figcaption>
     </figure>

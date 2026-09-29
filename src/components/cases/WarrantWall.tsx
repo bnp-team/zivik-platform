@@ -116,7 +116,7 @@ export default function WarrantWall({
       </div>
 
       <a className="wave-src" href={sel.w.url} target="_blank" rel="noopener noreferrer">
-        {labels.announcement} ↗
+        {labels.announcement}
       </a>
     </div>
   );
