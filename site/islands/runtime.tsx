@@ -14,8 +14,8 @@
  * `identifierPrefix` the browser uses, the two match by construction.
  *
  * Props must survive JSON, which is the contract a Server → Client boundary
- * already imposes under Next. The one exception RSC allows — JSX passed as a
- * prop, like LampShell's children or TakingsGrid's `note` — is rendered into
+ * already imposes under Next. The one exception RSC allows – JSX passed as a
+ * prop, like LampShell's children or TakingsGrid's `note` – is rendered into
  * an <nsv-slot>, and the browser hands the component that slot's existing
  * HTML instead of re-rendering it. Islands inside a slot are islands of their
  * own. `display: contents` (site/styles/islands.css) keeps both wrappers out
@@ -112,8 +112,8 @@ async function renderRoot(node: ReactNode, identifierPrefix?: string): Promise<s
 const PLACEHOLDER = /<nsv-island([^>]*?) data-n="(\d+)"([^>]*)><\/nsv-island>/g;
 
 /**
- * Render `page` and every island in it. Errors thrown anywhere — including
- * `notFound()` from inside an island's server render — reject the promise.
+ * Render `page` and every island in it. Errors thrown anywhere – including
+ * `notFound()` from inside an island's server render – reject the promise.
  */
 export async function renderIslands(page: ReactNode, pathname: string): Promise<string> {
   const collector = new IslandCollector();

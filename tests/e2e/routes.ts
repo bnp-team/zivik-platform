@@ -1,5 +1,5 @@
 /**
- * The pages under test, read from the same modules the build reads — so a
+ * The pages under test, read from the same modules the build reads – so a
  * decision added to src/content/summaries is tested the day it is added, and
  * nobody has to remember to list it here.
  */
@@ -17,7 +17,7 @@ export const staticPaths = ["", "/registry", "/map", "/about", "/team", "/privac
 export const decisionSlugs = Object.keys(SUMMARIES);
 
 /**
- * Proceedings with a page but no summary yet — the dark pending page. The
+ * Proceedings with a page but no summary yet – the dark pending page. The
  * same rule `generateStaticParams` uses in src/app/[locale]/cases/[slug]:
  * no `summarySlug`, and not an act folded into another proceeding.
  */
@@ -26,7 +26,7 @@ export const pendingIds = registryCases.filter((c) => !c.summarySlug && !c.partO
 /**
  * A sample of them rather than all thirty-odd: one per court or tribunal,
  * in registry order, so each forum's variant of the page (docket, amount,
- * documents) is seen at least once. Deterministic — the same sample every run.
+ * documents) is seen at least once. Deterministic – the same sample every run.
  */
 export const pendingSample: string[] = (() => {
   const seen = new Set<string>();

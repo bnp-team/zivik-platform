@@ -6,7 +6,7 @@ import type { Stage } from "@/content/summaries/types";
  * What happened to the decision after it was rendered.
  *
  * An award is not the end of the story where the seat's courts can annul it.
- * Each step carries a standing flag — did the decision survive this round —
+ * Each step carries a standing flag – did the decision survive this round –
  * so the reader can see the award fall in 2021 and come back in 2022 without
  * having to hold four dates in their head.
  */

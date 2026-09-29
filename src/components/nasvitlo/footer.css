@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Footer — its own stylesheet, like header.css.
+   Footer – its own stylesheet, like header.css.
 
    These two rules used to live in [locale]/home.css, which only the home page
    loads. The footer is rendered by the root layout on every page, so on every
@@ -14,13 +14,13 @@
 
 /* The footer never named a face.
 
-   `globals.css` sets no `font-family` on `body` — every surface names its own
-   — and Footer.tsx names one in exactly three places: the wordmark (display),
+   `globals.css` sets no `font-family` on `body` – every surface names its own
+   – and Footer.tsx names one in exactly three places: the wordmark (display),
    the column heads and the org block (body, through the `font:` shorthand).
    Everything else is an inline style that sets a size and a colour and stops
    there, so it inherited Tailwind's preflight stack. Measured on the built
-   pages: 15 text-bearing elements per page — eight links, five spans, the
-   tagline and the legal line — computing to `ui-sans-serif, system-ui, …` on
+   pages: 15 text-bearing elements per page – eight links, five spans, the
+   tagline and the legal line – computing to `ui-sans-serif, system-ui, …` on
    all 96 routes. Not a decision; a gap, and the three rules that did name a
    face are what hid it, because the columns above the gap looked right.
 

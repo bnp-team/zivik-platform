@@ -1,5 +1,5 @@
 /* ============================================================
-   Registry page — full, filterable case listing.
+   Registry page – full, filterable case listing.
    Structure follows conventional application-UI patterns (page heading,
    filter toolbar, column headings, list rows, empty state, stats) but is
    built in the насвітло token system, not Tailwind utilities.
@@ -10,17 +10,17 @@
    scoped to the home page (it was putting 399 unscoped rules on every other
    surface), the borrow broke silently: --ink fell through to the legacy
    #0c0c0d literal in globals.css and the rest went undefined, so the whole
-   page rendered near-black on near-black in dark mode — the h1 measured
+   page rendered near-black on near-black in dark mode – the h1 measured
    1.05:1. Every value below is a --brand-* token, so it follows the theme;
    nothing here is a literal, and nothing here depends on another surface's
    stylesheet loading first. */
 .registrypage{
   --red:var(--brand-red);
-  /* Which court. Not an outcome colour — see globals.css. */
+  /* Which court. Not an outcome colour – see globals.css. */
   --forum:var(--brand-forum);
   --redd:var(--brand-red-dark);
   --gold:var(--brand-gold);
-  /* Pantone 874 C is 4.32:1 on the recessed grounds — under AA for the small
+  /* Pantone 874 C is 4.32:1 on the recessed grounds – under AA for the small
      text the filters and the "decided" line carry. This is the small-text
      variant globals.css already defines for exactly that. */
   --goldink:var(--brand-gold-ink);
@@ -48,21 +48,21 @@
 }
 /* Scoped to the page body, not the whole surface. As `.registrypage a` this
    tied on specificity with `.nsv-mobnav a` in header.css and won on source
-   order, repainting the mobile menu red on its dark ground — 1.82:1 in
+   order, repainting the mobile menu red on its dark ground – 1.82:1 in
    light theme, and invisible on the one layout that uses that menu. */
 /* `.reg-back` is excluded, not outweighed.
 
    The back link sets `color: var(--faint)` at one class and this rule paints
    every anchor in the page body at two classes and an element, so the link
-   rendered red at rest — while `.reg-back:hover{color:var(--red)}` two rules
+   rendered red at rest – while `.reg-back:hover{color:var(--red)}` two rules
    below says plainly what was intended: faint at rest, red on hover. A hover
    colour identical to the rest colour is the tell.
 
    Not a regression from today; it predates this file's last four commits.
-   Fixed the way /about's identical fault was fixed — the exception belongs in
+   Fixed the way /about's identical fault was fixed – the exception belongs in
    the rule that overreaches, not in a heavier selector on the thing it hits. */
 .registrypage .reg-wrap a:not(.reg-back) {
-  /* Ink, gold on hover — not the cherry. In the library red is the colour of
+  /* Ink, gold on hover – not the cherry. In the library red is the colour of
      an outcome (violation, convicted), and with every case name in it too a
      link and a verdict looked the same (DESIGN.md: red means a finding of
      breach, not emphasis). */
@@ -78,7 +78,7 @@
    inset the header and the footer already use: a flat gutter on a narrow
    window, and above 1024px whatever keeps the content inside 1180px. A
    surface that sets its own `max-width` and centres itself lands somewhere
-   else — measured at a 1800px window, the header's mark sat at 310 and this
+   else – measured at a 1800px window, the header's mark sat at 310 and this
    page's text at 384, and a reader scrolling down from the bar watches the
    column step sideways.
 
@@ -100,7 +100,7 @@
 /* The note goes to the margin; the figures stay under the prose.
 
    Two goes at the 500px of nothing beside a 680px reading measure. The first
-   moved the three figures there and made it worse — stacked at the far edge
+   moved the three figures there and made it worse – stacked at the far edge
    they read as a detached sidebar, and the gap between them and the prose was
    still there, so the hole had moved rather than closed.
 
@@ -108,7 +108,7 @@
    does not describe the library's contents, it qualifies them, and a reader
    following the lede into the table does not need it in the way. Out of the
    reading column it stops interrupting and starts doing what a marginal note
-   does — and the space it fills is filled by something whose place that is,
+   does – and the space it fills is filled by something whose place that is,
    which is the whole difference from the first attempt.
 
    The figures stay under the lede, in a row, because they are what the lede
@@ -155,8 +155,8 @@
   font-family:var(--brand-font-display),Georgia,serif;font-weight:400;
   font-size:var(--t-mast);line-height:1.08;color:var(--ink);margin:0 0 var(--space-3);
 }
-/* 14px, not 15. Fifteen was a step the scale does not have — it sat between
-   --t-sm and --t-body — and this is the floor the design contract sets for
+/* 14px, not 15. Fifteen was a step the scale does not have – it sat between
+   --t-sm and --t-body – and this is the floor the design contract sets for
    text a reader actually reads, so it goes to the token rather than below it. */
 .reg-lede{max-width:680px;font-size:var(--t-sm);line-height:1.6;color:var(--ink2);margin:0}
 
@@ -167,7 +167,7 @@
    ── It was called `.reg-note`, and that was a live bug ─────────────────────
    RegistryTable gives every row's docket reference the same class name. Two
    rules, same name, same specificity: the row's rule wins on source order for
-   what it sets — display, margin, size, colour, leading — and sets none of
+   what it sets – display, margin, size, colour, leading – and sets none of
    the three properties that matter here, so all 39 rows inherited them.
    Measured on the built page: every docket reference in the library was drawn
    with a 2px gold left border, 16px of padding and a 680px cap, none of which
@@ -190,7 +190,7 @@
 /* stats row (data-display "stats" pattern) */
 .reg-meta{
   display:flex;flex-wrap:wrap;
-  /* A row gap, and 32 rather than 34 — the scale's step, not a guess. The gap
+  /* A row gap, and 32 rather than 34 – the scale's step, not a guess. The gap
      used to be `0 34px`: the moment the three figures wrapped, the second line
      sat flush against the first with no air at all. */
   gap:var(--space-3) var(--space-8);
@@ -216,12 +216,12 @@
 
    Rebuilt out of what the rest of the site already uses:
 
-   * the search is a *line* of the instrument, not a box — a rule under it in
+   * the search is a *line* of the instrument, not a box – a rule under it in
      the control edge colour and a glyph in front of it, the same editorial
      hairline the masthead and the ledger rows use;
    * the three filters are pills, which is what the shape contract gives a
      button, and each shows only its own dimension plus a numeral when it is
-     narrowing — the micro-label is gone;
+     narrowing – the micro-label is gone;
    * ordering is not narrowing, so the sort control is not a pill: it is an
      underlined text control pushed to the far end of the row, closer to the
      case pages' page-nav than to a field;
@@ -244,7 +244,7 @@
   transition:border-color var(--dur) var(--ease);
 }
 .reg-searchwrap:hover{border-bottom-color:var(--ink2)}
-/* The rule doubles and turns gold while the field has focus — a shape change,
+/* The rule doubles and turns gold while the field has focus – a shape change,
    not only a colour one, and it is the whole of the indicator rather than an
    addition to it: the field below sets `outline: none`, which is the same
    specificity as globals.css's `:where(…):focus-visible` rule and comes later
@@ -258,7 +258,7 @@
 }
 .reg-si{display:flex;flex:none;color:var(--faint)}
 .reg-searchwrap:focus-within .reg-si{color:var(--goldink)}
-/* 16px where the page can be zoomed under the reader, 14px where it cannot —
+/* 16px where the page can be zoomed under the reader, 14px where it cannot –
    the one place on this page the size is not purely an editorial choice.
    Mobile Safari zooms the whole page when a field smaller than 16px takes
    focus, and a reader who taps the search box should not have to pinch back
@@ -267,7 +267,7 @@
    The guard was `min-width: 641px`, which is not the condition. An iPad runs
    mobile Safari at 768–1024 CSS px and zooms exactly the same way, so every
    tablet reader got the 14px field and the pinch. Ask what actually decides
-   it — whether the pointer is a mouse — and a phone and a tablet both keep
+   it – whether the pointer is a mouse – and a phone and a tablet both keep
    the 16px, while a desktop takes the step down the scale that the pills
    beside it take. The 44px minimum is the touch target and does not move. */
 .reg-search{
@@ -307,7 +307,7 @@
 }
 /* The button that opens them. It does not exist above 640, where five pills
    fit on one line and hiding them would be theatre. It borrows `.reg-trig`
-   wholesale — same pill, same gold edge and numeral when something is
+   wholesale – same pill, same gold edge and numeral when something is
    narrowing, same caret that turns over when it is open. */
 /* Child selector, not the bare class: `.reg-fbtn` and `.reg-trig` are both
    one class deep, and `.reg-trig{display:inline-flex}` is declared further
@@ -320,15 +320,15 @@
 .reg-sort .reg-lb{flex:1 1 auto}
 
 /* ---- listbox --------------------------------------------------------------
-   A native <select> cannot be styled past its closed state — the open popup
+   A native <select> cannot be styled past its closed state – the open popup
    belongs to the OS, which is why the status filter opened as grey system
-   chrome with a blue system highlight on a warm editorial page — and
+   chrome with a blue system highlight on a warm editorial page – and
    `<select multiple>` renders as a scrolling box, not a dropdown. So this is
    a real listbox: button + role="listbox" + aria-activedescendant. Only the
    paint below changed; every ARIA attribute and key handler is the original. */
 .reg-lb{position:relative;flex:0 1 auto}
-/* One step down the scale — --t-cap, the token for metadata, which is what a
-   filter's dimension name is — with the box tightened to match. At 14px in a
+/* One step down the scale – --t-cap, the token for metadata, which is what a
+   filter's dimension name is – with the box tightened to match. At 14px in a
    40px pill the five of them read as five buttons competing with the ledger
    they narrow; the toolbar is an instrument beside the archive, not a second
    headline. 34px keeps it well clear of the 24px minimum target size. */
@@ -353,8 +353,8 @@
   transition:transform var(--dur) var(--ease);
 }
 .reg-trig[aria-expanded="true"] .tc{transform:rotate(180deg)}
-/* A narrowing filter is marked three times over — a numeral, a heavier word
-   and a gold edge — because colour may never be the only carrier, and the
+/* A narrowing filter is marked three times over – a numeral, a heavier word
+   and a gold edge – because colour may never be the only carrier, and the
    chips below name the values themselves. */
 .reg-trig[data-on]{
   border-color:var(--gold);
@@ -410,7 +410,7 @@
   border-radius:var(--r-sm);cursor:pointer;
   box-shadow:inset 0 0 0 0 var(--gold);
 }
-/* Keyboard-active and hovered are the same state — a tint plus a bar down the
+/* Keyboard-active and hovered are the same state – a tint plus a bar down the
    leading edge, which is a shape, not a colour. */
 .reg-opt[data-active]{
   background:color-mix(in srgb,var(--gold) 12%,var(--surface));
@@ -456,8 +456,8 @@
   font-size:11px;line-height:1;color:var(--goldink);
 }
 /* Under the pointer the whole chip resolves to ink. The gold prefix measured
-   4.25:1 on the hover ground — the one state in the toolbar that fell under
-   AA — and it is the same 11px text as everywhere else, so it takes the
+   4.25:1 on the hover ground – the one state in the toolbar that fell under
+   AA – and it is the same 11px text as everywhere else, so it takes the
    secondary ink instead: 5.88:1. */
 .reg-chip:hover .cd{color:var(--ink2)}
 .reg-chip:hover .cx{color:var(--ink)}
@@ -472,7 +472,7 @@
 .reg-count .of{color:var(--faint);font-weight:400}
 .reg-combine{font-weight:400;font-size:var(--t-cap);color:var(--faint);flex:1 1 auto}
 /* Which half of the search is running while the write-up index is in flight.
-   The same register as .reg-combine beside it — this is a note about the
+   The same register as .reg-combine beside it – this is a note about the
    count, not a warning, and it is gone as soon as the file lands. `flex-basis
    100%` puts it on its own line rather than letting it squeeze the count:
    both Ukrainian and English run past 60 characters. */
@@ -491,7 +491,7 @@
    role="table" on a div rather than a <table>: the rows are a CSS grid at
    every width, and overriding `display` on real table elements strips their
    implicit roles in every engine. Explicit roles keep the column headings
-   honest — they really are column headers, with a real aria-sort. */
+   honest – they really are column headers, with a real aria-sort. */
 .reg-list{display:block;margin:6px 0 0}
 .reg-row{
   display:grid;
@@ -509,7 +509,7 @@
 
 /* column headings
 
-   Sticky, in the idiom the decision pages already use for `.pagenav` — top:0,
+   Sticky, in the idiom the decision pages already use for `.pagenav` – top:0,
    its own ground, a rule under it. Thirty-nine rows run to roughly 2600px of
    document on a desktop: without this, a reader at row 25 has no idea which
    column is which, and the only way back to the sort control is the whole way
@@ -517,12 +517,12 @@
 
    On `.reg-thead`, the rowgroup, and NOT on `.reg-hrow` inside it. A sticky
    element can only travel inside its own parent's box, and `.reg-thead` is
-   exactly as tall as the one row it holds — measured, the heading stuck for
+   exactly as tall as the one row it holds – measured, the heading stuck for
    zero pixels and scrolled away with everything else. The rowgroup's parent
    is `.reg-list`, which is the whole ledger, so that is the box the heading
    is allowed to ride down.
 
-   The site header is not sticky — it scrolls away — so there is nothing above
+   The site header is not sticky – it scrolls away – so there is nothing above
    this to offset against. The z-index sits under the filter popups (40) and
    above the rows: an open «Суди» list overlapping the heading must win. */
 .reg-thead{
@@ -549,7 +549,7 @@
 .reg-th:last-child .reg-sortbtn{justify-self:end}
 .reg-hrow .reg-th:last-child{justify-self:end}
 
-/* data rows — editorial ledger: hairlines on the paper, no per-row boxes */
+/* data rows – editorial ledger: hairlines on the paper, no per-row boxes */
 .reg-drow{position:relative;transition:background-color .16s}
 .reg-drow:hover{background:var(--paper2)}
 .reg-court{
@@ -578,7 +578,7 @@
    Two things separate it from `.reg-why` above: it is not uppercase micro-type
    (these are destinations, and a destination has to be readable), and every
    item is a link into the decision page's own anchor. `.reg-name::after`
-   covers the whole row so the row is one click target — these links have to
+   covers the whole row so the row is one click target – these links have to
    sit above that overlay or they are unreachable, which is what `position:
    relative; z-index: 1` buys. */
 .reg-inwrite{
@@ -602,8 +602,8 @@
 }
 
 /* The court's own document. Same construction as `.rw-s` above and for the
-   same reason — it has to sit above `.reg-name::after`, which covers the row
-   — and the same gold: the cherry it used to take is the library's outcome
+   same reason – it has to sit above `.reg-name::after`, which covers the row
+   – and the same gold: the cherry it used to take is the library's outcome
    colour. */
 .registrypage .reg-wrap a.reg-doc{
   position:relative;z-index:1;
@@ -657,22 +657,22 @@
   display:inline;
 }
 .reg-acts-n + .reg-acts-list::before{
-  content:" — ";
+  content:" – ";
   color:var(--ink3);
 }
 /* A name does not break across lines. At 375px «Марія Львова-Бєлова» was
-   splitting at its hyphen — «Марія Львова-» / «Бєлова» — which reads as two
+   splitting at its hyphen – «Марія Львова-» / «Бєлова» – which reads as two
    people. Breaks fall between names instead, where the separator already is;
    the longest of the six measures 127px against a 237px column at 375, so nothing
    here can overflow the rail. */
-/* Ім'я — ціль, а не підрядковий текст.
+/* Ім'я – ціль, а не підрядковий текст.
 
-   Виміряно на 390: шість імен по 15 пікселів заввишки, а ціль під пальцем —
+   Виміряно на 390: шість імен по 15 пікселів заввишки, а ціль під пальцем –
    щонайменше 24 (WCAG 2.5.8). Виняток «посилання всередині речення» тут не
    діє: це перелік із шести окремих переходів на сайт МКС, і кожне стоїть
    саме. `inline-flex` із `min-height`, як у `.reg-doc` і `.rw-s` вище: рядки
    переліку стають вищими, але між двома рядками імен більше немає зони, де
-   палець влучає в обидва одразу. Базова лінія `inline-flex` — це базова
+   палець влучає в обидва одразу. Базова лінія `inline-flex` – це базова
    лінія його тексту, тож «·» між іменами стоїть на тій самій лінії, що й
    були. */
 .registrypage .reg-wrap .reg-acts-list a{
@@ -706,7 +706,7 @@
 /* Only inside the ledger: the columns are narrower than the widest Ukrainian
    label, so a long one wraps rather than spilling into its neighbour. The
    home page's accordion keeps a single wide chip group and its nowrap. */
-/* Чип переносить рядки — отже, і центрує їх.
+/* Чип переносить рядки – отже, і центрує їх.
 
    «Процедурні рішення» не влазить у рядок, тож `white-space:normal` пускає
    його на два. Другий рядок коротший за перший, і при лівому вирівнюванні
@@ -747,7 +747,7 @@
 /* ---- responsive ----------------------------------------------------------
    Below 820 the row stacks, and a heading row cannot honestly label a stacked
    layout, so it is removed from the page and from the accessibility tree with
-   it — the sort control in the toolbar carries the same axes. */
+   it – the sort control in the toolbar carries the same axes. */
 @media (max-width:899px){
   /* The group as well as the row: an empty sticky rowgroup would still hold a
      1px line at the top of the ledger and take a hairline of scroll with it. */
@@ -768,7 +768,7 @@
 /* One control per line below 640: a popup anchored to a half-width trigger
    would hang off the right edge of a 390px viewport.
 
-   The five of them are behind the «Фільтри» button here — see the note on
+   The five of them are behind the «Фільтри» button here – see the note on
    `.reg-fbtn` in RegistryTable. Shut, the toolbar is two controls on one
    line: what to narrow by, and what order to read in. Open, they stack as
    they always did. */
@@ -785,7 +785,7 @@
   .reg-sort .reg-trig{width:auto}
   /* Laid out in a different order from the one they are written in. `.reg-fset`
      is `flex-basis:100%`, so in source order it forced a wrap the moment it
-     opened and carried the sort control down with it to a third line — the
+     opened and carried the sort control down with it to a third line – the
      one control that is supposed to stay put whether the filters are open or
      shut. `order` puts the two auto-width controls on the first line and lets
      the wide one wrap under both. */
@@ -796,7 +796,7 @@
   /* Three up, and not a wrapping flex row.
 
      When the figures wrapped, the first item of the second line kept the
-     `border-left` every `.m` after the first carries — a rule dividing the
+     `border-left` every `.m` after the first carries – a rule dividing the
      page edge from a number, with nothing on its other side. `:first-child`
      clears the first item of the *set*; CSS has no "first item of a row". A
      grid of three fixes the seats, so every rule always falls between two
@@ -811,18 +811,18 @@
   .reg-meta .ml{font-size:var(--t-micro);letter-spacing:.07em}
 }
 
-/* The citation, under the name. Quieter than the line above it — the reader
+/* The citation, under the name. Quieter than the line above it – the reader
    finds the row by its name and quotes it by its citation, in that order.
 
-   Шрифт — Fira, не моноширинний. Тут стояло «mono face a thing you quote
-   deserves», але DESIGN.md віддає моноширинний машинерії — датам, номерам
-   справ, § — а це назва справи, людська фраза: «Allegations of Genocide
+   Шрифт – Fira, не моноширинний. Тут стояло «mono face a thing you quote
+   deserves», але DESIGN.md віддає моноширинний машинерії – датам, номерам
+   справ, § – а це назва справи, людська фраза: «Allegations of Genocide
    under the Convention… (Ukraine v. Russian Federation)». Моноширинним на
    390 вона розтягувалася на три–п'ять рядків під назвою, яку читач шукав, і
    виглядала як службовий код. Тихішою за назву її роблять розмір
    (`--t-cap`) і колір (`--ink2`), а не гарнітура; `lang="en"` у розмітці
    лишається. Рік і дата рішення праворуч (`.reg-year`, `.reg-decided`) і
-   далі моноширинні — машинерія рядка це вони.
+   далі моноширинні – машинерія рядка це вони.
 
    The class is named for what it used to hold: the Ukrainian line, when the
    citation led and this sat under it. The two changed places (see the note in

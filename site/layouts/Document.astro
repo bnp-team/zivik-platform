@@ -1,6 +1,6 @@
 ---
 /**
- * The document shell — the <html>/<head> half of src/app/[locale]/layout.tsx.
+ * The document shell – the <html>/<head> half of src/app/[locale]/layout.tsx.
  * Pages arrive here already resolved by site/lib/route.ts: a locale, the
  * merged Next metadata, and the React tree Next would have rendered.
  */
@@ -9,7 +9,7 @@ import type { Locale } from "@/i18n/config";
 import { localeHtmlLang } from "@/i18n/config";
 import favicon from "@/app/favicon.ico?url";
 /* The faces the first screen is set in, preloaded. Without this the browser
-   found them only after parsing the page CSS — 15–18 font files, 264–315 kB,
+   found them only after parsing the page CSS – 15–18 font files, 264–315 kB,
    queued behind the stylesheet. Only regular body (Fira 400) and display
    (Charis 400): both need the latin subset on every page (spaces, digits,
    punctuation live there), and a Ukrainian page the cyrillic one too. The
@@ -40,12 +40,12 @@ const preloadFonts = locale === "uk" ? [firaLatin, firaCyrillic, charisLatin, ch
 /**
  * Whether this page needs React in the browser at all.
  *
- * Every page has the header island; many have nothing else — /about, /team,
+ * Every page has the header island; many have nothing else – /about, /team,
  * the legal pages, every pending case, the 404. There the header was the only
  * reason the island runtime loaded, and all it hydrates is a burger that flips
  * one attribute. Those pages get site/islands/header.ts instead: the same
  * behaviour in a few hundred bytes, over the markup the server already
- * rendered. Any other island on the page — including one inside a slot —
+ * rendered. Any other island on the page – including one inside a slot –
  * and the page hydrates exactly as before, header included.
  *
  * Read off the rendered page rather than declared per route, so a page that
@@ -93,10 +93,10 @@ const hydrates = [...html.matchAll(/<nsv-island data-k="([^"#]*)#/g)].some(
       )
     }
     {
-      /* Cloudflare Web Analytics — як у корінному layout Next
+      /* Cloudflare Web Analytics – як у корінному layout Next
          (src/app/[locale]/layout.tsx): лише коли збірка має
          NEXT_PUBLIC_CF_ANALYTICS_TOKEN, який astro.config.mjs вбудовує через
-         `define`. is:inline — Astro не повинен бандлити чужий скрипт. */
+         `define`. is:inline – Astro не повинен бандлити чужий скрипт. */
       cfBeaconConfig && (
         <script is:inline defer src={CF_BEACON_SRC} data-cf-beacon={cfBeaconConfig} />
       )

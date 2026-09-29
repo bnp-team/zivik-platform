@@ -6,11 +6,11 @@ import "./warrant-wave.css";
 /**
  * The warrants of arrest, drawn as a ladder of command.
  *
- * The strongest fact in this data is not the six names — it is their
+ * The strongest fact in this data is not the six names – it is their
  * altitude: the warrants run down an entire vertical of power. One spine,
  * named rungs, each suspect pinned to their rung and coloured by the theory
  * of the case that charged them. Selecting a suspect opens the charges in
- * their own rung — every chip a Rome Statute article, the Court's own
+ * their own rung – every chip a Rome Statute article, the Court's own
  * announcement one click away. Without `rungs` the component falls back to
  * plain wave sections. Props arrive locale-resolved (see CaseTimeline).
  */
@@ -162,7 +162,7 @@ export default function WarrantWall({
      command. It is not one chain: the warrants over the deportation of
      children name the head of state and the children's commissioner, the
      warrants over the grid name the Defence Minister, the General Staff and
-     two operational commanders — and no warrant names the head of state for
+     two operational commanders – and no warrant names the head of state for
      the grid. Drawn as one ladder it asserted a descent that no document
      draws. Each line now has its own ladder, numbered from its own top, so
      what the reader sees is the true and stronger fact: how high the Court
@@ -237,7 +237,7 @@ export default function WarrantWall({
     <div className="warrants warrants-ladder">
       {/* The legend is also where each wave says what it is about. `summary`
           is authored on every wave and used to render only in the `!rungs`
-          fallback below — and icc-ukraine, the one page with warrants, sets
+          fallback below – and icc-ukraine, the one page with warrants, sets
           `rungs`, so the sentence never appeared: the ladder named three
           waves and explained none of them. */}
       <div className="wr-legend">
@@ -279,7 +279,7 @@ export default function WarrantWall({
                     /* Only while the panel is in the document. Nothing is
                        selected on arrival, so #wr-detail does not exist yet,
                        and all six nodes pointed at an id that was not on the
-                       page — a dangling reference every assistive technology
+                       page – a dangling reference every assistive technology
                        has to decide what to do with. */
                     aria-controls={sel === null ? undefined : "wr-detail"}
                     onClick={() => setOpen(open === f.key ? null : f.key)}

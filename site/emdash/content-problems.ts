@@ -5,7 +5,7 @@
 import { COLLECTIONS, fromRow, slugOf, type Prop } from "../content/collections";
 
 /**
- * The kind each JSON field has held since the seed — read off the content
+ * The kind each JSON field has held since the seed – read off the content
  * files, not guessed: `collection.path` → list or object. A field not listed
  * (one that is empty everywhere today) gets the syntax check only.
  */
@@ -47,14 +47,14 @@ export function problems(collection: string, content: Record<string, unknown>): 
     }
     const kind = KIND[`${collection}.${p.path}`];
     if (kind === "list" && !Array.isArray(value)) {
-      out.push(`«${p.label}»: тут має бути список — [ … ]`);
+      out.push(`«${p.label}»: тут має бути список – [ … ]`);
     } else if (kind === "object" && (typeof value !== "object" || value === null || Array.isArray(value))) {
-      out.push(`«${p.label}»: тут має бути об'єкт — { … }`);
+      out.push(`«${p.label}»: тут має бути об'єкт – { … }`);
     }
   }
   if (collection === "posts") out.push(...postProblems(content));
   if (out.length) return out;
-  /* Everything else the build reads — repeaters, numbers, selects — through
+  /* Everything else the build reads – repeaters, numbers, selects – through
      the build's own decoder, so the two cannot disagree. */
   try {
     fromRow(spec, content);
@@ -76,11 +76,11 @@ function postProblems(content: Record<string, unknown>): string[] {
   const out: string[] = [];
   const slug = content.key;
   if (typeof slug === "string" && slug && !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)) {
-    out.push("«Адреса»: лише малі латинські літери, цифри й дефіс — напр. «icj-hearing-2026»");
+    out.push("«Адреса»: лише малі латинські літери, цифри й дефіс – напр. «icj-hearing-2026»");
   }
   const date = content.date;
   if (typeof date === "string" && date && (!/^\d{4}-\d{2}-\d{2}$/.test(date) || Number.isNaN(Date.parse(date)))) {
-    out.push("«Дата»: у форматі РРРР-ММ-ДД — напр. 2026-09-26");
+    out.push("«Дата»: у форматі РРРР-ММ-ДД – напр. 2026-09-26");
   }
   return out;
 }

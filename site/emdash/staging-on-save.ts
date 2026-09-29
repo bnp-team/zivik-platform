@@ -1,5 +1,5 @@
 /**
- * Every save rebuilds the staging site — the preview of drafts.
+ * Every save rebuilds the staging site – the preview of drafts.
  *
  * The public site is prerendered from published content, so a draft has
  * nowhere to be seen before «Опублікувати». The staging Worker is the same

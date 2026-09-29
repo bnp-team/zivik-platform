@@ -2,11 +2,11 @@
 .nsv-root *,.nsv-root *::before,.nsv-root *::after{box-sizing:border-box}
   a{color:inherit}
 
-  /* ── The court accordion and its legend — removed with the component ───
+  /* ── The court accordion and its legend – removed with the component ───
      Forty-nine rules for the library band on the home page: five courts as
      open/close panels, a row per case inside each, a progress strip of dots
      and a three-colour legend under it. The review took the band off the
-     home page and `Registry.tsx` went with it, so these styled nothing —
+     home page and `Registry.tsx` went with it, so these styled nothing –
      and `npm run ghosts` named all fourteen of their classes the moment
      the component was deleted, which is the check working as intended. */
   .lbl{display:flex;align-items:center;gap:var(--space-3);margin-bottom:var(--space-3)}
@@ -21,7 +21,7 @@
   /* `.btn-o` пішла: смуга «Про проєкт» узяла спільну пігулку сайту, і це
      було єдине місце, де прозорий червоний варіант вживався. */
   /* On the lamp scene the paper red is too dark to read, and a saturated red
-     rectangle was the only jarring note in a warm gold composition — red also
+     rectangle was the only jarring note in a warm gold composition – red also
      means "breach" on the decision pages, which a navigation button is not.
      The lit button borrows the lamp's own light instead. Same pill, same border,
      same type: only the colours change. */
@@ -41,19 +41,19 @@
    Hex literals below this point are the lamp illustration, not the palette.
 
    AGENTS.md forbids colour literals in section stylesheets because they do not
-   follow the theme. The lamp — its brass collar, its glass, the cone of light,
-   the cord — is a drawing, not a surface: it is the same object under any
+   follow the theme. The lamp – its brass collar, its glass, the cone of light,
+   the cord – is a drawing, not a surface: it is the same object under any
    theme, the way a photograph would be, and its highlights are mixed against
    each other rather than against the page. Forty-one of the forty-six literals
-   that were in this file are that drawing. The two that were real surfaces —
-   .nsv-root's ground and the pull-quote band — are tokens now.
+   that were in this file are that drawing. The two that were real surfaces –
+   .nsv-root's ground and the pull-quote band – are tokens now.
 
    If a third theme ever arrives, the lamp is repainted as a unit, not
    retinted variable by variable.
    --------------------------------------------------------------------------- */
 /* The lamp's room, in wine rather than in black.
 
-   The ramp was three hex literals — #2A1412, #180A09, #0C0504 — which passed
+   The ramp was three hex literals – #2A1412, #180A09, #0C0504 – which passed
    design-lint only because `.lmp` takes the illustration exemption, and which
    drifted neutral as they got darker: the centre was warm and the two thirds
    of the section a reader actually sees were not. Owner's note, after the
@@ -64,7 +64,7 @@
    dark bands on /about and of the quotation band below; the falloff runs to
    --brand-ink-black, the footer's ground, through a mix of the two. The
    luminance ramp is within a point of what it was at every stop, so the lamp
-   still lights a dark room — what changed is the hue it is dark in. */
+   still lights a dark room – what changed is the hue it is dark in. */
 .lmp{--px:0px;position:relative;overflow:hidden;color:var(--brand-cream);background:radial-gradient(120% 95% at 50% -12%,var(--brand-ember) 0%,color-mix(in srgb,var(--brand-ember) 55%,var(--brand-ink-black)) 44%,var(--brand-ink-black) 100%)}
   /* desk lamp lighting the wordmark */
   /* industrial articulated lamp: matte black, dome shade with an Edison bulb over the wordmark */
@@ -85,10 +85,10 @@
     /* No mask. The map is simply there, to every edge.
 
        It was masked to the lamp's pool, and the owner's verdict on that was
-       the accurate one: «ти просто стираєш — неправдоподібно, не так як би
+       the accurate one: «ти просто стираєш – неправдоподібно, не так як би
        розливалося світло». A mask subtracts. It removed the drawing wherever
        the light was not, so outlines were cut mid-stroke and the far corners
-       held nothing at all — and a lamp does not delete the table it fails to
+       held nothing at all – and a lamp does not delete the table it fails to
        reach. What is dark in a room is still there.
 
        So the map is drawn once, whole, at the level a room gives a thing the
@@ -103,13 +103,13 @@
 
      The tilt is the whole idea: until now the drawing stood upright behind the
      wordmark like a poster, which is not what a hanging lamp lights. Laid back
-     it becomes a surface — the reader is standing at the table looking down at
+     it becomes a surface – the reader is standing at the table looking down at
      a map, and the light falls across it.
 
      Perspective on the frame and the rotation on the drawing inside it, not
      both on one element: the mask stays in the frame's own flat space that
      way, so the pool of light keeps its shape and its place under the bulb
-     while the map turns underneath it. That is also the physics — the lamp
+     while the map turns underneath it. That is also the physics – the lamp
      does not tilt with the table.
 
      `scale` pays for the rotation. rotateX(34deg) foreshortens the vertical to
@@ -132,7 +132,7 @@
     transform-origin:50% 38%;
     /* The unlit level. The strokes were tuned against a mask that reached
        full strength under the bulb, so at full opacity everywhere the map
-       would now read as evenly lit — the fault the mask was introduced to fix
+       would now read as evenly lit – the fault the mask was introduced to fix
        in the first place. This is the map in the dark; the lamp supplies the
        difference. */
     opacity:.62;
@@ -140,13 +140,13 @@
   /* Faint on purpose. This is the ground under a wordmark, not a chart: the
      six shapes have to be readable as countries and must not compete with the
      display type sitting on them. Warm, because everything the lamp touches on
-     this site is warm — same --brand-gold-lit the archive's own map lights its
+     this site is warm – same --brand-gold-lit the archive's own map lights its
      forum states with, at a fraction of the strength. */
-  /* The graticule — the lines the tilt is read from.
+  /* The graticule – the lines the tilt is read from.
 
      1px and non-scaling, not the 0.55 it started at. `vector-effect` draws a
      stroke in real pixels, so 0.55 asks the screen for half a pixel and gets a
-     line nobody can see — the same trap `.emap-ctx` documents next door, where
+     line nobody can see – the same trap `.emap-ctx` documents next door, where
      a third of a pixel "is not a thin line, it is a line the screen cannot
      resolve". At 14% on top of that it was invisible twice over.
 
@@ -155,10 +155,10 @@
   .lmp .hmap-grid{fill:none;stroke:color-mix(in srgb,var(--brand-gold-lamp) 30%,transparent);stroke-width:1;vector-effect:non-scaling-stroke}
   /* The continent under the lit six. Outline only and very faint: this is
      what makes the drawing legible as a map, and it must not read as content
-     — the section's subject is the wordmark, and after that the six. */
+     – the section's subject is the wordmark, and after that the six. */
   .lmp .hmap-ctx{fill:none;stroke:color-mix(in srgb,var(--brand-gold-lamp) 22%,transparent);stroke-width:.6;vector-effect:non-scaling-stroke}
   /* 38%, measured. At 20% a lit country was 1.54:1 against the ground the lamp
-     throws, which is not "lit" — it is a smudge, and that is what it looked
+     throws, which is not "lit" – it is a smudge, and that is what it looked
      like. 2.44:1 reads as light falling on land while staying well under the
      wordmark, which is the section's subject and must keep the eye. The mask
      takes it down again toward the edges, so this is the value at the middle
@@ -172,7 +172,7 @@
      fainter than the foreign states lit around it. That is the wrong sentence
      for the drawing to say.
 
-     4.79:1 now — a step above the lit six rather than half of them — on a
+     4.79:1 now – a step above the lit six rather than half of them – on a
      heavier stroke, with a thin fill under it so the shape reads as a body
      and not only as a line. Still the same division of labour the archive's
      own map makes: the others are lit, Ukraine is drawn. */
@@ -184,7 +184,7 @@
   /* The light, added rather than laid on.
 
      Both of these are painted after the map and over it, and until now they
-     were composited normally — a warm translucent haze that sat on the map
+     were composited normally – a warm translucent haze that sat on the map
      and lightened its dark ground about as much as it lightened its lines.
      `screen` is the compositing the physics asks for: light adds to what is
      already there, so the gold of a coastline under the shade gains and the
@@ -195,11 +195,11 @@
      owner's note. `.bcone` is masked to a conic wedge opening downward from
      a point just above the shade, so the light spreads as it falls instead of
      radiating evenly in a circle; `.bpool` is the ellipse it makes where it
-     lands. Together they are a lamp's throw — narrow at the source, wide on
-     the table — and not a vignette centred on nothing. */
-  /* design-lint-ignore fluid: a lamp's throw is a physical size, not a share of the window — the cone stays 520px on any screen so a wide monitor gets more dark map, not more light */
+     lands. Together they are a lamp's throw – narrow at the source, wide on
+     the table – and not a vignette centred on nothing. */
+  /* design-lint-ignore fluid: a lamp's throw is a physical size, not a share of the window – the cone stays 520px on any screen so a wide monitor gets more dark map, not more light */
   .lmp .bcone{position:absolute;left:190px;top:134px;width:520px;height:300px;pointer-events:none;z-index:1;background:linear-gradient(180deg,rgba(255,236,192,.4),rgba(255,228,170,.15) 48%,rgba(255,228,170,0) 88%);-webkit-mask-image:conic-gradient(from 152deg at 50% -22px,transparent 0deg,rgba(0,0,0,.3) 6deg,#000 18deg,#000 38deg,rgba(0,0,0,.3) 50deg,transparent 56deg);mask-image:conic-gradient(from 152deg at 50% -22px,transparent 0deg,rgba(0,0,0,.3) 6deg,#000 18deg,#000 38deg,rgba(0,0,0,.3) 50deg,transparent 56deg);filter:blur(7px);mix-blend-mode:screen}
-  /* design-lint-ignore fluid: the pool is where that cone lands, so it is sized with it — see the note on .bcone above */
+  /* design-lint-ignore fluid: the pool is where that cone lands, so it is sized with it – see the note on .bcone above */
   .lmp .bpool{position:absolute;left:220px;top:190px;width:460px;height:190px;border-radius:50%;background:radial-gradient(ellipse at center,rgba(255,240,204,.28) 0%,rgba(255,232,180,.12) 44%,rgba(255,228,170,0) 74%);pointer-events:none;z-index:1;filter:blur(9px);mix-blend-mode:screen}
   .lmp .dchain{position:absolute;left:508px;top:120px;width:22px;height:96px;padding:0;border:0;background:none;cursor:pointer;z-index:6}
   .lmp .dchain i{position:absolute;left:10px;top:0;width:1.5px;height:54px;background:linear-gradient(180deg,rgba(198,181,147,.5),#C6B593);transition:height .2s cubic-bezier(.33,1,.68,1)}
@@ -210,13 +210,13 @@
      The global rule draws 2px with a 3px offset around whatever takes focus,
      which is right everywhere else and wrong here: `.dchain` is a 22x96 button
      wrapping a 1.5px cord, so the ring came out as a tall rectangle hanging
-     beside the shade — read, correctly, as a stray box rather than as focus.
+     beside the shade – read, correctly, as a stray box rather than as focus.
 
      Removing it was not an option. This stylesheet's own note says keyboard
      users had no visible focus anywhere on the site before that rule, and the
      pull-chain is a real control: it is what turns the lamp off. So the ring
-     moves to the pull itself — the knob at the end of the cord, which is the
-     part a reader aims at — and takes the cord's own glow with it, so the
+     moves to the pull itself – the knob at the end of the cord, which is the
+     part a reader aims at – and takes the cord's own glow with it, so the
      indicator is the object lighting up rather than a box around it. */
   .lmp .dchain:focus-visible{outline:none}
   .lmp .dchain:focus-visible i{height:62px}
@@ -241,11 +241,11 @@
      element and a `!important` clamp in the 760px block fighting it back down.
      Inline styles beat stylesheets, which is why that override needed the
      bang; with nothing inline there is nothing to shout over. Deliberately
-     off the type scale — this is the lamp's own lettering, and DESIGN.md
+     off the type scale – this is the lamp's own lettering, and DESIGN.md
      gives illustrations their own register. */
   .lmp .wm{position:relative;display:inline-block;font-family:var(--brand-font-display),Georgia,serif;font-weight:400;font-size:clamp(46px,15vw,88px);line-height:1;white-space:nowrap}
-  /* The unlit half of the wordmark, and it is text — the site's own name, the
-     page's h1 — not part of the drawing. The lamp's cone is 250px across and
+  /* The unlit half of the wordmark, and it is text – the site's own name, the
+     page's h1 – not part of the drawing. The lamp's cone is 250px across and
      the word is 344px at 1440, so the letters at both ends are only ever this
      layer: measured on the built page, composited over the stage at its
      darkest (rgb 34 16 14), .32 painted rgb(101 85 82) and 2.59:1, under the
@@ -266,7 +266,7 @@
      so the back link on the About masthead turned red; `.page h1` is (0,1,1)
      and ties `.abt-mast h1`, so whichever loads last wins the title's colour.
      Opening /uk/about directly shows neither fault, which is why this took
-     three passes to find — it only appears on the path a reader actually
+     three passes to find – it only appears on the path a reader actually
      takes.
 
      `.homepage` is on the home page's root div and nowhere else, so the rules
@@ -283,7 +283,7 @@
      The map is a dark surface inside a paper page, and this rule was painting
      every link on it --brand-red: measured on the card, 127,23,22 on 32,24,21,
      a ratio of 1.69:1. It went unseen because most of those links wrap a span
-     that sets its own colour — only the two that do not, the way out to the
+     that sets its own colour – only the two that do not, the way out to the
      library and the seat's caseload, showed it. Raising the map's own
      specificity does not fix it either: `:not()` takes the weight of its
      heaviest argument, so this rule is (0,2,2) and `.emap-card a.emap-more`
@@ -300,11 +300,11 @@
   }
   .homepage a:not(.nsv-topbar a, .nsv-mobnav a, .nsv-foot a, .nsv-skiplink, .btn, .emap a, .abt-cite-link, .nsv-open-cta):hover{color:var(--redd)}
   /* the lamp gradient is the header's ground on this page, so the bar itself
-     stays transparent — everywhere else it supplies its own dark */
+     stays transparent – everywhere else it supplies its own dark */
   .page .lmp{border:0}
   /* The stage is the screen.
 
-     It was `width:900px; margin:0 auto` — a fixed stage centred in the page —
+     It was `width:900px; margin:0 auto` – a fixed stage centred in the page –
      because the lamp's fixtures were authored at fixed pixel coordinates for
      a 900-wide box. That has not been true since they were re-anchored to
      `calc(50% ± n)` further down this file: every fixture is centred on the
@@ -313,7 +313,7 @@
 
      What the fixed width did care about was the map. `.hmap` is `inset:0` of
      this element, so the drawing could never be wider than 900px however far
-     the geometry ran — measured at a 2000px window, the hero sat from 550 to
+     the geometry ran – measured at a 2000px window, the hero sat from 550 to
      1450 with 550 pixels of flat ground down each side. That is the cut edge
      the owner kept reporting, and no amount of graticule was ever going to
      reach past it.
@@ -324,11 +324,11 @@
      the shade. */
   .page .pj{width:100%}
 
-/* partner marks — restrained row, no empty placeholder boxes */
+/* partner marks – restrained row, no empty placeholder boxes */
 /* Each partner is a mark with its name under it, not a mark alone: a reader
    who does not recognise a wordmark learns nothing from a row of them. The
    hairline between entries stays, so several still read as one row. */
-/* Partners — two halves: the support this archive has, and the door for the
+/* Partners – two halves: the support this archive has, and the door for the
    support it does not have yet.
 
    It was a hairline-separated row of marks set straight on the band, with the
@@ -336,7 +336,7 @@
    now, because the band has an interior to lay out: a column of paper and a
    panel of night beside it, which no inline style on the wrapper could hold.
 
-   The grid collapses to one column at 900px — under that the panel's heading
+   The grid collapses to one column at 900px – under that the panel's heading
    breaks to four lines and the logo plate goes narrower than the mark it is
    holding, which is where two columns stop being two columns. */
 .nsv-partners{position:relative;z-index:3;padding:var(--space-10) var(--space-7) var(--space-12);background:var(--paper);border-top:1px solid var(--rule);scroll-margin-top:var(--space-4)}
@@ -372,7 +372,7 @@
 .nsv-open h3.nsv-open-h{margin:0 0 var(--space-5);font-family:var(--brand-font-display),serif;font-weight:400;font-size:var(--t-h2);line-height:1.2;color:var(--brand-cream)}
 .nsv-open-t{margin:0 0 var(--space-8);font-size:var(--t-body);line-height:1.55;color:var(--brand-muted-dark);max-width:48ch}
 /* Nouns, not controls: no hover, no pointer, nothing to press. What a
-   partnership could be — the one thing to press is the letter below. */
+   partnership could be – the one thing to press is the letter below. */
 .nsv-open-ways{display:flex;flex-wrap:wrap;gap:var(--space-3);margin:0 0 var(--space-8);padding:0;list-style:none}
 .nsv-open-ways li{padding:var(--space-3) var(--space-5);border-radius:var(--r-pill);border:1px solid color-mix(in srgb,var(--brand-cream) 34%,transparent);font-size:var(--t-sm);line-height:1.2;color:var(--brand-cream)}
 /* --brand-cream-warm on --brand-cherry is 5.01:1; the button against the
@@ -383,7 +383,7 @@
 .nsv-open-cta:focus-visible{outline:2px solid var(--brand-gold-pale);outline-offset:3px}
 @media (max-width:600px){.nsv-open{padding:var(--space-10) var(--space-7)}}
 
-/* brand slogan divider — Charis SIL caps, wide tracking (UCU "гасла" style) */
+/* brand slogan divider – Charis SIL caps, wide tracking (UCU "гасла" style) */
 .nsv-slogan{display:flex;align-items:center;gap:var(--space-6);padding:var(--space-7) var(--space-7);background:var(--paper2);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
 .nsv-slogan .rule{flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--rule))}
 .nsv-slogan .rule.r2{background:linear-gradient(90deg,var(--rule),transparent)}
@@ -403,7 +403,7 @@
    720 column down the middle of a 1900 band read thinner than it had before.
    Two columns of prose: the paragraphs are not the same length, so the right
    one ended a line and a half above the left and the hole moved to the middle
-   of the band — unequal columns of running text always do that, and it is
+   of the band – unequal columns of running text always do that, and it is
    only invisible when there is enough text to even out. The label set beside
    the prose does hold, and was the owner's call to decline: it would make this
    band the one section on the site whose label sits in a column of its own,
@@ -420,14 +420,14 @@
    краю, а 460 пікселів паперу праворуч лишалися порожні, і на широкому
    екрані абзац читався клаптем. Власниця: «пошматовано виглядає».
 
-   820 — це `--prose-max`, та сама міра, якою набрано /about і сторінки
+   820 – це `--prose-max`, та сама міра, якою набрано /about і сторінки
    рішень; ті самі три абзаци там стоять саме так. Одна міра на сайт. */
-/* Смуга «Про проєкт» — дві колонки: проза і вихід на сторінку.
+/* Смуга «Про проєкт» – дві колонки: проза і вихід на сторінку.
 
    Кнопка була окремим блоком під смугою; на широкому екрані вона стояла
    під текстом, який займає ліві дві третини, а праворуч лишався порожній
    папір. Тепер вона друга колонка при прозі, на верхній лінії першого
-   абзаца — те саме, що знак факультету робить на /about.
+   абзаца – те саме, що знак факультету робить на /about.
 
    `align-items: start`, бо посередині трьох абзаців кнопка читалася б як
    підпис до другого. Вужче за 1000 колонки складаються і кнопка
@@ -441,14 +441,14 @@
 
 /* Both paragraphs in the About band are body prose of one rank, so they carry
    one colour. The opening one used to be painted --ink (#1a1917, 17.57:1 on
-   the band's --surface) with the rest on --ink2 (#55524d, 7.78:1) — a lede
+   the band's --surface) with the rest on --ink2 (#55524d, 7.78:1) – a lede
    "leading by colour" that reads as two ranks of text inside a section that
    has only one rank in it. --ink2 is what body prose measures everywhere else
    on this page's paper bands (the registry deck and its lede both measure
    rgb 85,82,77) and on the /about page itself, so the band now matches them
    instead of shouting over them. It also leaves --red as the band's single emphasis colour, carried by
    the eyebrow and the button, which are not prose and may differ.
-   Measured after: 7.78:1 on --surface (#ffffff) — AA at 16px needs 4.5:1.
+   Measured after: 7.78:1 on --surface (#ffffff) – AA at 16px needs 4.5:1.
    The colour lives here rather than inline in About.tsx because an inline
    style outranks every rule in this file, which is how the two ranks got in. */
 .nsv-about-main p{margin:0;font-size:var(--t-body);line-height:1.65;color:var(--ink2)}
@@ -469,7 +469,7 @@
 .lmp .chint{left:calc(50% + 98px)}
 
 /* ============================================================
-   Responsive layout — reflow the desktop composition for
+   Responsive layout – reflow the desktop composition for
    tablet/phone. Structural containers carry `nsv-*` classes.
    ============================================================ */
 /* Header chrome (.nsv-burger/.nsv-mobnav/.nsv-nav collapse) now lives with the
@@ -482,14 +482,14 @@
 @media (max-width:760px){
   /* 158px is not a rhythm value and does not want to be one: it is the
      clearance the lamp needs above the wordmark on a phone. Left off the
-     scale on purpose — DESIGN.md gives the illustration its own register,
+     scale on purpose – DESIGN.md gives the illustration its own register,
      and this padding belongs to the illustration. */
   /* design-lint-ignore space: lamp clearance above the wordmark, not rhythm */
   .nsv-hero{padding:158px var(--space-4) 0 !important}
   .pj{min-height:auto !important;padding-bottom:var(--space-10) !important}
   /* keep the lamp; only drop the hover hint on small screens */
   .lmp .chint{display:none !important}
-  /* The accordion's phone layout went with the accordion — see above. */
+  /* The accordion's phone layout went with the accordion – see above. */
   .nsv-slogan{gap:var(--space-3);padding:var(--space-6) var(--space-4)}
   .nsv-slogan .rule{display:none}
 }
@@ -500,19 +500,19 @@
 }
 
 /* fluid side padding that grows on wider screens (28 → 96px). The map margin
-   matches, so it stays full-bleed to the page edge — no 100vw, no overflow. */
+   matches, so it stays full-bleed to the page edge – no 100vw, no overflow. */
 @media (min-width:1024px){
   /* .acc is excluded: its white rows must span full width; only their content
      is inset (below). Padding the .acc container would expose the dark hero
      gradient behind it as side strips. */
   /* Padding insets the content from the edge; it does not cap how wide the
-     content gets. At 1920px every band still ran 1728px across — which is why
+     content gets. At 1920px every band still ran 1728px across – which is why
      the figure row huddled on the left, the "Про проєкт" button sat most of a
      screen away from the sentence it belongs to, and the forum list spread
      into five sparse columns. The paper background lives on .page, so capping
      the bands leaves it full-bleed and only the content centres. */
   /* Any element, not just a div. The selector used to say `> div`, which
-     silently skipped every band that is not one — the quote band is a
+     silently skipped every band that is not one – the quote band is a
      <figure> and sat 100px left of its neighbours for as long as it had been
      one, with nothing to show that a rule had simply missed it. */
   /* `:not(.acc)` went with the accordion: the band it excluded is gone, and
@@ -526,7 +526,7 @@
     /* The gutter grows to whatever it takes to keep the content within
        --measure. Capping the band itself (max-width + margin:auto) looked
        identical on the paper sections and broke every band that carries its
-       own colour — the footer, the newsletter and the slogan stopped 130px
+       own colour – the footer, the newsletter and the slogan stopped 130px
        short of each edge and showed page paper down both sides. Padding keeps
        the band full-bleed and moves only the content. */
     padding-left:max(clamp(28px, 5vw, 96px), calc((100% - var(--measure)) / 2)) !important;
@@ -566,7 +566,7 @@
   font:600 var(--t-micro)/1 var(--brand-font-body);
   letter-spacing:.18em;text-transform:uppercase;
   /* faint-dark measures 4.12:1 against the lightest point of the hero's
-     radial gradient — under AA for 11px text. The step down to the faculty
+     radial gradient – under AA for 11px text. The step down to the faculty
      line is carried by size, case and face instead of by contrast. */
   color:var(--brand-muted-dark);
 }

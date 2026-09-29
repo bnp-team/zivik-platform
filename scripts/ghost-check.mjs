@@ -6,7 +6,7 @@
  *     node scripts/ghost-check.mjs --quiet  count only
  *
  * A selector whose class never appears in any class attribute cannot match
- * anything the site renders. It is not a bug on screen — that is exactly the
+ * anything the site renders. It is not a bug on screen – that is exactly the
  * problem. It sits in the stylesheet looking like part of the design, it is
  * read and weighed by everyone who touches the file, it is carried into every
  * refactor, and it ships to every reader. The repository has already paid for
@@ -21,8 +21,8 @@
  *     on the strength of two unrelated local variables in a timeline
  *     component. A substring is not a use.
  *   - Reading every string literal in the TypeScript desynchronised on the
- *     first apostrophe in a Ukrainian comment — «пов'язані» opens a string
- *     that swallows the rest of the file — and reported half the registry as
+ *     first apostrophe in a Ukrainian comment – «пов'язані» opens a string
+ *     that swallows the rest of the file – and reported half the registry as
  *     dead.
  *   - Taking `className={...}` up to the first `}` cut template literals in
  *     half at their first `${`, so `` `arow ${lit ? "lit" : "dim"}` `` never
@@ -146,7 +146,7 @@ if (ghosts.length === 0) {
 console.log(
   `ghost-check: ${ghosts.length} class(es) styled but never written anywhere\n` +
     `  ${declared.size} declared, ${live.size} used` +
-    (htmlCount ? `, cross-checked against ${htmlCount} built pages.\n` : `. No build found — run \`npm run build\` for the second source.\n`),
+    (htmlCount ? `, cross-checked against ${htmlCount} built pages.\n` : `. No build found – run \`npm run build\` for the second source.\n`),
 );
 if (!QUIET) {
   for (const g of ghosts) {

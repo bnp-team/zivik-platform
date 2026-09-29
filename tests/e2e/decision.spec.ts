@@ -40,7 +40,7 @@ for (const slug of decisionSlugs) {
     expect(await entries.count(), "chronology entries").toBeGreaterThan(0);
     if (!LIVE) await expect(entries).toHaveCount(SUMMARIES[slug].timeline.length);
 
-    /* «Читати рішення» — or the summary's own label for it — opens the
+    /* «Читати рішення» – or the summary's own label for it – opens the
        judgment in a new tab. */
     const read = page.locator("a.hm-cta:not(.hm-cta-2)");
     await expect(read).toHaveCount(1);

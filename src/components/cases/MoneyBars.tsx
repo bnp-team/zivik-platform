@@ -21,14 +21,14 @@ import { useState } from "react";
  * bar is drawn inside a rail that is the largest figure on the page, so a
  * small sum reads as a small sum rather than as a stub of unknown meaning; the
  * one on the Oschadbank page is 14px of a 1152px rail with «0,26%» beside it.
- * A sentence used to say as well that the bar had been widened — nine words in
+ * A sentence used to say as well that the bar had been widened – nine words in
  * the brightest colour in the block, under a figure that was already legible.
  * The floor still distorts, and the distortion is still bounded by the printed
  * number: at 1.2% of the rail no bar can overstate a sum by more than that
  * share, and it is the percentage a reader is reading, not the pixels.
  *
  * **The segments are not controls.** Each part of a split bar used to be its
- * own button, duplicating the entry for that part in the key below — two focus
+ * own button, duplicating the entry for that part in the key below – two focus
  * stops for one fact, and on Oschadbank the smallest part is 2.6% of the sum,
  * which draws as roughly seventeen pixels of clickable target. The segments are
  * the picture now; the key is where a reader points.
@@ -52,13 +52,13 @@ export default function MoneyBars({
 }: {
   figures: MoneyFigureR[];
   shareLabel: string;
-  /** "від найбільшої суми" — what every bar is drawn against. */
+  /** "від найбільшої суми" – what every bar is drawn against. */
   ofLargestLabel: string;
   locale: string;
 }) {
   const [picked, setPicked] = useState<string | null>(null);
 
-  /* The scale belongs to one currency — the one the largest figure is in,
+  /* The scale belongs to one currency – the one the largest figure is in,
      which on every page here is the award's own. A figure in another cannot be
      drawn against it: the French seizure is in euros, and a euro magnitude on
      a dollar bar is a comparison nobody made. It used to be drawn anyway, with
@@ -67,7 +67,7 @@ export default function MoneyBars({
      simply is not drawn.
 
      Declared before `scale`, which reads them. Written the other way round
-     this threw "Cannot access 'l' before initialization" at prerender — a
+     this threw "Cannot access 'l' before initialization" at prerender – a
      const is not hoisted, and the build is where that surfaced. */
   const scaleCurrency =
     figures.reduce((a, b) => (b.amount > a.amount ? b : a), figures[0])
@@ -82,7 +82,7 @@ export default function MoneyBars({
 
      The gate used to be on the bar: at least 15% of the rail and it could
      divide. But what goes wrong is never the bar's width, it is the smallest
-     segment's — and that depends on how lopsided the split is. Oschadbank's
+     segment's – and that depends on how lopsided the split is. Oschadbank's
      principal is 74% of its rail and passed easily, while the third of its
      three heads is 2.6% of the sum: measured on the built page at 375px, a
      242px bar cut into 128, 104 and 6 pixels. Six pixels is thinner than the
@@ -90,8 +90,8 @@ export default function MoneyBars({
 
      So the test is the narrowest part as a share of the rail, and the
      threshold is the share that part needs to clear about 8px of drawing. That
-     depends on the window, which a page rendered once cannot know — the rail
-     measures 327px at 375px of viewport and 900px at 1000px — so the decision
+     depends on the window, which a page rendered once cannot know – the rail
+     measures 327px at 375px of viewport and 900px at 1000px – so the decision
      is made in two halves. Anything under 1% never divides: 8px would need a
      900px rail and no window makes that bar legible. Between 1% and 2.5% the
      bar divides and is marked `data-thin`, and the stylesheet collapses it
@@ -119,7 +119,7 @@ export default function MoneyBars({
           ? (Math.min(...parts.map((p) => p.amount)) / scale) * 100
           : 0;
         const segmented = drawn && parts.length > 1 && narrowest >= SEG_MIN;
-        /* Drawn here, solid on a narrow window — the stylesheet decides. */
+        /* Drawn here, solid on a narrow window – the stylesheet decides. */
         const thin = segmented && narrowest < SEG_WIDE;
         return (
           <div key={i} className="money-row">
@@ -141,7 +141,7 @@ export default function MoneyBars({
               >
                 {segmented &&
                   parts.map((p, j) => (
-                  /* A picture, not a control — the key below is where a reader
+                  /* A picture, not a control – the key below is where a reader
                      points. As buttons these duplicated every key entry and,
                      for a part worth 2.6% of its sum, offered a target about
                      seventeen pixels wide. */
@@ -181,7 +181,7 @@ export default function MoneyBars({
                             the weaves named nothing a reader could find, and
                             the entry still says its figure and its share. */}
                         <i data-seg={segmented ? j : undefined} />
-                        {p.label} — <b>{p.display}</b>
+                        {p.label} – <b>{p.display}</b>
                         {picked === key && (
                           <em>
                             {" "}

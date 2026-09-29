@@ -4,14 +4,14 @@
  * The components in src/ are written for React Server Components: a page is
  * server-rendered markup with a handful of client components inside it, and
  * only those ship JavaScript. Astro has no RSC, so this reproduces the one
- * part of it the site relies on — the boundary.
+ * part of it the site relies on – the boundary.
  *
  * In the server build, the default export of every module that opens with
  * "use client" is wrapped by `island()` (runtime.tsx). The wrapper
  * server-renders the component as usual inside an <nsv-island> element that
  * records which module it came from and the props it was given. In the
  * browser, client.tsx finds those elements and hydrates each one with the
- * same component and props — exactly the set of components Next would have
+ * same component and props – exactly the set of components Next would have
  * hydrated, and nothing else.
  *
  * Named exports pass straight through: in this codebase they are types,
@@ -39,7 +39,7 @@ function walk(dir, out = []) {
  *
  * `serverOnly` lists "use client" modules (paths relative to `root`) that
  * render here as plain server markup and never hydrate. A module belongs on
- * it when it has no state, no effects and no handlers — when "use client" is
+ * it when it has no state, no effects and no handlers – when "use client" is
  * there for a reason that is Next's alone. HeroMap is the case: under Next
  * the directive keeps its 68 outlines out of the flight payload; under Astro
  * there is no flight payload, and hydrating it only shipped its geometry
@@ -66,7 +66,7 @@ export function clientIslands({ root, serverOnly = [] }) {
    * In the browser build, an island's stylesheet imports are dropped.
    *
    * client.tsx loads every island through one dynamic-import table, and Astro
-   * hands each page the CSS of everything that script can reach — so
+   * hands each page the CSS of everything that script can reach – so
    * EventsMap's 26 kB of `.emap` rules were a render-blocking stylesheet on
    * /team, /about and every decision, none of which has a map. The server
    * build still imports them, and that is how a page that renders the island

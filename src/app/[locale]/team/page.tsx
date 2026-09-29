@@ -18,7 +18,7 @@ import "./team.css";
 const T = {
   back: { uk: "На головну", en: "Home" },
   title: { uk: "Команда", en: "Team" },
-  /* No lede. It said who runs the project — which the footer says on this
+  /* No lede. It said who runs the project – which the footer says on this
      page and on every other one, under the wordmark. A page that opens by
      repeating its own footer has spent its first line on nothing.
 
@@ -35,7 +35,7 @@ const T = {
      the same words, so the two pages do not offer a reader two different
      reasons to use one address. */
   contactText: {
-    uk: "Помітили помилку в огляді або знаєте про провадження, якого тут немає — напишіть.",
+    uk: "Помітили помилку в огляді або знаєте про провадження, якого тут немає – напишіть.",
     en: "If you have spotted an error in a summary, or know of a proceeding that is missing, write to us.",
   },
 } as const;
@@ -73,7 +73,7 @@ export async function generateMetadata({
       description,
       images: [ogImage(defaultOgImage, dict.meta.ogAlt)],
     },
-    // A page that sets openGraph and no twitter inherits the layout's card —
+    // A page that sets openGraph and no twitter inherits the layout's card –
     // so this page used to share as the home page, title, text and image.
     twitter: {
       card: "summary_large_image",
@@ -145,14 +145,14 @@ export default async function TeamPage({
 
         {/* «НАПИСАТИ НАМ →» used to be an 11px uppercase gold text link
             floating under the last portrait, with nothing about it saying it
-            was a control. It is the shared CTA pill now — see `.nsv-cta` in
-            [locale]/shared.css for the measured colours — and it carries a
+            was a control. It is the shared CTA pill now – see `.nsv-cta` in
+            [locale]/shared.css for the measured colours – and it carries a
             sentence, because a button with no context under a grid of faces
             is still a button nobody presses. */}
         <section className="team-contact">
           <h2>{L(T.contactH)}</h2>
           <p>{L(T.contactText)}</p>
-          {/* «Написати нам», the same label /about's pill carries — owner's
+          {/* «Написати нам», the same label /about's pill carries – owner's
               decision, reverting the address-as-label both pages tried. */}
           <a className="nsv-cta" href={`mailto:${dict.footer.email}`}>
             {L(T.contact)}

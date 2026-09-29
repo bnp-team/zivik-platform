@@ -5,7 +5,7 @@ import { useState } from "react";
 /**
  * Jurisdiction objections, argument beside ruling.
  *
- * Each card starts on the objection — the case as the respondent put it — and
+ * Each card starts on the objection – the case as the respondent put it – and
  * turns to the ruling on tap. Keeping the two on one surface is the point: a
  * reader who only ever sees the outcome cannot tell how close the argument
  * was. Props arrive locale-resolved (see CaseTimeline for why).
@@ -50,8 +50,8 @@ export default function ObjectionCards({
                   It used to close each card, under the text of the objection,
                   so a reader scanning six cards for what the Court did read
                   six paragraphs of what Russia argued first. The question this
-                  block answers is "which of these worked" — five of six did
-                  not — and that has to be legible in one pass across the
+                  block answers is "which of these worked" – five of six did
+                  not – and that has to be legible in one pass across the
                   grid's top edge. The counter and the outcome share the first
                   line; the ground follows as the heading it is. */}
               <span className="obj-top">

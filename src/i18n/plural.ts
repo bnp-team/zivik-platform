@@ -1,8 +1,8 @@
 /**
  * Grammatical number, once.
  *
- * This lived twice — `Intl.PluralRules`-based in `RegistryTable.tsx` and
- * hand-rolled in `cases/[slug]/page.tsx` — and the map, which needed it as
+ * This lived twice – `Intl.PluralRules`-based in `RegistryTable.tsx` and
+ * hand-rolled in `cases/[slug]/page.tsx` – and the map, which needed it as
  * much as either, called neither: `dict.mapSection.caseload` baked the
  * genitive plural into its own template, so eight of the nine courts on
  * /uk/map read «1 проваджень», «2 проваджень», «3 проваджень», and seven of
@@ -10,7 +10,7 @@
  * step and the wrong one, so both callers point here now.
  *
  * `Intl.PluralRules` rather than arithmetic on n % 10. Ukrainian agreement has
- * three forms — 1 провадження, 2–4 провадження, 5+ проваджень — and the teens
+ * three forms – 1 провадження, 2–4 провадження, 5+ проваджень – and the teens
  * all take the last, which is why 11 and 21 disagree; the hand-rolled version
  * got that right and got English wrong in the other direction, printing
  * "21 case" because n % 10 === 1. English resolves to one/other, and reads

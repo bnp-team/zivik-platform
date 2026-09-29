@@ -28,7 +28,7 @@ import {
    Thirty-nine rows in memory: a well-chosen set of fields plus normalisation
    beats a search library, and leaves the matching auditable. Lower-case, strip
    combining marks (so "Одеса" and "Одеса" agree however they were typed), turn
-   every punctuation run into a space — that is what makes "36958/21", "ICJ GL
+   every punctuation run into a space – that is what makes "36958/21", "ICJ GL
    182" and "PCA 2015-07" behave as ordinary token queries.
    ========================================================================== */
 export function norm(s: string): string {
@@ -43,7 +43,7 @@ export function norm(s: string): string {
 
 /**
  * Cheap Latin ⇄ Cyrillic tolerance. Only pairs the record already contains in
- * both scripts — a reader typing «Гаага» must reach English-titled rows, and a
+ * both scripts – a reader typing «Гаага» must reach English-titled rows, and a
  * reader typing "ECHR" must reach rows filed under «ЄСПЛ». This expands the
  * *query*, never the data, so nothing here can put a word into the archive.
  */
@@ -84,7 +84,7 @@ function hits(hay: string, token: string): boolean {
 export interface RegRow {
   id: string;
   courtId: string;
-  /** Abbreviation in the active locale — the visible court cell. */
+  /** Abbreviation in the active locale – the visible court cell. */
   court: string;
   /** Sort position of the institution, so "by court" follows the archive. */
   courtOrder: number;
@@ -107,23 +107,23 @@ export interface RegRow {
   year: number | null;
   /**
    * Decision date where the record fixes an exact day. A year-only record
-   * cannot produce one — a bare year stays in `year`, and is never widened
+   * cannot produce one – a bare year stays in `year`, and is never widened
    * into 1 January, which would be a fabricated fact and a corrupted sort.
    */
   decided: Extract<CaseDate, { precision: "day" }> | null;
   /** `decided`, already formatted for the locale. */
   decidedLabel: string | null;
   lit: boolean;
-  /** Summary slug where one exists — the key into the content index. */
+  /** Summary slug where one exists – the key into the content index. */
   slug: string | null;
   /**
-   * The court's own document, where the record holds a link to one — twenty-
+   * The court's own document, where the record holds a link to one – twenty-
    * two of the thirty-nine.
    *
    * It used to arrive as a bare boolean, because the only thing the table did
    * with it was let the «Матеріали» filter narrow to rows that had one. That
    * left the reader who used that filter holding twenty-two rows and no way
-   * to open a single document without going into each case first — one extra
+   * to open a single document without going into each case first – one extra
    * navigation in front of the most valuable act this archive supports.
    */
   docUrl: string | null;
@@ -141,16 +141,16 @@ export interface RegRow {
    * they are six acts of one proceeding, they were six rows, and the library
    * counted seven where the honest answer is one situation carrying six
    * warrants. `href` on an act is the Court's own page for it, when there is
-   * one — these have no page here.
+   * one – these have no page here.
    */
   acts: { id: string; name: string; href: string | null }[];
   /** «6 ордерів», already counted and pluralised. Null when there are none. */
   actsLabel: string | null;
-  /** The asterisk's footnote — what the count is and is not. */
+  /** The asterisk's footnote – what the count is and is not. */
   actsNote: string | null;
   /** Raw searchable text, grouped so a match can say where it came from. */
   find: {
-    /** Case name and note — the two fields the row shows. */
+    /** Case name and note – the two fields the row shows. */
     visible: string;
     /** Institution abbreviation, name and seat, in *both* locales. */
     court: string;
@@ -167,7 +167,7 @@ type FindGroup = keyof RegRow["find"];
 const HIDDEN_GROUPS: FindGroup[] = ["court", "status", "type", "date"];
 
 /* ============================================================================
-   Content search — the write-ups, not just the row.
+   Content search – the write-ups, not just the row.
 
    The index is built at build time (`content/search-index.ts`); everything
    here is the read side. The shape is deliberately dumb: a sorted array of
@@ -181,7 +181,7 @@ const HIDDEN_GROUPS: FindGroup[] = ["court", "status", "type", "date"];
  *
  * The postings used to come with it. They are the archive's largest single
  * block of data and they were in the document whether or not the reader ever
- * typed — 24,137 gzipped bytes of a 53,379-byte page. They are a file now,
+ * typed – 24,137 gzipped bytes of a 53,379-byte page. They are a file now,
  * fetched on the reader's first move towards the field.
  *
  * The labels stay: there are eight of them, they are localized, and they are
@@ -202,7 +202,7 @@ export interface ContentIndexProp {
  * is eight strings: a posting is an offset into it, so the two are one fact.
  * Split across a prop and a fetch they could disagree between a cached file
  * and a new deployment, and the failure would be a hit rendered against the
- * wrong case — the worst kind of wrong an archive can be.
+ * wrong case – the worst kind of wrong an archive can be.
  */
 export interface ContentIndexFile {
   /** Summary slugs, in posting order. */
@@ -232,7 +232,7 @@ function lowerBound(keys: string[], needle: string): number {
  * PREFIX over the key set, which is what makes a short query behave: three
  * letters reach every term that starts with them. A token at or past the
  * prefix length can only match its own key, because no key is longer than the
- * prefix — so one code path covers both.
+ * prefix – so one code path covers both.
  */
 function tokenHits(
   idx: ContentIndexFile,
@@ -264,7 +264,7 @@ function tokenHits(
  * their sections to point the reader at.
  *
  * Two levels of AND, and the difference matters. A case qualifies when each
- * token appears somewhere in it — that is what puts the row in the table. The
+ * token appears somewhere in it – that is what puts the row in the table. The
  * sections named on the row are the ones where every token appears *together*,
  * because that is the screen the reader wants; when the tokens are scattered
  * across different sections there is no such screen, so the union is named
@@ -327,7 +327,7 @@ export interface SortState {
  * Every axis is a *primary* key only. The tail below runs after it, so equal
  * values never shuffle between renders and a second dimension is always doing
  * useful work: court, then most recent, then name, then id. That is the
- * "multiple parameters" the registry needed — several axes to choose from,
+ * "multiple parameters" the registry needed – several axes to choose from,
  * each with a fixed, meaningful secondary and a total tie-break.
  */
 function tail(a: RegRow, b: RegRow): number {
@@ -378,8 +378,8 @@ function compare(a: RegRow, b: RegRow, { key, dir }: SortState): number {
    The reader's state, in the URL.
 
    Two things this buys, and the page had neither. A narrowed view is a link
-   again — «усі справи ЄСПЛ у стадії виконання» is the sort of thing a lawyer
-   sends to a colleague — and a reader who follows a row into a decision page
+   again – «усі справи ЄСПЛ у стадії виконання» is the sort of thing a lawyer
+   sends to a colleague – and a reader who follows a row into a decision page
    and comes back lands on the view they left rather than on all thirty-nine.
 
    It is deliberately NOT `useSearchParams()`, which is how the incoming
@@ -387,7 +387,7 @@ function compare(a: RegRow, b: RegRow, { key, dir }: SortState): number {
    out to client-side rendering, and the cost was measured on this exact
    route: the built HTML for /uk/registry carried an 815-byte <main> holding
    the masthead and a BAILOUT_TO_CLIENT_SIDE_RENDERING marker where the table
-   should be. No rows, no toolbar, no case names, no court names — on the one
+   should be. No rows, no toolbar, no case names, no court names – on the one
    page this archive most needs indexed, and the only route on the site with
    that marker in it. The data still shipped, as 195KB of RSC payload inside
    <script> tags; it just never became markup.
@@ -406,7 +406,7 @@ const useIsomorphicLayoutEffect =
 
 /* By court. The reader arrives at a docket of thirty-nine proceedings across
    twelve bodies, and the first question the page is asked is which forum a
-   case sits in — «дефолтне сортування за Судом». Newest-first is still one
+   case sits in – «дефолтне сортування за Судом». Newest-first is still one
    press away and is the second option in the control. */
 const DEFAULT_SORT: SortState = { key: "court", dir: "asc" };
 
@@ -430,7 +430,7 @@ interface UrlState {
   sort: SortState;
 }
 
-/** The values each list filter is allowed to hold — the options actually on
+/** The values each list filter is allowed to hold – the options actually on
  *  the page. A query string is user input like any other. */
 interface Allowed {
   court: Set<string>;
@@ -442,7 +442,7 @@ interface Allowed {
  * Parse `window.location.search`.
  *
  * Every value is checked against the options the page is showing, and unknown
- * ones are dropped rather than emptying the table — a stale link to a court
+ * ones are dropped rather than emptying the table – a stale link to a court
  * that has since been renamed should still open the library.
  */
 function readUrl(allow: Allowed): UrlState {
@@ -537,11 +537,11 @@ export interface RegistryLabels {
      «Фільтри»: ordering sits outside it and is not one. */
   filters: string;
   sort: string;
-  /* Ключами — саме ті порядки, що є в `SORTS`, а не будь-який рядок.
+  /* Ключами – саме ті порядки, що є в `SORTS`, а не будь-який рядок.
      Індексна сигнатура казала, що будь-який ключ на місці, і через це
      компілятор не побачив, як `yearDesc` зник зі словника, а контрол і далі
      просив у нього підпис: тип сказав «рядок», tsc промовчав, прод показав
-     `undefined`. Тепер прибраний порядок ламає збірку в обох кінцях —
+     `undefined`. Тепер прибраний порядок ламає збірку в обох кінцях –
      і там, де його дають, і там, де просять. */
   sortOpt: Record<SortId, string>;
   colCourt: string;
@@ -561,7 +561,7 @@ export interface RegistryLabels {
   reset: string;
   /** Accessible name of the active-filter list. */
   activeFilters: string;
-  /** Verb on each active-filter chip: «Прибрати фільтр: Суди — ЄСПЛ». */
+  /** Verb on each active-filter chip: «Прибрати фільтр: Суди – ЄСПЛ». */
   clearFilter: string;
   clearSearch: string;
   emptyHead: string;
@@ -583,21 +583,21 @@ export interface RegistryLabels {
 /** The axes offered by the sort control, in the order they are listed. */
 /* Тільки те, чого не вміють заголовки колонок.
 
-   У списку було девʼять порядків, і шість із них — за судом, за назвою, за
-   станом розгляду, за типом рішення, спершу нові, спершу давні — це рівно
+   У списку було девʼять порядків, і шість із них – за судом, за назвою, за
+   станом розгляду, за типом рішення, спершу нові, спершу давні – це рівно
    те, що дає натискання на «СУД», «СПРАВА», «СТАН РОЗГЛЯДУ», «ТИП РІШЕННЯ»
    і «РІК». Той самий порядок, двома різними органами. Власниця: «забери
    зайві сортування».
 
    Лишилося три: сортування за судом (воно ж стан за замовчуванням, і
-   контрол мусить уміти його показати), за датою рішення — колонки з нею
-   немає — і «спершу опрацьовані», якої в таблиці теж немає колонки. Порядок
+   контрол мусить уміти його показати), за датою рішення – колонки з нею
+   немає – і «спершу опрацьовані», якої в таблиці теж немає колонки. Порядок
    за сумами пішов разом із сумами. */
 const SORTS = [
-  /* Перший — той, що за замовчуванням: `DEFAULT_SORT_ID` читає його звідси,
-     а не називає своїм рядком. Доти контрол тричі згадував «yearDesc» —
+  /* Перший – той, що за замовчуванням: `DEFAULT_SORT_ID` читає його звідси,
+     а не називає своїм рядком. Доти контрол тричі згадував «yearDesc» –
      підписом, ознакою «не за замовчуванням» і станом, у який повертався при
-     знятті вибору, — і коли той порядок прибрали зі списку, підпис став
+     знятті вибору, – і коли той порядок прибрали зі списку, підпис став
      undefined, а зняття вибору кидало таблицю в порядок, якого в меню вже
      немає. Та сама помилка, що й у `active` нижче, і те саме лікування:
      одне джерело. */
@@ -611,7 +611,7 @@ type SortId = (typeof SORTS)[number]["id"];
 const DEFAULT_SORT_ID: SortId = SORTS[0].id;
 
 /* ============================================================================
-   Listbox — a real one.
+   Listbox – a real one.
 
    A native <select> cannot be styled past its closed state (the open popup is
    the OS's, not the page's) and `<select multiple>` is a scrolling box, not a
@@ -657,7 +657,7 @@ function Listbox({
   summaryOverride?: string;
   /**
    * Whether the control counts as "doing something". A filter decides that for
-   * itself — anything chosen is narrowing — but every list is in some order,
+   * itself – anything chosen is narrowing – but every list is in some order,
    * so only the caller knows which order is the default one.
    */
   activeOverride?: boolean;
@@ -674,7 +674,7 @@ function Listbox({
   /* "Усі суди" is an option rather than a second control: one idiom for
      clearing, matching the СКИНУТИ button rather than competing with it.
      Ordering has no "all": every list is in *some* order, and the synthetic
-     row listed «Спершу нові» twice — once as the clear-everything row and
+     row listed «Спершу нові» twice – once as the clear-everything row and
      once as the preset that means exactly the same thing. */
   const rows: Opt[] = useMemo(
     () =>
@@ -685,7 +685,7 @@ function Listbox({
   const chosen = rows.filter((r) => r.value !== "" && selected.includes(r.value));
   /* What the closed control shows. The sort control shows the order; a filter
      shows its own dimension plus a count, because *which* values are chosen is
-     spelled out by the removable chips under the toolbar — repeating them
+     spelled out by the removable chips under the toolbar – repeating them
      inside the trigger is what made these read as form fields. */
   const summary =
     variant === "sort"
@@ -722,7 +722,7 @@ function Listbox({
     const onDown = (e: MouseEvent) => {
       if (wrapRef.current?.contains(e.target as Node)) return;
       // The popup is about to be unmounted. If it is holding focus, hand it
-      // back to the trigger first — otherwise focus falls to <body> and the
+      // back to the trigger first – otherwise focus falls to <body> and the
       // keyboard user is dropped at the top of the document. The browser still
       // moves focus on to whatever was clicked, when that is focusable.
       const inside = listRef.current?.contains(document.activeElement);
@@ -731,8 +731,8 @@ function Listbox({
       trigRef.current?.focus();
       /* …and again after the browser has run mousedown's own default action,
          which overrides the line above. Measured: focus did not fall all the
-         way to <body>, but it did land on `main[tabindex="-1"]` — the nearest
-         programmatically-focusable ancestor — so the keyboard user was still
+         way to <body>, but it did land on `main[tabindex="-1"]` – the nearest
+         programmatically-focusable ancestor – so the keyboard user was still
          dropped out of the toolbar. Anything the reader actually clicked into
          is a real tab stop (tabIndex >= 0) and keeps the focus it just won. */
       requestAnimationFrame(() => {
@@ -976,12 +976,12 @@ export default function RegistryTable({
      It used to arrive with the page: 24,137 gzipped bytes of postings in a
      53,379-byte document, downloaded by every reader who opened the library
      and read only by the ones who searched it. It is asked for now the first
-     time a reader reaches for the field — hovering it, focusing it, or
+     time a reader reaches for the field – hovering it, focusing it, or
      arriving with a ?q= in the URL.
 
      What the field does before it lands: it works. The thirty-nine rows and
-     their five haystacks are already here — name, note, court, status, field,
-     date — and that half of the search needs nothing fetched. What is missing
+     their five haystacks are already here – name, note, court, status, field,
+     date – and that half of the search needs nothing fetched. What is missing
      is the other half, the summaries behind eight of the rows, and a search
      that quietly returns a short answer is the failure this index was built
      to fix in the first place. So while it is in flight, or if it never
@@ -1006,7 +1006,7 @@ export default function RegistryTable({
       .catch(() => setIndexState("failed"));
   }, [content.url]);
 
-  /** The values a query string may name — the options this page is showing. */
+  /** The values a query string may name – the options this page is showing. */
   const allow: Allowed = useMemo(
     () => ({
       court: new Set(courts.map((c) => c.id)),
@@ -1016,7 +1016,7 @@ export default function RegistryTable({
     [courts, stages, outcomes],
   );
 
-  /* Read the URL — a *layout* effect, not an ordinary one.
+  /* Read the URL – a *layout* effect, not an ordinary one.
 
      It runs after hydration has matched the server's markup and before the
      browser paints, so React flushes the resulting re-render in the same
@@ -1035,7 +1035,7 @@ export default function RegistryTable({
     if (u.q !== "") {
       setQ(u.q);
       /* A shared filtered link is a query nobody is going to retype, and its
-         reader never touches the field — so the field's own triggers would
+         reader never touches the field – so the field's own triggers would
          never fire and the write-ups would never be searched. */
       wantIndex();
     }
@@ -1050,7 +1050,7 @@ export default function RegistryTable({
 
   /* Back and forward. Our own writes use replaceState and so create no
      history entries, but the browser can still hand this component a
-     different query string underneath it — a soft navigation back from a
+     different query string underneath it – a soft navigation back from a
      decision page that keeps the tree mounted, or a reader editing the
      address bar. Then the URL is authoritative again, defaults included. */
   useEffect(() => {
@@ -1069,8 +1069,8 @@ export default function RegistryTable({
   }, [allow, wantIndex]);
 
   /* Write the URL. Skipped exactly once: on mount this runs with the defaults
-     still in place — the reader's values are set by the layout effect above
-     and land on the next render — so writing here would erase the ?court=
+     still in place – the reader's values are set by the layout effect above
+     and land on the next render – so writing here would erase the ?court=
      they arrived with before anything had read it. */
   const firstWrite = useRef(true);
   useEffect(() => {
@@ -1081,8 +1081,8 @@ export default function RegistryTable({
     writeUrl({ q, court, stage, outcome, material, sort });
   }, [q, court, stage, outcome, material, sort]);
 
-  /* «Щось звужено» — це відхилення від стану за замовчуванням, тож і
-     порівнювати треба з ним. Тут стояло `!== "year" || !== "desc"` —
+  /* «Щось звужено» – це відхилення від стану за замовчуванням, тож і
+     порівнювати треба з ним. Тут стояло `!== "year" || !== "desc"` –
      дефолт, який був до того, як він став «за судом». Відколи став,
      свіжовідкрита сторінка вважалася звуженою, і кнопка «Скинути» стояла
      під кожним першим переглядом, не маючи чого скидати. Те саме число,
@@ -1200,7 +1200,7 @@ export default function RegistryTable({
      Three controls on this page delete themselves as their own last act: a
      chip removes the value it names, «Скинути» clears the state that put it
      on the page, and the search field's ✕ clears the query that made it
-     appear. Only the third had ever been handled — it puts the caret back in
+     appear. Only the third had ever been handled – it puts the caret back in
      the field it emptied. The other two dropped focus on <body>, which sends
      a keyboard reader back to the top of the document to tab in again, and
      the chips are exactly the control a keyboard reader uses most: one Enter
@@ -1243,7 +1243,7 @@ export default function RegistryTable({
     setOutcome([]);
     setMaterial([]);
     setSort(DEFAULT_SORT);
-    /* «Скинути» is the last control standing after it runs — it takes itself
+    /* «Скинути» is the last control standing after it runs – it takes itself
        off the page along with the chips and, in the empty state, the panel it
        sits in. The search field is where the instrument starts. */
     focusAfter.current = { kind: "search" };
@@ -1255,8 +1255,8 @@ export default function RegistryTable({
     label: t.sortOpt[s.id],
   }));
 
-  /* A heading clicked twice reverses its axis, and four of those reversals —
-     court, name, stage and outcome descending — are states no preset in SORTS
+  /* A heading clicked twice reverses its axis, and four of those reversals –
+     court, name, stage and outcome descending – are states no preset in SORTS
      names. The control used to fall back to its "all" label and claim «Спершу
      нові» while the table was ordered by something else; it now reads the real
      state off the column's own name. */
@@ -1269,11 +1269,11 @@ export default function RegistryTable({
   };
   const sortSummary = sortId
     ? undefined
-    : `${COL[sort.key] ?? ""} — ${sort.dir === "asc" ? t.sortAsc : t.sortDesc}`;
+    : `${COL[sort.key] ?? ""} – ${sort.dir === "asc" ? t.sortAsc : t.sortDesc}`;
 
   /* The active filters, spelled out. A reader who has narrowed to two courts
      can see which two without opening anything, and each chip clears its own
-     value in one click — «Скинути» stays the one action that clears
+     value in one click – «Скинути» stays the one action that clears
      everything, the search and the ordering included. */
   const courtLabel = (id: string) =>
     courts.find((c) => c.id === id)?.abbr ?? id;
@@ -1414,7 +1414,7 @@ export default function RegistryTable({
               of chrome before a reader saw a single proceeding. Folded, they
               are one pill carrying its own count, and the chips under the
               toolbar still name every value that is narrowing whether this is
-              open or shut — so nothing becomes invisible, only quiet.
+              open or shut – so nothing becomes invisible, only quiet.
 
               Ordering stays outside it. Under 900px the column headings are
               gone from the page, which makes this control the only way to
@@ -1478,7 +1478,7 @@ export default function RegistryTable({
           />
           {/* Де рядок у нас: огляд готовий, або ми його пишемо. Дві
               половини однієї величини (`lit`), а не два незалежні прапорці,
-              тож разом вони дають усі тридцять девʼять — вибрати обидві те
+              тож разом вони дають усі тридцять девʼять – вибрати обидві те
               саме, що не вибрати жодної, і рахунки це показують. */}
           <Listbox
             label={t.materials}
@@ -1498,7 +1498,7 @@ export default function RegistryTable({
           </div>
           {/* Ordering is not narrowing, so it does not wear a filter's pill:
               it sits at the far end of the row as an underlined text control.
-              It stays on wide screens even though the heading row sorts too —
+              It stays on wide screens even though the heading row sorts too –
               two of its axes, the decision date and "ready to read first",
               have no column to click. */}
           <div className="reg-sort">
@@ -1531,7 +1531,7 @@ export default function RegistryTable({
               <button
                 type="button"
                 className="reg-chip"
-                aria-label={`${t.clearFilter}: ${c.dim} — ${c.label}`}
+                aria-label={`${t.clearFilter}: ${c.dim} – ${c.label}`}
                 onClick={() => {
                   focusAfter.current = { kind: "chip", index: i };
                   c.clear();
@@ -1559,7 +1559,7 @@ export default function RegistryTable({
         </p>
         {multiCount > 0 && <p className="reg-combine">{t.combine}</p>}
         {/* Which half of the search is running. Only ever shown while there is
-            a query to be half-answered — with the field empty the reader is
+            a query to be half-answered – with the field empty the reader is
             looking at all thirty-nine rows and nothing is missing. */}
         {tokens.length > 0 && indexState !== "ready" && (
           <p className="reg-partial">
@@ -1604,7 +1604,7 @@ export default function RegistryTable({
                  each section named here is a link that lands on it. */
               const inDocAll = r.slug ? (inWriteup.get(r.slug) ?? []) : [];
               /* Capped. A one-word query can land in every band of a long
-                 write-up — oschadbank matches «крим» in all six — and six
+                 write-up – oschadbank matches «крим» in all six – and six
                  links under a table row is a second navigation, not a hint.
                  Four, in page order, and the rest counted rather than
                  dropped silently. */
@@ -1627,9 +1627,9 @@ export default function RegistryTable({
                     {/* Ukrainian leads, because the page is in Ukrainian.
 
                         This is what the commit that introduced `nameUk` said
-                        it was doing — "Ukrainian leads because Ukrainian is
+                        it was doing – "Ukrainian leads because Ukrainian is
                         what the page is in… the caption is still there, in
-                        full, one line down" — and the markup did the
+                        full, one line down" – and the markup did the
                         opposite: the English citation was the link, set large,
                         and the Ukrainian sat under it at 12.5px. The comment
                         here was then written to describe the result rather
@@ -1639,7 +1639,7 @@ export default function RegistryTable({
                         The citation has not gone anywhere: it is the line
                         below, which is where a thing you quote belongs once
                         the reader has found the row. `lang` on each, because
-                        neither is guaranteed to be the page's language — see
+                        neither is guaranteed to be the page's language – see
                         foreignLang(); a Ukrainian voice reading a Latin-script
                         caption phonetically is unintelligible.
 
@@ -1665,7 +1665,7 @@ export default function RegistryTable({
                     )}
                     {/* The acts this proceeding carries, named on its row.
 
-                        They were rows themselves — six ICC warrants beside
+                        They were rows themselves – six ICC warrants beside
                         the situation they were issued in, so the library's
                         ICC group counted seven proceedings where there is
                         one. Printed here the count is the warrants' («6
@@ -1673,8 +1673,8 @@ export default function RegistryTable({
                         things a reader can check by looking.
 
                         Each name links to the Court's own page for that
-                        accused, so it sits above `.reg-name::after` — the
-                        overlay that makes the whole row one target — the
+                        accused, so it sits above `.reg-name::after` – the
+                        overlay that makes the whole row one target – the
                         same way `.reg-doc` does. */}
                     {r.acts.length > 0 && (
                       <span className="reg-acts">
@@ -1717,8 +1717,8 @@ export default function RegistryTable({
                     )}
                     {/* The court's own document, one click from the list.
 
-                        It sits above `.reg-name::after` — the overlay that
-                        makes the whole row one target — the same way the
+                        It sits above `.reg-name::after` – the overlay that
+                        makes the whole row one target – the same way the
                         write-up section links do, which is what `position:
                         relative; z-index: 1` buys in the stylesheet. Without
                         that it would be underneath the row link and

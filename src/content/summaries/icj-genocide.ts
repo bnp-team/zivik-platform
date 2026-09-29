@@ -7,7 +7,7 @@ import verbatimUk from "./icj-genocide.uk.json";
  * intervening), ICJ Judgment on Preliminary Objections of 2 February 2024.
  *
  * `verbatim` holds the summary prose exactly as ingested from the source .docx
- * (English — the language of the judgment). The fields below add a localized
+ * (English – the language of the judgment). The fields below add a localized
  * visualization layer whose every value restates something already in that
  * prose:
  *   • the timeline dates all appear in "FACTUAL BACKGROUND" (2014, 21, 22 and
@@ -20,16 +20,16 @@ import verbatimUk from "./icj-genocide.uk.json";
  * of the judgment itself (§ 151); the Order of 16 March 2022 from § 10; the
  * intervention figures from § 14, 18, 21 and 23; the Order of 5 June 2023 and
  * its own tallies from § 18 and ICJ press release 2023/27. The judgment's text
- * is published in HTML at https://www.icj-cij.org/node/203503 — that is what
+ * is published in HTML at https://www.icj-cij.org/node/203503 – that is what
  * every § reference below points at, and it is the same document as the PDF at
  * `judgment.url`, which sits behind a bot wall plain HTTP clients cannot pass.
  * The post-judgment timeline entries come from the Court's case page
  * (https://www.icj-cij.org/case/182) and press releases 2025/5 and 2025/55.
  *
  * Where to read the PDFs when icj-cij.org refuses. The Court's own origin host
- * serves the identical files without the bot wall —
+ * serves the identical files without the bot wall –
  * https://icj-web.leman.un-icc.cloud/sites/default/files/case-related/182/…
- * — and the Wayback Machine holds the December 2025 filings. That is how
+ * – and the Wayback Machine holds the December 2025 filings. That is how
  * `cases.ts`'s `pages: 70` was checked: the file at `judgment.url` is the
  * I.C.J. Reports 2024 fascicle offprint, 70 PDF pages, the judgment running
  * pp. 360-425 (official citation "I.C.J. Reports 2024, p. 360"). The HTML twin
@@ -37,7 +37,7 @@ import verbatimUk from "./icj-genocide.uk.json";
  * is why the two disagree; 70 is right for the file we link.
  *
  * The Order of 5 December 2025 and press release 2025/55 exist as /node pages
- * (206010 and 206019) but those carry metadata only — no HTML body — so the
+ * (206010 and 206019) but those carry metadata only – no HTML body – so the
  * time-limits in the timeline below come from the Order's own § 68, read from
  * the PDF.
  *
@@ -51,10 +51,10 @@ import verbatimUk from "./icj-genocide.uk.json";
  *
  * How the write-up is blocked, and why. The prose arrived as 48 blocks of
  * which 42 were an undifferentiated `p`, so the page drew forty-two identical
- * paragraphs and a reader had no way to see whose voice any of them was — and
+ * paragraphs and a reader had no way to see whose voice any of them was – and
  * at the time that was the whole page: `bands: "four"` hid the objection
  * ledger, the submissions matrix and the interpretations, so the write-up
- * carried the case alone. (That whitelist is gone — see `hideSections` below,
+ * carried the case alone. (That whitelist is gone – see `hideSections` below,
  * which drops the overview and the interpretations and lets everything else
  * render.) The pass that fixed it changed NOT ONE CHARACTER of the
  * text; it only said what each block is, and joined two runs the author had
@@ -62,12 +62,12 @@ import verbatimUk from "./icj-genocide.uk.json";
  *
  *   • the Court's answer to the whole case (block 1), its holding on
  *     jurisdiction (15-17), its reading of Article IX (19) and its disposal of
- *     the two aspects (24-25) are `position` — the Court speaking;
+ *     the two aspects (24-25) are `position` – the Court speaking;
  *   • «Тобто, подаючи позовну заяву…» (7) and the closing paragraph on what
- *     makes this the first false-genocide case (35) are `note` — the write-up
+ *     makes this the first false-genocide case (35) are `note` – the write-up
  *     speaking about the Court, which was set exactly like the Court's own;
  *   • the two aspects of the dispute (21, 23) are `claim`, so each is paired
- *     with the Court's answer beside it — the § 38 quotation for the first,
+ *     with the Court's answer beside it – the § 38 quotation for the first,
  *     the holding for the second;
  *   • the Memorial's requests (a)-(f) are one `findings` block and Russia's
  *     six objections one `p`, each joined at the author's own paragraph breaks
@@ -76,7 +76,7 @@ import verbatimUk from "./icj-genocide.uk.json";
  *
  * Nothing here interprets: every seam is one the author drew. The one thing
  * the data cannot yet ask for is a proper ordered list on the (a)-(f) and
- * (1)-(6) runs — the renderer's enumerator rule knows «1.» and «–» but not
+ * (1)-(6) runs – the renderer's enumerator rule knows «1.» and «–» but not
  * «(1)» or «(a)», which is how the ICJ letters its submissions.
  */
 export const icjGenocide: DecisionSummary = {
@@ -88,18 +88,18 @@ export const icjGenocide: DecisionSummary = {
   }),
   blocksUk: (verbatimUk as { blocks: SummaryBlock[] }).blocks,
 
-  /* Review's edit: «поміняти назву рішення — забрати про 32 держави-інтервенти
+  /* Review's edit: «поміняти назву рішення – забрати про 32 держави-інтервенти
      і залишити про геноцид». The intervening States are a fact about the
      proceeding, not its subject, and they were the only thing the page's own
      title said. The library's row for this case has read «звинувачення у
      геноциді» all along, so the two now agree.
 
-     The Court's own case name keeps the interveners — it is a citation, and
+     The Court's own case name keeps the interveners – it is a citation, and
      `cases.ts` quotes it in full under `name`. This is the page's heading,
      not the citation.
 
      Then the form changed again. icj-cerd-icsft's h1 became the Court's full
-     case name — «Замінюємо назву на таку», the owner's own wording — and the
+     case name – «Замінюємо назву на таку», the owner's own wording – and the
      archive's two ICJ pages cannot carry two different shapes of headline
      while the instruction is «стандартизована назва». So this is the same
      shape: the Court's case name, with «: 32 States intervening» taken out of
@@ -107,14 +107,14 @@ export const icjGenocide: DecisionSummary = {
   /* Third pass on this heading, and the last one is the owner's own string:
      «одразу великими літерами дати повну назву, а (Ukraine v. Russian
      Federation: 32 States Intervening) маленькими знизу». The template
-     already sets a title that way — the subject in the display type, the
-     trailing parenthetical under it in italic gold — so the instruction is
+     already sets a title that way – the subject in the display type, the
+     trailing parenthetical under it in italic gold – so the instruction is
      satisfied in the data alone. Two things came back into the string:
 
        • «: 32 States intervening». It had been cut on the ground that the
          interveners are a fact about the proceeding and not its subject.
          They are, but they are in the parenthesis, which is where the facts
-         about the proceeding go — and that parenthesis is the small line.
+         about the proceeding go – and that parenthesis is the small line.
        • «. Попередні заперечення». This docket has produced an order on
          provisional measures, a judgment on preliminary objections and an
          order on counter-claims, and the archive will hold more of them. A
@@ -122,7 +122,7 @@ export const icjGenocide: DecisionSummary = {
          is the one thing the masthead's own «Рішення від 2 лютого 2024»
          says only by its date.
 
-     The phase rides with the parties rather than in the heading — it is the
+     The phase rides with the parties rather than in the heading – it is the
      same kind of fact, and in the display type it would read as part of the
      Convention's name. See `titleTail` in cases/[slug]/page.tsx. */
   title: {
@@ -137,10 +137,10 @@ export const icjGenocide: DecisionSummary = {
     kicker: "Юрисдикцію за Конвенцією про геноцид підтверджено",
   },
   seoTitle: {
-    uk: "Україна проти Росії: геноцид, попередні заперечення — МС ООН",
-    en: "Ukraine v. Russia (Genocide), Preliminary Objections — ICJ",
+    uk: "Україна проти Росії: геноцид, попередні заперечення – МС ООН",
+    en: "Ukraine v. Russia (Genocide), Preliminary Objections – ICJ",
   },
-  /* The masthead in Ukrainian — the caption under the title and the line
+  /* The masthead in Ukrainian – the caption under the title and the line
      in the eyebrow. `masthead` keeps the decision's own English, which is
      what the citation block reproduces; this is what a Ukrainian reader
      sees at the top of the page. See `mastheadUk` in summaries/types.ts. */
@@ -148,7 +148,7 @@ export const icjGenocide: DecisionSummary = {
     /* Identical to `title` on purpose: the caption was that same sentence
        stopping before «(Україна проти Російської Федерації)», so under the
        full case name it read as a shortened copy of the headline. The masthead
-       prints it once — same guard as on icj-cerd-icsft. */
+       prints it once – same guard as on icj-cerd-icsft. */
     official:
       "Звинувачення у геноциді згідно з Конвенцією про запобігання злочину геноциду та покарання за нього (Україна проти Російської Федерації: 32 держави-інтервенти). Попередні заперечення",
     judgment: "Рішення від 2 лютого 2024",
@@ -160,7 +160,7 @@ export const icjGenocide: DecisionSummary = {
 
   /**
    * Explicit rather than relying on the page template's default. That default
-   * is invisible from the data, so every other consumer has to know about it —
+   * is invisible from the data, so every other consumer has to know about it –
    * and map-links.ts did not, which is why this decision showed no forum on
    * the events map.
    */
@@ -176,19 +176,19 @@ export const icjGenocide: DecisionSummary = {
      three to four sentences, so the snippet was cut off mid-word. */
   /* Named removals, not a whitelist of four.
 
-     This page carried `bands: "four"` — «ЗАЛИШАТИ ХРОНОЛОГІЮ, МІСЦЕ РОЗГЛЯДУ,
+     This page carried `bands: "four"` – «ЗАЛИШАТИ ХРОНОЛОГІЮ, МІСЦЕ РОЗГЛЯДУ,
      ОГЛЯД ТА ДЖЕРЕЛА» from the corrections document, applied as a whitelist
      that silenced every other band. The next review overturned it from the
-     other end: it asked for edits to the submissions matrix — a new heading,
-     the ground column gone, the result column reworded — which is a section a
+     other end: it asked for edits to the submissions matrix – a new heading,
+     the ground column gone, the result column reworded – which is a section a
      whitelist of four cannot show, and at the same time for «Забрати Key
-     rulings on the law» and «Забрати Overview — не має ніякої цінності»,
+     rulings on the law» and «Забрати Overview – не має ніякої цінності»,
      which a whitelist cannot express either, because naming what stays says
      nothing about what the reviewer wants gone.
 
      So the instrument is inverted here: everything renders except the two
      sections the review names. The chronology, the map, the write-up and the
-     sources — the four the first line asked for — are all still here; what
+     sources – the four the first line asked for – are all still here; what
      joins them is the matrix, the docket card, the ledger of Russia's six
      objections and the intervention figures.
 
@@ -197,20 +197,20 @@ export const icjGenocide: DecisionSummary = {
      a band this list can give back, and "related" is no longer a member of
      `hideSections` either. See `hideSections` in summaries/types.ts. */
   /* «overview» більше не в списку: секція, яку він ховав, звалася «Якщо
-     коротко» і була абзацом, а тепер це «Картка справи» — реквізити
-     провадження, які має нести кожне рішення. Власниця: «перша секція —
+     коротко» і була абзацом, а тепер це «Картка справи» – реквізити
+     провадження, які має нести кожне рішення. Власниця: «перша секція –
      картка справи». Разом із карткою повертається й той абзац; якщо він
      тут зайвий, прибирати його треба окремо, а не разом із карткою. */
   hideSections: ["rulings"],
 
   metaDesc: {
-    uk: "Рішення МС ООН від 2 лютого 2024 щодо попередніх заперечень: п'ять із шести заперечень Росії відхилено; вимоги (c) і (d) — поза Конвенцією.",
+    uk: "Рішення МС ООН від 2 лютого 2024 щодо попередніх заперечень: п'ять із шести заперечень Росії відхилено; вимоги (c) і (d) – поза Конвенцією.",
     en: "ICJ judgment on preliminary objections, 2 February 2024: five of Russia's six objections rejected; submissions (c) and (d) fall outside the Convention.",
   },
 
   plain: {
     tldr: {
-      uk: "Росія виправдовувала вторгнення вигаданим «геноцидом на Донбасі». Україна пішла до Міжнародного суду ООН, щоб той офіційно засвідчив: геноциду не було. Суд погодився розглядати саме це — і відхилив п'ять із шести заперечень Росії. Але вимоги визнати незаконними визнання «ДНР/ЛНР» і саму «спецоперацію» Суд розглядати відмовився: це поза межами Конвенції про геноцид.",
+      uk: "Росія виправдовувала вторгнення вигаданим «геноцидом на Донбасі». Україна пішла до Міжнародного суду ООН, щоб той офіційно засвідчив: геноциду не було. Суд погодився розглядати саме це – і відхилив п'ять із шести заперечень Росії. Але вимоги визнати незаконними визнання «ДНР/ЛНР» і саму «спецоперацію» Суд розглядати відмовився: це поза межами Конвенції про геноцид.",
       en: "Russia justified its invasion with a fabricated “genocide in Donbas”. Ukraine went to the International Court of Justice to have it put on the record that no genocide occurred. The Court agreed to hear exactly that claim, rejecting five of Russia's six objections. It refused, however, to rule on the recognition of the “DPR/LPR” and on the “special military operation” themselves: those lie outside the Genocide Convention.",
     },
   },
@@ -244,14 +244,14 @@ export const icjGenocide: DecisionSummary = {
 
   /* The docket ledger. The four rows this instrument opened with are kept; the
      rest are the machinery of the judgment that the summary prose never states
-     — the General List number and the authoritative text from the judgment's
+     – the General List number and the authoritative text from the judgment's
      own front matter, the bench from its "Present:" line, the two positive
      findings and their tallies from the operative clause (§ 151 (8) and (9)),
      the hearing dates from § 23, and the count of appended opinions from the
      paragraph that closes the judgment. */
   glance: [
-    /* The parties. This card had none — it opened on the composition of the
-       Court — so the page for the genocide case did not say who was suing
+    /* The parties. This card had none – it opened on the composition of the
+       Court – so the page for the genocide case did not say who was suing
        whom, while every other claim-type case did.
 
        Taken from the judgment's own party block: "between Ukraine, represented
@@ -294,7 +294,7 @@ export const icjGenocide: DecisionSummary = {
     },
     {
       label: { uk: "Окремі думки й заяви", en: "Opinions and declarations" },
-      value: { uk: "10 — від 11 суддів", en: "10, from 11 judges" },
+      value: { uk: "10 – від 11 суддів", en: "10, from 11 judges" },
     },
     {
       label: { uk: "Що йде далі по суті", en: "What proceeds to the merits" },
@@ -306,8 +306,8 @@ export const icjGenocide: DecisionSummary = {
     },
   ],
 
-  /* Four threads run through this docket at once — the interim measures, the
-     intervention, the objections and the merits — and they interleave, so a
+  /* Four threads run through this docket at once – the interim measures, the
+     intervention, the objections and the merits – and they interleave, so a
      flat list read as noise. The background facts carry no track, which is
      what puts them in every filter. */
   timelineTracks: [
@@ -317,7 +317,7 @@ export const icjGenocide: DecisionSummary = {
     { id: "merits", label: { uk: "По суті", en: "Merits" } },
   ],
 
-  /* Карта закриває розділ фактичних обставин — див. `mapAfterPart`
+  /* Карта закриває розділ фактичних обставин – див. `mapAfterPart`
      у summaries/types.ts. */
   mapAfterPart: 0,
 
@@ -331,7 +331,7 @@ export const icjGenocide: DecisionSummary = {
         en: "Armed conflict erupts in Donbas",
       },
       note: {
-        uk: "У Донбаському регіоні на сході України — між збройними силами України та силами, пов'язаними з двома утвореннями, які називають себе «Донецька Народна Республіка» (ДНР) і «Луганська Народна Республіка» (ЛНР). Попри спроби досягти мирного врегулювання збройний конфлікт тривав з 2014 до 2022 року (§ 29).",
+        uk: "У Донбаському регіоні на сході України – між збройними силами України та силами, пов'язаними з двома утвореннями, які називають себе «Донецька Народна Республіка» (ДНР) і «Луганська Народна Республіка» (ЛНР). Попри спроби досягти мирного врегулювання збройний конфлікт тривав з 2014 до 2022 року (§ 29).",
         en: "In the Donbas region in the east of Ukraine, between Ukrainian armed forces and forces linked to two entities that refer to themselves as the “Donetsk People's Republic” (DPR) and the “Luhansk People's Republic” (LPR). Despite attempts to achieve a peaceful resolution, the armed conflict continued between 2014 and 2022 (§ 29).",
       },
     },
@@ -357,7 +357,7 @@ export const icjGenocide: DecisionSummary = {
         en: "Two “Treaties on Friendship, Cooperation and Mutual Assistance”",
       },
       note: {
-        uk: "Російська Федерація уклала те, що вона називає двома «договорами про дружбу, співробітництво і взаємну допомогу», — один із ДНР, другий із ЛНР. Того ж дня ДНР і ЛНР звернулися до Російської Федерації по військову допомогу на підставі цих «договорів» (§ 31).",
+        uk: "Російська Федерація уклала те, що вона називає двома «договорами про дружбу, співробітництво і взаємну допомогу», – один із ДНР, другий із ЛНР. Того ж дня ДНР і ЛНР звернулися до Російської Федерації по військову допомогу на підставі цих «договорів» (§ 31).",
         en: "The Russian Federation concluded what it refers to as two “Treaties on Friendship, Cooperation and Mutual Assistance”, one with the DPR and the other with the LPR. On the same date, the DPR and LPR requested military assistance from the Russian Federation pursuant to these “treaties” (§ 31).",
       },
     },
@@ -375,7 +375,7 @@ export const icjGenocide: DecisionSummary = {
       },
     },
     /* § 33, and it had been missing. The address of 24 February is on this
-       page twice over — in the entry above and in the write-up — but the
+       page twice over – in the entry above and in the write-up – but the
        letter that put it before the United Nations was not, and that letter
        is the document in which the invasion is filed as self-defence under
        Article 51. It is the same UN doc. S/2022/154 the judgment cites for
@@ -412,8 +412,8 @@ export const icjGenocide: DecisionSummary = {
       iso: "2022-03-07",
       track: "provisional",
       label: {
-        uk: "Слухання щодо тимчасових заходів — Росія не з'явилася",
-        en: "Hearing on provisional measures — Russia does not appear",
+        uk: "Слухання щодо тимчасових заходів – Росія не з'явилася",
+        en: "Hearing on provisional measures – Russia does not appear",
       },
       note: {
         uk: "Посол РФ повідомив листом від 5 березня, що його уряд вирішив не брати участі. Одразу після закриття слухання він передав документ про «відсутність юрисдикції Суду» (§ 8–9).",
@@ -430,7 +430,7 @@ export const icjGenocide: DecisionSummary = {
         en: "The Court indicates provisional measures",
       },
       note: {
-        uk: "13 голосами проти 2 Суд зобов'язав Росію негайно призупинити воєнні операції, розпочаті 24 лютого 2022 року на території України. Другий захід — тим самим складом голосів — поширив це на підконтрольні їй формування; третій, одностайний, зобов'язав обидві сторони не поглиблювати спір (§ 10; наказ, § 86).",
+        uk: "13 голосами проти 2 Суд зобов'язав Росію негайно призупинити воєнні операції, розпочаті 24 лютого 2022 року на території України. Другий захід – тим самим складом голосів – поширив це на підконтрольні їй формування; третій, одностайний, зобов'язав обидві сторони не поглиблювати спір (§ 10; наказ, § 86).",
         en: "By thirteen votes to two the Court ordered Russia to suspend immediately the military operations it commenced on 24 February 2022 in the territory of Ukraine. The second measure, on the same split, extended that to units it directs or supports; the third, unanimous, bound both Parties not to aggravate the dispute (§ 10; the Order, § 86).",
       },
     },
@@ -455,8 +455,8 @@ export const icjGenocide: DecisionSummary = {
         en: "33 States file declarations of intervention",
       },
       note: {
-        uk: "За статтею 63(2) Статуту — від Латвії 21 липня до Ліхтенштейну 15 грудня. Канада і Нідерланди подали спільну декларацію (§ 14).",
-        en: "Under Article 63 (2) of the Statute — from Latvia on 21 July to Liechtenstein on 15 December. Canada and the Netherlands filed jointly (§ 14).",
+        uk: "За статтею 63(2) Статуту – від Латвії 21 липня до Ліхтенштейну 15 грудня. Канада і Нідерланди подали спільну декларацію (§ 14).",
+        en: "Under Article 63 (2) of the Statute – from Latvia on 21 July to Liechtenstein on 15 December. Canada and the Netherlands filed jointly (§ 14).",
       },
     },
     {
@@ -469,7 +469,7 @@ export const icjGenocide: DecisionSummary = {
         en: "Russia raises six preliminary objections",
       },
       note: {
-        uk: "Розгляд по суті зупинено. Наказом від 7 жовтня 2022 року Суд дав Україні строк до 3 лютого 2023 року на письмову заяву із зауваженнями — вона подала її вчасно (§ 13).",
+        uk: "Розгляд по суті зупинено. Наказом від 7 жовтня 2022 року Суд дав Україні строк до 3 лютого 2023 року на письмову заяву із зауваженнями – вона подала її вчасно (§ 13).",
         en: "The proceedings on the merits were suspended. By an Order of 7 October 2022 the Court gave Ukraine until 3 February 2023 to file its written statement of observations; it filed within the time-limit (§ 13).",
       },
     },
@@ -483,7 +483,7 @@ export const icjGenocide: DecisionSummary = {
         en: "The Court admits 32 States to the case",
       },
       note: {
-        uk: "14 голосами проти 1 — декларації 32 держав прийнятні на стадії попередніх заперечень, у частині тлумачення статті IX та інших положень Конвенції. Одностайно — декларація США на цій стадії неприйнятна (§ 18; прес-реліз 2023/27).",
+        uk: "14 голосами проти 1 – декларації 32 держав прийнятні на стадії попередніх заперечень, у частині тлумачення статті IX та інших положень Конвенції. Одностайно – декларація США на цій стадії неприйнятна (§ 18; прес-реліз 2023/27).",
         en: "By fourteen votes to one the declarations of 32 States were admissible at the preliminary objections stage, in so far as they concerned the construction of Article IX and other relevant provisions. Unanimously, the declaration of the United States was inadmissible at that stage (§ 18; press release 2023/27).",
       },
     },
@@ -496,8 +496,8 @@ export const icjGenocide: DecisionSummary = {
         en: "Public hearings on the objections",
       },
       note: {
-        uk: "П'ять днів слухань — 18, 19, 20, 25 і 27 вересня. Окрім сторін, Суд заслухав представників усіх 32 держав, що вступили у справу (§ 23).",
-        en: "Five days of hearings — 18, 19, 20, 25 and 27 September. Besides the Parties, the Court heard representatives of all 32 intervening States (§ 23).",
+        uk: "П'ять днів слухань – 18, 19, 20, 25 і 27 вересня. Окрім сторін, Суд заслухав представників усіх 32 держав, що вступили у справу (§ 23).",
+        en: "Five days of hearings – 18, 19, 20, 25 and 27 September. Besides the Parties, the Court heard representatives of all 32 intervening States (§ 23).",
       },
     },
     {
@@ -510,7 +510,7 @@ export const icjGenocide: DecisionSummary = {
         en: "Judgment on preliminary objections",
       },
       note: {
-        uk: "П'ять заперечень відхилено, друге задоволено. Суд встановив юрисдикцію щодо вимоги (b) § 178 Меморандуму 15 голосами проти 1 і визнав її прийнятною 13 голосами проти 3; вимоги (c) і (d) — поза його юрисдикцією (§ 151).",
+        uk: "П'ять заперечень відхилено, друге задоволено. Суд встановив юрисдикцію щодо вимоги (b) § 178 Меморандуму 15 голосами проти 1 і визнав її прийнятною 13 голосами проти 3; вимоги (c) і (d) – поза його юрисдикцією (§ 151).",
         en: "Five objections rejected, the second upheld. The Court found jurisdiction over submission (b) of § 178 of the Memorial by fifteen votes to one and held it admissible by thirteen votes to three; submissions (c) and (d) fall outside its jurisdiction (§ 151).",
       },
     },
@@ -524,7 +524,7 @@ export const icjGenocide: DecisionSummary = {
         en: "The intervening States renew for the merits",
       },
       note: {
-        uk: "Секретар Суду запропонував їм до 2 серпня 2024 року подати нову декларацію або зберегти попередню. Озвалися 23 держави з 32: дев'ять подали нові декларації, вісім — уточнені, шість зберегли попередні без змін. Польща додатково подала заяву про вступ за статтею 62 Статуту (сторінка справи на сайті Суду; прес-релізи 2024/58, 2024/59).",
+        uk: "Секретар Суду запропонував їм до 2 серпня 2024 року подати нову декларацію або зберегти попередню. Озвалися 23 держави з 32: дев'ять подали нові декларації, вісім – уточнені, шість зберегли попередні без змін. Польща додатково подала заяву про вступ за статтею 62 Статуту (сторінка справи на сайті Суду; прес-релізи 2024/58, 2024/59).",
         en: "The Registrar invited them, by 2 August 2024, to file a new declaration or maintain their original one. Twenty-three of the 32 responded: nine filed new declarations, eight filed adjusted ones and six maintained theirs unchanged. Poland additionally filed an Application for permission to intervene under Article 62 of the Statute (the Court's case page; press releases 2024/58 and 2024/59).",
       },
     },
@@ -552,7 +552,7 @@ export const icjGenocide: DecisionSummary = {
         en: "Russia's counter-claims held admissible as such",
       },
       note: {
-        uk: "11 голосами проти 4. Тим самим наказом, одностайно, Суд дозволив Україні подати Репліку до 7 грудня 2026 року, а Росії — Дуплік до 7 грудня 2027 року. До наказу додано сім окремих і особливих думок та заяв (наказ, § 68; прес-реліз 2025/55).",
+        uk: "11 голосами проти 4. Тим самим наказом, одностайно, Суд дозволив Україні подати Репліку до 7 грудня 2026 року, а Росії – Дуплік до 7 грудня 2027 року. До наказу додано сім окремих і особливих думок та заяв (наказ, § 68; прес-реліз 2025/55).",
         en: "By eleven votes to four. By the same Order, unanimously, the Court authorized Ukraine to submit a Reply by 7 December 2026 and Russia a Rejoinder by 7 December 2027. Seven separate and dissenting opinions and declarations are appended to it (the Order, § 68; press release 2025/55).",
       },
     },
@@ -565,7 +565,7 @@ export const icjGenocide: DecisionSummary = {
     /* Назва без переваги в найвищому ступені.
 
      Смуга звалася «Найбільший вступ третіх держав в історії Суду». Цифри
-     під нею — з рішення (§ 14, 18, 21, 23) і з наказу від 5 червня 2023
+     під нею – з рішення (§ 14, 18, 21, 23) і з наказу від 5 червня 2023
      року, тобто перевірні; а от «найбільший в історії» немає в огляді, і
      сторінка його нізвідки не бере. Власниця: «сумнівну аналітику
      прибрати». Лишилося те, що смуга справді показує. */
@@ -574,7 +574,7 @@ export const icjGenocide: DecisionSummary = {
       en: "Third-State intervention",
     },
     note: {
-      uk: "Стаття 63 Статуту дозволяє учасниці договору подати Суду власне тлумачення цього договору. Цифри — з рішення (§ 14, 18, 21, 23) і з наказу від 5 червня 2023 року.",
+      uk: "Стаття 63 Статуту дозволяє учасниці договору подати Суду власне тлумачення цього договору. Цифри – з рішення (§ 14, 18, 21, 23) і з наказу від 5 червня 2023 року.",
       en: "Article 63 of the Statute lets a party to a convention put its own construction of that convention before the Court. The figures come from the judgment (§ 14, 18, 21, 23) and the Order of 5 June 2023.",
     },
     metrics: [
@@ -606,8 +606,8 @@ export const icjGenocide: DecisionSummary = {
         label: { uk: "Декларацію визнано неприйнятною", en: "Declaration held inadmissible" },
         value: "1",
         note: {
-          uk: "США — одностайно, у частині, що стосується стадії попередніх заперечень",
-          en: "the United States — unanimously, in so far as it concerned the preliminary objections stage",
+          uk: "США – одностайно, у частині, що стосується стадії попередніх заперечень",
+          en: "the United States – unanimously, in so far as it concerned the preliminary objections stage",
         },
       },
       {
@@ -633,7 +633,7 @@ export const icjGenocide: DecisionSummary = {
      перейменувати розділи без цифри». */
     heading: { uk: "Заперечення Росії", en: "Russia's objections" },
     note: {
-      uk: "Росія намагалася зупинити справу шістьма способами; п'ять Суд відхилив. Тексти заперечень наведено за самері, підрахунки голосів — за резолютивною частиною рішення, якої самері не відтворює. Натисніть картку, щоб побачити позицію Суду.",
+      uk: "Росія намагалася зупинити справу шістьма способами; п'ять Суд відхилив. Тексти заперечень наведено за самері, підрахунки голосів – за резолютивною частиною рішення, якої самері не відтворює. Натисніть картку, щоб побачити позицію Суду.",
       en: "Russia tried six ways to stop the case; the Court rejected five. The objections are quoted from the summary; the tallies come from the operative clause, which the summary does not reproduce. Tap a card for the Court's position.",
     },
     benchSize: 16,
@@ -646,8 +646,8 @@ export const icjGenocide: DecisionSummary = {
         },
         outcome: "rejected",
         reasoning: {
-          uk: "Суд розглянув спір у двох аспектах і встановив: на день подання позову спір між сторонами існував — щонайменше щодо того, чи вчинила Україна геноцид (§ 51).",
-          en: "The Court examined the dispute in two aspects and found that on the date of the Application a dispute did exist between the Parties — at least as to whether Ukraine had committed genocide (§ 51).",
+          uk: "Суд розглянув спір у двох аспектах і встановив: на день подання позову спір між сторонами існував – щонайменше щодо того, чи вчинила Україна геноцид (§ 51).",
+          en: "The Court examined the dispute in two aspects and found that on the date of the Application a dispute did exist between the Parties – at least as to whether Ukraine had committed genocide (§ 51).",
         },
         votes: [{ for: 15, against: 1 }],
       },
@@ -679,8 +679,8 @@ export const icjGenocide: DecisionSummary = {
         },
         outcome: "rejected",
         reasoning: {
-          uk: "Суд не побачив підміни предмета спору: вимоги Меморандуму лише уточнюють позов, з яким Україна прийшла до Суду. Відхилено окремо щодо вимоги (b) (§ 72) і щодо вимог (c) і (d) (§ 129) — звідси два підрахунки голосів.",
-          en: "The Court saw no substitution of the subject of the dispute: the Memorial merely clarifies the claim Ukraine brought. Rejected separately as to submission (b) (§ 72) and as to submissions (c) and (d) (§ 129) — hence the two tallies.",
+          uk: "Суд не побачив підміни предмета спору: вимоги Меморандуму лише уточнюють позов, з яким Україна прийшла до Суду. Відхилено окремо щодо вимоги (b) (§ 72) і щодо вимог (c) і (d) (§ 129) – звідси два підрахунки голосів.",
+          en: "The Court saw no substitution of the subject of the dispute: the Memorial merely clarifies the claim Ukraine brought. Rejected separately as to submission (b) (§ 72) and as to submissions (c) and (d) (§ 129) – hence the two tallies.",
         },
         votes: [
           { for: 15, against: 1, scope: { uk: "щодо вимоги (b)", en: "as to submission (b)" } },
@@ -735,10 +735,10 @@ export const icjGenocide: DecisionSummary = {
 
   interpretations: [
     {
-      term: { uk: "Один спір — два аспекти", en: "One dispute, two aspects" },
+      term: { uk: "Один спір – два аспекти", en: "One dispute, two aspects" },
       ruling: {
-        uk: "Суд розділив вимогу України надвоє (§ 53–57). Перший аспект — прохання визнати, що Україна «не вчиняла геноциду»; лише він відповідає ознакам спору за статтею IX. Другий — прохання визнати незаконними дії Росії; ним Україна порушує питання міжнародної відповідальності, і його Суд розглядати не має права.",
-        en: "The Court split Ukraine's claim in two (§ 53–57). The first aspect — the request to find that Ukraine “has not committed genocide” — alone answers to a dispute under Article IX. The second — the request to find Russia's conduct unlawful — invokes State responsibility, and the Court has no jurisdiction over it.",
+        uk: "Суд розділив вимогу України надвоє (§ 53–57). Перший аспект – прохання визнати, що Україна «не вчиняла геноциду»; лише він відповідає ознакам спору за статтею IX. Другий – прохання визнати незаконними дії Росії; ним Україна порушує питання міжнародної відповідальності, і його Суд розглядати не має права.",
+        en: "The Court split Ukraine's claim in two (§ 53–57). The first aspect – the request to find that Ukraine “has not committed genocide” – alone answers to a dispute under Article IX. The second – the request to find Russia's conduct unlawful – invokes State responsibility, and the Court has no jurisdiction over it.",
       },
     },
     {
@@ -751,12 +751,12 @@ export const icjGenocide: DecisionSummary = {
     {
       term: { uk: "Позов про невчинення порушення", en: "A claim of non-violation" },
       ruling: {
-        uk: "Стаття IX не виключає можливості держави просити визнати, що вона не є відповідальною за геноцид (§ 99); за особливих обставин цієї справи — позов подано в умовах збройного конфлікту, розпочатого нібито заради запобігання геноциду — така вимога не є неприйнятною (§ 108–109). Це відкриває шлях для позовів, спрямованих проти хибних звинувачень.",
-        en: "Article IX does not preclude a State from seeking a declaration that it is not responsible for genocide (§ 99); and in the particular circumstances of this case — a claim brought in the context of an armed conflict waged on a stated ground of preventing genocide — such a request is not inadmissible (§ 108–109). That opens a path for claims aimed at false accusations.",
+        uk: "Стаття IX не виключає можливості держави просити визнати, що вона не є відповідальною за геноцид (§ 99); за особливих обставин цієї справи – позов подано в умовах збройного конфлікту, розпочатого нібито заради запобігання геноциду – така вимога не є неприйнятною (§ 108–109). Це відкриває шлях для позовів, спрямованих проти хибних звинувачень.",
+        en: "Article IX does not preclude a State from seeking a declaration that it is not responsible for genocide (§ 99); and in the particular circumstances of this case – a claim brought in the context of an armed conflict waged on a stated ground of preventing genocide – such a request is not inadmissible (§ 108–109). That opens a path for claims aimed at false accusations.",
       },
     },
     {
-      term: { uk: "Юрисдикція — не те саме, що законність", en: "Jurisdiction is not lawfulness" },
+      term: { uk: "Юрисдикція – не те саме, що законність", en: "Jurisdiction is not lawfulness" },
       ruling: {
         uk: "Останній абзац мотивувальної частини Суд адресує саме тим, хто прочитає рішення як виправдання (§ 150): між згодою держави на юрисдикцію Суду і відповідністю її дій міжнародному праву є принципова різниця. Держави зобов'язані виконувати Статут ООН та інші норми незалежно від того, чи визнали вони юрисдикцію Суду, і залишаються відповідальними за протиправні діяння, які їм присвоюються.",
         en: "The last paragraph of the reasoning is aimed at anyone who would read the judgment as a vindication (§ 150): there is a fundamental distinction between a State's acceptance of the Court's jurisdiction and the conformity of its acts with international law. States must fulfil their obligations under the UN Charter and other rules whether or not they have consented to jurisdiction, and remain responsible for wrongful acts attributable to them.",
@@ -771,10 +771,10 @@ export const icjGenocide: DecisionSummary = {
       tag: "Genocide Convention",
       markerKeys: ["donetsk", "luhansk"],
       areas: ["east"],
-      // the only theatre sits level with Kyiv — drop the label below the zones
+      // the only theatre sits level with Kyiv – drop the label below the zones
       summary: {
         uk: "Саме тут, за твердженням Росії, стався «геноцид», що став приводом для вторгнення. Україна просить Суд встановити, що жодних актів геноциду тут вчинено не було.",
-        en: "This is where Russia claims a “genocide” took place — the stated pretext for the invasion. Ukraine asks the Court to find that no acts of genocide were committed here.",
+        en: "This is where Russia claims a “genocide” took place – the stated pretext for the invasion. Ukraine asks the Court to find that no acts of genocide were committed here.",
       },
     },
   ],

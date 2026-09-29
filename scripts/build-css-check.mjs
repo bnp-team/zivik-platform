@@ -4,8 +4,8 @@
  *
  * Source being right is not enough to know a declaration shipped. Two things
  * between this repository and a browser can remove one without failing: the
- * stylesheet pipeline — Tailwind 4 runs everything through Lightning CSS,
- * which drops declarations its target browsers do not support — and a dev
+ * stylesheet pipeline – Tailwind 4 runs everything through Lightning CSS,
+ * which drops declarations its target browsers do not support – and a dev
  * server serving a chunk it built earlier. The second is what actually
  * happened here, to the one declaration that keeps a paragraph from ending on
  * a single word, and an afternoon went into blaming the first. Reading the
@@ -25,7 +25,7 @@ const ROOT = new URL("..", import.meta.url).pathname;
 const OUT = join(ROOT, ".next/static");
 
 if (!existsSync(OUT)) {
-  console.error("css-check: no build found at .next/static — run `npm run build` first.");
+  console.error("css-check: no build found at .next/static – run `npm run build` first.");
   process.exit(1);
 }
 
@@ -67,7 +67,7 @@ for (const req of REQUIRED) {
 if (problems.length) {
   console.error(`css-check: ${problems.length} declaration(s) did not survive the build\n`);
   for (const p of problems) {
-    console.error(`  ${p.what} — \`${p.find}\` is in no emitted stylesheet`);
+    console.error(`  ${p.what} – \`${p.find}\` is in no emitted stylesheet`);
     console.error(`     ${p.why}\n`);
   }
   console.error(`  Scanned ${files.length} stylesheet(s) under ${relative(ROOT, OUT)}.`);

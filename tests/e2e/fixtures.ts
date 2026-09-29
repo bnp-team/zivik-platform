@@ -80,7 +80,7 @@ export { expect };
  * Pages whose only island is the header run a small script instead of React
  * (site/islands/header.ts), and module scripts run before `load`. Any other
  * island means React hydrates every island on the page, and `hydrateRoot`
- * marks its container synchronously — so once every top-level island carries
+ * marks its container synchronously – so once every top-level island carries
  * React's container key, each has been handed to React and a click on it
  * reaches a handler (one that lands mid-hydration is replayed).
  */
@@ -96,7 +96,7 @@ export async function hydrated(page: Page): Promise<void> {
   });
 }
 
-/** Whether the document is wider than the window — the horizontal scroll a phone reader sees. */
+/** Whether the document is wider than the window – the horizontal scroll a phone reader sees. */
 export async function overflow(page: Page): Promise<{ scrollWidth: number; innerWidth: number; culprits: string[] }> {
   return page.evaluate(() => {
     const innerWidth = window.innerWidth;

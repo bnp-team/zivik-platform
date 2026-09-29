@@ -2,19 +2,19 @@
  * Email for the admin: sign-in links, access recovery, invitations.
  *
  * EmDash sends none of these until a plugin provides `email:deliver`, and
- * until now none did — «Увійти за посиланням на пошту» answered
+ * until now none did – «Увійти за посиланням на пошту» answered
  * EMAIL_NOT_CONFIGURED, a lost passkey could only be replaced by another
  * admin, and an invitation was a link to copy by hand.
  *
  * This provider posts to Resend's HTTP API (https://resend.com): one fetch, no
  * SDK, and a free tier far above what an editorial team sends. It is
  * registered only when the build sets EMAIL_PROVIDER=resend (astro.config.mjs),
- * because a registered provider is what makes the admin offer email sign-in —
+ * because a registered provider is what makes the admin offer email sign-in –
  * offering it before the key exists would show editors a button that fails.
  *
  * Runtime settings (Worker → Settings → Variables and Secrets):
- *   RESEND_API_KEY — Secret; a sending-only key.
- *   EMAIL_FROM     — the sender, on a domain verified in Resend, e.g.
+ *   RESEND_API_KEY – Secret; a sending-only key.
+ *   EMAIL_FROM     – the sender, on a domain verified in Resend, e.g.
  *                    «НаСвітло <admin@nasvitlo.org>».
  * Neither is logged; a failure is logged with Resend's status and message.
  */

@@ -8,19 +8,19 @@ import verbatimUk from "./finland-torden.uk.json";
  * The Helsinki District Court's decision bulletin of 14 March 2025 calls the
  * defendant Torden in every count; he changed his name legally and travelled
  * under it. "Yan Petrovsky" is what the sanctions lists and most of the
- * reporting use, so it is not dropped — it is given once, on the first
+ * reporting use, so it is not dropped – it is given once, on the first
  * mention, and once more where it is the point, because he was sanctioned
  * under one name and boarded the flight under the other.
  *
  * Finland v. Voislav Torden (formerly Yan Petrovsky), Helsinki District
  * Court,
- * judgment of 14 March 2025 — the first universal-jurisdiction war-crimes
+ * judgment of 14 March 2025 – the first universal-jurisdiction war-crimes
  * conviction over Ukraine in Finland.
  *
  * The verbatim body is the doc's tab (not yet marked finalized; re-ingest
  * when it is). The tab describes the arrest, the five charges and the
- * jurisdictional basis; the verdict itself — conviction on four of five
- * charges, life imprisonment, the announced appeal — is context with its own
+ * jurisdictional basis; the verdict itself – conviction on four of five
+ * charges, life imprisonment, the announced appeal – is context with its own
  * sources, kept in the verdict matrix, the timeline and
  * docs/research/finland-torden-sources.md.
  */
@@ -38,21 +38,21 @@ export const finlandTorden: DecisionSummary = {
     en: "Finland v. Voislav Torden",
   },
   /* The share card's wording (scripts/og-cards.mts). Carried over from the
-     hand-drawn cards so the redrawn ones say the same — except the name: the
+     hand-drawn cards so the redrawn ones say the same – except the name: the
      old card still read «проти Яна Петровського» after the page had moved to
      the name he was tried under, which is the drift a hand-kept card invites. */
   card: {
     title: "Фінляндія проти Воїслава Тордена",
     eyebrow: "Окружний суд Гельсінкі · 14 березня 2025",
-    kicker: "Довічне за воєнні злочини — універсальна юрисдикція",
+    kicker: "Довічне за воєнні злочини – універсальна юрисдикція",
   },
-  /* The masthead in Ukrainian — the caption under the title and the line
+  /* The masthead in Ukrainian – the caption under the title and the line
      in the eyebrow. `masthead` keeps the decision's own English, which is
      what the citation block reproduces; this is what a Ukrainian reader
      sees at the top of the page. See `mastheadUk` in summaries/types.ts. */
   mastheadUk: {
     official:
-      "Фінляндія проти Яна Петровського (Воїслава Тордена) — переслідування за воєнні злочини на підставі універсальної юрисдикції, окружний суд Гельсінкі",
+      "Фінляндія проти Яна Петровського (Воїслава Тордена) – переслідування за воєнні злочини на підставі універсальної юрисдикції, окружний суд Гельсінкі",
     judgment: "Вирок від 14 березня 2025",
   },
 
@@ -66,14 +66,14 @@ export const finlandTorden: DecisionSummary = {
   /* Search-result description. `plain.tldr` used to serve as this and runs
      three to four sentences, so the snippet was cut off mid-word. */
   metaDesc: {
-    uk: "Вирок Окружного суду Гельсінкі від 14 березня 2025: довічне ув'язнення Воїславу Тордену («Торден») за воєнні злочини — універсальна юрисдикція.",
+    uk: "Вирок Окружного суду Гельсінкі від 14 березня 2025: довічне ув'язнення Воїславу Тордену («Торден») за воєнні злочини – універсальна юрисдикція.",
     en: "Helsinki District Court, 14 March 2025: life imprisonment for Voislav Torden for war crimes in Ukraine, under universal jurisdiction.",
   },
 
   plain: {
     tldr: {
-      uk: "Воїслав Торден (раніше Ян Петровський) — заступник командира російського неонацистського загону «Русич». У вересні 2014-го його підрозділ під українським прапором влаштував засідку на батальйон «Айдар»: щонайменше 22 загиблих. У 2023 році Фінляндія затримала його в аеропорту Гельсінкі, а 14 березня 2025 року засудила до довічного ув'язнення за воєнні злочини — за універсальною юрисдикцією, хоча злочини скоєно в Україні проти українців.",
-      en: "Voislav Torden (formerly Yan Petrovsky) was deputy commander of the Russian neo-Nazi unit Rusich. In September 2014 his unit ambushed the Aidar battalion under a Ukrainian flag: at least 22 dead. Finland arrested him at Helsinki airport in 2023 and on 14 March 2025 sentenced him to life imprisonment for war crimes — under universal jurisdiction, though the crimes were committed in Ukraine against Ukrainians.",
+      uk: "Воїслав Торден (раніше Ян Петровський) – заступник командира російського неонацистського загону «Русич». У вересні 2014-го його підрозділ під українським прапором влаштував засідку на батальйон «Айдар»: щонайменше 22 загиблих. У 2023 році Фінляндія затримала його в аеропорту Гельсінкі, а 14 березня 2025 року засудила до довічного ув'язнення за воєнні злочини – за універсальною юрисдикцією, хоча злочини скоєно в Україні проти українців.",
+      en: "Voislav Torden (formerly Yan Petrovsky) was deputy commander of the Russian neo-Nazi unit Rusich. In September 2014 his unit ambushed the Aidar battalion under a Ukrainian flag: at least 22 dead. Finland arrested him at Helsinki airport in 2023 and on 14 March 2025 sentenced him to life imprisonment for war crimes – under universal jurisdiction, though the crimes were committed in Ukraine against Ukrainians.",
     },
   },
 
@@ -81,7 +81,7 @@ export const finlandTorden: DecisionSummary = {
   /*
    * NEITHER of these links is a court document, and the page must not pretend
    * otherwise. The Helsinki District Court's judgment of 14 March 2025 is not
-   * published anywhere we can link — the registry row `fi-38` records that
+   * published anywhere we can link – the registry row `fi-38` records that
    * with `decisionUrl: null`, and this page now says the same thing out loud.
    *
    * `url` is Sorcha MacLeod and Iryna Marchuk's EJIL:Talk! analysis and
@@ -120,7 +120,7 @@ export const finlandTorden: DecisionSummary = {
     { value: "22+", label: { uk: "українських військових убито в засідці", en: "Ukrainian soldiers killed in the ambush" } },
     {
       value: { uk: "довічне", en: "life" },
-      label: { uk: "ув'язнення — вирок 14.03.2025", en: "imprisonment — the 14 Mar 2025 verdict" },
+      label: { uk: "ув'язнення – вирок 14.03.2025", en: "imprisonment – the 14 Mar 2025 verdict" },
       em: true,
     },
     {
@@ -203,12 +203,12 @@ export const finlandTorden: DecisionSummary = {
    * The seat is Helsinki, not The Hague. It was "hague", so the map drew a
    * gold dot on the Dutch coast, captioned it "Гельсінкі · Окружний суд
    * Гельсінкі", and ran the universal-jurisdiction reach line to the Donbas
-   * from the wrong country — on a page whose whole subject is the distance
+   * from the wrong country – on a page whose whole subject is the distance
    * between the forum and the crime.
    *
    * Helsinki sits 171px above the atlas's default 0 0 1000 560 frame, so the
    * frame opens northwards to 215px above it (room for the seat label) and
-   * closes at y = 425, below the Donbas theatre and its halo — Crimea and the
+   * closes at y = 425, below the Donbas theatre and its halo – Crimea and the
    * Mediterranean are not part of this case. The width grows to 1160 so the
    * band keeps roughly the atlas's landscape proportion (1.81 against 1.79)
    * instead of turning into a portrait.
@@ -221,8 +221,8 @@ export const finlandTorden: DecisionSummary = {
       tag: { uk: "ЗАСІДКА НА «АЙДАР»", en: "THE AIDAR AMBUSH" },
       markerKeys: ["luhansk"],
       summary: {
-        uk: "Операція «Русича» 5 вересня 2014 року — п'ять обвинувачень, розглянутих у Гельсінкі.",
-        en: "Rusich's operation of 5 September 2014 — the five charges tried in Helsinki.",
+        uk: "Операція «Русича» 5 вересня 2014 року – п'ять обвинувачень, розглянутих у Гельсінкі.",
+        en: "Rusich's operation of 5 September 2014 – the five charges tried in Helsinki.",
       },
     },
   ],
@@ -238,15 +238,15 @@ export const finlandTorden: DecisionSummary = {
     {
       term: { uk: "Два джерела визначення", en: "A two-source definition" },
       ruling: {
-        uk: "Фінське визначення воєнних злочинів поєднує Женевські конвенції I–IV з Протоколами I–II і Римський статут — національний суд застосовує ті самі категорії, що й МКС.",
-        en: "Finland's war-crimes definition joins Geneva Conventions I–IV with Protocols I–II and the Rome Statute — a national court applying the ICC's own categories.",
+        uk: "Фінське визначення воєнних злочинів поєднує Женевські конвенції I–IV з Протоколами I–II і Римський статут – національний суд застосовує ті самі категорії, що й МКС.",
+        en: "Finland's war-crimes definition joins Geneva Conventions I–IV with Protocols I–II and the Rome Statute – a national court applying the ICC's own categories.",
       },
     },
     {
       term: { uk: "Пости як злочин", en: "Posts as a crime" },
       ruling: {
-        uk: "Пункт про відмову в пощаді ґрунтується на заявах у соцмережах («полонених не братимемо») — оголошення само по собі є воєнним злочином.",
-        en: "The denying-quarter charge rests on social-media declarations (\"no prisoners\") — the announcement itself is the war crime.",
+        uk: "Пункт про відмову в пощаді ґрунтується на заявах у соцмережах («полонених не братимемо») – оголошення само по собі є воєнним злочином.",
+        en: "The denying-quarter charge rests on social-media declarations (\"no prisoners\") – the announcement itself is the war crime.",
       },
     },
   ],
@@ -294,7 +294,7 @@ export const finlandTorden: DecisionSummary = {
     },
     {
       url: "https://www.finlex.fi/en/legislation/translations/1889/eng/39-001",
-      title: "The Criminal Code of Finland (translation) — Chapter 11",
+      title: "The Criminal Code of Finland (translation) – Chapter 11",
       authors: "",
       publication: "Finlex",
       date: "",

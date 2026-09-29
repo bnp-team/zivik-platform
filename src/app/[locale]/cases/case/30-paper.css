@@ -13,7 +13,7 @@
    of holdings is read.
 
    The card was the deeper problem. A white box with a serif headline over
-   grey prose is the shape of an article teaser, and these are not teasers —
+   grey prose is the shape of an article teaser, and these are not teasers –
    they are propositions: what the Court held the law to *mean*, the half of a
    decision that goes into a filing. A ledger says that. The doctrine's name
    sits in a rail, the proposition reads as prose beside it, a hairline
@@ -23,7 +23,7 @@
    second column left to empty.
 
    The name takes the prose's own size and is set apart by face, weight and
-   colour instead — the rule the standfirst follows, for the same reason. It
+   colour instead – the rule the standfirst follows, for the same reason. It
    was --t-h3 over 14px card prose (1.6x, a headline), then --t-lead over 14px
    (1.43x); beside 16px prose, in a column of its own, it needs no ratio at
    all. The prose moves 14px → 16px because it is no longer card furniture: it
@@ -34,8 +34,8 @@
 }
 .casepage .ruling {
   display: grid;
-  /* 14rem takes the longest term on the eight pages — «Персональна юрисдикція
-     через летальну силу», 42 characters — in two lines, and leaves the prose
+  /* 14rem takes the longest term on the eight pages – «Персональна юрисдикція
+     через летальну силу», 42 characters – in two lines, and leaves the prose
      its full 660px inside the 1180 rail. */
   grid-template-columns: minmax(0, 14rem) minmax(0, 1fr);
   align-items: baseline;
@@ -60,7 +60,7 @@
   max-width: var(--prose);
   text-wrap: pretty;
 }
-/* At 801px the rail and the gutters leave the proposition 465px — 56
+/* At 801px the rail and the gutters leave the proposition 465px – 56
    characters, measured, and the narrowest any prose on this page is allowed to
    run. Below that the name goes back above it and the hairlines keep the
    entries apart on their own. */
@@ -123,8 +123,8 @@
 }
 
 /* ---- 5. Reading column + sticky side nav ---------------------------------- */
-/* The long read keeps the brightest ground on the page — 5654px of prose at
-   1440 on icj-genocide — and the seam above it does the separating. */
+/* The long read keeps the brightest ground on the page – 5654px of prose at
+   1440 on icj-genocide – and the seam above it does the separating. */
 .casepage .readzone {
   border-top: 1px solid var(--seam);
   padding-block: clamp(40px, 5vw, 72px) clamp(56px, 7vw, 96px);
@@ -144,21 +144,21 @@
    seventy.
 
    560px was 70 characters exactly, the top of the range the contract asked
-   for — and measured against a 1180px rail it read starved, which the owner
+   for – and measured against a 1180px rail it read starved, which the owner
    said plainly.
 
 The measure has been argued four times, so here is the method that settles
    it. Every earlier number came from dividing the column by an average
-   character advance, and that average depends on what you average over —
-   alphabet or prose, spaces in or out — which is how the same face at the same
+   character advance, and that average depends on what you average over –
+   alphabet or prose, spaces in or out – which is how the same face at the same
    size produced 8.04px, 9.1px and 9.4px. Counting a paragraph's characters and
    dividing by its line count is no better: the last line of a paragraph is
    partial but counts as whole, so it reads short, and the shorter the
    paragraph the worse the error.
 
-   Measured exactly — a Range walked character by character, grouped into line
+   Measured exactly – a Range walked character by character, grouped into line
    boxes by their top edge, with each paragraph's final partial line discarded
-   — Fira Sans setting this page's Ukrainian at 16px runs 8.26px per character.
+   – Fira Sans setting this page's Ukrainian at 16px runs 8.26px per character.
    That makes 620px 75 characters, not the 66 one pass claimed, and 700px 85,
    which is the width the first version ran at and was corrected away from.
 
@@ -177,8 +177,8 @@ The measure has been argued four times, so here is the method that settles
   color: var(--ink);
   margin: 0 0 var(--space-2);
 }
-/* A 2px black rule was the heaviest mark on the page — heavier than the
-   headings it belonged to — so it read as a divider dropped between sections
+/* A 2px black rule was the heaviest mark on the page – heavier than the
+   headings it belonged to – so it read as a divider dropped between sections
    rather than part of the heading. A hairline in the page's own rule colour
    does the same job quietly. */
 .casepage .read h2 {
@@ -191,7 +191,7 @@ The measure has been argued four times, so here is the method that settles
      column of fixed width has no business scaling with the viewport: at 1440
      the clamp hit its 29px ceiling while the measure under it stayed 620, so
      the heading grew to 1.8x its own body text and read as shouting. Against
-     16px prose, 22.5px is 1.4x — the ratio a section heading wants. */
+     16px prose, 22.5px is 1.4x – the ratio a section heading wants. */
   font-size: var(--t-h3);
   line-height: 1.15;
   color: var(--ink);
@@ -199,7 +199,7 @@ The measure has been argued four times, so here is the method that settles
 }
 /* --t-h3 is 22.5px against a 22px body: at a glance the two were the same
    size, so a document with eight of these read as one flat run of text. The
-   separation now comes from weight and space rather than half a pixel — the
+   separation now comes from weight and space rather than half a pixel – the
    red already marks it, and growing the size instead would crowd h2. */
 .casepage .read h3 {
   margin: var(--space-12) 0 var(--space-1);
@@ -209,7 +209,7 @@ The measure has been argued four times, so here is the method that settles
   line-height: 1.25;
   color: var(--pred);
 }
-/* The (a)/(b)/(c) level: a label, not a title — set apart by case and
+/* The (a)/(b)/(c) level: a label, not a title – set apart by case and
    tracking so it cannot be mistaken for either an h3 or a bold sentence. */
 .casepage .read h4 {
   margin: var(--space-8) 0 var(--space-1);
@@ -219,12 +219,12 @@ The measure has been argued four times, so here is the method that settles
   color: var(--ink2);
 }
 /* The judgment reads in Charis SIL, not Fira Sans.
-   Fira was drawn by Mozilla as an interface face for Firefox OS — short
-   strings on a phone — and it was carrying sixty-line runs of legal prose. It
+   Fira was drawn by Mozilla as an interface face for Firefox OS – short
+   strings on a phone – and it was carrying sixty-line runs of legal prose. It
    is legible, but a grotesque tires the eye over that distance, which is what
    made 17.5px feel oversized: the size was fine, the face was working out of
-   its register. Charis SIL was drawn by SIL for exactly this — long-form
-   reading, with the fullest Cyrillic of the three — and it was already loaded,
+   its register. Charis SIL was drawn by SIL for exactly this – long-form
+   reading, with the fullest Cyrillic of the three – and it was already loaded,
    set on headings only. The roles were the wrong way round.
    Line-height comes in slightly from 1.7: Charis has a large x-height and
    needs less air than the sans did. */
@@ -238,7 +238,7 @@ The measure has been argued four times, so here is the method that settles
 /* A link is not a finding.
 
    Every anchor in the reading text and the source list took --pred, which on
-   this site means a breach — so a bibliography of fourteen citations read as
+   this site means a breach – so a bibliography of fourteen citations read as
    fourteen alerts, and the one colour the page reserves for what a court found
    against Russia was spent on the act of linking. Ink carries the text and the
    underline carries the link, which is what a citation list does on paper; the
@@ -252,7 +252,7 @@ The measure has been argued four times, so here is the method that settles
   word-break: break-word;
 }
 /* The operative clauses, in the same vocabulary as the verdict list at the top
-   of the page. They were rounded cards with a shadow and a red edge — nine of
+   of the page. They were rounded cards with a shadow and a red edge – nine of
    them stacked read as nine alerts, and it meant the page presented the
    Court's findings two different ways depending on where you met them. A
    hanging number and a hairline is what the rest of the page uses. */
@@ -267,12 +267,12 @@ The measure has been argued four times, so here is the method that settles
   border-radius: 0;
   box-shadow: none;
   /* --rule-soft is the hairline for the dark scenes (#2a201c). It was drawing
-     these separators on paper at 15.4:1 — a near-black rule under every
+     these separators on paper at 15.4:1 – a near-black rule under every
      operative clause, the heaviest mark in the reading column and heavier
      than the headings above it. --prule is the column's own hairline. */
   border-bottom: 1px solid var(--prule);
     /* Reading-zone prose is one size. These clauses were --t-ui, two steps
-       under the narrative they sit among — the most citable text on the
+       under the narrative they sit among – the most citable text on the
        page set smaller than the sentences leading up to it. */
     font-size: var(--t-body);
   line-height: 1.6;
@@ -314,11 +314,11 @@ The measure has been argued four times, so here is the method that settles
   line-height: 1.62;
 }
 /* A reference list, numbered in the page's own mono the way the dispositif
-   clauses are — the browser's default marker was the only place on the page
+   clauses are – the browser's default marker was the only place on the page
    where a number was set by the browser rather than by us.
 
    It is not prose, so it does not take the prose measure. Inside .read it was
-   capped at 680px of a 1180px rail — a citation list, whose lines are a title
+   capped at 680px of a 1180px rail – a citation list, whose lines are a title
    and a byline, stopping in the middle of the screen with half a page of
    nothing beside it. It runs the rail now; the paragraphs around it keep
    their 680px, because those are read line after line and this is scanned. */
@@ -389,15 +389,15 @@ The measure has been argued four times, so here is the method that settles
 
 /* ---- 6. Reader's guide ---------------------------------------------------
    It held two bands, the roster and the dictionary. Both are gone: the
-   roster below, and the glossary with the feature as a whole — owner:
+   roster below, and the glossary with the feature as a whole – owner:
    «вимикаємо словник». The band, its search, the ruled two-column list and
    the term marks in the prose went with it.
    ------------------------------------------------------------------------- */
-/* Who's who — a cast list, and now it looks like one: a card per actor across
+/* Who's who – a cast list, and now it looks like one: a card per actor across
    the whole rail rather than a 336px column beside a wider block. The name is
    in the display serif, the same register as the case title, because these
    are proper names of parties and forums. */
-/* «Хто є хто» — the roster of parties, court and other actors — stood here:
+/* «Хто є хто» – the roster of parties, court and other actors – stood here:
    a grid of cards, a gold inset edge on the court, and the reasoning for why
    a group of one is capped rather than stretched. The band came off the
    decision page (review: «Цей підрозділ забрати»), because with the actors

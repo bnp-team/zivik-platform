@@ -12,7 +12,7 @@ import { BLOG_T as T, formatPostDate } from "../blog-shared";
 import "../blog.css";
 
 /**
- * One post. Only in the languages it was written in — see `postHasLocale`:
+ * One post. Only in the languages it was written in – see `postHasLocale`:
  * a post the editors wrote in Ukrainian alone has no /en page rather than an
  * English page with an empty title.
  */
@@ -85,8 +85,8 @@ export default async function BlogPost({ params }: { params: Params }) {
   const body = post.body[locale].filter((x) => x.trim());
   const tags = (post.tags ?? []).map((t) => t.trim()).filter(Boolean);
   /* A slug that names no summary is dropped rather than linked: a related
-     link to a 404 is worse than none. The admin cannot check it — the
-     summaries are not loaded there — so the page does. */
+     link to a 404 is worse than none. The admin cannot check it – the
+     summaries are not loaded there – so the page does. */
   const related = (post.relatedCases ?? [])
     .map((s) => s.trim())
     .filter((s) => Object.hasOwn(SUMMARIES, s))

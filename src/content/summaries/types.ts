@@ -2,7 +2,7 @@
  * Decision-summary content model.
  *
  * The prose is authored elsewhere (the source .docx) and ingested VERBATIM into
- * `*.verbatim.json` — never edited by hand. A sibling module adds a thin
+ * `*.verbatim.json` – never edited by hand. A sibling module adds a thin
  * visualization layer (facts, timeline, verdict matrix, theatres) whose every
  * value is traceable to a statement in that same verbatim text. Components read
  * `DecisionSummary`; a future Payload collection will return the same shape.
@@ -19,7 +19,7 @@ export type SummaryBlockKind =
   | "findings" // a multi-part findings table (newline-separated blocks)
   /**
    * What the forum held on the point above, set apart from the argument that
-   * led to it — the page gives it its own ground and a gold edge.
+   * led to it – the page gives it its own ground and a gold edge.
    *
    * A kind rather than a guess. The write-ups do mark these: the paragraph
    * opens «Суд доходить висновку, що…», "The Court concludes that…". But a
@@ -33,7 +33,7 @@ export type SummaryBlockKind =
   /**
    * One party's argument on the point the heading above it names.
    *
-   * A run of these — each with its own h3 — is set as one row of boxes on a
+   * A run of these – each with its own h3 – is set as one row of boxes on a
    * hairline grid rather than as a stack of headings and paragraphs. Two
    * claims side by side are compared; stacked, they are only read in turn,
    * which is the wrong shape for «Вимоги України за ICSFT» and «…за CERD».
@@ -47,7 +47,7 @@ export type SummaryBlockKind =
    * The write-up speaking in its own voice, about what the Court just did.
    *
    * «Іншими словами, Суд розмежував два висновки: заборона Меджлісу не
-   * становить порушення CERD по суті — але вона становить порушення Наказу
+   * становить порушення CERD по суті – але вона становить порушення Наказу
    * про тимчасові заходи.» That sentence is the most useful one on the page
    * and it was set exactly like the Court's own, so a reader had no way to
    * tell whose distinction it was. Marked, it is set apart as ours.
@@ -55,11 +55,11 @@ export type SummaryBlockKind =
   | "note"
   /**
    * What is in dispute under the instrument the claim beside it is brought
-   * under — the half of «Предмет спору» that belongs to this column.
+   * under – the half of «Предмет спору» that belongs to this column.
    *
    * The write-up states both aspects of the subject-matter in one paragraph
    * and then states Ukraine's claims under each instrument separately, so
-   * the same division — ICSFT, then CERD — is drawn twice, ten lines apart,
+   * the same division – ICSFT, then CERD – is drawn twice, ten lines apart,
    * and a reader has to hold the first half in their head to read the
    * second. Split at the author's own sentence boundary and seated with the
    * claims it is about, each column says what was in dispute and what was
@@ -77,11 +77,11 @@ export interface SummaryBlock {
    * Absent, an h3 is listed under its part with its own words. `false` keeps
    * it out, and a string lists it under that label instead.
    *
-   * The rail is not a list of every heading in the prose — it is a list of
+   * The rail is not a list of every heading in the prose – it is a list of
    * places a reader jumps to. «Висновки за CERD» heads a band of eight
    * findings and is one; «Предмет спору» titles a single paragraph read in
    * order and is not. Nothing in a heading says which it is, so it is
-   * recorded rather than guessed — and the default is to list it, so a
+   * recorded rather than guessed – and the default is to list it, so a
    * write-up nobody has been through keeps the navigation it had.
    *
    * A string also lets the rail be shorter than the text: «Наказ про
@@ -93,7 +93,7 @@ export interface SummaryBlock {
    * How the forum disposed of the point this heading opens. `h4` only.
    *
    * The (a)/(b)/(c) limbs of the Order on provisional measures each got an
-   * answer — breached, not breached, breached — and the write-up gives each
+   * answer – breached, not breached, breached – and the write-up gives each
    * answer in a quotation several paragraphs down. The index at the top of
    * the page already carries all three; here the heading carries its own, in
    * the same word and the same chip the index uses.
@@ -118,12 +118,12 @@ export interface SummaryBlock {
    * How each finding in a `findings` block went, in the order its head lines
    * appear. `findings` only.
    *
-   * One entry per head, and data-check holds them to that count — an array
+   * One entry per head, and data-check holds them to that count – an array
    * keyed by position is only honest while something is counting.
    *
    * Read out of the write-up, not out of a rule. Ten of this decision's
-   * twelve findings end on the Court's own formula — «Суд доходить висновку,
-   * що не було встановлено, що…» — and two (law-enforcement measures,
+   * twelve findings end on the Court's own formula – «Суд доходить висновку,
+   * що не було встановлено, що…» – and two (law-enforcement measures,
    * culturally significant gatherings) do not; those two rest on the
    * dispositif, which rejects every claim under each convention but the one
    * it upholds. Neither reading belongs in a regular expression.
@@ -131,14 +131,14 @@ export interface SummaryBlock {
   /**
    * The name of each finding in an enumerated block, in the author's order.
    *
-   * The archive has one device for a finding that carries its own answer —
-   * a head, a result chip beside it, and the exchange under it — and it was
+   * The archive has one device for a finding that carries its own answer –
+   * a head, a result chip beside it, and the exchange under it – and it was
    * reachable by exactly one decision out of eight, because the renderer
-   * found its heads by looking for the literal strings «ICSFT —» and
-   * «CERD —» at the start of a line. Four decisions record their findings as
-   * a list the author already numbered — the ECtHR's ten violations by
+   * found its heads by looking for the literal strings «ICSFT –» and
+   * «CERD –» at the start of a line. Four decisions record their findings as
+   * a list the author already numbered – the ECtHR's ten violations by
    * article, MH17's two charges, Finland's five counts, DTEK's four
-   * objections — and none of them could say how any single one of them went.
+   * objections – and none of them could say how any single one of them went.
    *
    * So the head is recorded rather than guessed, which is the rule this
    * archive keeps everywhere else. One entry per enumerated line, and
@@ -146,15 +146,15 @@ export interface SummaryBlock {
    * renders as it did.
    */
   heads?: string[];
-  /** How each finding in this block went — one per head, in order. */
+  /** How each finding in this block went – one per head, in order. */
   outcomes?: Outcome[];
   /**
    * The head of the column this block opens. `subject` only.
    *
    * This case is two cases: a terrorism-financing claim about eastern
    * Ukraine under the ICSFT, and a racial-discrimination claim about Crimea
-   * under CERD. The page says so three times — in the theatres, on the map,
-   * in the index — and said it nowhere at the point where the two tracks are
+   * under CERD. The page says so three times – in the theatres, on the map,
+   * in the index – and said it nowhere at the point where the two tracks are
    * introduced, so the reader met two columns of prose and had to work out
    * from the sentences that they were parallel.
    *
@@ -163,7 +163,7 @@ export interface SummaryBlock {
    * because the blocks are.
    */
   instrument?: string;
-  /** The theatre that instrument's claim is about — see `instrument`. */
+  /** The theatre that instrument's claim is about – see `instrument`. */
   place?: string;
 }
 
@@ -172,17 +172,17 @@ export interface VerbatimSummary {
   id: string;
   caseId: string;
   masthead: { official: string; parties: string; judgment: string };
-  /** Source-language body (English — the language of the judgment). */
+  /** Source-language body (English – the language of the judgment). */
   blocks: SummaryBlock[];
   /**
-   * Ukrainian translation of the body. Still a draft pending legal review —
+   * Ukrainian translation of the body. Still a draft pending legal review –
    * that remains true and is why the field is documented this way.
    *
    * It is deliberately NOT surfaced to the reader. A notice saying so was
    * rendered on every Ukrainian decision page and the owner had it removed:
    * how the faculty's own translations are reviewed is her editorial process
    * to describe, not this site's to announce. Do not put the notice back on
-   * the strength of this comment — the fact being true is not the question.
+   * the strength of this comment – the fact being true is not the question.
    */
   blocksUk?: SummaryBlock[];
 }
@@ -195,7 +195,7 @@ export interface Stat {
    *  it ("$1.1B" / "$1,1 млрд") must be localized. */
   value: string | Localized;
   label: Localized;
-  /** Give this tile the accent treatment — one per dashboard. */
+  /** Give this tile the accent treatment – one per dashboard. */
   em?: boolean;
   /**
    * A qualification on the figure, set under it with an asterisk on the
@@ -203,8 +203,8 @@ export interface Stat {
    *
    * For the case where a count is exact but not complete, and saying the bare
    * number would overstate what is known. The review asked for one on the
-   * ICC's arrest warrants — «додати вказівку з зірочкою, що це 6, про які
-   * публічно відомо» — and the distinction it draws is the important one: the
+   * ICC's arrest warrants – «додати вказівку з зірочкою, що це 6, про які
+   * публічно відомо» – and the distinction it draws is the important one: the
    * note says what *we* know, not what the Court does. A claim about the
    * Court's own practice would need a source; this needs only honesty about
    * the figure's edge.
@@ -220,13 +220,13 @@ export interface Stat {
  * one decision can carry that to the next. Skip what a case does not have;
  * never reorder what it does:
  *
- *   1. the sides        — who brought it, who answers
- *   2. the forum        — the institution, its composition, where it sat
- *   3. the basis        — the rules or the head of jurisdiction it runs on
- *   4. the identifier   — the docket, the applications, the situation number
- *   5. the period       — what stretch of events the case is about
- *   6. the dates        — filed, heard, decided
- *   7. what it settled  — votes, status, what survives, what was cut off
+ *   1. the sides        – who brought it, who answers
+ *   2. the forum        – the institution, its composition, where it sat
+ *   3. the basis        – the rules or the head of jurisdiction it runs on
+ *   4. the identifier   – the docket, the applications, the situation number
+ *   5. the period       – what stretch of events the case is about
+ *   6. the dates        – filed, heard, decided
+ *   7. what it settled  – votes, status, what survives, what was cut off
  *
  * The cards were authored in whatever order each was written: one opened with
  * the parties, another with the docket number, a third with the situation. The
@@ -235,7 +235,7 @@ export interface Stat {
  * order they fall to the end where they belong.
  *
  * Labels are NOT normalised across cases, and that is deliberate. «Установа»,
- * «Суд» and «Орган» name three different kinds of body — an arbitral
+ * «Суд» and «Орган» name three different kinds of body – an arbitral
  * institution is not a court and a Pre-Trial Chamber is neither. «Загальний
  * список», «Номер справи» and «Ідентифікатор» are the ICJ's General List, the
  * PCA's case number and an ECLI: each registry's own name for its own
@@ -259,7 +259,7 @@ export interface TimelineEvent {
   track?: string;
   /** One sentence of detail, revealed when the reader opens the entry. */
   note?: Localized;
-  /** Sort key, ISO 8601 — the visible `date` may be a range or a month. */
+  /** Sort key, ISO 8601 – the visible `date` may be a range or a month. */
   iso?: string;
 }
 
@@ -290,7 +290,7 @@ export interface Metric {
   label: Localized;
   /** Localize anything a locale writes differently ("16.5%" / "16,5%"). */
   value: string | Localized;
-  /** Share of a whole, 0–100 — draws a bar instead of a plain figure. */
+  /** Share of a whole, 0–100 – draws a bar instead of a plain figure. */
   percent?: number;
   /**
    * What the unfilled part of that bar is.
@@ -301,17 +301,17 @@ export interface Metric {
    * remainder gives the empty part of the bar its meaning.
    *
    * Deliberately a label and not a number. The whole it is a share of is
-   * often itself a floor — "19,546+" — so subtracting would state an exact
+   * often itself a floor – "19,546+" – so subtracting would state an exact
    * figure that no source does.
    */
   restLabel?: Localized;
-  /** Countable units — draws one mark per unit (capped in the component). */
+  /** Countable units – draws one mark per unit (capped in the component). */
   count?: number;
   /**
    * This figure is a part of the one declared before it.
    *
    * The two were separate tiles in a two-column grid, which put the whole and
-   * its share side by side with nothing saying so — and set the eye reading
+   * its share side by side with nothing saying so – and set the eye reading
    * down the left column instead, where «19 546+ дітей» was followed by «2
    * держави не виконали ордер», a different subject entirely. The band said
    * three unrelated things in no order.
@@ -327,8 +327,8 @@ export interface Metric {
    * The subject this figure belongs to, written on the first of its run.
    *
    * «Що було втрачено» held six figures of four different kinds: what the
-   * bank *was* in Crimea — 294 outlets, 45% of lending, 16.5% of deposits —
-   * and what was *taken* — the ActivSolar facilities, 85 leases, the cash and
+   * bank *was* in Crimea – 294 outlets, 45% of lending, 16.5% of deposits –
+   * and what was *taken* – the ActivSolar facilities, 85 leases, the cash and
    * gold seized in the raids. The heading promises the second; half the grid
    * answers the first, and nothing stood between them. Named, the two runs
    * stop being one undifferentiated field of numbers.
@@ -340,7 +340,7 @@ export interface Metric {
    *
    * «19 546+» is what the official database holds; ombudspersons put the
    * number of children at 150,000–300,000. That is not a footnote about
-   * the figure, it is a second figure — an order of magnitude larger — and
+   * the figure, it is a second figure – an order of magnitude larger – and
    * it was buried in a note under a caveat about where the numbers come
    * from, where a reader met it after they had already taken 19,546 as the
    * answer. It belongs to the metric it disagrees with.
@@ -358,8 +358,8 @@ export interface MoneyFigure {
    *
    * «Суми» stood under «Що вирішив арбітраж» and held four figures, two of
    * which the tribunal never decided: the award's value with interest accrued
-   * to 2025 — the tribunal set the rate, someone else did the arithmetic, and
-   * the row is marked `estimated` and labelled «за даними 2025 року» — and the
+   * to 2025 – the tribunal set the rate, someone else did the arithmetic, and
+   * the row is marked `estimated` and labelled «за даними 2025 року» – and the
    * €87 million attached in France in April 2025, which is a different forum,
    * a different year and enforcement rather than a holding. Owner: «чи це
    * дійсно те що вирішив суд?». It is not.
@@ -424,7 +424,7 @@ export interface Charge {
   /** Statute article, e.g. "8(2)(a)(vii)". */
   art: string;
   label: Localized;
-  /** "war-crime" | "crime-against-humanity" — sets the chip colour. */
+  /** "war-crime" | "crime-against-humanity" – sets the chip colour. */
   kind: "war-crime" | "cah";
 }
 
@@ -442,7 +442,7 @@ export interface WarrantPerson {
 
 /** One wave of warrants issued the same day on one theory of the case. */
 export interface WarrantWave {
-  /** Which accusation line this batch belongs to — see `lines`. */
+  /** Which accusation line this batch belongs to – see `lines`. */
   line?: string;
   date: Localized;
   iso: string;
@@ -459,8 +459,8 @@ export interface Stage {
   /**
    * The chronology entry this step is, where the page carries one.
    *
-   * The French rounds are told twice on Oschadbank — as four dated events in
-   * the chronology and as four cards here — and the two tellings are not
+   * The French rounds are told twice on Oschadbank – as four dated events in
+   * the chronology and as four cards here – and the two tellings are not
    * redundant: the chronology says when, these say whether the award was
    * standing after it. What was missing was the seam between them. With an
    * iso the year becomes a link into the chronology, the way the verdict
@@ -478,7 +478,7 @@ export interface Stage {
 export interface Theatre {
   place: Localized;
   /**
-   * Short over-title tag on the map — a treaty acronym ("CERD"), a campaign
+   * Short over-title tag on the map – a treaty acronym ("CERD"), a campaign
    * ("ЕНЕРГОСИСТЕМА") or a scene ("МІСЦЕ ПУСКУ"). Localize words; acronyms
    * stay strings. (Named `treaty` until the tags outgrew treaties.)
    */
@@ -490,8 +490,8 @@ export interface Theatre {
    *
    * The marks were unnamed circles: a reader saw five dots in the east and
    * had no way to learn that one of them is Kherson. The theatre's own name
-   * sits over the group and answers a different question — what the case is
-   * about there, not where there is. Owner: «жодна точка не підписана —
+   * sits over the group and answers a different question – what the case is
+   * about there, not where there is. Owner: «жодна точка не підписана –
    * Київ, Херсон, Запоріжжя, Донбас, Крим лишаються безіменними кружечками;
    * підпиши».
    *
@@ -503,9 +503,9 @@ export interface Theatre {
   /**
    * Whether this theatre's ground is those points or the whole of an area.
    *
-   * «Два театри, але другий театр — це ж не одна точка»: the missile campaign
-   * against the grid is not a place at all — the summary itself says «по всій
-   * країні» — and it was drawn as a single dot beside Kyiv, sitting in a row
+   * «Два театри, але другий театр – це ж не одна точка»: the missile campaign
+   * against the grid is not a place at all – the summary itself says «по всій
+   * країні» – and it was drawn as a single dot beside Kyiv, sitting in a row
    * with five occupied oblasts as though it were a sixth. With "area" the
    * dots are not drawn: the ground carries the theatre, the beam ends in it,
    * and the name stands over the country rather than over a point in it.
@@ -517,8 +517,8 @@ export interface Theatre {
    * The map drew every theatre as a point with a halo, and most of them are
    * not points: «Крим», «Донбас із 2014», «Східна Україна», «Окуповані
    * території», «Уся Україна з 2022» are territories, and a dot standing for
-   * one is a claim the record does not make. The dot stays — a reader needs
-   * somewhere to look — and the ground behind it lights.
+   * one is a claim the record does not make. The dot stays – a reader needs
+   * somewhere to look – and the ground behind it lights.
    *
    * "country" is Ukraine's own outline; the rest name a path in
    * `ukraine-map.json`'s `areas`. Several, because a theatre can be about more
@@ -564,12 +564,12 @@ export interface JudgmentSource {
    * it prints `court` under the button and tells search engines, through
    * `isBasedOn`, that the article is based on that document. A summary whose
    * judgment is not published must set this, or the page will caption a blog
-   * post with the name of a court — which is what finland-torden did.
+   * post with the name of a court – which is what finland-torden did.
    */
   urlType?: string;
   /** The same, for `caseUrl`. Absent means the court's own case page. */
   caseUrlType?: string;
-  /** Delivery date as ISO 8601 (YYYY-MM-DD) — used in structured data. */
+  /** Delivery date as ISO 8601 (YYYY-MM-DD) – used in structured data. */
   date: string;
   /** Label for the primary action, when "read the judgment" does not fit. */
   readLabel?: Localized;
@@ -577,7 +577,7 @@ export interface JudgmentSource {
   fileLabel?: Localized;
 }
 
-/** The institution that decided, and where it sat — shown in the masthead. */
+/** The institution that decided, and where it sat – shown in the masthead. */
 export interface Forum {
   /** Institution, e.g. "Permanent Court of Arbitration". */
   institution: Localized;
@@ -626,7 +626,7 @@ export interface Citation {
  *
  * The required fields are the ones every decision has: prose, parties, a
  * dispositif, a date. The optional ones are instruments a particular decision
- * earns — an inter-State judgment brings provisional measures and treaty
+ * earns – an inter-State judgment brings provisional measures and treaty
  * theatres; an investment award brings money, attribution and a set-aside
  * history. A page renders only the instruments its case actually fills.
  */
@@ -639,13 +639,13 @@ export interface DecisionSummary extends VerbatimSummary {
    */
   title?: Localized;
   /**
-   * The page's name for a browser tab, a search result and a shared link —
+   * The page's name for a browser tab, a search result and a shared link –
    * `<title>`, `og:title`, the Article `headline`. Only where the full title
    * runs past what a result shows (about 60–70 characters): the two ICJ
    * cases carry a whole convention in their names, and a result cut after
    * «Застосування Міжнародної конвенції про боротьбу з…» never reached the
    * court. The page itself keeps the full title in its H1, and the structured
-   * data keeps it as `alternativeHeadline` — a lawyer searches by the full
+   * data keeps it as `alternativeHeadline` – a lawyer searches by the full
    * caption, and it has to be there to be found.
    */
   seoTitle?: Localized;
@@ -655,27 +655,27 @@ export interface DecisionSummary extends VerbatimSummary {
    * `masthead.official` and `masthead.judgment` come out of the verbatim
    * ingest and are the decision's own words: the caption it files itself under
    * and the line naming what it is and when. They are the record and they stay
-   * English in `masthead` — the citation block reproduces them unchanged,
+   * English in `masthead` – the citation block reproduces them unchanged,
    * because a citation that translates a caption cannot be looked up.
    *
    * But they are also the two largest pieces of type under the H1, and on the
    * Ukrainian page they read as eight lines of English capitals. This is the
    * Ukrainian rendering, shown in the masthead only: `official` under the
    * title, `judgment` in the eyebrow beside the forum and the seat. Where a
-   * treaty or a court has an established Ukrainian name it is used — «Угода
+   * treaty or a court has an established Ukrainian name it is used – «Угода
    * … про заохочення та взаємний захист інвестицій», «Арбітражний регламент
-   * ЮНСІТРАЛ» — rather than a fresh translation of the English.
+   * ЮНСІТРАЛ» – rather than a fresh translation of the English.
    *
    * NEEDS THE OWNER'S REVIEW: these are renderings, not official texts.
    */
   mastheadUk?: { official?: string; judgment?: string };
   /**
-   * The three lines of the share card, /og/cases/<slug>.png — Ukrainian only,
+   * The three lines of the share card, /og/cases/<slug>.png – Ukrainian only,
    * because one card serves both locales.
    *
    * The card is drawn at build time by scripts/og-cards.mts. Each part left
    * empty is derived, so a summary made in the admin still gets a card:
-   *   title   ← `seoTitle` up to « — », else `title`
+   *   title   ← `seoTitle` up to « – », else `title`
    *   eyebrow ← the forum's institution · `mastheadUk.judgment`
    *   kicker  ← the accented stat tile, value and label
    * The derivation is presentable, not good: the full ICJ captions run to
@@ -687,7 +687,7 @@ export interface DecisionSummary extends VerbatimSummary {
   card?: { title?: string; eyebrow?: string; kicker?: string };
   /**
    * Date the page's context layer was last verified against its sources
-   * (ISO 8601). For live dockets — an ICC situation, an enforcement stage —
+   * (ISO 8601). For live dockets – an ICC situation, an enforcement stage –
    * it renders next to the out-of-record figures and feeds `dateModified` in
    * the structured data.
    */
@@ -698,7 +698,7 @@ export interface DecisionSummary extends VerbatimSummary {
    * `plain.tldr` used to serve as this, and it is a three-to-four-sentence
    * paragraph: every decision page's snippet ran 300–496 characters and was
    * cut off mid-sentence. Written from the same record the tldr is written
-   * from — what the case is and how it ended — not from marketing copy.
+   * from – what the case is and how it ended – not from marketing copy.
    */
   metaDesc?: Localized;
   plain: PlainLanguage;
@@ -717,15 +717,15 @@ export interface DecisionSummary extends VerbatimSummary {
    *
    * `"four"` leaves the full summary, the chronology, the map and the
    * sources, and nothing else. It exists because the corrections document
-   * asks for exactly that on one decision — «ЗАЛИШАТИ ХРОНОЛОГІЮ, МІСЦЕ
-   * РОЗГЛЯДУ, ОГЛЯД ТА ДЖЕРЕЛА» — and then, once it had been applied to all
+   * asks for exactly that on one decision – «ЗАЛИШАТИ ХРОНОЛОГІЮ, МІСЦЕ
+   * РОЗГЛЯДУ, ОГЛЯД ТА ДЖЕРЕЛА» – and then, once it had been applied to all
    * eight, the owner asked for the rest to be put back: «поверни назад блоки
    * в рішення де не просять прибрати секції». So it is a per-decision
    * choice, made in the data, not a rule of the template.
    *
    * The one decision is `icj-genocide`, which is where that line stands in
    * the document. It sat on `icj-cerd-icsft` for a while, and that was a
-   * misreading of which block of the document the line belonged to — the
+   * misreading of which block of the document the line belonged to – the
    * same document asks the opposite for that page, «а потім би вже йшли
    * вкладки про тлумачення, тимчасові заходи тощо». Check the decision the
    * instruction is under, not the decision nearest the cursor.
@@ -739,14 +739,14 @@ export interface DecisionSummary extends VerbatimSummary {
    * Which part of the write-up the map closes, counting h2s from nought.
    *
    * The map answers «де це було», and it answers it where the reader has just
-   * been told what happened — at the end of the factual part. Which part that
+   * been told what happened – at the end of the factual part. Which part that
    * is differs: five write-ups open with it, oschadbank puts the procedural
    * history first, and three have no factual part at all (the charges, the
    * prosecution's position, jurisdiction in the situation). Where this is
    * absent the map closes the whole write-up.
    *
-   * Recorded, not matched. The first version of this read the heading text —
-   * `/(фактичн[іи] обставин|the facts)/` — and it worked in Ukrainian and
+   * Recorded, not matched. The first version of this read the heading text –
+   * `/(фактичн[іи] обставин|the facts)/` – and it worked in Ukrainian and
    * matched nothing at all in English, because the English write-ups say
    * «Factual background». Four decisions drew the map in the middle of the
    * page in one language and at the foot of it in the other. That is the
@@ -754,7 +754,7 @@ export interface DecisionSummary extends VerbatimSummary {
    * same words: the archive records the seam rather than guessing at it.
    *
    * The number is an index into the parts, so it is the same in both
-   * languages by construction — the two renderings of a write-up carry the
+   * languages by construction – the two renderings of a write-up carry the
    * same sections in the same order, which `data-check` enforces.
    */
   mapAfterPart?: number;
@@ -764,14 +764,14 @@ export interface DecisionSummary extends VerbatimSummary {
    * carries on the page.
    *
    * The opposite instrument to `bands`, and the one the corrections actually
-   * ask for most often. `bands: "four"` is a whitelist — it names the four
+   * ask for most often. `bands: "four"` is a whitelist – it names the four
    * that stay and silences everything else, so putting one section back means
    * putting all of them back. When the owner asked for the submissions matrix
    * on icj-genocide while still wanting «Забрати Key rulings on the law» and
-   * «Забрати Overview — не має ніякої цінності», a whitelist could not say it.
+   * «Забрати Overview – не має ніякої цінності», a whitelist could not say it.
    *
    * Ids are the section ids in `pageSections`, which are also the anchors the
-   * contents rail links to — the union below is the list. The write-up, the
+   * contents rail links to – the union below is the list. The write-up, the
    * chronology, the map and the sources are not among them: a decision page
    * without its own text is not a page. Nor is "related", which left the
    * template altogether in 49de66a; a band no decision draws is not a band
@@ -793,7 +793,7 @@ export interface DecisionSummary extends VerbatimSummary {
    *
    * The gold box over a holding is captioned «Позиція Суду» on every page.
    * Two of the eight were decided by an arbitral tribunal under UNCITRAL
-   * rules — Oschadbank and DTEK Krymenergo — and there the caption names an
+   * rules – Oschadbank and DTEK Krymenergo – and there the caption names an
    * institution that did not sit: the Permanent Court of Arbitration
    * administers the case, it does not decide it, and the body that decided
    * is a tribunal of three. The page says «Трибунал» in its own prose and
@@ -804,7 +804,7 @@ export interface DecisionSummary extends VerbatimSummary {
   timelineTracks?: TimelineTrack[];
   provisionalMeasures?: ProvisionalMeasure[];
   /**
-   * Which Order these provisional measures come from — the sub-label of the
+   * Which Order these provisional measures come from – the sub-label of the
    * instrument. Required whenever `provisionalMeasures` is set (enforced in
    * `summaries/index.ts`): the template used to hardcode "Order of 19 April
    * 2017", which was right only for as long as icj-cerd-icsft was the only
@@ -838,7 +838,7 @@ export interface DecisionSummary extends VerbatimSummary {
     /**
      * The routes, in the order they should be drawn.
      *
-     * The nodes carry a `basis` each — "ILC art. 4", "ILC art. 8" — and those
+     * The nodes carry a `basis` each – "ILC art. 4", "ILC art. 8" – and those
      * are not five parallel facts but two doctrinal routes with three bodies
      * on one and two on the other. The drawing showed five equal siblings, so
      * the only thing worth drawing a tree for was the thing it did not draw.
@@ -861,7 +861,7 @@ export interface DecisionSummary extends VerbatimSummary {
   };
   afterlife?: { heading: Localized; note: Localized; stages: Stage[] };
   /**
-   * Warrants of arrest — the core instrument of an ICC page. `waves` group the
+   * Warrants of arrest – the core instrument of an ICC page. `waves` group the
    * suspects by issuance date and theory of the case; `rungs`, when present,
    * name the levels of the chain of command and turn the wall into a ladder:
    * one spine of power, each suspect pinned to their rung, coloured by wave.
@@ -874,18 +874,18 @@ export interface DecisionSummary extends VerbatimSummary {
     /**
      * The lines of accusation, each with its own ladder.
      *
-     * The band drew one vertical and called it one: «Шість ордерів — одна
+     * The band drew one vertical and called it one: «Шість ордерів – одна
      * вертикаль влади», from the commander-in-chief down to the commanders of
      * the aviation and the fleet. The record does not say that. The warrants
      * for the deportation of children name the head of state and the
      * children's commissioner; the warrants for the campaign against the grid
      * name the Defence Minister, the General Staff and two operational
-     * commanders — and no warrant names the head of state for the grid. Two
+     * commanders – and no warrant names the head of state for the grid. Two
      * verticals of two rungs each, not one of four, and the drawing was
      * asserting a chain that no document draws.
      *
      * So each line gets its own ladder and its own numbering, and the true
-     * statement — how high the Court reached in each — becomes the thing the
+     * statement – how high the Court reached in each – becomes the thing the
      * reader sees. A wave points at its line with `line`.
      */
     lines?: { key: string; label: Localized; summary: Localized }[];

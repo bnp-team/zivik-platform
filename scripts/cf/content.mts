@@ -8,7 +8,7 @@
  *
  * `seed` turns today's file content into an EmDash seed: the schema from
  * site/content/collections.ts and one published entry per record. EmDash
- * applies it on the first request to an empty database — that is how the D1
+ * applies it on the first request to an empty database – that is how the D1
  * database is filled the first time, and how a local dev database is.
  *
  * `check` is the guarantee behind that. For every record of every
@@ -159,7 +159,7 @@ async function seed(out: string) {
  * only in EmDash are listed, never deleted.
  *
  * It overwrites editors' work, so by default it only reports; `--yes` writes.
- * After the switch — once EmDash is where content is edited — do not run it.
+ * After the switch – once EmDash is where content is edited – do not run it.
  *
  *   EMDASH_URL=https://… EMDASH_TOKEN=… npm run cf:content -- push [--yes]
  *
@@ -211,7 +211,7 @@ async function push(write: boolean) {
       ? "cf:content push: EmDash already matches src/content."
       : write
         ? `cf:content push: wrote and published ${changed} entr${changed === 1 ? "y" : "ies"}.`
-        : `cf:content push: ${changed} entr${changed === 1 ? "y differs" : "ies differ"} — run with --yes to write.`,
+        : `cf:content push: ${changed} entr${changed === 1 ? "y differs" : "ies differ"} – run with --yes to write.`,
   );
 }
 
@@ -222,8 +222,8 @@ async function push(write: boolean) {
  *   EMDASH_URL=https://… EMDASH_TOKEN=… npm run cf:content -- schema [--yes]
  *
  * The seed shapes a database only once, on its first request, so every later
- * schema change — a new field such as `seo_title`, a new collection such as
- * the blog, the admin form's order and labels — had to be clicked into
+ * schema change – a new field such as `seo_title`, a new collection such as
+ * the blog, the admin form's order and labels – had to be clicked into
  * Content types by hand, field by field. This does it from the same
  * description the seed uses:
  *
@@ -233,7 +233,7 @@ async function push(write: boolean) {
  *
  * It never renames a slug or changes a type. It removes nothing unless asked:
  * with `--prune`, a field the running EmDash has and collections.ts no longer
- * describes is deleted — its column and every value in it, in every entry,
+ * describes is deleted – its column and every value in it, in every entry,
  * so take a backup first (docs/BACKUPS.md). Without `--yes` it only reports.
  * The token needs Schema Read and Schema Write (Settings → API tokens).
  *
@@ -315,15 +315,15 @@ async function schema(write: boolean, prune: boolean) {
       const changes: string[] = [];
       if (remote.label !== f.label) changes.push(`label «${f.label}»`);
       if (remote.sortOrder !== f.sortOrder) changes.push(`position ${remote.sortOrder} → ${f.sortOrder}`);
-      if (wantMax !== haveMax) changes.push(`max length ${haveMax ?? "—"} → ${wantMax ?? "—"}`);
+      if (wantMax !== haveMax) changes.push(`max length ${haveMax ?? "–"} → ${wantMax ?? "–"}`);
       const wantWidget = (f.widget as string | undefined) ?? "";
-      if ((remote.widget ?? "") !== wantWidget) changes.push(`editor ${remote.widget || "—"} → ${wantWidget || "—"}`);
+      if ((remote.widget ?? "") !== wantWidget) changes.push(`editor ${remote.widget || "–"} → ${wantWidget || "–"}`);
       if (!changes.length) continue;
       updated++;
       console.log(`  ~ field ${spec.slug}.${slug}: ${changes.join(", ")}`);
       if (!write) continue;
       /* `validation` is required by the update and replaces the stored one,
-         so the stored value goes back with only maxLength changed — sending
+         so the stored value goes back with only maxLength changed – sending
          null would drop a select's options or a repeater's sub-fields. */
       const validation = { ...(remote.validation ?? {}) };
       if (wantMax === undefined) delete validation.maxLength;
@@ -340,7 +340,7 @@ async function schema(write: boolean, prune: boolean) {
       for (const slug of have.keys()) {
         if (want.has(slug)) continue;
         removed++;
-        console.log(`  - field ${spec.slug}.${slug} (${have.get(slug)!.label}) — deletes its values`);
+        console.log(`  - field ${spec.slug}.${slug} (${have.get(slug)!.label}) – deletes its values`);
         if (write) await api("DELETE", `/schema/collections/${spec.slug}/fields/${slug}`);
       }
     }
@@ -348,14 +348,14 @@ async function schema(write: boolean, prune: boolean) {
     const haveCols = got.item?.admin?.listColumns ?? [];
     if (wantCols.join() !== haveCols.join()) {
       updated++;
-      console.log(`  ~ collection ${spec.slug}: list columns ${haveCols.join(", ") || "—"} → ${wantCols.join(", ") || "—"}`);
+      console.log(`  ~ collection ${spec.slug}: list columns ${haveCols.join(", ") || "–"} → ${wantCols.join(", ") || "–"}`);
       if (write) await api("PUT", `/schema/collections/${spec.slug}`, { admin: { listColumns: wantCols } });
     }
   }
   const n = added + updated + removed;
   if (!n) console.log("  cf:content schema: the running EmDash matches collections.ts.");
   else if (!write)
-    console.log(`  cf:content schema: ${added} to add, ${updated} to update, ${removed} to delete — run again with --yes to apply.`);
+    console.log(`  cf:content schema: ${added} to add, ${updated} to update, ${removed} to delete – run again with --yes to apply.`);
   else console.log(`  cf:content schema: added ${added}, updated ${updated}, deleted ${removed}.`);
 }
 

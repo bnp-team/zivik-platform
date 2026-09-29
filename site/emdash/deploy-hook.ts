@@ -1,9 +1,9 @@
 /**
- * Calling the Workers Builds deploy hook — shared by the publish plugin
+ * Calling the Workers Builds deploy hook – shared by the publish plugin
  * (rebuild-on-publish.ts) and the Worker's cron (worker.ts), which retries a
  * publish whose rebuild never happened.
  *
- * The hook URL is a credential — anyone holding it can start builds — so logs
+ * The hook URL is a credential – anyone holding it can start builds – so logs
  * name only its host, never the path with the hook id, and never any part of
  * a value that failed to parse. Nothing here throws: a failed rebuild must not
  * read as a failed publish.
@@ -31,7 +31,7 @@ function hookUrl(raw: string): URL | string {
 
 /**
  * POST a deploy hook; true when Cloudflare accepted it. `name` is the Worker
- * secret holding the URL — DEPLOY_HOOK_URL for production, STAGING_DEPLOY_HOOK_URL
+ * secret holding the URL – DEPLOY_HOOK_URL for production, STAGING_DEPLOY_HOOK_URL
  * for the drafts build (docs/STAGING.md). `quietIfUnset` keeps a hook that is
  * simply not configured out of the logs.
  */

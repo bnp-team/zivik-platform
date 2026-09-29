@@ -13,12 +13,12 @@ import "./case-map.css";
  * underneath carrying the sentence that says what happened at each. Nothing
  * answered. The reader could see that a case reaches from The Hague to the
  * east of Ukraine and could not ask the map which of two theatres a sentence
- * belonged to — on `icj-cerd-icsft` there are two, ICSFT in the east and CERD
+ * belonged to – on `icj-cerd-icsft` there are two, ICSFT in the east and CERD
  * in Crimea, and the only way to pair a mark with its sentence was to match
  * the words by eye.
  *
  * It is not the events map. That component is fitted to its own projection in
- * several load-bearing places — the «Україна» framing is a hardcoded rect in
+ * several load-bearing places – the «Україна» framing is a hardcoded rect in
  * those units, the label sides and the crowding maths are measured against
  * that atlas, and its data model is a site with a caseload and a list of
  * decisions. A case has one forum and one or two theatres and no caseload.
@@ -30,13 +30,13 @@ import "./case-map.css";
  * serialized into the page payload.
  *
  * The ground itself is not a prop. The neighbours, Ukraine's outline, its
- * oblast mesh and the lit areas used to cross the boundary as path strings —
+ * oblast mesh and the lit areas used to cross the boundary as path strings –
  * 88–95 KB of every decision page's HTML, the same bytes on all eight of them,
  * written a second time beside the SVG they had just been rendered into. They
  * are read here from the atlas instead, which the events map and the home
  * page's map already import: one module the browser fetches once and keeps,
  * rather than a copy per page it cannot. What still crosses is what differs
- * per case — the frame, the points, the names, and which areas to light, as
+ * per case – the frame, the points, the names, and which areas to light, as
  * keys into `atlas.areas`. The markup is the same either way, so the server
  * render and the hydration still agree path for path.
  */
@@ -59,7 +59,7 @@ export interface CaseMapTheatre {
   labelDy?: number;
 }
 
-/** An area key, as the path it names — see `areas` on `CaseMapTheatre`. */
+/** An area key, as the path it names – see `areas` on `CaseMapTheatre`. */
 const AREAS = (atlas as { areas?: Record<string, string> }).areas ?? {};
 const areaPath = (key: string) => (key === "country" ? atlas.ukraine : AREAS[key]);
 
@@ -90,7 +90,7 @@ export default function CaseMap({
   const svgRef = useRef<SVGSVGElement | null>(null);
 
   const [vx, vy, vw, vh] = frame.split(" ").map(Number);
-  /** A point in the frame, as a percentage of it — see the labels below. */
+  /** A point in the frame, as a percentage of it – see the labels below. */
   const at = (x: number, y: number) => ({
     left: `${((x - vx) / vw) * 100}%`,
     top: `${((y - vy) / vh) * 100}%`,
@@ -147,7 +147,7 @@ export default function CaseMap({
      rather than chosen: its place dot comes out 11.3px across, its halo 16.9
      to 24.4 depending on how much a place is carrying (19.3 is the middle of
      that, and a theatre carries no such number), and its court ring 9.4. This
-     drawing had 17.9, 79.5 and 19.9 — the halo four times over, which is what
+     drawing had 17.9, 79.5 and 19.9 – the halo four times over, which is what
      was reading as a glow rather than as a mark. `px` puts a pixel back into
      the frame's own units. */
   const px = (n: number) => Math.round(n * unit * 100) / 100;
@@ -169,11 +169,11 @@ export default function CaseMap({
           viewBox={frame}
           /* The frame reserves a strip on the left for the key. Anchored to
              the right and set to cover, this is the identity transform at the
-             frame's own ratio — and on a phone, where the stylesheet narrows
+             frame's own ratio – and on a phone, where the stylesheet narrows
              the box and the key is back below the drawing, it crops the strip
              away instead of leaving 130px of empty water. */
           preserveAspectRatio="xMaxYMid slice"
-          /* A group of controls while the marks answer — the same distinction
+          /* A group of controls while the marks answer – the same distinction
              the events map draws. There is no state here in which they do not:
              this drawing has at most three of them and they never crowd. */
           role="group"
@@ -190,7 +190,7 @@ export default function CaseMap({
             ))}
             <path className="ua-fill" d={atlas.ukraine} />
             {/* The oblasts, as the lines between them. The decision maps never
-                had these — the atlas that carried them was the other one — and
+                had these – the atlas that carried them was the other one – and
                 they are what lets a reader see that Crimea is a piece of this
                 country rather than a neighbour of it. Clipped to the outline,
                 because the mesh is 10m and the outline 110m and where an
@@ -263,7 +263,7 @@ export default function CaseMap({
                 cy={seat.at[1]}
                 role="button"
                 tabIndex={rovKey === "seat" ? 0 : -1}
-                aria-label={`${seat.name} — ${seat.caption}`}
+                aria-label={`${seat.name} – ${seat.caption}`}
                 aria-pressed={sel === "seat"}
                 onFocus={() => setRov("seat")}
                 onClick={() => setSel((s) => (s === "seat" ? null : "seat"))}
@@ -278,7 +278,7 @@ export default function CaseMap({
                     as one circle beside Kyiv, in a row with five occupied
                     oblasts, as though it were a sixth place.
 
-                    What it does draw is the capital — a small ring, not a
+                    What it does draw is the capital – a small ring, not a
                     filled mark, because it is a point of reference and not a
                     subject of the case. Owner: «або можна позначити Київ як
                     столицю України», «достав точку Київ». */}
@@ -307,7 +307,7 @@ export default function CaseMap({
                   cy={t.pts[0][1]}
                   role="button"
                   tabIndex={rovKey === t.id ? 0 : -1}
-                  aria-label={`${t.place} — ${t.tag}`}
+                  aria-label={`${t.place} – ${t.tag}`}
                   aria-pressed={sel === t.id}
                   onFocus={() => setRov(t.id)}
                   onClick={() => setSel((s) => (s === t.id ? null : t.id))}
@@ -335,15 +335,15 @@ export default function CaseMap({
                find room around it. The key under the map names the theatre.
 
                Marked rather than dropped, because on a phone the drawing is
-               339px wide and the five names cannot fit at all — there the
+               339px wide and the five names cannot fit at all – there the
                stylesheet hides them and shows this one instead. Which of the
                two is drawn is a question of width, and width is CSS's. */
             /* A theatre whose ground is the whole country writes nothing on
                the drawing at all. Its name stood over Kyiv with no mark under
-               it, which put a label where a reader looks for a place — and
+               it, which put a label where a reader looks for a place – and
                the thing it names is not a place. The key below is its control:
-               pressing it lights the country. Owner: «енергосистема України —
-               можна прибрати з карти як підпис — нехай карта просто
+               pressing it lights the country. Owner: «енергосистема України –
+               можна прибрати з карти як підпис – нехай карта просто
                підсвічується під час натискання на легенду». */
             if (t.ground === "area") return null;
             const named = t.ptNames?.some((n) => n?.label) ? "yes" : undefined;
@@ -352,7 +352,7 @@ export default function CaseMap({
             const p = at(cx + (t.labelDx ?? 0), cy + (t.labelDy ?? 0));
             /* Held inside the frame, both ways. An HTML label does not clip,
                so a zone near an edge puts its name outside the picture and on
-               top of whatever is beside it — and the nudges the summaries used
+               top of whatever is beside it – and the nudges the summaries used
                to carry for exactly this were measured against an atlas that no
                longer exists, which is how «Донеччина та Луганщина» ended up at
                112% of the frame's height. The label sits above its mark, so
@@ -377,7 +377,7 @@ export default function CaseMap({
               is about there; this says where there is. Not drawn for an area
               theatre, which has no marks to name. */}
           {theatres.flatMap((t) =>
-            /* An area theatre names one place only — its capital. */
+            /* An area theatre names one place only – its capital. */
             (t.ground === "area" ? (t.ptNames ?? []).slice(0, 1) : (t.ptNames ?? [])).map(
               (n, i) => {
                   const pt = t.pts[i];
@@ -418,7 +418,7 @@ export default function CaseMap({
 
           A sibling of the drawing, not a child: with room it is lifted onto
           the map as a block standing on a strip the frame reserves for it, and
-          on a phone it drops back into the flow beneath — see the stylesheet.
+          on a phone it drops back into the flow beneath – see the stylesheet.
           Either way it must not be inside the box the names are placed
           against, whose height is the drawing's own. */}
       <div className="map-legend">
@@ -431,7 +431,7 @@ export default function CaseMap({
         >
           <i className="lg-court" />
           <span className="lg-place">
-            {seat.name} — {seat.caption}
+            {seat.name} – {seat.caption}
           </span>
         </button>
         {theatres.map((t) => (
@@ -445,7 +445,7 @@ export default function CaseMap({
           >
             <i />
             <span className="lg-place">
-              {t.place} — <b>{t.tag}</b>
+              {t.place} – <b>{t.tag}</b>
             </span>
             {t.summary && <span className="lg-note">{t.summary}</span>}
           </button>
@@ -453,7 +453,7 @@ export default function CaseMap({
         {/* That the marks answer at all. One line, and only where there is
             more than one thing to tell apart. */}
         {/* The «press a mark» line is gone. It was an instruction for
-            something the marks already do — they are buttons, they take a
+            something the marks already do – they are buttons, they take a
             hover and a focus ring, and a reader who does not press them
             loses nothing: the key says what each one is in words. A caption
             that teaches an optional interaction is a caption the reader

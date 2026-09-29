@@ -1,12 +1,12 @@
 /**
- * A static server over `dist/client` — the local stand-in for Cloudflare's
+ * A static server over `dist/client` – the local stand-in for Cloudflare's
  * asset server, for `npm run test:e2e`.
  *
  * It answers the way the asset server answers the public pages and no
  * further: `/uk/about` is `uk/about.html` (the build writes `format: "file"`,
  * see astro.config.mjs), a file is served as itself, and anything else is
- * `404.html` with a 404. What only the Worker does — `/` by Accept-Language,
- * the admin, the headers from `_headers` — is deliberately not imitated here:
+ * `404.html` with a 404. What only the Worker does – `/` by Accept-Language,
+ * the admin, the headers from `_headers` – is deliberately not imitated here:
  * a test that passed against an imitation would prove the imitation. Those
  * checks run against the live site only (http.spec.ts).
  *
@@ -68,7 +68,7 @@ async function resolveFile(pathname) {
 try {
   await stat(join(root, "uk.html"));
 } catch {
-  console.error(`No build in ${root} — run \`npx astro build\` first (npm run test:e2e does).`);
+  console.error(`No build in ${root} – run \`npx astro build\` first (npm run test:e2e does).`);
   process.exit(1);
 }
 
@@ -89,7 +89,7 @@ createServer(async (req, res) => {
     });
     res.end(req.method === "HEAD" ? undefined : body);
   } catch {
-    res.writeHead(500, { "content-type": "text/plain" }).end(`missing ${path} — run \`npx astro build\` first`);
+    res.writeHead(500, { "content-type": "text/plain" }).end(`missing ${path} – run \`npx astro build\` first`);
   }
 }).listen(port, "127.0.0.1", () => {
   console.log(`dist/client on http://127.0.0.1:${port}`);

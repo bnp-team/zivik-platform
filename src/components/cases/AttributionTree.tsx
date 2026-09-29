@@ -10,19 +10,19 @@ import { useState } from "react";
  * ── Two stems, not five branches ───────────────────────────────────────────
  * The five bodies here are not five parallel facts. Three were organs of the
  * State (ILC art. 4) and two acted on its instructions or under its control
- * (art. 8), and those are different routes with different proofs — which is
+ * (art. 8), and those are different routes with different proofs – which is
  * the whole reason attribution is worth a diagram at all. Drawn as five equal
  * siblings, the one thing a tree could show was the one thing it did not: the
  * distinction survived only as small type inside each card's eyebrow.
  *
  * The stems are labelled from the block's own paragraph, which already said
  * "article 4 for organs of the State, article 8 for conduct directed or
- * controlled by it" — the words are promoted, not invented.
+ * controlled by it" – the words are promoted, not invented.
  *
  * One branch is always open, unlike the warrant ladder next door. The
  * difference is what the closed state would say: an unselected ladder is a
  * list of names, which is still an answer, while this closed is a root, some
- * branches and a blank — the sentence under it is the point of the drawing.
+ * branches and a blank – the sentence under it is the point of the drawing.
  */
 export interface AttributionNodeR {
   actor: string;
@@ -49,7 +49,7 @@ export default function AttributionTree({
   if (nodes.length === 0) return null;
   const shown = nodes[Math.min(open, nodes.length - 1)];
 
-  /* Grouped by the rule relied on, in the order `routes` gives — and any basis
+  /* Grouped by the rule relied on, in the order `routes` gives – and any basis
      the routes do not name still gets a stem, in first-appearance order, so a
      future write-up that adds art. 5 or art. 11 is drawn rather than dropped. */
   const order = [
@@ -91,7 +91,7 @@ export default function AttributionTree({
                   >
                     <span className="attr-actor">{n.actor}</span>
                     {/* The article now labels the stem, so the card carries
-                        only what is particular to this body — which is what
+                        only what is particular to this body – which is what
                         the eyebrow was competing with the name to say. */}
                     <span className="attr-basis">{n.basisNote}</span>
                   </button>
@@ -110,7 +110,7 @@ export default function AttributionTree({
             and a reader who pressed a card in the right-hand column was
             reading an answer at the foot of the left one, with nothing in it
             to say which card it belonged to. */}
-        <b className="attr-did-who">{shown.actor}</b> — {shown.did}
+        <b className="attr-did-who">{shown.actor}</b> – {shown.did}
       </p>
     </div>
   );

@@ -1,5 +1,5 @@
 # Повідомлення про вразливості сайту «НаСвітло» / Security contact for nasvitlo.
-# RFC 9116. «Expires» треба продовжувати щороку — див. docs/LAUNCH.md.
+# RFC 9116. «Expires» треба продовжувати щороку – див. docs/LAUNCH.md.
 Contact: mailto:louis.sohn.center@ucu.edu.ua
 Expires: 2027-09-26T00:00:00.000Z
 Preferred-Languages: uk, en

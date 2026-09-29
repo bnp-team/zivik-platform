@@ -11,23 +11,23 @@ import { hagueMh17 } from "./hague-mh17";
 
 /**
  * Slug → decision summary: the one list of pages that exist. The page
- * template renders from it, the sitemap enumerates it — one place to add a
+ * template renders from it, the sitemap enumerates it – one place to add a
  * case, one place for both consumers to see it.
  *
- * SECURITY — the null prototype is load-bearing, not a style choice.
+ * SECURITY – the null prototype is load-bearing, not a style choice.
  *
  * `app/[locale]/cases/[slug]/page.tsx` does `SUMMARIES[slug]` with `slug`
  * straight off the URL, and this route has `dynamicParams` on, so a slug that
  * was never built still reaches the lookup. On an ordinary object literal that
  * lookup walks up to `Object.prototype`, so five URLs a visitor can simply
- * type — /cases/constructor, /cases/toString, /cases/valueOf,
- * /cases/hasOwnProperty, /cases/__proto__ — returned a *truthy* inherited
+ * type – /cases/constructor, /cases/toString, /cases/valueOf,
+ * /cases/hasOwnProperty, /cases/__proto__ – returned a *truthy* inherited
  * value instead of undefined. The page took that as a real summary, skipped
  * the `if (!summary)` branch that renders the pending page, and died on
  * `masthead.parties`: HTTP 500, verified against the built server.
  *
- * Not an injection — the body is Next's bare "Internal Server Error" and
- * nothing of the object is rendered — but it is an unauthenticated 500 on a
+ * Not an injection – the body is Next's bare "Internal Server Error" and
+ * nothing of the object is rendered – but it is an unauthenticated 500 on a
  * public route of a site meant to be cited, one server invocation per request,
  * reachable by anyone who can type a URL.
  *
@@ -54,7 +54,7 @@ export const SUMMARIES: Record<string, DecisionSummary> = Object.assign(
 /**
  * The registry (`cases.ts`) links cases by `summarySlug`; SUMMARIES is what
  * actually renders. A typo on either side used to build green and 404 in
- * production — so this module refuses to build while they disagree.
+ * production – so this module refuses to build while they disagree.
  */
 {
   const linked = registryCases
@@ -115,13 +115,13 @@ export function summaryLastModified(slug: string): string | undefined {
 }
 
 /**
- * Найсвіжіша з дат `summaryLastModified` по всіх оглядах — коли востаннє
+ * Найсвіжіша з дат `summaryLastModified` по всіх оглядах – коли востаннє
  * змінився зміст архіву.
  *
  * Для сторінок, що зібрані з оглядів, але своєї дати не мають: головна й
  * бібліотека в sitemap стояли без `lastModified` зовсім, тож краулер не мав
- * жодного сигналу, що вони змінилися, коли з'явився новий огляд. Дати — ISO
- * 8601 (YYYY-MM-DD), тож найбільша рядком — найпізніша.
+ * жодного сигналу, що вони змінилися, коли з'явився новий огляд. Дати – ISO
+ * 8601 (YYYY-MM-DD), тож найбільша рядком – найпізніша.
  */
 export function latestSummaryLastModified(): string | undefined {
   let latest: string | undefined;

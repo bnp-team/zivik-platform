@@ -7,7 +7,7 @@
  * award netted *to* Gazprom. That direction is a fact about the case, not
  * something a figure in a table cell or a tag can caption honestly in the
  * three words it has. So every surface here prints the magnitude and labels it
- * the sum in dispute — «Сума у спорі» / "Amount in dispute" — and leaves the
+ * the sum in dispute – «Сума у спорі» / "Amount in dispute" – and leaves the
  * direction to the case page, which has room to say it.
  *
  * Nothing here may sum these values. Thirteen of the thirty-three rows carry
@@ -18,9 +18,9 @@
  * ── Why a module ───────────────────────────────────────────────────────────
  * This was two private copies of the same function, in `content/map-links.ts`
  * and `components/cases/CasePending.tsx`, with the same comment written twice
- * and two different precisions. The precisions are a real difference — a map
+ * and two different precisions. The precisions are a real difference – a map
  * tag has room for "$5,0 млрд" and a definition list has room for the whole
- * number — so both survive, as two named exports rather than two files that
+ * number – so both survive, as two named exports rather than two files that
  * happen to agree about the sign.
  */
 import type { Locale } from "@/i18n/config";
@@ -37,7 +37,7 @@ function format(
   }).format(Math.abs(amountUsd));
 }
 
-/** «$5,0 млрд» — for a tag, a chip or a ledger row, where width is the budget. */
+/** «$5,0 млрд» – for a tag, a chip or a ledger row, where width is the budget. */
 export function moneyCompact(amountUsd: number, locale: Locale): string {
   return format(amountUsd, locale, {
     notation: "compact",
@@ -45,7 +45,7 @@ export function moneyCompact(amountUsd: number, locale: Locale): string {
   });
 }
 
-/** «5 000 000 000 $» — for a definition list, where the whole number fits. */
+/** «5 000 000 000 $» – for a definition list, where the whole number fits. */
 export function moneyFull(amountUsd: number, locale: Locale): string {
   return format(amountUsd, locale, { maximumFractionDigits: 0 });
 }

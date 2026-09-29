@@ -2,7 +2,7 @@
  * Publishing in the admin rebuilds the site.
  *
  * Pages are prerendered from a snapshot of published content taken at build
- * time (site/content/), so an edit reaches readers through a build — which is
+ * time (site/content/), so an edit reaches readers through a build – which is
  * also where src/content's invariants run and can refuse it. This plugin is
  * the trigger: whenever the set of published entries changes, it POSTs the
  * Workers Builds deploy hook in the `DEPLOY_HOOK_URL` secret.

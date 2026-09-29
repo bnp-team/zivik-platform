@@ -3,18 +3,18 @@
  *
  * An `image` field with `upload` (site/content/collections.ts) holds what the
  * admin's media picker stored: an id, the R2 storage key in `meta`, or a
- * direct URL in `src`. The site is prerendered, and its pages read a path —
- * `photo: "/team/…jpg"` — so at build time each upload is fetched from the
+ * direct URL in `src`. The site is prerendered, and its pages read a path –
+ * `photo: "/team/…jpg"` – so at build time each upload is fetched from the
  * running site's public media route, sized for where it appears, written to
  * public/media/, and its path put where the page reads it. The page code does
  * not know an upload happened, and a reader is served a small static file
  * rather than the full-size original through the Worker.
  *
  * Sizes, measured against where each picture is drawn:
- *   portrait — 560×560, the team grid shows 280px squares (2×);
- *   logo     — at most 1040×296, the partner plate draws 520×148 (2×),
+ *   portrait – 560×560, the team grid shows 280px squares (2×);
+ *   logo     – at most 1040×296, the partner plate draws 520×148 (2×),
  *              PNG so a transparent mark stays transparent;
- *   cover    — 1600×900, the post's cover spans the 820px column (2×), 16:9.
+ *   cover    – 1600×900, the post's cover spans the 820px column (2×), 16:9.
  *
  * Never fails the build. A picture that cannot be fetched or read is
  * reported and the entry falls back to its path field, if it has one.
@@ -30,7 +30,7 @@ type Upload = NonNullable<Prop["upload"]>;
 
 const OUT_DIR = resolve("public/media");
 
-/** Where the running site answers for media — the same Worker the admin is on. */
+/** Where the running site answers for media – the same Worker the admin is on. */
 function mediaBase(): string {
   const base = process.env.EMDASH_URL ?? process.env.NEXT_PUBLIC_SITE_URL ?? "https://nasvitlo.vm-55d.workers.dev";
   return base.replace(/\/$/, "");
@@ -71,7 +71,7 @@ const done = new Map<string, string>();
 async function materialize(v: Obj, upload: Upload, where: string): Promise<string | null> {
   const url = sourceUrl(v);
   if (!url) {
-    console.warn(`  media: ${where} — the upload has no storage key or URL; using the path field.`);
+    console.warn(`  media: ${where} – the upload has no storage key or URL; using the path field.`);
     return null;
   }
   const memo = `${upload.profile}:${url}`;
@@ -92,7 +92,7 @@ async function materialize(v: Obj, upload: Upload, where: string): Promise<strin
     console.log(`  media: ${where} → ${path} (${Math.round(bytes.length / 1024)} → ${Math.round(data.length / 1024)} KB)`);
     return path;
   } catch (error) {
-    console.warn(`  media: ${where} — could not fetch or read ${url}: ${error instanceof Error ? error.message : error}; using the path field.`);
+    console.warn(`  media: ${where} – could not fetch or read ${url}: ${error instanceof Error ? error.message : error}; using the path field.`);
     return null;
   }
 }

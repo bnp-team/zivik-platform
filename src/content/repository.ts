@@ -4,7 +4,7 @@
  * The UI depends only on `ContentRepository`, never on where content is stored.
  * Today it's backed by typed files; when Payload CMS lands we add a
  * `payloadRepository` implementing the same interface and swap it in
- * `getContentRepository()` — no component changes required. All methods are
+ * `getContentRepository()` – no component changes required. All methods are
  * async so file-backed and CMS-backed implementations are interchangeable.
  */
 import { about } from "./about";
@@ -34,8 +34,8 @@ export const fileRepository: ContentRepository = {
     return [...institutions].sort((a, b) => a.order - b.order);
   },
   async getCases() {
-    /* Proceedings, not every record. The acts folded into one — the six ICC
-       warrants — travel on their parent's row; see `partOf` in types.ts. */
+    /* Proceedings, not every record. The acts folded into one – the six ICC
+       warrants – travel on their parent's row; see `partOf` in types.ts. */
     return registryProceedings;
   },
   async getStats() {

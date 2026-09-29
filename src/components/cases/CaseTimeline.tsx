@@ -7,7 +7,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
  * that open for detail.
  *
  * Props arrive locale-resolved: this is a client component, and its props are
- * serialized into the page payload — passing the raw {uk, en} pairs shipped
+ * serialized into the page payload – passing the raw {uk, en} pairs shipped
  * both languages to every reader and leaked the other locale into the HTML.
  * The server template picks the strings; this component just renders them.
  */
@@ -17,7 +17,7 @@ export interface TimelineEventR {
   note?: string;
   kind?: string;
   track?: string;
-  /** Sort key, ISO 8601 — the visible `date` may be a range or a month. */
+  /** Sort key, ISO 8601 – the visible `date` may be a range or a month. */
   iso?: string;
 }
 export interface TimelineTrackR {
@@ -38,7 +38,7 @@ export default function CaseTimeline({
     trackFilter: string;
     openDetail: string;
     /**
-     * The rail. It used to be `aria-hidden` decoration — and decoration is
+     * The rail. It used to be `aria-hidden` decoration – and decoration is
      * what it was: a row of dots that answered nothing, placed by year, so
      * every event in 2022 stacked into one mark. Named and pressable, it is
      * the index of the chronology below it.
@@ -60,7 +60,7 @@ export default function CaseTimeline({
    * Held in state rather than acted on in the handler, because the row may not
    * exist yet: the press can clear a filter that was hiding it, and it can
    * open a row that was closed. Both are renders. A `requestAnimationFrame`
-   * was the first attempt and it fired before React had committed — measured,
+   * was the first attempt and it fired before React had committed – measured,
    * the scroll landed and `document.activeElement` was still the page.
    */
   const [jump, setJump] = useState<number | null>(null);
@@ -71,7 +71,7 @@ export default function CaseTimeline({
     const row = listRef.current?.querySelector<HTMLElement>(`[data-idx="${jump}"]`);
     if (!row) return;
     /* scrollIntoView names its own behaviour, and a named "smooth" animates
-       whatever the stylesheet says — globals.css forces scroll-behavior: auto
+       whatever the stylesheet says – globals.css forces scroll-behavior: auto
        under prefers-reduced-motion and CSS cannot reach a script's argument.
        PageNav already answers this for its two scrolls; the rail's jump into
        the chronology was the one left animating for a reader who asked for
@@ -111,7 +111,7 @@ export default function CaseTimeline({
   /* A jump into a filtered chronology must not land on nothing.
 
      The filter hides rows, and a link from elsewhere on the page names an
-     event, not a filter — so arriving at #ev-2023-03-17 while the reader (or a
+     event, not a filter – so arriving at #ev-2023-03-17 while the reader (or a
      previous shared link) had narrowed to "Юрисдикція" would scroll to an
      element that is not in the list. The filter opens rather than the link
      failing silently: the reader asked to see this event.
@@ -147,7 +147,7 @@ export default function CaseTimeline({
       events
         .filter((e) => active === "all" || !e.track || e.track === active)
         // The rail places its dots from `iso`, but the list printed the array
-        // in authoring order — so oschadbank showed 24 July 2025 above 1 July,
+        // in authoring order – so oschadbank showed 24 July 2025 above 1 July,
         // a chronology out of chronological order. Sorting here fixes it for
         // every page and cannot be undone by the next person to append an
         // event. Entries without `iso` keep their authored position relative
@@ -171,10 +171,10 @@ export default function CaseTimeline({
    *
    * Placed by the date, not by the year it falls in. `Number(iso.slice(0, 4))`
    * was the old rule and it made the rail meaningless on exactly the pages
-   * that need it most: the ICJ genocide chronology has ten events in 2022 —
+   * that need it most: the ICJ genocide chronology has ten events in 2022 –
    * the recognition of the "republics", the invasion, the application, the
    * provisional-measures hearing, the order, the Memorial, the declarations of
-   * intervention, the preliminary objections — and all ten landed on one
+   * intervention, the preliminary objections – and all ten landed on one
    * pixel. What the reader saw was four dots for twenty events, and no way to
    * tell that the case is nine years of nothing followed by one year of
    * everything, which is the shape of it.
@@ -199,7 +199,7 @@ export default function CaseTimeline({
   /**
    * Year marks under the rail. The old rule stepped every five years from the
    * first and dropped the first itself, so a 2014–2025 case was labelled
-   * «2019» and «2024» — two numbers, neither of them an end. Both ends are
+   * «2019» and «2024» – two numbers, neither of them an end. Both ends are
    * named now, and the step between them is whatever keeps the labels from
    * touching: at most six numbers across the rail.
    */
@@ -218,13 +218,13 @@ export default function CaseTimeline({
     out.push(y1);
     return out;
   }, [t0, t1, dated.length]);
-  /** A year's own position on the rail — its first of January. */
+  /** A year's own position on the rail – its first of January. */
   const yearAt = (y: number) => at(Date.UTC(y, 0, 1));
 
   const trackLabel = (id?: string) => (id ? tracks.find((t) => t.id === id)?.label : undefined);
 
   /* `kind` still rides out on every row as `data-kind`, but only two of its
-     four values are set differently now — an operative act is bold, background
+     four values are set differently now – an operative act is bold, background
      is receded and italic, and a filing and a procedural order are the same
      line of a docket. The key that used to stand above the rail is gone with
      the other two treatments: it named a distinction the reader had to hold in
@@ -243,7 +243,7 @@ export default function CaseTimeline({
           all five were tab stops rather than one with a roving tabindex, and
           the arrow keys the role tells a screen-reader user to press moved
           nothing. A reader was told "tab 1 of 5" and handed a widget that did
-          not behave like one. These are filters over the list below — a
+          not behave like one. These are filters over the list below – a
           pressed state is what they have and aria-pressed is how it is said.
           The group takes its own name; it used to borrow «Усе» from the first
           button inside it. */}
@@ -291,8 +291,8 @@ export default function CaseTimeline({
                    encodes: where it sits and what sits there. It is also the
                    tooltip, so a mouse gets the same answer as a screen
                    reader without hovering blind. */
-                aria-label={`${e.date} — ${e.label}`}
-                title={`${e.date} — ${e.label}`}
+                aria-label={`${e.date} – ${e.label}`}
+                title={`${e.date} – ${e.label}`}
                 style={{ left: `${at(t)}%` }}
                 onClick={() => goto(i)}
               />
@@ -301,7 +301,7 @@ export default function CaseTimeline({
           {ticks.map((y) => {
             /* A year mark sits at its own first of January, which for the year
                the case starts in is usually before the first event and so off
-               the left end of the rail — «Весна 2014» puts 1 January 2014 at
+               the left end of the rail – «Весна 2014» puts 1 January 2014 at
                −2%. Held to the rail, and the two that can reach an end are
                aligned from that end rather than centred on it, so no label
                hangs off the picture. */
@@ -329,7 +329,7 @@ export default function CaseTimeline({
           const label = trackLabel(e.track);
           return (
             /* An anchor per dated event. The verdict matrix links here when a
-               track names a date this chronology also records — the ICC's
+               track names a date this chronology also records – the ICC's
                tracks are the days its warrants issued. Keyed by the date
                rather than by position, so appending an event does not move
                every link that already exists. */

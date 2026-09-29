@@ -3,14 +3,14 @@ import verbatim from "./hague-mh17.verbatim.json";
 import verbatimUk from "./hague-mh17.uk.json";
 
 /**
- * The MH17 criminal trial — Public Prosecution Service v. Girkin, Dubinskiy,
+ * The MH17 criminal trial – Public Prosecution Service v. Girkin, Dubinskiy,
  * Pulatov and Kharchenko, District Court of The Hague, verdict of
  * 17 November 2022 (ECLI:NL:RBDHA:2022:14037).
  *
  * The verbatim body is the doc's tab (not yet marked finalized; the doc's
  * trailing bracket-footnotes belong to other tabs and are not part of this
- * text). Context beyond the tab — the exact verdict date, the finality (no
- * appeals), the ~EUR 16M in compensation to relatives, the JIT — cites its
+ * text). Context beyond the tab – the exact verdict date, the finality (no
+ * appeals), the ~EUR 16M in compensation to relatives, the JIT – cites its
  * sources and lives in docs/research/hague-mh17-sources.md.
  */
 export const hagueMh17: DecisionSummary = {
@@ -33,13 +33,13 @@ export const hagueMh17: DecisionSummary = {
     eyebrow: "Окружний суд Гааги · 17 листопада 2022",
     kicker: "Три довічні вироки за 298 загиблих",
   },
-  /* The masthead in Ukrainian — the caption under the title and the line
+  /* The masthead in Ukrainian – the caption under the title and the line
      in the eyebrow. `masthead` keeps the decision's own English, which is
      what the citation block reproduces; this is what a Ukrainian reader
      sees at the top of the page. See `mastheadUk` in summaries/types.ts. */
   mastheadUk: {
     official:
-      "Прокуратура проти Гіркіна, Дубінського, Пулатова і Харченка (рейс MH17) — окружний суд Гааги, ECLI:NL:RBDHA:2022:14037",
+      "Прокуратура проти Гіркіна, Дубінського, Пулатова і Харченка (рейс MH17) – окружний суд Гааги, ECLI:NL:RBDHA:2022:14037",
     judgment: "Вирок від 17 листопада 2022",
   },
 
@@ -59,8 +59,8 @@ export const hagueMh17: DecisionSummary = {
 
   plain: {
     tldr: {
-      uk: "17 липня 2014 року ракета «Бук» збила над Донеччиною рейс MH17 — загинули всі 298 людей на борту. 17 листопада 2022 року нідерландський суд заочно засудив до довічного ув'язнення трьох організаторів доставки «Бука» — Гіркіна, Дубинського і Харченка — і виправдав четвертого підсудного, Пулатова. Вирок остаточний: ні прокуратура, ні засуджені його не оскаржили.",
-      en: "On 17 July 2014 a Buk missile downed flight MH17 over the Donetsk region — all 298 aboard died. On 17 November 2022 a Dutch court sentenced three men who organised the Buk's deployment — Girkin, Dubinskiy and Kharchenko — to life in prison in absentia, and acquitted the fourth accused, Pulatov. The verdict is final: neither the prosecution nor the convicted appealed.",
+      uk: "17 липня 2014 року ракета «Бук» збила над Донеччиною рейс MH17 – загинули всі 298 людей на борту. 17 листопада 2022 року нідерландський суд заочно засудив до довічного ув'язнення трьох організаторів доставки «Бука» – Гіркіна, Дубинського і Харченка – і виправдав четвертого підсудного, Пулатова. Вирок остаточний: ні прокуратура, ні засуджені його не оскаржили.",
+      en: "On 17 July 2014 a Buk missile downed flight MH17 over the Donetsk region – all 298 aboard died. On 17 November 2022 a Dutch court sentenced three men who organised the Buk's deployment – Girkin, Dubinskiy and Kharchenko – to life in prison in absentia, and acquitted the fourth accused, Pulatov. The verdict is final: neither the prosecution nor the convicted appealed.",
     },
   },
 
@@ -87,9 +87,9 @@ export const hagueMh17: DecisionSummary = {
   ],
 
   stats: [
-    { value: "298", label: { uk: "загиблих — усі, хто був на борту", en: "dead — everyone aboard" }, em: true },
+    { value: "298", label: { uk: "загиблих – усі, хто був на борту", en: "dead – everyone aboard" }, em: true },
     { value: "3", label: { uk: "довічні вироки заочно", en: "life sentences in absentia" } },
-    { value: "1", label: { uk: "виправдання — Пулатов", en: "acquittal — Pulatov" } },
+    { value: "1", label: { uk: "виправдання – Пулатов", en: "acquittal – Pulatov" } },
     {
       value: { uk: "€16 млн+", en: "€16M+" },
       label: { uk: "компенсацій родинам присуджено", en: "in compensation awarded to relatives" },
@@ -104,7 +104,7 @@ export const hagueMh17: DecisionSummary = {
     },
     { label: { uk: "Суд", en: "Court" }, value: { uk: "Окружний суд Гааги", en: "District Court of The Hague" } },
     { label: { uk: "Вирок", en: "Verdict" }, value: { uk: "17 листопада 2022", en: "17 November 2022" } },
-    { label: { uk: "Статус", en: "Status" }, value: { uk: "остаточний — без апеляцій", en: "final — no appeals" } },
+    { label: { uk: "Статус", en: "Status" }, value: { uk: "остаточний – без апеляцій", en: "final – no appeals" } },
   ],
 
   timeline: [
@@ -114,7 +114,7 @@ export const hagueMh17: DecisionSummary = {
       kind: "context",
       label: { uk: "Збиття MH17 біля Первомайського: 298 загиблих", en: "MH17 downed near Pervomaiskyi: 298 dead" },
       note: {
-        uk: "Boeing 777 Malaysia Airlines, рейс Амстердам–Куала-Лумпур. 196 загиблих — нідерландці.",
+        uk: "Boeing 777 Malaysia Airlines, рейс Амстердам–Куала-Лумпур. 196 загиблих – нідерландці.",
         en: "A Malaysia Airlines Boeing 777, Amsterdam to Kuala Lumpur. 196 of the dead were Dutch.",
       },
     },
@@ -124,7 +124,7 @@ export const hagueMh17: DecisionSummary = {
       kind: "filing",
       label: { uk: "Створено JIT", en: "The JIT is formed" },
       note: {
-        uk: "Нідерланди, Австралія, Бельгія, Малайзія, Україна — спільне кримінальне розслідування.",
+        uk: "Нідерланди, Австралія, Бельгія, Малайзія, Україна – спільне кримінальне розслідування.",
         en: "The Netherlands, Australia, Belgium, Malaysia and Ukraine open a joint criminal investigation.",
       },
     },
@@ -160,8 +160,8 @@ export const hagueMh17: DecisionSummary = {
         en: "The verdict becomes final; the JIT reports on the chain of command",
       },
       note: {
-        uk: "Ані прокуратура, ані засуджені не оскаржили. 8 лютого 2023 року JIT оприлюднила висновки щодо екіпажу «Бука» і вертикалі — і призупинила розслідування.",
-        en: "Neither the prosecution nor the convicted appealed. On 8 February 2023 the JIT published its findings on the Buk crew and the chain of command — and suspended the investigation.",
+        uk: "Ані прокуратура, ані засуджені не оскаржили. 8 лютого 2023 року JIT оприлюднила висновки щодо екіпажу «Бука» і вертикалі – і призупинила розслідування.",
+        en: "Neither the prosecution nor the convicted appealed. On 8 February 2023 the JIT published its findings on the Buk crew and the chain of command – and suspended the investigation.",
       },
     },
     {
@@ -198,17 +198,17 @@ export const hagueMh17: DecisionSummary = {
 
   interpretations: [
     {
-      term: { uk: "Заочний процес — легітимний", en: "In absentia — and legitimate" },
+      term: { uk: "Заочний процес – легітимний", en: "In absentia – and legitimate" },
       ruling: {
         uk: "Нідерландське право дозволило повний процес без підсудних: із захистом (для Пулатова), повним дослідженням доказів і виправданням там, де доказів забракло.",
         en: "Dutch law allowed a full trial without the accused: with a defence (for Pulatov), full evidence-testing, and an acquittal where proof fell short.",
       },
     },
     {
-      term: { uk: "Не комбатанти — отже, вбивство", en: "Not combatants — therefore murder" },
+      term: { uk: "Не комбатанти – отже, вбивство", en: "Not combatants – therefore murder" },
       ruling: {
-        uk: "Підсудні як керівники «ДНР» були цивільними без права вести бойові дії — тож збиття літака судили як умисне вбивство за загальним кримінальним правом, без комбатантського імунітету.",
-        en: "As \"DPR\" leaders the accused were civilians with no right to fight — so the downing was tried as murder under ordinary criminal law, with no combatant immunity.",
+        uk: "Підсудні як керівники «ДНР» були цивільними без права вести бойові дії – тож збиття літака судили як умисне вбивство за загальним кримінальним правом, без комбатантського імунітету.",
+        en: "As \"DPR\" leaders the accused were civilians with no right to fight – so the downing was tried as murder under ordinary criminal law, with no combatant immunity.",
       },
     },
     {
@@ -223,7 +223,7 @@ export const hagueMh17: DecisionSummary = {
   sources: [
     {
       url: "https://uitspraken.rechtspraak.nl/details?id=ECLI:NL:RBDHA:2022:14037",
-      title: "Verdict against Girkin — ECLI:NL:RBDHA:2022:14037 (full text)",
+      title: "Verdict against Girkin – ECLI:NL:RBDHA:2022:14037 (full text)",
       authors: "",
       publication: "Rechtspraak.nl",
       date: "17 November 2022",
@@ -231,7 +231,7 @@ export const hagueMh17: DecisionSummary = {
     },
     {
       url: "https://www.courtmh17.com/en/summaries-and-news/news/summary-of-the-day-in-court-17-november-2022-judgment.htm",
-      title: "Summary of the day in court: 17 November 2022 — Judgment",
+      title: "Summary of the day in court: 17 November 2022 – Judgment",
       authors: "",
       publication: "District Court of The Hague (courtmh17.com)",
       date: "17 November 2022",

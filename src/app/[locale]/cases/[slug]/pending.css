@@ -3,7 +3,7 @@
 
    The site's own metaphor carries the page: насвітло is about bringing
    decisions into the light, and this is a case the light has not reached. So
-   it is a dark page with one dim lamp, rather than an error — nothing has gone
+   it is a dark page with one dim lamp, rather than an error – nothing has gone
    wrong here, the work simply is not finished.
 
    Own palette from the --brand-* tokens, like every other surface.
@@ -21,23 +21,23 @@
 /* The cherry focus ring in globals.css is scoped to the dark scenes that
    existed when it was written (.lamp, .court, the case masthead); on this
    ground it measures 1.81:1 and is effectively invisible. Same lamp gold the
-   other dark scenes switch to — 9.98:1 here. */
+   other dark scenes switch to – 9.98:1 here. */
 .pendingpage :where(a, button, summary, [tabindex]):focus-visible {
   outline-color: var(--brand-gold-lit);
 }
 
 /* Міра та сама, що й у решти сайту.
 
-   Колонка була 680 пікселів разом із відступами, тобто 592 тексту — на двісті
+   Колонка була 680 пікселів разом із відступами, тобто 592 тексту – на двісті
    менше за --prose-max, яким набрана кожна інша сторінка. На 1440 це давало
    вузький стовпчик посеред екрана, у якому назва справи ламалася там, де в
-   міру сторінки вона б не ламалася: «Австралія і Нідерланди проти / РФ — Рада
+   міру сторінки вона б не ламалася: «Австралія і Нідерланди проти / РФ – Рада
    ICAO, справа MH17». Власниця: «на сторінках де ще немає конспектів варто
    також допрацювати відцентрування та ширину текстів».
 
    Відступи додаються до міри, а не з'їдають її, тож текст має рівно ті 820,
    що й усюди. Блок лишається центрованим: тут немає ані рейки змісту, ані
-   бічної колонки, які на сторінці рішення тримають ліву половину екрана, —
+   бічної колонки, які на сторінці рішення тримають ліву половину екрана, –
    і 820 пікселів, притиснуті ліворуч у вікні на 1440, лишили б праворуч
    порожнє поле більше за сам текст. */
 .pend {
@@ -184,7 +184,7 @@
 
 /* ---- the neighbours ------------------------------------------------------
    A proceeding without a write-up was a leaf: a card, an honest apology and
-   two links back to lists. It is not a leaf in the data — the ten pending
+   two links back to lists. It is not a leaf in the data – the ten pending
    Crimea BIT arbitrations sit beside two that are written up, and the six
    pending ICC records are warrants under a situation that is written up. This
    is that relation, set as a list of ways onward rather than as cards, because
@@ -213,7 +213,7 @@
 .pend-rel li:last-child {
   border-bottom: 1px solid var(--rule-soft);
 }
-/* Year, then name — the columns the markup now renders in that order. The
+/* Year, then name – the columns the markup now renders in that order. The
    year is a fixed narrow column so every name in the list starts on the same
    axis; `auto` for the names, because a long one has the whole rest of the row
    and wraps under itself rather than around a figure. */
@@ -246,7 +246,7 @@
   color: var(--cream);
 }
 /* And it says so, at the end of the name rather than in a column of its own:
-   the mark belongs to the row it qualifies. 500 rather than a bold — mono is
+   the mark belongs to the row it qualifies. 500 rather than a bold – mono is
    loaded at 400 and 500, and the gold is what marks it. */
 .pend-rel-lit {
   margin-left: var(--space-2);

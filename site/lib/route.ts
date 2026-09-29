@@ -11,7 +11,7 @@
  *
  * Every public page is prerendered. Content reaches this build as a snapshot
  * taken at build time (see site/content/), so a page cannot change between
- * builds and there is nothing to gain from rendering it per request — and a
+ * builds and there is nothing to gain from rendering it per request – and a
  * good deal to lose: the invariants src/content checks when its modules load
  * would otherwise first run on a reader's request, and a bad edit published
  * from the admin would take the site down instead of failing the build.
@@ -142,7 +142,7 @@ export function staticPaths(page: NextPageModule, pattern: string) {
 /**
  * The page's URL as a reader types it. `build.format: "file"` writes
  * uk/about.html, and during prerender Astro reports that file name as the
- * pathname — which reached `usePathname()`, so the header's language switch
+ * pathname – which reached `usePathname()`, so the header's language switch
  * linked to /en/about.html (a 307 on every page), the nav never marked its
  * active item, and the `rendered` cache, keyed by the clean path, missed and
  * rendered every page twice.

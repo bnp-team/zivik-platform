@@ -1,7 +1,7 @@
 /* ═══ The decision page, as designed ═══════════════════════════════════════
    One paper canvas with a column of contents beside it, and every section
    introduced the same way: a heading over a hairline. It replaced a stack of
-   full-bleed bands that alternated paper, recessed paper and night — three
+   full-bleed bands that alternated paper, recessed paper and night – three
    grounds for what is one document, and the reader met each new ground as a
    new place rather than the next part of the same page.
 
@@ -13,7 +13,7 @@
    the mock without opening a second scale beside the one the site has. */
 
 /* ── The palette this page is drawn on ───────────────────────────────────
-   The design is warm — cream paper, a sand hairline, a brown-black ink — and
+   The design is warm – cream paper, a sand hairline, a brown-black ink – and
    the site's own ramp is near-neutral. Rather than choose, the page re-maps
    its own aliases: everything below still reads --paper, --prule, --ink, and
    on this page those point at the warm scale declared in globals.css.
@@ -52,7 +52,7 @@
   color: var(--ink);
   /* No edge of its own. A band used to be a full-bleed strip and needed a
      line where one ground ended and the next began; on one canvas that line
-     lands under whatever the section happened to end with — under the
+     lands under whatever the section happened to end with – under the
      summary, a hairline above «Картка справи» that belonged to neither. The
      rule this page draws is the one under a section's heading. */
   border-bottom: 0;
@@ -65,7 +65,7 @@
 .casepage .pmeas,
 .casepage .chron,
 /* Ці три були поза переліком і через це тримали кожна по 34 пікселі відступу
-   зверху і знизу — отже між двома сусідніми смугами виходило 68 замість
+   зверху і знизу – отже між двома сусідніми смугами виходило 68 замість
    спільних 29, а там, де вони стоять утрьох поспіль, сторінка розривалася
    на три порожні поля. Власниця: «забагато пустого простору між секціями».
    Та сама причина, що й із тлом і швами: смуги ставали одним аркушем
@@ -96,14 +96,14 @@
   margin: 0;
 }
 /* A numbered part of the write-up: the numeral is set large, light and gold,
-   beside the heading rather than inside it — it counts the parts, it is not
+   beside the heading rather than inside it – it counts the parts, it is not
    a word of the title. */
 .casepage .sec-h .sec-n {
   font-family: var(--brand-font-display), serif;
   font-weight: 400;
   /* The numeral sits at the title's own size. At 28px against a 23px title
      it was the largest thing on the line and read as the heading, with the
-     words beside it as its subtitle — the reverse of what it is for.
+     words beside it as its subtitle – the reverse of what it is for.
      No margin: the flex `gap` above is already the space between them, and
      carrying both put 24px there where the design puts 12. */
   font-size: clamp(20px, 2.4vw, 23px);
@@ -166,11 +166,11 @@
 /* `.lede-grid` і `.why` пішли разом із «Чому це важливо»: сітка існувала,
    щоб поставити речення про справу і відступ обіч нього поруч, а відступу
    вже немає. */
-/* Картка реквізитів стоїть першою в секції, речення — під нею.
+/* Картка реквізитів стоїть першою в секції, речення – під нею.
 
    `.glance-h` (золотий підпис над карткою) більше нема: секція зветься так
    само, і підпис повторював би заголовок за двадцять пікселів від нього.
-   Лишився відступ між карткою і абзацом — картка щільна, набрана рядками
+   Лишився відступ між карткою і абзацом – картка щільна, набрана рядками
    на волосинках, і без нього абзац читався б як ще один її рядок. */
 .casepage .glance-rows {
   margin-bottom: clamp(24px, 2.6vw, 34px);
@@ -204,7 +204,7 @@
   /* A step under the part's own title, not level with it. At 20px against a
      23px h2 the two were nearly the same size and the parts stopped reading
      as parts; the design sets these at about two thirds of its h2. A bold
-     serif at the body's size still reads as a heading against a sans body —
+     serif at the body's size still reads as a heading against a sans body –
      the family, the weight and the colour carry it, not the scale. */
   font-size: clamp(14px, 1.1vw, 16px);
   line-height: 1.3;
@@ -219,7 +219,7 @@
 /* ── A finding: what was argued, and what the forum held ──────────────────
    Two columns on a hairline grid, the forum's answer on its own lighter
    ground behind a gold rule. It was a run of paragraphs with the position
-   marked only by the words it opened with — «Позиція Суду:» — which put the
+   marked only by the words it opened with – «Позиція Суду:» – which put the
    argument and the answer in one undifferentiated column and left the
    reader to find the turn in the prose.
 
@@ -228,7 +228,7 @@
 .casepage .findings .f-head {
   font-family: var(--brand-font-display), serif;
   font-weight: 700;
-  /* Same step as the band head above it — see `.readzone h3`. */
+  /* Same step as the band head above it – see `.readzone h3`. */
   font-size: clamp(14px, 1.1vw, 16px);
   line-height: 1.3;
   color: var(--ink);
@@ -240,12 +240,12 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 262px), 1fr));
   gap: 0;
-  /* Heights stay equal — `stretch`, the grid's default, left alone.
+  /* Heights stay equal – `stretch`, the grid's default, left alone.
 
      This was `start` for one release, to stop a box running two-thirds
      empty beside a much longer one. That was the wrong cure: the boxes it
      was fixing were an argument beside the answer to it, and those do not
-     belong side by side at all — they stack now (`.pair-turns`). What is
+     belong side by side at all – they stack now (`.pair-turns`). What is
      left in two columns is two things of the same kind, meant to be
      compared, and two columns of a comparison that end at different heights
      read as a broken table.
@@ -275,7 +275,7 @@
 /* The two halves are styled by what they are, not by where they sit: a
    holding set apart from an argument looks the same whether it stands beside
    one in a pair or alone under a heading. Scoped to `.pair` they got nothing
-   outside it — a gold caption over bare text with no ground and no edge. */
+   outside it – a gold caption over bare text with no ground and no edge. */
 .casepage .claim,
 .casepage .rule {
   padding: var(--space-4) clamp(15px, 2.4vw, 20px);
@@ -350,7 +350,7 @@
 /* ── Chronology ──────────────────────────────────────────────────────────
    The instrument already had the design's two parts: a rail of years with a
    dot per event, and the events as a list under it. What it did not have was
-   the design's manners — the rail was a dark strip with coloured beads, the
+   the design's manners – the rail was a dark strip with coloured beads, the
    list a stack of blocks. Here it is a hairline scale over a list of pairs.
 
    Nothing about the markup or the filtering changes; this is the same
@@ -371,20 +371,20 @@
   height: 1px;
   background: var(--prule);
 }
-/* Крапка — 11 пікселів, а кнопка навколо неї — 27.
+/* Крапка – 11 пікселів, а кнопка навколо неї – 27.
 
    Ця сторінка малювала крапку фоном самої кнопки, тож кнопка й була 11×11:
-   виміряно на 390 — 11×11, удвічі менше за поріг WCAG 2.5.8, на рядку, який
+   виміряно на 390 – 11×11, удвічі менше за поріг WCAG 2.5.8, на рядку, який
    читач тягне пальцем. 40-instruments.css уже казав «кнопка 24, крапка
-   посередині», але цей блок, що йде пізніше, повертав 11 — і там же
+   посередині», але цей блок, що йде пізніше, повертав 11 – і там же
    `margin-left: -var(--space-3)`, який браузер відкидає як недійсний.
 
    Тепер поле росте, а крапка ні: `padding` по `--space-2` з усіх боків і
    `background-clip: content-box`, тож фарба лишається на 11-піксельному
-   вмісті, а натискається весь квадрат. Зсув угору і вліво — рівно на поле,
+   вмісті, а натискається весь квадрат. Зсув угору і вліво – рівно на поле,
    тому центр крапки стоїть там, де стояв (на лінії `top: 5px`), а
    `translate: -50%` центрує кнопку на даті замість підібраних −5px.
-   Кільце фокусу з 40-instruments обводить тепер усе поле — ціль, яку видно. */
+   Кільце фокусу з 40-instruments обводить тепер усе поле – ціль, яку видно. */
 .casepage .ctl-dot {
   position: absolute;
   top: calc(-1 * var(--space-2));
@@ -471,7 +471,7 @@
   }
 }
 
-/* «Пов'язані рішення» більше немає на жодному рішенні — див. примітку в
+/* «Пов'язані рішення» більше немає на жодному рішенні – див. примітку в
    cases/[slug]/page.tsx. Разом зі смугою пішли й картки: форум золотим
    мікрорегістром, назва дисплейним накресленням, червона риска внизу.
    Смуга повертається разом зі своєю розміткою або ніяк. */
@@ -479,8 +479,8 @@
 /* ── Sources ─────────────────────────────────────────────────────────────
    Three tracks: the number, the source, what kind of source it is. The
    design fixes the first at 22px so every title starts on one edge down the
-   whole list — the number column was `auto` and stepped right at the tenth
-   entry — and sets the kind as a pill at the far end rather than a word
+   whole list – the number column was `auto` and stepped right at the tenth
+   entry – and sets the kind as a pill at the far end rather than a word
    trailing the line. */
 .casepage .sources li {
   display: grid;
@@ -511,7 +511,7 @@
   color: var(--ink3);
 }
 /* What kind of source, as a pill: the one thing a reader of an archive meant
-   to be cited needs before they click — the court's own record, or a blog. */
+   to be cited needs before they click – the court's own record, or a blog. */
 .casepage .cite-kind {
   font: 700 var(--t-micro) var(--brand-font-body), sans-serif;
   letter-spacing: 0.09em;
@@ -543,8 +543,8 @@
    `.read` capped itself at --prose (660px, the 80-character measure argued
    out in 30-paper.css). That is right for a paragraph and wrong for
    everything in the article that is not one: a claim and the Court's answer
-   set beside each other came out two columns of 328px — six words to the
-   line — while a thousand pixels of paper sat unused to the right of them.
+   set beside each other came out two columns of 328px – six words to the
+   line – while a thousand pixels of paper sat unused to the right of them.
 
    So the cap moves off the container and onto the things that are prose. A
    comparison, a section head and their rules take the column; a sentence
@@ -563,7 +563,7 @@
 }
 
 /* A holding on its own, outside a pair: the same ground and the same gold
-   edge — and the same measure as the paragraphs around it.
+   edge – and the same measure as the paragraphs around it.
 
    It was exempted from the measure along with the pairs, and that was wrong.
    In a pair each half is about half the column and so lands under the measure
@@ -586,7 +586,7 @@
   font-weight: 700;
   /* A step under the h3 above it. It shared that clamp, and once the h3 came
      down to the body's size the two were the same face at the same weight in
-     the same ink at the same size — one level, printed twice. */
+     the same ink at the same size – one level, printed twice. */
   font-size: var(--t-sm);
   line-height: 1.35;
   color: var(--ink);
@@ -599,7 +599,7 @@
 
    `.read h2` carried `border-top` from when a heading stood alone in the
    text and had to separate itself. It stands in a section head now, and that
-   head draws the rule — under the heading, across the column. The two
+   head draws the rule – under the heading, across the column. The two
    together put a line above the title and a line below it, and the top one
    started at the heading's own left edge rather than the column's, which is
    why it read as stray rather than as a pair. */
@@ -620,7 +620,7 @@
    those paragraphs were set exactly like the prose around them: a reader
    could not see where the write-up stopped speaking and the Court started,
    except by noticing the quotation marks. The design sets a quotation
-   behind a rule, in the reading face, italic — and hangs the judgment's
+   behind a rule, in the reading face, italic – and hangs the judgment's
    paragraph number under it, because a quotation a reader may cite onward
    is worth nothing without the number it came from.
 
@@ -666,7 +666,7 @@
 
 /* ── An (a)/(b)/(c) limb and how it went ──────────────────────────────────
    The Order on provisional measures had three limbs and the Court answered
-   each of them — breached, not breached, breached. Those answers were
+   each of them – breached, not breached, breached. Those answers were
    several paragraphs apart, inside quotations, and a reader scanning the
    part could not see them at all. The heading carries its own now, in the
    word and the chip the index at the top of the page already uses. */
@@ -685,7 +685,7 @@
   margin-bottom: 0;
 }
 /* A chip, not a word. Beside a heading the outcome was a run of small
-   capitals that read as part of the title — the design draws it as an
+   capitals that read as part of the title – the design draws it as an
    outlined tag, and it has to look like a label for a reader to find it by
    scanning rather than by reading. */
 .casepage .h4-out {
@@ -712,7 +712,7 @@
 /* ── The write-up in its own voice ────────────────────────────────────────
    Not a quotation, not a holding: ours. Set against the two, it takes the
    reading face at the body's size with a gold mark at its head and no
-   ground — a remark in the margin that has been brought inline, because it
+   ground – a remark in the margin that has been brought inline, because it
    is the sentence that explains why two findings that look contradictory
    are not. */
 .casepage .read > .nb {
@@ -731,7 +731,7 @@
 }
 
 /* A quotation inside the half of a pair takes that box's size, not the
-   reading column's — the box is already a step down from the prose. */
+   reading column's – the box is already a step down from the prose. */
 .casepage .rule > .qt,
 .casepage .claim > .qt {
   margin: var(--space-2) 0 var(--space-3);
@@ -760,7 +760,7 @@
    Nothing directly under a section head draws its own top rule, because the
    head already drew one. Both lines were right on their own: `.sources` and
    `.findings` open with a hairline because a list of rows needs an edge at
-   the top as well as between the rows, and that was the edge — back when the
+   the top as well as between the rows, and that was the edge – back when the
    heading above them was a bare h2 with nothing under it. The head draws its
    own now, so the two stack, four pixels apart, and read as a mistake.
 
@@ -770,15 +770,15 @@
 
    Checked against what actually sits there: across the 84 built pages the
    element directly after a section head is one of seventeen, and none of
-   them draws a top edge that means anything — no warrant's gold bar, no
+   them draws a top edge that means anything – no warrant's gold bar, no
    instrument's track. */
 .casepage .sec-h + * {
   border-top: 0;
 }
 
 /* ── Each finding, on its own ─────────────────────────────────────────────
-   A findings block holds as many findings as it has head lines — four under
-   ICSFT and eight under CERD on the ICJ case — and they are separate
+   A findings block holds as many findings as it has head lines – four under
+   ICSFT and eight under CERD on the ICJ case – and they are separate
    decisions on separate claims. They are drawn as separate things now, each
    with its heading and how it went. */
 .casepage .finding + .finding {
@@ -795,7 +795,7 @@
   margin: 0;
 }
 /* A finding the write-up records without a seam between the argument and
-   the holding runs as one column, at the reading measure — the pair is for
+   the holding runs as one column, at the reading measure – the pair is for
    text that is genuinely in two voices. */
 .casepage .finding > p.body {
   max-width: var(--prose);
@@ -823,7 +823,7 @@
    question asked of two conventions, and it is read across.
 
    An argument beside the answer to it is not that. It is one thing after
-   another, and the answer is always the longer — measured over every pair
+   another, and the answer is always the longer – measured over every pair
    in the archive, the party's case runs between 24% and 52% of the forum's
    reply, and not one of the eight is within half again of its other half.
    Side by side that left a third to three-quarters of a box of blank ground
@@ -841,7 +841,7 @@
 }
 
 /* ── The aspect a column is about ─────────────────────────────────────────
-   This case is two cases — a terrorism-financing claim about eastern
+   This case is two cases – a terrorism-financing claim about eastern
    Ukraine under the ICSFT, and a racial-discrimination claim about Crimea
    under CERD. The page said so in the theatres, on the map and in the
    index, and said it nowhere at the point where the two tracks are
@@ -897,7 +897,7 @@
     grid-template-rows: subgrid;
     grid-row: span 4;
   }
-  /* One column at a time — the rows are only shared while there are two. */
+  /* One column at a time – the rows are only shared while there are two. */
   @media (max-width: 760px) {
     .casepage .pair-rows {
       grid-template-rows: none;
@@ -910,7 +910,7 @@
 }
 
 /* A holding given in the write-up's words rather than quoted, inside the
-   answering half of a pair — same size as everything else in that box. */
+   answering half of a pair – same size as everything else in that box. */
 .casepage .rule > .rule-p {
   font-size: var(--t-sm);
   line-height: 1.65;
@@ -940,7 +940,7 @@
    `.read h2` has carried one since a heading stood alone in the text there.
    The section heads were exempted one by one; the map's heading is an h2
    too, and the moment the drawing moved inside the article it picked the
-   rule up — a full-width hairline above «ДВА ТЕАТРИ» with nothing above it.
+   rule up – a full-width hairline above «ДВА ТЕАТРИ» with nothing above it.
    Said once, against every h2 in the column, the way the rule under a
    section head is said once against the head. */
 .casepage .read h2 {
@@ -951,7 +951,7 @@
 /* ── A determination, numbered ────────────────────────────────────────────
    Three questions the Court settled before it could decide anything, and
    they were three bold lines that could have been in any order. The numeral
-   counts them and a gold rule carries the eye into the heading — the same
+   counts them and a gold rule carries the eye into the heading – the same
    device the section heads use for the parts of the write-up, a step down.
 
    The rule takes the width that is left, so a short heading gets a long one
@@ -976,7 +976,7 @@
   /* Not gold. In one screen a determination had a gold numeral, a gold
      caption and a gold edge down the whole height of its box, and gold
      stopped meaning anything. On this page it means the forum is speaking
-     — the edge on the holding — so the numeral, which only counts, gives it
+     – the edge on the holding – so the numeral, which only counts, gives it
      up. */
   color: var(--ink3);
   font-variant-numeric: lining-nums;
@@ -988,7 +988,7 @@
   align-self: center;
 }
 
-/* The elements of a holding that enumerates its own — «по-перше…»,
+/* The elements of a holding that enumerates its own – «по-перше…»,
    «по-друге…». Numbered by the list, so the reader can count them without
    reading for the words that do the counting. */
 .casepage .rule .els {
@@ -1016,9 +1016,9 @@
 
 /* ── Fewer edges ──────────────────────────────────────────────────────────
    Owner: «трохи намішано». One limb of the Order had four different left
-   edges stacked inside it — the pair's own border, the gold edge that says
+   edges stacked inside it – the pair's own border, the gold edge that says
    the Court is speaking, the rule down each quotation, and the gold edge on
-   the note underneath — and four kinds of caption over them. Three of the
+   the note underneath – and four kinds of caption over them. Three of the
    four said the same thing in different ways.
 
    A quotation inside the Court's half does not draw its own rule: the box
@@ -1052,7 +1052,7 @@
 /* ── Fewer stripes ────────────────────────────────────────────────────────
    Owner: «забагато всяких смужок».
 
-   The contents rail drew a 10px tick beside every nested entry — four more
+   The contents rail drew a 10px tick beside every nested entry – four more
    hairlines on a page that already rules every section head, every row of
    the chronology and every line of the sources. The indent and the group
    say the same thing, and they say it without a line.
@@ -1067,7 +1067,7 @@
 }
 
 /* ── What a box is for ────────────────────────────────────────────────────
-   Owner: «забагато оцих квадратиків по всій сторінці рішення — давай
+   Owner: «забагато оцих квадратиків по всій сторінці рішення – давай
    подумаємо де вони мають сенс а де ліпше прибрати».
 
    Two different jobs had grown into one shape, and the shape stopped
@@ -1082,7 +1082,7 @@
    bordered box, thirty times over, and the border was drawn around text
    that is simply the next thing to read.
 
-   So in a stacked exchange only the forum's half stays set apart — the
+   So in a stacked exchange only the forum's half stays set apart – the
    warm ground and the gold edge, which are what say the Court is speaking
    and are the one distinction on this page worth a mark. The party's half
    becomes what it is: prose, under its caption, on the page's own ground.
@@ -1116,8 +1116,8 @@
    They were the same heading with different neighbours, and the neighbour
    decided how it looked: a findings block opens with a hairline of its own,
    so «Висновки за CERD» got a rule under it and «Наказ про тимчасові
-   заходи» did not. Each neighbour also brought its own top margin — 32, 24,
-   20, 16 — so the distance from the heading to the thing it heads changed
+   заходи» did not. Each neighbour also brought its own top margin – 32, 24,
+   20, 16 – so the distance from the heading to the thing it heads changed
    four times down one page.
 
    The heading owns both now. Nothing under it draws a top rule, and nothing
@@ -1135,8 +1135,8 @@
 
 
 /* The hole under a band head. Killing the neighbour's margin was not
-   enough: `.findings` also carries 20px of its own top padding — from when
-   it opened with a hairline and needed clearance under it — and the first
+   enough: `.findings` also carries 20px of its own top padding – from when
+   it opened with a hairline and needed clearance under it – and the first
    finding's head row adds 24 more. Sixty pixels between «Висновки за CERD»
    and the first thing it heads. Both give way to the heading's own 16. */
 .casepage .read > h3 + .findings {
@@ -1154,7 +1154,7 @@
 
 /* The folded rows are hidden, not removed. Filtering them out of the markup
    took twelve of sixteen claims off the printed page and off a page with
-   scripting off — silently, on an archive that exists to be cited. The
+   scripting off – silently, on an archive that exists to be cited. The
    guard is the one the row animation already uses: with no scripting there
    is no control to press, so there is nothing to fold. */
 @media screen and (scripting: enabled) {
@@ -1165,8 +1165,8 @@
 
 /* ── A findings block that enumerates ─────────────────────────────────────
    Four decisions record their findings as a list the author already
-   numbered — ten violations at the ECtHR, two charges on MH17, five counts
-   in Finland, four grounds at DTEK — and all four rendered as a run of
+   numbered – ten violations at the ECtHR, two charges on MH17, five counts
+   in Finland, four grounds at DTEK – and all four rendered as a run of
    lines with the enumerators sitting in the prose. They are a list, so
    they are set as one, and the marker does the counting the words used to.
 
@@ -1203,9 +1203,9 @@
 /* ── The aliases follow the page onto paper ───────────────────────────────
    Owner: «ми втратили кольори».
 
-   `.casepage` declares two colour sets — a night one (--gold, --muted,
+   `.casepage` declares two colour sets – a night one (--gold, --muted,
    --red, --faint, --cream, --rule) and a paper one (--pgold, --ink2,
-   --pred, --ink3, --ink, --prule) — from when the page was alternating
+   --pred, --ink3, --ink, --prule) – from when the page was alternating
    dark and light bands. The bands were flattened onto one paper canvas in
    this same file, and the aliases were left pointing at the night set. So
    every rule written against them has been painting night colours on
@@ -1213,7 +1213,7 @@
 
      the figures in «у цифрах поза судом»   1.81:1
      their labels and notes                 2.00:1
-     «решта — досі ні»                      3.22:1
+     «решта – досі ні»                      3.22:1
 
    Text at 2:1 is not a weak colour, it is unreadable, and these are the
    numbers the band exists to show.
@@ -1257,7 +1257,7 @@
   --ink2: var(--brand-muted-dark);
   --ink3: var(--brand-faint-dark);
 }
-/* The map key's note sat at 3.45:1 on the lit map — --brand-faint-dark,
+/* The map key's note sat at 3.45:1 on the lit map – --brand-faint-dark,
    another night colour reading on paper. */
 .casepage .mapband[data-lit] .lg-note {
   color: var(--ink2);
@@ -1266,7 +1266,7 @@
 /* ── The ground column takes what the ground needs ────────────────────────
    Owner: «треба розширити колонку підстави».
 
-   118px was measured against «ICSFT», «CERD», «Тимчасові заходи» — the
+   118px was measured against «ICSFT», «CERD», «Тимчасові заходи» – the
    ICJ case, where a ground is an abbreviation. The ICC's are «Перша хвиля
    · 17 березня 2023», which is three lines in that column, and the row
    becomes three lines tall to hold two words of claim beside it.
@@ -1275,18 +1275,18 @@
    of them, which is what a table column is; the 118px floor keeps the
    short ones from collapsing, and the 38% ceiling keeps a long one from
    eating the claim it is supposed to introduce. The three rows of the
-   table — head, claims, fold — take the same track so they stay a table. */
+   table – head, claims, fold – take the same track so they stay a table. */
 /* Wide widths only, and that qualifier is the whole of a bug this block
    carried on every decision page.
 
    Unscoped, this declaration was the last word on `grid-template-columns`
-   for all three grids at every width — later in this file than the narrow
+   for all three grids at every width – later in this file than the narrow
    rules above, and in a later file than the ones in 20-dashboard.css, at the
    same weight. So the phone block at line 308 got exactly half of what it
    asks for: `grid-column: 1` on the three cells applied, because that
    selector carries a class more than the rules it overrides, while its
    `grid-template-columns: minmax(0, 1fr)` did not. Measured at 600px the row
-   was three tracks wide — 140px, 241px, 132px — with all three cells stacked
+   was three tracks wide – 140px, 241px, 132px – with all three cells stacked
    in the first of them: a claim set 140px wide beside 373px of empty ground,
    on every decision in the archive. `.v-fold`'s own phone rule (line 1425)
    was dead the same way.
@@ -1307,11 +1307,11 @@
 
 /* ── The event a date brought you to ──────────────────────────────────────
    Owner: «що натискання на дату робить? якщо воно переносить на конкретну
-   подію хронології — то треба додати якір і якусь підсвітку».
+   подію хронології – то треба додати якір і якусь підсвітку».
 
    It does exactly that: each row of the chronology carries `#ev-<date>`
    and the index's date cell links to it. What it did not do was say which
-   row — the reader arrived at a list and had to count back to the date
+   row – the reader arrived at a list and had to count back to the date
    they had just pressed.
 
    `:target` is the right tool because the state is the URL's, not a
@@ -1343,20 +1343,20 @@
 }
 
 /* ── Two measures of one quantity ─────────────────────────────────────────
-   Owner: «тут треба попрацювати з даними — відображенням і
+   Owner: «тут треба попрацювати з даними – відображенням і
    структуруванням».
 
    «19 546+» is what the official database holds; the ombudspersons put
    the number of children at 150–300 thousand. That was the last sentence
    of a footnote about where the figures come from, so a reader met the
    larger number after they had already taken the smaller one as the
-   answer — and met it as prose, not as a figure. It sits under the figure
+   answer – and met it as prose, not as a figure. It sits under the figure
    it disagrees with now, in the same shape, a step quieter: the same
    thing measured twice, an order of magnitude apart, and the page says so
    instead of mentioning it. */
 .casepage .taking-alt {
-  /* Сітка, а не flex: під міткою і числом тепер стоїть третій рядок — що з
-     цього випливає, — і він має лягти під обома, а не третім у ряд. */
+  /* Сітка, а не flex: під міткою і числом тепер стоїть третій рядок – що з
+     цього випливає, – і він має лягти під обома, а не третім у ряд. */
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   align-items: baseline;
@@ -1385,8 +1385,8 @@
    Three tiles in a two-column grid left the third alone on its own row
    with the hole beside it, and the hole was the least of it: the three
    are two different subjects. «Дітей у базі» and «З них повернуто» are a
-   whole and a part of it — the bar under the second is a share of the
-   first — and they sat in different columns with nothing saying so. The
+   whole and a part of it – the bar under the second is a share of the
+   first – and they sat in different columns with nothing saying so. The
    third, states that did not execute the warrant, is about enforcement
    and has no relation to either.
 
@@ -1398,7 +1398,7 @@
 
    Дві колонки ставили ціле і його частку поруч, не сказавши, що це одне й те
    саме: око читало вниз лівою колонкою і діставало «19 546+ дітей», а під ним
-   «2 держави не виконали ордер» — інший предмет. Смуга промовляла три речі
+   «2 держави не виконали ордер» – інший предмет. Смуга промовляла три речі
    без порядку.
 
    Пара бере рядок цілком і читається згори вниз: скільки вивезено → скільки
@@ -1407,7 +1407,7 @@
 
    Селектори навмисно глибші за потрібне (п'ять класів). `[data-shape="plain"]`
    у 40-instruments.css має чотири і кладе голову плитки в колонку та зменшує
-   цифру — а частка всередині цієї ж плитки має лишитися рядком. */
+   цифру – а частка всередині цієї ж плитки має лишитися рядком. */
 .casepage .takings .taking[data-pair="yes"] {
   grid-column: 1 / -1;
 }
@@ -1424,13 +1424,13 @@
      лишаючи праворуч порожнє поле. */
   max-width: var(--prose);
   /* Раніше вона займала комірку поруч із третьою плиткою. Плитки більше
-     немає, і половина рядка під приміткою була б дірою — примітка бере
+     немає, і половина рядка під приміткою була б дірою – примітка бере
      рядок цілком, а міру їй і так тримає власний cap у `ch`. */
   grid-column: 1 / -1;
   margin: 0;
 }
 /* Остання плитка, що лишилася сама в непарному ряду, бере ряд цілком.
-   `:last-of-type` рахує серед div-ів, тож примітка (p) її не заступає —
+   `:last-of-type` рахує серед div-ів, тож примітка (p) її не заступає –
    а саме це й ламало старе правило `:last-child:nth-child(odd)`. */
 .casepage .takings > .taking:last-of-type:nth-child(odd) {
   grid-column: 1 / -1;
@@ -1447,12 +1447,12 @@
    використовували для визначень в попередньому рішенні».
 
    Те саме, що `.d-head` робить із визначеннями Суду в огляді: цифра, яка
-   рахує, назва і волосінь, що добирає решту ширини — коротка назва дістає
+   рахує, назва і волосінь, що добирає решту ширини – коротка назва дістає
    довгу лінію, довга не дістає жодної. Лінія позначає початок визначення,
    а не є сталою оздобою.
 
    Заразом зникають сім суцільних кантів через усю ширину, якими досі були
-   розділені записи: рахунок веде цифра, а повітря — проміжок. */
+   розділені записи: рахунок веде цифра, а повітря – проміжок. */
 .casepage .rulings .ruling {
   display: block;
   border-top: 0;
@@ -1476,7 +1476,7 @@
   align-self: center;
 }
 /* Назва в тому самому регістрі, що й визначення в огляді: не напівжирна
-   серифна фраза, а мітка — розрядка і капітель. Інакше вона змагається з
+   серифна фраза, а мітка – розрядка і капітель. Інакше вона змагається з
    заголовком секції за те саме місце в ієрархії. */
 .casepage .rulings .ruling dt .d-term {
   font: 700 var(--t-micro) var(--brand-font-body);
@@ -1485,7 +1485,7 @@
   color: var(--ink2);
 }
 /* Коробка з теплим тлом і золотим кантом тут була і пішла: «ні не треба все
-   жовтим робити в тлумаченнях». Правильно — золото на цій сторінці означає,
+   жовтим робити в тлумаченнях». Правильно – золото на цій сторінці означає,
    що говорить форум, і сім коробок поспіль зробили б із нього тло. Той самий
    доказ, що й у коментарі до `.d-num` вище: коли золотим є і цифра, і підпис,
    і кант, золото перестає щось означати.
@@ -1498,26 +1498,26 @@
    повітря».
 
    Кожна смуга на цій сторінці віддала власне тло, коли сторінка стала одним
-   аркушем — це правило вище по файлу й перелічує їх поіменно. `.mapband`
+   аркушем – це правило вище по файлу й перелічує їх поіменно. `.mapband`
    у тому переліку не було: вона лишалася бежевим прямокутником, який під
-   малюнком тягнувся ще на смугу порожнечі, і читач бачив два прямокутники —
+   малюнком тягнувся ще на смугу порожнечі, і читач бачив два прямокутники –
    тло смуги й картку ключа на ньому.
 
-   Тіні під ключем теж немає: на цій сторінці тіней більше не носить ніщо —
+   Тіні під ключем теж немає: на цій сторінці тіней більше не носить ніщо –
    картки ордерів віддали свої в тому ж перегляді.
 
-   Знизу — повітря. Заголовок «Джерела та коментарі» починався рівно там, де
+   Знизу – повітря. Заголовок «Джерела та коментарі» починався рівно там, де
    кінчалося тло смуги: секція має нульові відступи, бо на спільному аркуші
    їх дає не вона. */
 .casepage .mapband,
-/* `[data-lit]` — саме це правило й вигравало: воно ставить смузі --paper2
+/* `[data-lit]` – саме це правило й вигравало: воно ставить смузі --paper2
    зі своєю вищою вагою, і прозорість на два класи до нього не діставала. */
 .casepage .mapband[data-lit] {
   background: transparent;
 }
 /* І шва немає. Він відділяв одне тло від іншого; тла більше немає, і від
    нього лишалася гола волосінь рівно над «Джерелами». З двома класами
-   правило програвало нічию тому, що стоїть у 40-instruments.css, — звідси
+   правило програвало нічию тому, що стоїть у 40-instruments.css, – звідси
    `[data-lit]`, яке важить на клас більше. Власниця: «все ще зайва лінія». */
 .casepage .mapband[data-lit] {
   /* І верхнього теж: смуга цифр над нею вже закінчилася, а карта
@@ -1529,8 +1529,8 @@
   box-shadow: none;
 }
 
-/* Ціле і його частка обабіч смуги, яка їх пов'язує. Ліворуч — скільки
-   вивезли, праворуч — скільки з них повернулося, між ними доріжка тієї
+/* Ціле і його частка обабіч смуги, яка їх пов'язує. Ліворуч – скільки
+   вивезли, праворуч – скільки з них повернулося, між ними доріжка тієї
    довжини, що й перше число. Власниця: «ця цифра 19546 взагалі ніяк
    візуально не дотична до лінії графіку». */
 .casepage .taking[data-pair="yes"] .taking-ends {
@@ -1550,7 +1550,7 @@
   align-items: flex-end;
   text-align: right;
 }
-/* Праве число — частка, і воно на крок тихіше за ціле над лівим кінцем. */
+/* Праве число – частка, і воно на крок тихіше за ціле над лівим кінцем. */
 .casepage .taking[data-pair="yes"] .taking-ends .taking-end-r .taking-value {
   font-size: var(--t-lead);
 }
@@ -1559,10 +1559,10 @@
    Власниця: «знову зайва лінія і зверху забагато простору пустого».
 
    Вона стоїть просто під ордерами і відповідає на питання, яке вони щойно
-   поставили, — між ними не потрібні ані шов, ані дві повні смуги відступу
+   поставили, – між ними не потрібні ані шов, ані дві повні смуги відступу
    одна за одною. Смуга ордерів уже поклала свій відступ знизу; ця кладе
-   вдвічі менший згори і не малює лінії під собою: наступна смуга —
-   карта — починається власним заголовком. */
+   вдвічі менший згори і не малює лінії під собою: наступна смуга –
+   карта – починається власним заголовком. */
 .casepage .scale-band {
   border-bottom: 0;
 }
@@ -1570,12 +1570,12 @@
 /* ── Смуга цифр: теза попереду, групи всередині ──────────────────────────
    Власниця: «роби всі 4 пропозиції по смузі».
 
-   Теза читається як речення — це те, задля чого смуга існує, і вона стояла
+   Теза читається як речення – це те, задля чого смуга існує, і вона стояла
    останнім рядком дрібним сірим, тобто виноскою до власного доказу.
 
    Підпис групи бере рядок сітки цілком: шість цифр були чотирма різними
    речами в одному полі, і між «чим банк був» і «що вилучили» не стояло
-   нічого. Регістр той самий, що в решти підписів на папері — мітка в
+   нічого. Регістр той самий, що в решти підписів на папері – мітка в
    розрядку, а не ще один заголовок. */
 .casepage .takings-lead {
   margin: 0 0 var(--space-6);
@@ -1598,16 +1598,16 @@
 }
 
 /* ── Хронологія: колонки, які справді колонки ─────────────────────────────
-   Власниця: «поправ в хронології wrapping — наїжджає на іншу колонку».
+   Власниця: «поправ в хронології wrapping – наїжджає на іншу колонку».
 
-   Рядок має чотири комірки — дата, напрям, подія, «+» — але шаблон, який
+   Рядок має чотири комірки – дата, напрям, подія, «+» – але шаблон, який
    вигравав, описував три. Четверта лягала куди прийдеться, а подія
    починалася одразу за текстом напряму, тобто на різній відстані від краю в
    кожному рядку: виміряно на зібраній сторінці, ліві краї подій стояли на
    1312, 1195, 1051, 1373, 1146 і 1366 пікселях. Довгий рядок при цьому не
    мав куди переноситися й заходив на сусідню комірку.
 
-   Кожна комірка прив'язана до своєї колонки, а гнучка з них — та, в якій
+   Кожна комірка прив'язана до своєї колонки, а гнучка з них – та, в якій
    лежить текст. Нижче 761px 50-responsive.css розкладає рядок у стовпчик,
    тому правило під ту ширину не лізе. */
 @media (min-width: 761px) {
@@ -1630,10 +1630,10 @@
 
 /* ── Одна відстань, а не дві однакові ────────────────────────────────────
    Власниця: «перевір вирівнювання тексту в секції хронологія по всіх
-   рішеннях — вирівняй із заголовком».
+   рішеннях – вирівняй із заголовком».
 
-   Відступ розгорнутої примітки був сталою — `--ctl-indent` = 8.5rem + 16px,
-   — а проміжок у самому рядку клампом `clamp(12px, 2vw, 20px)`. Дві різні
+   Відступ розгорнутої примітки був сталою – `--ctl-indent` = 8.5rem + 16px,
+   – а проміжок у самому рядку клампом `clamp(12px, 2vw, 20px)`. Дві різні
    величини для однієї відстані: на 1440 рядок брав 20, стала лишалася на 16,
    і заголовок починався на 622 пікселі, а текст під ним на 618. Ці чотири
    пікселі й читалися як зайвий пробіл перед заголовком.
@@ -1647,7 +1647,7 @@
   --ctl-indent: calc(8.5rem + var(--ctl-gap));
 }
 /* Обидва випадки на трьох класах, бо 40-instruments.css оголошує ту саму
-   змінну саме так — на два класи вона до неї не дістає. */
+   змінну саме так – на два класи вона до неї не дістає. */
 .casepage .ctl[data-tracks="no"] {
   --ctl-indent: calc(8.5rem + var(--ctl-gap));
 }
@@ -1679,15 +1679,15 @@
 
 /* ── Перелічений висновок зі своєю відповіддю ─────────────────────────────
    Рядок ліворуч, чип праворуч, як у матриці вимог нагорі сторінки: те саме
-   питання — «а чим це скінчилося» — і та сама відповідь на нього. Доти
+   питання – «а чим це скінчилося» – і та сама відповідь на нього. Доти
    перелік із десяти порушень або п'яти пунктів обвинувачення був просто
    переліком, і сторінка не казала, чим скінчився жоден із них. */
 .casepage .f-list-out > li {
   display: grid;
   /* Колонка чипа вузька і фіксована, а не `auto`.
 
-     Відповіді стали реченнями — «Встановлено порушення», «Встановлено
-     відсутність порушення», — і `auto` віддавала колонці стільки, скільки
+     Відповіді стали реченнями – «Встановлено порушення», «Встановлено
+     відсутність порушення», – і `auto` віддавала колонці стільки, скільки
      просив найдовший чип: 256 пікселів, які в дев'яти рядках із десяти
      стояли порожні, а текст ліворуч тиснувся. Власниця: «тут трошки щось
      дизайн поплив». Фіксована колонка ставить чип на два рядки й повертає
@@ -1696,14 +1696,14 @@
   align-items: baseline;
   gap: var(--space-4);
 }
-/* У переліку чип переносить рядки — отже, і центрує їх, як у бібліотеці. */
+/* У переліку чип переносить рядки – отже, і центрує їх, як у бібліотеці. */
 .casepage .f-list-out .h4-out {
   white-space: normal;
   text-align: center;
 }
 /* На телефоні дві колонки не діляться.
 
-   На 375 пікселях сітка давала 139 на речення і 148 на чип — половину
+   На 375 пікселях сітка давала 139 на речення і 148 на чип – половину
    ширини під два слова, а перший пункт виростав на 517 пікселів вежею по
    два-три слова в рядок. Тож нижче 560 чип стає під рядок, ліворуч: він і
    там відповідь на те, що щойно прочитано, просто не збоку. */
@@ -1722,14 +1722,14 @@
   color: var(--ink);
 }
 
-/* Перелік імен — колонками, а не сіткою.
+/* Перелік імен – колонками, а не сіткою.
 
    Сітка ставила кожну назву в клітинку однакової висоти, тож «Сполучене
    Королівство Великої Британії та Північної Ірландії» на три рядки робило
    триповерховим увесь ряд, і між короткими назвами лишалися дірки. Власниця:
    «тут треба допрацювати дизайн». Багатоколонковий потік такого рядка не
    має: кожна назва займає свою висоту, колонки самі вирівнюються, а читач
-   іде згори вниз — так, як записано в рішенні.
+   іде згори вниз – так, як записано в рішенні.
 
    `break-inside: avoid` тримає назву, що переноситься, в одній колонці:
    без нього «Федеративна Республіка» лишалася внизу однієї, а «Німеччина»

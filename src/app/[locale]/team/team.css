@@ -25,7 +25,7 @@
 }
 /* Scoped to the page body, not the whole surface. As `.teampage a` this
    tied on specificity with `.nsv-mobnav a` in header.css and won on source
-   order, repainting the mobile menu red on its dark ground — 1.82:1 in
+   order, repainting the mobile menu red on its dark ground – 1.82:1 in
    light theme, and invisible on the one layout that uses that menu. */
 .teampage .team-wrap a {
   color: var(--red);
@@ -40,7 +40,7 @@
    inset the header and the footer already use: a flat gutter on a narrow
    window, and above 1024px whatever keeps the content inside 1180px. A
    surface that sets its own `max-width` and centres itself lands somewhere
-   else — measured at a 1800px window, the header's mark sat at 310 and this
+   else – measured at a 1800px window, the header's mark sat at 310 and this
    page's text at 494, and a reader scrolling down from the bar watches the
    column step sideways.
 
@@ -155,7 +155,7 @@
   margin: 0 0 var(--space-3);
 }
 .team-contact p {
-  /* Was 60ch — about 480px, half the 900px column it sits in. */
+  /* Was 60ch – about 480px, half the 900px column it sits in. */
   max-width: min(100%, var(--prose-max));
   margin: 0 0 var(--space-5);
   font-size: var(--t-body);

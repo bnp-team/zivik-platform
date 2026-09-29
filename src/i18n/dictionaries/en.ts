@@ -2,18 +2,18 @@ import type { Dictionary } from "./uk";
 
 /**
  * English UI dictionary. Typed as `Dictionary`, so it must mirror the exact
- * shape of the canonical Ukrainian dictionary — a missing or renamed key is a
+ * shape of the canonical Ukrainian dictionary – a missing or renamed key is a
  * compile error.
  *
  * The one-word rule the Ukrainian file sets out applies here word for word.
- * USER DECISION: the collection has a single name in English — "Library of
- * decisions" — and it is what the page title, the H1, the nav item, the hero
+ * USER DECISION: the collection has a single name in English – "Library of
+ * decisions" – and it is what the page title, the H1, the nav item, the hero
  * CTA, the home band, the footer link and every back link say. The earlier
  * library/registry split ("the library" the site, "the registry" the list) is
  * overruled; do not restore it, and do not reintroduce "registry" as a name
  * for the collection or for anything pointing at it. "Register" stays only
- * where a court or a State names its own — the Register of Damage for Ukraine,
- * the register of depositors quoted in the Oschadbank award — and "docket" is
+ * where a court or a State names its own – the Register of Damage for Ukraine,
+ * the register of depositors quoted in the Oschadbank award – and "docket" is
  * the word for a case number.
  *
  * The route is still `/registry` and the keys are still `registry.*`: renaming
@@ -21,10 +21,10 @@ import type { Dictionary } from "./uk";
  */
 const en: Dictionary = {
   meta: {
-    title: "NaSvitlo — international court decisions on the war against Ukraine",
+    title: "NaSvitlo – international court decisions on the war against Ukraine",
     description:
       "An open library of international court decisions on Russia's war against Ukraine: the ECtHR, ICJ, ICC and arbitral tribunals. UCU Faculty of Law.",
-    ogAlt: "NaSvitlo — library of international court decisions",
+    ogAlt: "NaSvitlo – library of international court decisions",
   },
   nav: {
     skip: "Skip to content",
@@ -38,7 +38,7 @@ const en: Dictionary = {
   },
   brand: {
     facultyAlt: "UCU Faculty of Law",
-    /* "NaSvitlo", to match «НаСвітло» — see the note in uk.ts. The English
+    /* "NaSvitlo", to match «НаСвітло» – see the note in uk.ts. The English
        source materials in content/about.ts already spell it this way. */
     wordmark: "NaSvitlo",
   },
@@ -46,7 +46,7 @@ const en: Dictionary = {
     credit: "A project of",
     creditCentre: "the Louis Sohn Research Centre",
     creditFaculty: "UCU Faculty of Law",
-    lead: "The Library of Accountability and Justice for Ukraine — lighting the legal road Ukraine is walking towards justice",
+    lead: "The Library of Accountability and Justice for Ukraine – lighting the legal road Ukraine is walking towards justice",
     ctaRegistry: "Library of decisions",
     chainHint: "pull the cord",
     lampLabel: "Turn the lamp on or off",
@@ -61,7 +61,7 @@ const en: Dictionary = {
   slogan: "We research · We explain · We bring to light",
   pending: {
     title: "Still being researched",
-    body: "This proceeding is in the library, but its summary is not written yet — we are working on it. Below is what is already known, and a link to the court's own document where one is public.",
+    body: "This proceeding is in the library, but its summary is not written yet – we are working on it. Below is what is already known, and a link to the court's own document where one is public.",
     forum: "Court",
     status: "Stage",
     kind: "Field",
@@ -124,8 +124,8 @@ const en: Dictionary = {
   },
   /* Eight keys lighter. `label`, `heading`, `description`, `fullRegistry`,
      `allCases`, `caseWord`, `legendLit` and `legendQueued` belonged to the
-     library band on the home page — the five courts, their caseloads, a row
-     of cases apiece — which the review took off. The component went with it;
+     library band on the home page – the five courts, their caseloads, a row
+     of cases apiece – which the review took off. The component went with it;
      these were the only place its words lived, and every one of them made a
      claim about a surface that no longer exists. What stays is what the
      library page and the map still read: the stage and outcome vocabularies
@@ -192,7 +192,7 @@ const en: Dictionary = {
     /* "Svientsitskoho" is the transliteration content/legal.ts already
        uses; the two must not spell the same street two ways. */
     address: "17 Svientsitskoho St., Lviv, 79011",
-    rights: "© 2026 the Louis Sohn Research Centre, UCU. Materials — CC BY 4.0.",
+    rights: "© 2026 the Louis Sohn Research Centre, UCU. Materials – CC BY 4.0.",
     privacy: "Privacy policy",
     terms: "Terms of use",
   },

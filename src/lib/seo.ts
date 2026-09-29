@@ -23,14 +23,14 @@ export const siteUrl =
 /**
  * Whether this deployment may be indexed by search engines.
  *
- * Defaults to NO. The archive is still filling — 8 of 39 proceedings have a
- * summary — and a half-built version of a legal reference sits in Google's
+ * Defaults to NO. The archive is still filling – 8 of 39 proceedings have a
+ * summary – and a half-built version of a legal reference sits in Google's
  * catalogue for months after you fix it. Set SITE_INDEXABLE=true in the Vercel
  * project when the site is ready to be found.
  *
  * Note the mechanism: robots.txt keeps *allowing* the crawl even while this is
  * false, and the noindex is carried by a header and a meta tag instead.
- * Disallowing would be the intuitive move and the wrong one — a blocked
+ * Disallowing would be the intuitive move and the wrong one – a blocked
  * crawler cannot read the noindex, so Google may still list the bare URL it
  * found linked somewhere else.
  */
@@ -40,37 +40,37 @@ export const isIndexable = process.env.SITE_INDEXABLE === "true";
  * The `robots` metadata field while the archive is closed.
  *
  * The comment above says the noindex is carried "by a header and a meta tag";
- * only the header existed — `curl <siteUrl>/uk | grep
+ * only the header existed – `curl <siteUrl>/uk | grep
  * 'name="robots"'` came back empty on every route. One header, set in
  * `next.config.ts`, was the whole defence. That is one misconfiguration away
  * from an indexed half-built archive: a header is a property of how the file
  * is served, so it is lost the moment a page is fetched and re-served by
- * anything else — a preview proxy, a mirror, an AMP-style cache, a
+ * anything else – a preview proxy, a mirror, an AMP-style cache, a
  * `wget -r` someone hosts. The meta tag travels inside the document.
  *
  * Undefined once SITE_INDEXABLE=true, so the resolved metadata simply has no
  * robots directive and the default (index, follow) applies.
  *
  * Set on `homeMetadata`, which the `[locale]` layout returns, so every page
- * under it inherits the tag — no page overrides `robots`.
+ * under it inherits the tag – no page overrides `robots`.
  */
 export const robotsMetadata: Metadata["robots"] = isIndexable
   ? undefined
   : { index: false, follow: false };
 
 /**
- * Підтвердження власності в Google Search Console — мета-тегом.
+ * Підтвердження власності в Google Search Console – мета-тегом.
  *
  * Search Console пропонує два способи: запис TXT у DNS або
  * `<meta name="google-site-verification" content="…">` на головній. DNS
  * кращий (підтверджує весь домен разом із піддоменами), але потребує
- * доступу до DNS-зони, якого в редакції може не бути. Тоді — цей: код із
+ * доступу до DNS-зони, якого в редакції може не бути. Тоді – цей: код із
  * Search Console кладеться у змінну збірки GOOGLE_SITE_VERIFICATION, і тег
  * з'являється на кожній сторінці (його несе `homeMetadata`, яку успадковують
- * усі). Без змінної поля немає зовсім — порожній тег Google не прийме.
+ * усі). Без змінної поля немає зовсім – порожній тег Google не прийме.
  *
  * Прапорець збірки, як SITE_INDEXABLE: Next вбудовує його під час
- * пререндеру, збірка для Cloudflare — через `define` в astro.config.mjs, а тег
+ * пререндеру, збірка для Cloudflare – через `define` в astro.config.mjs, а тег
  * там рендерить `site/lib/metadata.ts`. Див. docs/LAUNCH.md.
  */
 const googleSiteVerification =
@@ -86,7 +86,7 @@ export const verificationMetadata: Metadata["verification"] =
  * `<script>` element's content is *raw text*: the parser scans it for `</`
  * and for `<!--`, not for JSON syntax. So a string anywhere in the graph that
  * contains `</script>` closes the element early and everything after it is
- * parsed as markup — a case title, a party name or an FAQ answer quoting a
+ * parsed as markup – a case title, a party name or an FAQ answer quoting a
  * document is all it would take. Nothing in `src/content/` contains one today
  * (checked), so this is a latent defect rather than a live hole, but the graph
  * is built from free-text editorial fields and the next contributor has no
@@ -94,7 +94,7 @@ export const verificationMetadata: Metadata["verification"] =
  *
  * Escaping `<` is sufficient and minimal: it is the first character of both
  * `</script` and `<!--`, and `<` is the same character to a JSON parser.
- * U+2028/U+2029 go too — legal in JSON strings, but line terminators to the
+ * U+2028/U+2029 go too – legal in JSON strings, but line terminators to the
  * JS parsers some consumers still run `ld+json` through.
  */
 export function jsonLdHtml(graph: unknown): { __html: string } {
@@ -112,11 +112,11 @@ export const META_MAX = 160;
 /**
  * Нижня межа, під якою опис уже не «короткий», а порожній.
  *
- * Аудит виміряв: /en/cases/oschadbank віддавав у пошук 43 символи — «Oschadbank
- * is Ukraine's state savings bank.» — бо `shortDescription` брав тільки перше
- * речення tldr; сторінки справ без огляду (pca-31, nl-33) — 46–52 символи
+ * Аудит виміряв: /en/cases/oschadbank віддавав у пошук 43 символи – «Oschadbank
+ * is Ukraine's state savings bank.» – бо `shortDescription` брав тільки перше
+ * речення tldr; сторінки справ без огляду (pca-31, nl-33) – 46–52 символи
  * службових позначок. Сніпет такої довжини пошуковик переписує сам, з
- * будь-якого шматка сторінки. 110 — це нижче за найкоротший авторський
+ * будь-якого шматка сторінки. 110 – це нижче за найкоротший авторський
  * `metaDesc` в архіві (132), тож жоден написаний руками опис ця межа не
  * зачіпає.
  */
@@ -124,7 +124,7 @@ export const META_MIN = 110;
 
 /**
  * Cut a string to at most `max` characters at a word boundary, with a visible
- * ellipsis — never the engine's silent one, never mid-word.
+ * ellipsis – never the engine's silent one, never mid-word.
  */
 export function cutAtWord(text: string, max: number): string {
   const t = text.trim();
@@ -132,7 +132,7 @@ export function cutAtWord(text: string, max: number): string {
   const cut = t.slice(0, max - 1);
   const lastSpace = cut.lastIndexOf(" ");
   /* Trailing punctuation off before the ellipsis: «…Russia,…» reads as a typo. */
-  return `${(lastSpace > 0 ? cut.slice(0, lastSpace) : cut).replace(/[\s,;:—–-]+$/u, "")}…`;
+  return `${(lastSpace > 0 ? cut.slice(0, lastSpace) : cut).replace(/[\s,;:––-]+$/u, "")}…`;
 }
 
 /**
@@ -165,7 +165,7 @@ export function splitSentences(text: string): string[] {
  * A search description built from prose: whole sentences from the start while
  * they fit under `META_MAX`; and if that leaves it under `META_MIN`, the next
  * sentence is carried on to the limit and cut at a word. Nothing is reordered
- * and nothing is added — the text is the author's, only shortened.
+ * and nothing is added – the text is the author's, only shortened.
  */
 export function descriptionFromProse(text: string): string {
   const sentences = splitSentences(text);
@@ -194,7 +194,7 @@ export const defaultOgImage = "/og/nasvitlo.png";
  * The cards are drawn at build time by scripts/og-cards.mts, which lists in
  * public/og/cases/manifest.json every slug whose card it has on disk. The
  * page used to point at `/og/cases/${slug}.png` unconditionally, so a summary
- * made in the admin — which no one had drawn a card for — unfurled with a
+ * made in the admin – which no one had drawn a card for – unfurled with a
  * broken image. Reading the list instead of the directory keeps this free of
  * `fs`: it runs the same in the Next build, the Astro prerender and a Worker.
  */
@@ -203,13 +203,13 @@ export function caseOgImage(slug: string): string {
 }
 
 /**
- * Real pixel size of the share cards in `public/og/` — every one is exactly
+ * Real pixel size of the share cards in `public/og/` – every one is exactly
  * 1200x630: the site card, and the case cards `scripts/og-cards.mts` draws at
  * this size.
  *
  * These are worth emitting: without og:image:width/height a crawler has to
  * fetch the image before it can decide how to lay the card out, so the first
- * unfurl of a link — the one the reader sees — often falls back to the small
+ * unfurl of a link – the one the reader sees – often falls back to the small
  * square thumbnail. 1200x630 is also what tells Twitter/X the card really is
  * `summary_large_image`.
  */
@@ -240,17 +240,17 @@ export function homeMetadata(locale: Locale, dict: Dictionary): Metadata {
   const path = `/${locale}`;
   return {
     metadataBase: new URL(siteUrl),
-    /* Pages under the layout read «Команда — НаСвітло», not a bare «Team»:
+    /* Pages under the layout read «Команда – НаСвітло», not a bare «Team»:
        a tab, a bookmark and a search result all show this string, and a
        four-letter title says nothing about whose team it is. The decision
-       pages opt out with `absolute` — their titles already carry the court
+       pages opt out with `absolute` – their titles already carry the court
        and run long enough. */
-    title: { default: title, template: `%s — ${dict.brand.wordmark}` },
+    title: { default: title, template: `%s – ${dict.brand.wordmark}` },
     description,
-    // Inherited by every page under the [locale] layout — none of them set
+    // Inherited by every page under the [locale] layout – none of them set
     // `robots`, so this one tag closes the whole tree until launch.
     robots: robotsMetadata,
-    // Search Console; undefined — і тега немає — без GOOGLE_SITE_VERIFICATION.
+    // Search Console; undefined – і тега немає – без GOOGLE_SITE_VERIFICATION.
     verification: verificationMetadata,
     alternates: {
       canonical: path,
@@ -276,7 +276,7 @@ export function homeMetadata(locale: Locale, dict: Dictionary): Metadata {
 }
 
 /**
- * `hreflang` map for a page at the same path in every locale — or, with
+ * `hreflang` map for a page at the same path in every locale – or, with
  * `exists`, only in the locales that have it. A blog post written only in
  * Ukrainian has no /en page, and hreflang pointing at a 404 tells a crawler
  * the pair is broken. x-default then falls to the first locale that exists.

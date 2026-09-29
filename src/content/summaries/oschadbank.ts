@@ -10,11 +10,11 @@ import verbatimUk from "./oschadbank.uk.json";
  * document. The fields below add the visualization layer. Two rules govern it:
  *
  *  1. Everything up to and including the dispositif restates the Award itself,
- *     and every figure appears in that prose — the 294 outlets, the 45% and
+ *     and every figure appears in that prose – the 294 outlets, the 45% and
  *     16.5% market shares, the three heads of loss, the LIBOR + 2% rate.
- *  2. Everything dated after 26 November 2018 — the French set-aside rounds,
+ *  2. Everything dated after 26 November 2018 – the French set-aside rounds,
  *     the 2023 revision request, the 2025 seizure and the pending US
- *     confirmation — is *not* in the Award. It is court and press record, and
+ *     confirmation – is *not* in the Award. It is court and press record, and
  *     it is kept in `afterlife`, `objections` and the later timeline entries,
  *     each carrying its own citation, so a reader can always tell what the
  *     tribunal decided from what happened to the award afterwards.
@@ -30,25 +30,25 @@ export const oschadbank: DecisionSummary = {
     blocks: SummaryBlock[];
   }),
   // Ukrainian translation of the body, structurally 1:1 with the English
-  // (same 104 blocks, same kinds) — draft, pending legal review.
+  // (same 104 blocks, same kinds) – draft, pending legal review.
   blocksUk: (verbatimUk as { blocks: SummaryBlock[] }).blocks,
 
   /* This docket is live, so the page needs a date on its out-of-record figures
-     — it had none, while carrying enforcement facts into 2026.
+     – it had none, while carrying enforcement facts into 2026.
 
      Checked 27 August 2026 against Jus Mundi's case page (PCA 2016-14, its own
      "Updated on: 10 Aug 2026"). Four entries postdate the last one in the
      timeline below, and they are NOT written up here because their texts are
-     not yet published — Jus Mundi has them as "Summary coming soon":
+     not yet published – Jus Mundi has them as "Summary coming soon":
 
-       Judgment, Paris Court of Appeal (pôle 5 ch. 16) 24/05331 — 23 June 2026
-       Judgment, Paris Court of Appeal (pôle 5 ch. 16) 24/16339 — 23 June 2026
-       Consent Order, High Court of Justice of England and Wales — 13 July 2026
-       Resumed Revision Proceeding (pending) — 19 July 2026
+       Judgment, Paris Court of Appeal (pôle 5 ch. 16) 24/05331 – 23 June 2026
+       Judgment, Paris Court of Appeal (pôle 5 ch. 16) 24/16339 – 23 June 2026
+       Consent Order, High Court of Justice of England and Wales – 13 July 2026
+       Resumed Revision Proceeding (pending) – 19 July 2026
 
      The last of those bears directly on the wording of the 1 July 2025 entry,
      which says the award is final in France: a revision proceeding has been
-     resumed and is pending. Do not soften or restate that line by guesswork —
+     resumed and is pending. Do not soften or restate that line by guesswork –
      read 24/05331 and 24/16339 first, then say what they held. */
   title: {
     uk: "Ощадбанк проти Російської Федерації",
@@ -61,7 +61,7 @@ export const oschadbank: DecisionSummary = {
     eyebrow: "Постійна палата третейського суду · 26 листопада 2018",
     kicker: "$1,11 млрд за експропріацію в Криму",
   },
-  /* The masthead in Ukrainian — the caption under the title and the line
+  /* The masthead in Ukrainian – the caption under the title and the line
      in the eyebrow. `masthead` keeps the decision's own English, which is
      what the citation block reproduces; this is what a Ukrainian reader
      sees at the top of the page. See `mastheadUk` in summaries/types.ts. */
@@ -86,7 +86,7 @@ export const oschadbank: DecisionSummary = {
 
   plain: {
     tldr: {
-      uk: "Ощадбанк — державний банк України — до 2014 року мав у Криму 294 відділення. Після анексії російські закони й Банк Росії зробили роботу банку неможливою, а його активи перейшли під управління російського фонду. Арбітраж у Парижі визнав це незаконною експропріацією і присудив банку понад 1,1 млрд доларів. Росія в процесі не брала участі й досі не заплатила.",
+      uk: "Ощадбанк – державний банк України – до 2014 року мав у Криму 294 відділення. Після анексії російські закони й Банк Росії зробили роботу банку неможливою, а його активи перейшли під управління російського фонду. Арбітраж у Парижі визнав це незаконною експропріацією і присудив банку понад 1,1 млрд доларів. Росія в процесі не брала участі й досі не заплатила.",
       en: "Oschadbank is Ukraine's state savings bank. Until 2014 it ran 294 outlets in Crimea. After the annexation, Russian law and the Bank of Russia made the business impossible to run, and a Russian fund took over its assets. A tribunal sitting in Paris found this to be an unlawful expropriation and awarded the bank more than USD 1.1 billion. Russia did not take part in the arbitration and has not paid.",
     },
   },
@@ -171,7 +171,7 @@ export const oschadbank: DecisionSummary = {
     { id: "enforcement", label: { uk: "Стягнення", en: "Enforcement" } },
   ],
 
-  /* Карта закриває розділ фактичних обставин — див. `mapAfterPart`
+  /* Карта закриває розділ фактичних обставин – див. `mapAfterPart`
      у summaries/types.ts. */
   mapAfterPart: 1,
 
@@ -267,7 +267,7 @@ export const oschadbank: DecisionSummary = {
         en: "Russia's only substantive communication",
       },
       note: {
-        uk: "Лист через посла в Гаазі: активи Ощадбанку — не «інвестиція» за договором. Більше Росія у справі не озвалася.",
+        uk: "Лист через посла в Гаазі: активи Ощадбанку – не «інвестиція» за договором. Більше Росія у справі не озвалася.",
         en: "A letter through its ambassador in The Hague: Oschadbank's assets are not an “investment” under the treaty. Russia said nothing further.",
       },
     },
@@ -292,7 +292,7 @@ export const oschadbank: DecisionSummary = {
       kind: "order",
       label: { uk: "Слухання у Парижі", en: "Hearing in Paris" },
       note: {
-        uk: "Юрисдикція і суть — за одне засідання. Арбітраж окремо допитував експерта з оцінки збитків.",
+        uk: "Юрисдикція і суть – за одне засідання. Арбітраж окремо допитував експерта з оцінки збитків.",
         en: "Jurisdiction and merits in one hearing. The tribunal questioned the damages expert at length.",
       },
     },
@@ -320,7 +320,7 @@ export const oschadbank: DecisionSummary = {
         en: "Paris Court of Appeal sets the award aside",
       },
       note: {
-        uk: "Підстава — темпоральна: суд вважав, що договір не охоплює інвестиції, зроблені до його укладення.",
+        uk: "Підстава – темпоральна: суд вважав, що договір не охоплює інвестиції, зроблені до його укладення.",
         en: "On temporal grounds: the court held the treaty did not cover investments made before it existed.",
       },
     },
@@ -361,7 +361,7 @@ export const oschadbank: DecisionSummary = {
         uk: "У Франції арештовано російського майна на €87 млн",
         en: "EUR 87 million of Russian property seized in France",
       },
-      /* «близько 6% основної суми» removed here too — see the FAQ above. What
+      /* «близько 6% основної суми» removed here too – see the FAQ above. What
          is left is what the reporting says: this is the first attachment of
          any size under the award. */
       note: {
@@ -393,7 +393,7 @@ export const oschadbank: DecisionSummary = {
         en: "Oschadbank notifies Russia of a second dispute",
       },
       note: {
-        uk: "Окрема справа за тим самим договором 1998 року — про втрати на Донеччині, Луганщині, Херсонщині та Запоріжжі. Це повідомлення про спір, а не рішення; склад арбітражу формується.",
+        uk: "Окрема справа за тим самим договором 1998 року – про втрати на Донеччині, Луганщині, Херсонщині та Запоріжжі. Це повідомлення про спір, а не рішення; склад арбітражу формується.",
         en: "A separate case under the same 1998 treaty, over losses in Donetsk, Luhansk, Kherson and Zaporizhzhia. This is a notice of dispute, not a ruling; the tribunal is being constituted.",
       },
     },
@@ -422,15 +422,15 @@ export const oschadbank: DecisionSummary = {
       markerKeys: ["crimea"],
       areas: ["crimea"],
       summary: {
-        uk: "294 відділення, найбільший кредитний портфель півострова — активи, які банк втратив у 2014 році.",
-        en: "294 outlets and the peninsula's largest loan book — the assets the bank lost in 2014.",
+        uk: "294 відділення, найбільший кредитний портфель півострова – активи, які банк втратив у 2014 році.",
+        en: "294 outlets and the peninsula's largest loan book – the assets the bank lost in 2014.",
       },
     },
   ],
 
   takings: {
     heading: { uk: "Що було втрачено", en: "What was taken" },
-    /* Це і є те, задля чого смуга існує, — а стояло останнім рядком дрібним
+    /* Це і є те, задля чого смуга існує, – а стояло останнім рядком дрібним
        сірим, тобто як виноска до власного доказу. Тепер веде. */
     lead: {
       uk: "Наприкінці 2013 року кримська філія була другою за депозитами і першою за кредитуванням на півострові. Примусове закриття прибрало найбільшого кредитора регіону за один квартал.",
@@ -438,14 +438,14 @@ export const oschadbank: DecisionSummary = {
     },
     metrics: [
       {
-        /* Перша група — міра ваги втрати: чим банк був на півострові до
+        /* Перша група – міра ваги втрати: чим банк був на півострові до
            закриття. Поле з 294 позначок веде її, бо це найсильніший об'єкт
            на сторінці: число, яке стало полем. */
         group: { uk: "Чим банк був у Криму", en: "What the bank was in Crimea" },
         label: { uk: "Відділень утрачено", en: "Branch outlets lost" },
         value: "294",
         count: 294,
-        note: { uk: "одна позначка — одне відділення", en: "one mark per outlet" },
+        note: { uk: "одна позначка – одне відділення", en: "one mark per outlet" },
       },
       {
         label: { uk: "Частка кредитування в Криму", en: "Share of lending in Crimea" },
@@ -458,7 +458,7 @@ export const oschadbank: DecisionSummary = {
         percent: 16.5,
       },
       {
-        /* Друга група — сама втрата. Заголовок смуги обіцяє саме її, і доти
+        /* Друга група – сама втрата. Заголовок смуги обіцяє саме її, і доти
            вона була перемішана з першою в одній сітці. */
         group: { uk: "Що вилучили", en: "What was taken away" },
         label: { uk: "Кредити групі ActivSolar", en: "Loans to the ActivSolar Group" },
@@ -506,7 +506,7 @@ export const oschadbank: DecisionSummary = {
       },
     ],
     note: {
-      uk: "Заходи здійснювали різні органи. Арбітраж застосував Статті КМП ООН про відповідальність держав: стаття 4 — для органів держави, стаття 8 — для тих, хто діяв за її вказівкою чи під її контролем.",
+      uk: "Заходи здійснювали різні органи. Арбітраж застосував Статті КМП ООН про відповідальність держав: стаття 4 – для органів держави, стаття 8 – для тих, хто діяв за її вказівкою чи під її контролем.",
       en: "The measures were carried out by different bodies. The tribunal applied the ILC Articles on State Responsibility: article 4 for organs of the State, article 8 for conduct directed or controlled by it.",
     },
     nodes: [
@@ -533,7 +533,7 @@ export const oschadbank: DecisionSummary = {
         basis: "ILC art. 4",
         basisNote: { uk: "органи держави з 18 березня 2014", en: "State organs from 18 March 2014" },
         did: {
-          uk: "Посадовці, суди, парламент і Севастопольські збори — застосування законів про приєднання на півострові.",
+          uk: "Посадовці, суди, парламент і Севастопольські збори – застосування законів про приєднання на півострові.",
           en: "Officials, courts, parliament and the Sevastopol Assembly enforcing the accession laws on the peninsula.",
         },
       },
@@ -559,7 +559,7 @@ export const oschadbank: DecisionSummary = {
   },
 
   amounts: {
-    /* The third and last statement of «≈6% основної суми» — see the FAQ. The
+    /* The third and last statement of «≈6% основної суми» – see the FAQ. The
        sentence it closed carried the point on its own. */
     note: {
       uk: "Росія не сплатила рішення добровільно, тому стягнення відбувається через арешт її державних активів за кордоном.",
@@ -568,15 +568,15 @@ export const oschadbank: DecisionSummary = {
     // NOTATION. Every `display` here is a pair, because Ukrainian and English
     // group and point numbers differently and this card printed one notation
     // to both readers. Ukrainian groups with a space and takes a comma for the
-    // decimal — $3 866 307,34; English groups with a comma and takes a
-    // point — $3,866,307.34. The symbol leads, and it is a symbol: the bars
+    // decimal – $3 866 307,34; English groups with a comma and takes a
+    // point – $3,866,307.34. The symbol leads, and it is a symbol: the bars
     // used a third system of their own, "USD 1,111,300,729" and
     // "≈ EUR 87,000,000", while the stats tiles on this same page say
     // "$1,11 млрд" / "$1.11B" and "€87 млн" / "€87M". One page, one notation.
     //
     // The `amount` fields carry the exact cents too. They only scale the bars,
     // but rounded to whole dollars the two costs parts summed to 3 866 307
-    // against a total of 3 866 307,34 — a gap with no source behind it. The
+    // against a total of 3 866 307,34 – a gap with no source behind it. The
     // award's own figures are exact; they are used.
     figures: [
       {
@@ -613,7 +613,7 @@ export const oschadbank: DecisionSummary = {
         amount: 1500000000,
         estimated: true,
         note: {
-          uk: "6-місячний LIBOR + 2%, складні відсотки, річні — від 31 березня 2014 року до повної сплати.",
+          uk: "6-місячний LIBOR + 2%, складні відсотки, річні – від 31 березня 2014 року до повної сплати.",
           en: "Six-month USD LIBOR plus 2%, compounded annually, from 31 March 2014 until payment in full.",
         },
       },
@@ -642,16 +642,16 @@ export const oschadbank: DecisionSummary = {
         // Euros, and the scale is dollars. The figure stays in euros because
         // that is the currency the French seizure is recorded in; converting
         // it would invent a rate and a date. Declaring the currency takes this
-        // figure off the shared scale altogether — it used to carry a euro
+        // figure off the shared scale altogether – it used to carry a euro
         // magnitude on a dollar bar, which is a comparison this card cannot
         // make, and for a while it printed a percentage of it.
         //
-        // FOR THE RESEARCHERS — the "≈ 6% of the principal" that this bar, the
+        // FOR THE RESEARCHERS – the "≈ 6% of the principal" that this bar, the
         // note above this block and the FAQ all used to state is now off the
         // page. It never came out of these numbers: 87 000 000 is 7,8% of the
         // 1 111 300 729 principal and ~5,8% of the "> $1,5 млрд" accrued
         // figure in the bar above, so the six per cent read like a share of the
-        // award WITH interest rather than of the principal — but no source on
+        // award WITH interest rather than of the principal – but no source on
         // this page or in the reporting of the seizure states any ratio, and
         // the currencies are being mixed on either reading. Both readings are
         // recorded here so a later editor can see what was checked; neither is
@@ -669,8 +669,8 @@ export const oschadbank: DecisionSummary = {
            Any percentage across two currencies needs a rate and a date that no
            source here supplies, so the figure stands on its own. */
         note: {
-          uk: "у євро — поза шкалою",
-          en: "in euros — off this scale",
+          uk: "у євро – поза шкалою",
+          en: "in euros – off this scale",
         },
       },
     ],
@@ -692,7 +692,7 @@ export const oschadbank: DecisionSummary = {
         },
         outcome: "rejected",
         reasoning: {
-          uk: "У договорі немає такого часового обмеження, а спір виник у 2014 році — після набуття ним чинності.",
+          uk: "У договорі немає такого часового обмеження, а спір виник у 2014 році – після набуття ним чинності.",
           en: "The treaty contains no such time limit, and the dispute arose in 2014, after it entered into force.",
         },
       },
@@ -705,7 +705,7 @@ export const oschadbank: DecisionSummary = {
         },
         outcome: "rejected",
         reasoning: {
-          uk: "Після березня 2014 року активи перебували на території під контролем Росії — цього достатньо для територіальної вимоги договору.",
+          uk: "Після березня 2014 року активи перебували на території під контролем Росії – цього достатньо для територіальної вимоги договору.",
           en: "After March 2014 the assets were in territory under Russian control, which satisfies the treaty's territorial requirement.",
         },
       },
@@ -728,7 +728,7 @@ export const oschadbank: DecisionSummary = {
   afterlife: {
     heading: { uk: "Рішення у судах Франції", en: "The award in the French courts" },
     note: {
-      uk: "Місцем арбітражу був Париж, тому заяву Росії про скасування розглядали французькі суди: два раунди в апеляційному суді й один у касаційному — понад шість років.",
+      uk: "Місцем арбітражу був Париж, тому заяву Росії про скасування розглядали французькі суди: два раунди в апеляційному суді й один у касаційному – понад шість років.",
       en: "The seat was Paris, so Russia's set-aside application ran through the French courts: two rounds before the Court of Appeal and one before the Cour de cassation, over six years.",
     },
     stages: [
@@ -786,12 +786,12 @@ export const oschadbank: DecisionSummary = {
     {
       term: { uk: "«Інвестиція» (ст. 1(1))", en: "“Investment” (Art. 1(1))" },
       ruling: {
-        uk: "Визначення широке: матеріальні активи, права оренди, а також вимоги за кредитами й депозитами. Часового обмеження в тексті немає — інвестиція не мусить бути зробленою після появи зобов'язань Росії.",
-        en: "The definition is broad: tangible assets, leasehold rights, and claims arising from loans and deposits. The text has no temporal limit — the investment need not post-date Russia's obligations.",
+        uk: "Визначення широке: матеріальні активи, права оренди, а також вимоги за кредитами й депозитами. Часового обмеження в тексті немає – інвестиція не мусить бути зробленою після появи зобов'язань Росії.",
+        en: "The definition is broad: tangible assets, leasehold rights, and claims arising from loans and deposits. The text has no temporal limit – the investment need not post-date Russia's obligations.",
       },
     },
     {
-      term: { uk: "Експропріація — критерій наслідків", en: "Expropriation — the effects test" },
+      term: { uk: "Експропріація – критерій наслідків", en: "Expropriation – the effects test" },
       ruling: {
         uk: "Значення має результат, а не намір. Вилучення може бути непрямим і складатися з низки заходів («повзуча» експропріація); за ст. 15 Статей КМП порушення настає, коли сукупний ефект достатній.",
         en: "The effects of the measures decide, not the intent behind them. A taking may be indirect and composed of a series of measures (“creeping expropriation”); under ILC article 15 the breach occurs once their cumulative effect suffices.",
@@ -800,8 +800,8 @@ export const oschadbank: DecisionSummary = {
     {
       term: { uk: "Законність вилучення (ст. 5(1))", en: "Lawfulness of a taking (Art. 5(1))" },
       ruling: {
-        uk: "Чотири умови — суспільний інтерес, належна процедура, недискримінація та компенсація — є кумулятивними. Несплата компенсації сама собою робить експропріацію незаконною.",
-        en: "The four conditions — public interest, due process, non-discrimination and compensation — are cumulative. Non-payment alone makes the taking unlawful.",
+        uk: "Чотири умови – суспільний інтерес, належна процедура, недискримінація та компенсація – є кумулятивними. Несплата компенсації сама собою робить експропріацію незаконною.",
+        en: "The four conditions – public interest, due process, non-discrimination and compensation – are cumulative. Non-payment alone makes the taking unlawful.",
       },
     },
     {
@@ -821,8 +821,8 @@ export const oschadbank: DecisionSummary = {
   ],
 
   sources: [
-    /* The EUR 87 million French attachment is stated six times on this page —
-       the FAQ, a stat tile, a timeline entry, the amounts card — and until now
+    /* The EUR 87 million French attachment is stated six times on this page –
+       the FAQ, a stat tile, a timeline entry, the amounts card – and until now
        no source here covered it. It is real; it was simply uncited. */
     {
       url: "https://en.interfax.com.ua/news/economic/1066322.html",
@@ -840,7 +840,7 @@ export const oschadbank: DecisionSummary = {
       title:
         "PCA tribunal finds that Russia committed an illegal expropriation against Ukrainian bank",
       authors: "",
-      publication: "IISD — Investment Treaty News",
+      publication: "IISD – Investment Treaty News",
       date: "1 July 2023",
       type: "news/insight",
     },
@@ -889,7 +889,7 @@ export const oschadbank: DecisionSummary = {
     },
     {
       url: "https://www.lexology.com/library/detail.aspx?g=2692554c-0509-4ca7-b0d9-8903155bf6e0",
-      title: "Oschadbank v. Russia — set-aside proceedings before the French courts",
+      title: "Oschadbank v. Russia – set-aside proceedings before the French courts",
       authors: "",
       publication: "Lexology",
       date: "",

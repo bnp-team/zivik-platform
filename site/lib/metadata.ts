@@ -20,8 +20,8 @@ export type Tag =
 
 export function mergeMetadata(...layers: (Metadata | undefined)[]): Metadata {
   const out: Record<string, unknown> = {};
-  /* A layout's `title.template` dresses the titles of the layers below it —
-     a plain string, or `{ default }` — and never its own; `{ absolute }`
+  /* A layout's `title.template` dresses the titles of the layers below it –
+     a plain string, or `{ default }` – and never its own; `{ absolute }`
      opts out. As in Next. */
   let template: string | undefined;
   for (const layer of layers) {
@@ -91,7 +91,7 @@ export function metadataTags(md: Metadata): Tag[] {
     meta({ name: "robots", content: content || undefined });
   }
 
-  /* Search Console — лише `google`, бо тільки його сайт і задає
+  /* Search Console – лише `google`, бо тільки його сайт і задає
      (`verificationMetadata` у src/lib/seo.ts). Рядок або масив, як у Next;
      інші пошуковики (yandex, yahoo, `other`) додати тут, коли знадобляться. */
   if (md.verification) {

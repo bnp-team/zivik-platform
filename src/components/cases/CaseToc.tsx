@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 export interface TocItem {
   id: string;
   label: string;
-  /** Headings inside this section — the write-up's own subdivisions. */
+  /** Headings inside this section – the write-up's own subdivisions. */
   children?: TocItem[];
 }
 
@@ -15,14 +15,14 @@ export interface TocItem {
  * It replaced two renderings of the same scrollspy: a dark pill fixed in the
  * left margin, which only appeared above 1700px, and a sticky bar of chips
  * that scrolled sideways below it. The chips were the page's map, and a map
- * you have to scroll to read is a map with half of it hidden — on this page
+ * you have to scroll to read is a map with half of it hidden – on this page
  * «Пов'язані рішення» sat past the right edge at every width.
  *
  * So it is a column now, in the page rather than floating over it: sticky,
  * scrolling on its own when it outgrows the viewport, and carrying the
  * write-up's own sub-headings indented under the section they belong to.
  * Below 1000px the column has nowhere to stand, so the same list folds into
- * a `<details>` the reader opens — which keeps every entry reachable instead
+ * a `<details>` the reader opens – which keeps every entry reachable instead
  * of pushing the far ones off-screen, and needs no JavaScript to open.
  */
 export default function CaseToc({
@@ -69,7 +69,7 @@ export default function CaseToc({
   }, [items]);
 
   /* The rail scrolls itself once the list outgrows the viewport, and the
-     active entry can then be outside it — which is the one entry that must
+     active entry can then be outside it – which is the one entry that must
      not be. Only the rail's own scroll is touched; the page stays put. */
   useEffect(() => {
     const rail = railRef.current;
@@ -103,9 +103,9 @@ export default function CaseToc({
    *
    * Listing it always made the rail look arbitrary: one part showed four
    * sub-headings and the parts around it showed none, although their own
-   * headings are the same level. The difference is real — those four are
+   * headings are the same level. The difference is real – those four are
    * bands a reader jumps between, the others title a paragraph read in
-   * order — but it is a rule the reader cannot see, so on the page it read
+   * order – but it is a rule the reader cannot see, so on the page it read
    * as an oversight.
    *
    * Shown only for the part being read, it is never two parts side by side

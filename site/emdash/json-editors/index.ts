@@ -1,5 +1,5 @@
 /**
- * Form editors for the summaries' JSON fields — a plugin with no server side.
+ * Form editors for the summaries' JSON fields – a plugin with no server side.
  *
  * All it contributes is its admin module (./admin.tsx, `adminEntry` in
  * astro.config.mjs): EmDash hands a field whose `widget` is

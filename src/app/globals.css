@@ -4,18 +4,18 @@
   /* one palette, no OS-driven variant */
   color-scheme: light;
   /* ─────────────────────────────────────────────────────────────
-     Насвітло brand tokens — SINGLE SOURCE OF TRUTH (UCU brandbook).
+     Насвітло brand tokens – SINGLE SOURCE OF TRUTH (UCU brandbook).
      Every section palette in [locale]/home.css references these,
      so changing a value here propagates across the whole site.
      Primitives, not per-section: edit here, not in the sections.
      ───────────────────────────────────────────────────────────── */
-  --brand-red: #7f1716;        /* UCU cherry-red — primary accent */
+  --brand-red: #7f1716;        /* UCU cherry-red – primary accent */
   --brand-red-dark: #5c100f;   /* pressed / hover */
   --brand-cherry: #c23b32;     /* lit accent on dark scenes */
-  --brand-gold: #8a6e4b;       /* ink gold on paper — Pantone 874 C (brandbook
+  --brand-gold: #8a6e4b;       /* ink gold on paper – Pantone 874 C (brandbook
                                   metal accent), 4.60:1 on paper: AA for text */
   /* The gold as a text colour on the recessed paper bands. Pantone 874 C
-     measures 4.32:1 on --brand-paper-2 and 4.26:1 on --brand-surface — under
+     measures 4.32:1 on --brand-paper-2 and 4.26:1 on --brand-surface – under
      AA for the 11px labels that carry it, which is most section labels on the
      site. The brand colour above is not changed; this is the variant for
      small text, and it clears every paper ground here: 5.61 / 5.42 / 5.10 /
@@ -25,15 +25,15 @@
   --brand-gold-lamp: #d6a24b;  /* lamp-scene gold */
 
   /* Light surfaces. A near-neutral ramp with only a whisper of warmth, so the
-     cherry and gold carry all the colour. (Replaced the beige/cream paper —
+     cherry and gold carry all the colour. (Replaced the beige/cream paper –
      it dated the whole site and muddied the accents.) */
   --brand-paper: #fbfbfa;      /* page background */
   --brand-paper-2: #f4f4f2;    /* recessed band */
-  --brand-surface: #ffffff;    /* cards / rows — float above the page */
+  --brand-surface: #ffffff;    /* cards / rows – float above the page */
   --brand-ink: #1a1917;        /* primary text */
   --brand-ink-2: #55524d;      /* secondary text */
   /* #8a8681 until now, which measured 3.62 / 3.49 / 3.28 against white,
-     --brand-paper and --brand-paper-2 — under AA on every light ground it
+     --brand-paper and --brand-paper-2 – under AA on every light ground it
      is used on, across seventeen selectors on the decision pages. The dark
      twin had the same defect and was fixed the same way. Now 5.45 / 5.26
      / 4.95. */
@@ -41,13 +41,13 @@
   --brand-rule: #e7e5e1;       /* hairline dividers */
 
   /* Band boundary on paper. --brand-rule is a quiet divider inside a
-     component — it measures 1.22:1 on --brand-paper and 1.14:1 on
+     component – it measures 1.22:1 on --brand-paper and 1.14:1 on
      --brand-paper-2, which is correct for a row separator and invisible as
      the edge between two full-bleed sections. The decision page alternates
      --brand-paper and --brand-paper-2, and those two are themselves only
      1.06:1 apart, so where an optional band makes two same-ground sections
      land next to each other there was nothing at all between them. This is
-     the section edge: 1.75:1 on --brand-paper, 1.64:1 on --brand-paper-2 —
+     the section edge: 1.75:1 on --brand-paper, 1.64:1 on --brand-paper-2 –
      a printed rule, seen at a glance, still a hairline.
      It doubles as the track behind a gold bar or dot field: --brand-gold-ink
      on it is 3.11:1, so a partly-filled bar clears the 3:1 graphics floor
@@ -55,12 +55,12 @@
   /* ── The decision page's warm paper ──────────────────────────────────────
      The neutral ramp above is the site's: it replaced a beige that "dated the
      whole site and muddied the accents", and it stays. These are the second
-     scale — the one the decision-page design is drawn on — and they live here
+     scale – the one the decision-page design is drawn on – and they live here
      rather than in that page's stylesheet because a colour literal outside
      this file is what AGENTS.md forbids and what design-lint fails on.
 
      Warm rather than beige, and measured: ink 14.81:1 on the paper, the
-     secondary 7.06, the faint 5.55, the gold 4.94 — and 4.50 on the recessed
+     secondary 7.06, the faint 5.55, the gold 4.94 – and 4.50 on the recessed
      paper, which is the AA floor exactly and the reason the gold is #946428
      and not the brand's own Pantone 874 C. */
   --brand-paper-warm: #fdfbf7;     /* the page */
@@ -76,7 +76,7 @@
   --brand-seam: #c6c0b6;
   --brand-cream: #f3e8e2;      /* text on dark scenes */
 
-  /* Dark surfaces — a near-black with a warm cast, so the lamp still reads as
+  /* Dark surfaces – a near-black with a warm cast, so the lamp still reads as
      light in the dark without the scene going muddy brown. */
   --brand-night: #17110f;      /* darkest ground */
   --brand-night-2: #201815;    /* raised panel on dark */
@@ -84,29 +84,29 @@
 
   /* Events-map ground. The map is a dark scene of its own, and its three
      greys sit between --brand-night (the sea, #17110f) and --brand-night-2
-     (the raised panel, #201815) — neither is a substitute: swapping either in
+     (the raised panel, #201815) – neither is a substitute: swapping either in
      visibly lifts the land off the sea or flattens Ukraine into its
      neighbours. Measured before and after this move: unchanged.
      They were bare hexes in events-map.css, which the contract forbids; only
      their home has changed.
-     (Three category hues — --brand-map-hr/war/asset — used to live here too.
+     (Three category hues – --brand-map-hr/war/asset – used to live here too.
      The map no longer colour-codes categories: every marker takes
      --brand-gold-lamp and the one distinction drawn is lit vs unlit, so those
      tokens and the legend strings that named them are gone.)
 
-     Raised once the owner asked for country outlines — «додай контури
+     Raised once the owner asked for country outlines – «додай контури
      країн або зроби їх трохи яскравішими». They were not faint, they were
      effectively absent. Measured on the built page at 1440, composited against
      the sea (--brand-night, rgb 23 17 15): land rgb 34 27 24, a ratio of
      1.10:1; the hairline between countries rgb 46 37 33, 1.13:1 against the
-     land it divides, at half a projection unit — which in the Atlantic
+     land it divides, at half a projection unit – which in the Atlantic
      framing is a third of a CSS pixel. A third of a pixel at 1.13:1 is not a
      quiet border, it is no border, and the framing whose whole point is
      recognising two continents showed an undifferentiated dark field.
      Now: land 1.25:1 against the sea, the border 2.21:1 against the land and
      2.76:1 against the sea, Ukraine 1.22:1 against its neighbours. The gold
-     still owns the drawing by a wide margin — a marker measures 6.51:1
-     against the land and 5.34:1 against Ukraine, a lit connector 5.12:1 — and
+     still owns the drawing by a wide margin – a marker measures 6.51:1
+     against the land and 5.34:1 against Ukraine, a lit connector 5.12:1 – and
      the strokes are drawn in real pixels now (see events-map.css), which is
      the half of this that colour alone could not fix. */
   --brand-map-land: #2e2521;      /* every country but Ukraine */
@@ -116,7 +116,7 @@
   /* The same drawing on paper.
      A decision page can want its map inside the reading column rather than
      as a dark island below it, and a night palette dropped on paper is not
-     a map — the land goes darker than the ink around it and the lamp gold
+     a map – the land goes darker than the ink around it and the lamp gold
      falls under the floor for a graphical object.
 
      Measured against the dark map's own ratios, so the two read as one
@@ -125,13 +125,13 @@
        the border against land 2.21   (night: 2.21)
        Ukraine against its neighbours 1.25   (night: 1.22)
      The marks are the paper gold, not the lamp gold: --brand-gold-lamp
-     measures 2.06:1 on this land and 1.64:1 on Ukraine — invisible — while
+     measures 2.06:1 on this land and 1.64:1 on Ukraine – invisible – while
      --brand-gold-ink measures 4.47:1 and 3.56:1, over 1.4.11's 3:1 floor,
      which is what a marker on a map is. The seat's ring takes --brand-ink
      where the night map takes cream. */
   /* All four are the same two colours at four strengths over the same warm
      page, which is what makes them sit together: the land, the sea and the
-     frontier are #6f564a — the brown-red the night map was drawn in — at
+     frontier are #6f564a – the brown-red the night map was drawn in – at
      20%, 6% and full, and Ukraine is the lamp's gold at 22%, because it is
      the one thing on this drawing that is lit rather than drawn.
 
@@ -173,7 +173,7 @@
      is 24px and there is nothing to memorise.
 
      Before this existed the site used 42 distinct spacing values,
-     half of them off any grid (3, 7, 9, 15, 22, 26, 34, 54…) — every
+     half of them off any grid (3, 7, 9, 15, 22, 26, 34, 54…) – every
      gap was a fresh guess. Snap to the nearest step; if a value seems
      to need something in between, the layout is usually the problem.
      Fluid gutters stay in clamp(): a scale is for rhythm, not for
@@ -206,7 +206,7 @@
   --brand-muted-dark: #c9afa8; /* muted text on cherry / dark scenes */
   /* Measured against both dark grounds the site actually uses: 4.90:1 on
      --brand-night and 4.58:1 on --brand-night-2. It was #8e736c, which is
-     4.43 and 4.29 — under AA on every dark surface it was named for. */
+     4.43 and 4.29 – under AA on every dark surface it was named for. */
   --brand-faint-dark: #9c8279; /* faint text on dark */
   --brand-muted-brown: #6e574f;/* footer legal / low-emphasis */
   /* The decision page's own dark scene, promoted out of
@@ -225,7 +225,7 @@
          state it is read against.
        - the soft rule is a second, quieter hairline under
          --brand-night-rule, not a replacement for it. */
-  /* The warm ember over the decision page's masthead — the glow the band
+  /* The warm ember over the decision page's masthead – the glow the band
      fades out of. Not near anything already here: the closest token is
      --brand-night-2 and it is a visibly different colour (ΔRGB 30). It was a
      literal inside a radial-gradient in 10-bands.css. */
@@ -234,8 +234,8 @@
   --brand-gold-dim: #b98a3f;
   --brand-breach: #e0685c;
   /* ---- the third hue: which forum, and nothing else --------------------
-     The palette held exactly two colours — red in seven shades and gold in
-     eight — plus paper, night and ink. Every distinction the site draws had to
+     The palette held exactly two colours – red in seven shades and gold in
+     eight – plus paper, night and ink. Every distinction the site draws had to
      be said in one of those two, so outcome, kind of event, standing of an
      award and which court decided it were all competing for the same ink. The
      owner's "бракує кольору" was a fact about the system, not a preference.
@@ -248,7 +248,7 @@
 
      Measured: 7.64:1 on --brand-paper, 7.19:1 on --brand-paper-2, 7.91:1 on
      --brand-surface; the lit variant 8.35:1 on --brand-night and 7.80:1 on
-     --brand-night-2. Against gold and red it sits at 1.4 and 1.3 — close in
+     --brand-night-2. Against gold and red it sits at 1.4 and 1.3 – close in
      weight on purpose, so the newcomer does not shout over the two colours
      that carry the findings. */
   --brand-forum: #3b5468;      /* institutional identity, on paper */
@@ -257,8 +257,8 @@
   --brand-cream-warm: #fff8ea; /* text on solid red buttons */
   --brand-ink-black: #0e0504;  /* darkest surface (footer) */
   /* --brand-quote (#1e0c0b) was here: the pull-quote band's own ground. The
-     band is on --brand-ember now — owner's decision that the quotation and
-     the hero should be wine rather than black — and nothing else ever used
+     band is on --brand-ember now – owner's decision that the quotation and
+     the hero should be wine rather than black – and nothing else ever used
      this, so it goes rather than sitting in the palette as a colour the site
      no longer has. quote.css still names it in the notes that record what the
      contrast figures were taken against before and after. */
@@ -272,18 +272,18 @@
      italics and four Charis italics preloaded on every page when the site
      sets italic in four rules at three weights; splitting them dropped
      120,660 B. Both calls end up under the same CSS family name, so these two
-     resolve to the same faces `--brand-font-body` would — they are named so
+     resolve to the same faces `--brand-font-body` would – they are named so
      that the four italic rules say which faces they mean, and keep saying it
      if the loader ever starts hashing family names apart. */
   --brand-font-body-italic: var(--font-fira-italic), 'Fira Sans';
   --brand-font-display-italic: var(--font-charis-italic), 'Charis SIL';
-  /* Monospace carries the machinery of a judgment — paragraph refs (§ 392),
+  /* Monospace carries the machinery of a judgment – paragraph refs (§ 392),
      docket numbers, dates. Pairing a neo-serif with mono is what keeps a legal
      archive from reading like a brochure.
 
      **Two weights exist: 400 and 500.** That is what `layout.tsx` loads, and
      it is the whole vocabulary a mono rule may use. A rule that asks for 600
-     or 700 does not fall back to 500 quietly — Blink synthesises a bold from
+     or 700 does not fall back to 500 quietly – Blink synthesises a bold from
      it, smearing the 500 face sideways, and at 11px uppercase with tracking
      the result is a blur rather than a heavier label. Fifteen rules asked for
      one: 200 elements across 82 routes at 600 and 66 across 64 at 700, all of
@@ -295,7 +295,7 @@
 
   /* ── Type scale ─────────────────────────────────────────────────
      One ramp for the whole site. It existed only inside .casepage, so
-     the header, footer and page nav each invented their own sizes —
+     the header, footer and page nav each invented their own sizes –
      a single decision page rendered nineteen different values, ten of
      them off any scale, which is what "sometimes huge, sometimes tiny"
      actually was. Steps sit ~1.11–1.14 apart through the reading range
@@ -305,22 +305,22 @@
      11px is the ramp's floor and the size every label on this site takes;
      a key lying on a drawing is the one place that reads as too loud at it,
      because it is competing with the names written on the map rather than
-     with the prose. Declared as a step so the lint can see it — which does
+     with the prose. Declared as a step so the lint can see it – which does
      mean the lint will now accept 9px anywhere, so: it belongs to
      `.map-legend`, and a second user of it is a question, not a licence. */
   --t-map: 8px;
   --t-cap: 12.5px;    /* captions, citations, metadata */
   --t-sm: 14px;       /* secondary prose, list items, UI rows */
   /* --t-ui was 15.5px, a fourth step inside the 11–15.5 band. Four sizes
-     within four and a half pixels do not read as hierarchy — they read as
+     within four and a half pixels do not read as hierarchy – they read as
      carelessness, and the same role kept landing on different ones: a name in
      one list at 15.5, a name in another at 22.5. It is an alias now, so the
      small end is three clearly separated steps and title-vs-description is
      carried by weight, which those pairs already use. */
   --t-ui: var(--t-sm);
   /* 17.5px until now. Reading prose is 16px Fira Sans across the site: the
-     serif and the extra pixel and a half belong to the document furniture —
-     headings, case names, figures — which still carry them. */
+     serif and the extra pixel and a half belong to the document furniture –
+     headings, case names, figures – which still carry them. */
   --t-body: 16px;     /* long-form reading */
   --t-lead: 20px;     /* standfirst, wordmark in the bar */
   --t-h3: 22.5px;
@@ -332,8 +332,8 @@
      page's body size. Declared here, where the rest of the scale is.
 
      --t-mast is a step the scale was missing rather than a synonym. A section
-     page's title — /registry, /about, /team, /partners, the legal pages
-     — sat at clamp(30px, 5vw, 44px), between --t-h2's 29px ceiling and
+     page's title – /registry, /about, /team, /partners, the legal pages
+     – sat at clamp(30px, 5vw, 44px), between --t-h2's 29px ceiling and
      --t-h1's 32px floor. It is not the decision page's hero and it is not a
      section heading; giving it --t-h1 would have doubled it, and --t-h2 would
      have made a page's title the same size as the headings inside it. */
@@ -341,11 +341,11 @@
   /* The decision page's hero, and its only user. It was clamp(32px, 5vw,
      68px): on a wide window the title of a judgment ran at 68px over two
      lines and was the loudest thing in the archive, above the judgment's own
-     words. 50px keeps it a step clear of a section masthead's 44px — the
-     hierarchy is intact — and gives the page back to the text. */
+     words. 50px keeps it a step clear of a section masthead's 44px – the
+     hierarchy is intact – and gives the page back to the text. */
   --t-h1: clamp(30px, 3.6vw, 50px);
 
-  /* Case status — the registry's primary signal, so it has to survive both
+  /* Case status – the registry's primary signal, so it has to survive both
      themes. These were hex literals in shared.css and did not follow the
      theme: composited over the dark ground they measured 2.26–2.85:1, below
      the 4.5:1 AA floor. The dark values below are lifted the same way the
@@ -354,7 +354,7 @@
   --status-progress: #8a5d1f;
   --status-enforce: #3a5670;
 
-  /* Reader (caseworks) palette — surfaces follow the brand neutrals */
+  /* Reader (caseworks) palette – surfaces follow the brand neutrals */
   --bg: var(--brand-paper);
   --bg-2: var(--brand-paper-2);
   --ink: #0c0c0d;
@@ -368,7 +368,7 @@
 /* The site has one theme: paper. A dark variant used to ride on the lamp
    metaphor, with an OS media query and a [data-theme] override, but the
    project keeps a single palette, so the switch and both dark blocks are
-   gone. `color-scheme: light` is declared on :root above — without it a
+   gone. `color-scheme: light` is declared on :root above – without it a
    dark-OS browser still paints scrollbars and form controls dark. */
 
 @theme inline {
@@ -401,16 +401,16 @@ body {
    Widows.
 
    Measured on /uk/about at a 1400px window: two of the six paragraphs
-   ended on a single word — «України.» and «статусу.» alone on the last
-   line — which the owner's word for is untidy, and which is what it is: a
+   ended on a single word – «України.» and «статусу.» alone on the last
+   line – which the owner's word for is untidy, and which is what it is: a
    line carrying one word reads as a fault in the line above it rather
    than as the end of a sentence.
 
    `text-wrap: pretty` is the property for this. The browser looks ahead
    over the last few lines and moves a word back so the paragraph does not
    end short; unlike `balance` it does not re-lay the whole block, so it is
-   safe on prose of any length. Where a paragraph already sets `balance` —
-   the hero's statement, the quotation on a wide screen — that rule is more
+   safe on prose of any length. Where a paragraph already sets `balance` –
+   the hero's statement, the quotation on a wide screen – that rule is more
    specific and keeps it: balance is for a short block that should look
    even, pretty for a long one that should not end badly.
 
@@ -421,13 +421,13 @@ body {
    This looked at first as though the build were removing it: the dev
    server's globals chunk had no `pretty` in it, no loaded stylesheet had
    a rule matching `p` with the property, and injecting the same rule into
-   the live page changed the computed value — so the browser could do it
+   the live page changed the computed value – so the browser could do it
    and something upstream appeared to be stripping it. The suspect was
    Lightning CSS, which Tailwind 4 runs stylesheets through and which does
    drop declarations its target browsers do not support. It was not that.
    The dev server was serving a stale chunk and went on serving it across
    a restart. A clean production build emits this rule exactly as written
-   — `p,li,blockquote,figcaption,dd{text-wrap:pretty}` — in the chunk
+   – `p,li,blockquote,figcaption,dd{text-wrap:pretty}` – in the chunk
    /uk/about loads. `npm run verify` checks that on every build, which is
    the honest way to hold a conclusion like this.
    ───────────────────────────────────────────────────────────── */
@@ -447,13 +447,13 @@ dd {
    ───────────────────────────────────────────────────────────── */
 /* No border-radius here on purpose: the outline already follows whatever radius
    the element itself carries, so setting one would reshape the element on
-   focus — a pill would square off, a plain link would gain corners. */
+   focus – a pill would square off, a plain link would gain corners. */
 :where(a, button, summary, input, select, textarea, [tabindex]):focus-visible {
   outline: 2px solid var(--brand-red);
   outline-offset: 3px;
 }
 /* The skip link's landing place. It carries tabindex="-1" so that activating
-   "skip to content" actually moves focus — without it the fragment scrolls the
+   "skip to content" actually moves focus – without it the fragment scrolls the
    page and leaves document.activeElement on <body>, which is why the link did
    nothing for a screen reader. It is not a tab stop, so 2.4.7 asks for no ring
    on it, and the ring it would otherwise inherit from the rule above is drawn
@@ -465,34 +465,34 @@ dd {
   outline: none;
 }
 
-/* On dark scenes the cherry ring disappears — use the lamp gold: --brand-red
+/* On dark scenes the cherry ring disappears – use the lamp gold: --brand-red
    is 1.81:1 on --brand-night and --brand-gold-lit is 9.98:1.
 
    Two passes met here and both were right about different halves.
 
    The list has to follow the bands, and it had been wrong in both directions.
    `.casepage .dash` was in it, then out of it when the dashboard moved to
-   paper — where a gold ring measures 1.70:1, which is no ring at all for the
-   only people who need one — then back when the band went dark, and now it is
+   paper – where a gold ring measures 1.70:1, which is no ring at all for the
+   only people who need one – then back when the band went dark, and now it is
    `.casepage .score`: the band split, and only the half carrying the holding
    and the sums kept the night. That is the smaller half of this rule.
 
    The larger half: the list named four scenes and reached two. `.lamp` and
-   `.court` match no element on any page — the lamp stage is `.lmp`, the court
-   masthead is `.casepage .mast` — so the only dark grounds actually answered
+   `.court` match no element on any page – the lamp stage is `.lmp`, the court
+   masthead is `.casepage .mast` – so the only dark grounds actually answered
    were the decision page's masthead and its dispositif panel. Everything else
    dark on this site drew the cherry ring, measured on the built pages at 1440:
    the header on every page and its drawer at 1.81:1, the footer 1.95:1, the
    map scene 1.69–1.81:1, the decision page's side nav in both its renderings
    1.81:1, the home page's hero buttons over the lamp 1.79:1. That is the
-   site's whole navigation — the wordmark, seven nav links, both language
-   links, eleven section links per decision page — failing 1.4.11 for the only
+   site's whole navigation – the wordmark, seven nav links, both language
+   links, eleven section links per decision page – failing 1.4.11 for the only
    readers a focus ring exists for.
 
    Named band by band, and every one checked to the leaf, because naming a
    wrapper instead of a scene is how this broke the first time. The home page's
    `.lmp` is exactly that trap: it is the whole of <main>, so it holds the lamp
-   stage and the map and the pull quote — and also the library accordion on
+   stage and the map and the pull quote – and also the library accordion on
    white and the partners band on paper. Gold on white is 1.87:1 against the
    cherry's 8.68, so reaching for the wrapper would have taken a working ring
    off forty-seven controls to fix three. */
@@ -529,7 +529,7 @@ dd {
 }
 
 
-/* Disabled controls exist visually, not just semantically — the handoff's
+/* Disabled controls exist visually, not just semantically – the handoff's
    longest-standing gap. Applies site-wide so the next form inherits it. */
 button:disabled,
 input:disabled,
@@ -546,8 +546,8 @@ textarea:disabled {
    and landed in three different places: measured at 1990px the bands began at
    405px and the chrome at 56px, a 349px disagreement that ran the length of
    every page. They share one value now, so a single line runs down the left
-   edge of the site and only the deliberately full-bleed sections — the map
-   drawing, the accordion rows — cross it.
+   edge of the site and only the deliberately full-bleed sections – the map
+   drawing, the accordion rows – cross it.
 
    Below the cap it is a flat gutter; above it, the gutter grows to whatever
    keeps the content inside the measure. `100%` resolves against .nsv-root,
@@ -561,13 +561,13 @@ textarea:disabled {
      and stops at this, rather than being capped at a fixed number smaller
      than its own column. A fixed cap does not move when the column grows, so
      the page ends up with a band of text down the left and a field of empty
-     paper down the right — the reader reads a third of the width the page
+     paper down the right – the reader reads a third of the width the page
      set aside for them.
 
      820px is about 95 characters of Fira Sans at 16px: the top of the
      comfortable band rather than the middle of it, which is the right end to
      be at on a page that is mostly one column. `min(100%, …)` is the whole
-     rule — take the column, stop here. */
+     rule – take the column, stop here. */
   --prose-max: 820px;
 }
 .nsv-root {
@@ -588,7 +588,7 @@ textarea:disabled {
    its footer and its dark grounds onto paper, which wastes a cartridge and
    hands the reader a page of furniture they cannot click.
 
-   Ink on white here, deliberately as literals — a printer has no theme to
+   Ink on white here, deliberately as literals – a printer has no theme to
    follow, and the paper is the ground whatever the reader's screen was doing. */
 @media print {
   :root {
@@ -621,7 +621,7 @@ textarea:disabled {
   /* The point of printing a page from an archive is to take its sources with
      you. On screen the address is behind the link text; on paper it has to be
      the text, or the citation cannot be followed. Internal links are left
-     alone — their targets are hidden navigation or pages in the same site. */
+     alone – their targets are hidden navigation or pages in the same site. */
   a[href^="http"]::after {
     content: " (" attr(href) ")";
     font-size: 0.85em;
@@ -631,8 +631,8 @@ textarea:disabled {
 
 /* ── The citation link inside the about prose ───────────────────────────────
    `content/about.ts` names the General Assembly resolution and links it, and
-   that paragraph renders in two places — the home page's About band and
-   /about — which are styled by two different files. The rule lives here so the
+   that paragraph renders in two places – the home page's About band and
+   /about – which are styled by two different files. The rule lives here so the
    link cannot be styled on one page and bare on the other.
 
    Underlined rather than coloured, and the colour is explicitly held at

@@ -1,5 +1,5 @@
 /* ============================================================================
-   Decision page — "court" theme.
+   Decision page – "court" theme.
 
    Three rules hold this page together:
    1. ONE RAIL. Every band uses .rail, so the masthead, the lede, the dashboard
@@ -12,7 +12,7 @@
    ========================================================================== */
 
 .casepage {
-  /* Dark "court" ground — all from the brand tokens, no local copies.
+  /* Dark "court" ground – all from the brand tokens, no local copies.
 
      That sentence is true now. Until this pass five of these twelve were hex
      literals sitting here, which is what AGENTS.md forbids and what the line
@@ -21,7 +21,7 @@
      against --brand-muted-dark #c9afa8 (10.25:1 and 9.06:1 on this ground,
      both far clear of AA), --faint was #968a85 against --brand-faint-dark
      #9c8279 (5.58:1 and 5.24:1). The other three were real colours with no
-     equivalent and went to globals.css keeping their exact values — see the
+     equivalent and went to globals.css keeping their exact values – see the
      note there for why breach red is not cherry. */
   --bg: var(--brand-night);
   --panel: var(--brand-night-2);
@@ -45,23 +45,23 @@
   --ink2: var(--brand-ink-2);
   --ink3: var(--brand-faint);
   --prule: var(--brand-rule);
-  /* the edge between two full-bleed paper bands — see --brand-seam */
+  /* the edge between two full-bleed paper bands – see --brand-seam */
   --seam: var(--brand-seam);
-  /* Accents on the light ground must follow the theme too — as literals they
+  /* Accents on the light ground must follow the theme too – as literals they
      dropped to 3.3:1 and 2.7:1 on the dark ground. The brand tokens lift
      automatically in dark mode. */
   /* The text variant, not the brand mark. --brand-gold is Pantone 874 C and
-     measures 4.32:1 on --brand-paper-2 and 4.26:1 on --brand-surface — under
+     measures 4.32:1 on --brand-paper-2 and 4.26:1 on --brand-surface – under
      AA for the 11px labels that use it, which is most section labels here.
      --pgold also draws hairlines, and a slightly darker gold on a 1px rule is
      no loss; the brand colour itself is untouched and still available. */
   --pgold: var(--brand-gold-ink);
   --pred: var(--brand-red);
-  /* Which court, on paper. Never an outcome — see the note in globals.css. */
+  /* Which court, on paper. Never an outcome – see the note in globals.css. */
   --pforum: var(--brand-forum);
 
   /* Steps shared with the rest of the site live in globals.css; this one
-     exists only here — the masthead.
+     exists only here – the masthead.
      --t-fig (clamp(29px, 3.6vw, 44px)) is gone: its only user was the KPI
      figure, which read as a headline at 44px beside a 14px caption. The strip
      is data, so the figure now takes --t-h2, the top of the shared ramp. */
@@ -74,8 +74,8 @@
   /* rhythm
 
      The page's box is the design's: 1160px from edge to edge, with a gutter
-     that runs 18 → 56. Everything else follows from that pair — the masthead
-     rail, the shell under it and the two columns inside it — so the title and
+     that runs 18 → 56. Everything else follows from that pair – the masthead
+     rail, the shell under it and the two columns inside it – so the title and
      the text keep one left edge and one right edge, and the whole block sits
      where the design puts it on a wide screen.
 
@@ -87,7 +87,7 @@
   /* The design's 1048 is a floor, not a ceiling.
 
      Fixed at 1048 the box is exactly the mock at the width the mock was drawn
-     for — and on a 1920 screen it left 380px of paper doing nothing on each
+     for – and on a 1920 screen it left 380px of paper doing nothing on each
      side while a claim and the Court's answer beside it ran six words to the
      line. `clamp` keeps the mock's own figure wherever the viewport is around
      1540 or under, then lets the box grow with the screen and stops at 1320,
@@ -99,7 +99,7 @@
   --measure: clamp(1048px, 68vw, 1320px);
   /* The reading measure.
 
-     660px — 80 characters of Fira Sans at 16px — was argued out four times
+     660px – 80 characters of Fira Sans at 16px – was argued out four times
      and measured; the working is in 30-paper.css above `.read`. It was a
      fixed number, and beside a column that had grown to 778 it cut the text
      off a third of the way short of its own edges, which is what a reader
@@ -107,12 +107,12 @@
 
      The design does not cap prose separately at all: its text runs the
      content column, and the column itself is what stops at 820. So that is
-     the rule here too — take the column, stop at 820 — and 820 is close
+     the rule here too – take the column, stop at 820 – and 820 is close
      enough to the 80-character argument that the argument survives: at 16px
      it is about 95 characters, the top of the comfortable band rather than
      the middle of it. */
   --prose: min(100%, var(--prose-max));
-  /* The sticky bar of chips this measured is gone — the page's map is a
+  /* The sticky bar of chips this measured is gone – the page's map is a
      column beside the text now (see `.casepage .shell`). What is left is the
      gap an anchored section keeps from the top of the viewport, which is what
      every `scroll-margin-top` on this page was really asking for. */
@@ -122,11 +122,11 @@
   color: var(--ink);
   font-family: var(--brand-font-body), sans-serif;
 
-  /* the header has no lamp backdrop here — give it its own ground */
+  /* the header has no lamp backdrop here – give it its own ground */
 }
 
 /* the single shared rail */
-/* --measure is the width of the CONTENT, not of the box that holds it — that
+/* --measure is the width of the CONTENT, not of the box that holds it – that
    is what it means on the home page, where each band's padding grows to
    max(gutter, (100% - measure) / 2) and every band therefore carries 1180px
    of content. Here the cap sat on the rail's border box, so the content was
@@ -137,7 +137,7 @@
 .casepage .rail {
   /* On the site's one rail (DESIGN.md §2). Centred, the column started at
      196 on a 1440 window while the header, the registry and every other page
-     start at 130 — going from the library into a decision, the text stepped
+     start at 130 – going from the library into a decision, the text stepped
      sideways. It now starts on --page-gutter like everything else and keeps
      its own measure from there: capped against the left edge, never centred.
      --measure still widens on large screens, so past ~1700 the column runs a
@@ -147,7 +147,7 @@
   padding-inline: var(--page-gutter) var(--gutter);
 }
 
-/* section label — gold, quiet rule */
+/* section label – gold, quiet rule */
 .casepage .lbl {
   display: flex;
   align-items: baseline;

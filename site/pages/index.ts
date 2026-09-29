@@ -1,5 +1,5 @@
 /**
- * `/` → `/uk` or `/en` by Accept-Language — what src/proxy.ts does under Next.
+ * `/` → `/uk` or `/en` by Accept-Language – what src/proxy.ts does under Next.
  */
 import type { APIRoute } from "astro";
 import { defaultLocale, isLocale } from "@/i18n/config";

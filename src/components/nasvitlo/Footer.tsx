@@ -23,7 +23,7 @@ const footLink: React.CSSProperties = {
  *  claims to be clickable when it would only land back on the same page. */
 type FootEntry = { label: string; href?: string };
 
-/** Not-yet-a-link. Set apart by colour rather than opacity — dimming the link
+/** Not-yet-a-link. Set apart by colour rather than opacity – dimming the link
  *  colour to 55% took it to 3.53:1, under the AA floor. This token is a
  *  designed value and clears it at 4.62:1 on the footer ground. */
 const footPending: React.CSSProperties = {
@@ -35,13 +35,13 @@ const footPending: React.CSSProperties = {
  *
  *  The footer sat at a flat 28px while the bar above it had moved to a fluid
  *  inset, so the wordmark in the header and the wordmark in the footer did not
- *  share a left edge — on a wide screen the footer hugged the window. This is
+ *  share a left edge – on a wide screen the footer hugged the window. This is
  *  the same expression the header uses (`components/nasvitlo/Header.tsx`),
  *  named once here rather than pasted as a literal. It wants to be a token in
  *  globals.css the day the chrome gutter gets one; until then the two values
  *  are kept identical by hand.
  */
-/* The site's shared left edge — see the note in globals.css. Header, footer
+/* The site's shared left edge – see the note in globals.css. Header, footer
    and every content band read this one value. */
 const chromeInsetLeft = "var(--page-gutter)";
 
@@ -60,7 +60,7 @@ const footMail: React.CSSProperties = {
   textUnderlineOffset: 4,
 };
 
-/** The legal bar reads at 11px, so its links are footLink at that size —
+/** The legal bar reads at 11px, so its links are footLink at that size –
  *  same colour and same no-underline as every other link in the footer. */
 const legalLink: React.CSSProperties = { ...footLink, fontSize: "var(--t-micro)" };
 
@@ -148,7 +148,7 @@ export default function Footer({
                  the foot of this same file already made this exact swap and
                  says why: muted-brown measures 3.01:1 on --brand-ink-black,
                  under AA for 11px text. This block is the same 11px on the
-                 same ground and was left behind — 5.64:1 now. */
+                 same ground and was left behind – 5.64:1 now. */
               color: "var(--brand-faint-dark)",
             }}
           >
@@ -160,10 +160,10 @@ export default function Footer({
 
         {/* The two columns say what the top bar says, and nothing else.
 
-            «Суди та інстанції» and «Документи» carried no href — they were
+            «Суди та інстанції» and «Документи» carried no href – they were
             labels for pages that do not exist, and a reader who pressed them
             got nothing at all. «Блог» was the third of them. The blog exists
-            now, and it is listed only on a build where the page does — once a
+            now, and it is listed only on a build where the page does – once a
             post is published in this language.
             A footer is a map of the site; entries that lead nowhere make it a
             map of a different one. */}
@@ -180,7 +180,7 @@ export default function Footer({
         <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
           <div style={colHead}>{f.colContacts}</div>
           {/* The one contact control in the footer, and it used to be
-              indistinguishable from the postal address directly under it —
+              indistinguishable from the postal address directly under it –
               same size, same --brand-muted-dark, no underline, so the column
               read as two lines of information and neither looked clickable.
               It takes --brand-gold-pale and a rule now: 14.98:1 on the footer
@@ -191,7 +191,7 @@ export default function Footer({
           <a href={`mailto:${f.email}`} style={footMail}>
             {f.email}
           </a>
-          {/* The support ask — the same control the top bar carries, because
+          {/* The support ask – the same control the top bar carries, because
               one ask shown two ways is two asks as far as a reader is
               concerned. It was an underlined link here and a chip up there,
               with two different labels besides; it is `.nsv-support` in both
@@ -221,7 +221,7 @@ export default function Footer({
           flexWrap: "wrap",
         }}
       >
-        {/* --brand-muted-brown is 3.01:1 on this ground — under AA at 11px, so
+        {/* --brand-muted-brown is 3.01:1 on this ground – under AA at 11px, so
             the whole legal bar reads in --brand-faint-dark (4.62:1) instead. */}
         <span style={{ fontSize: "var(--t-micro)", color: "var(--brand-faint-dark)" }}>{f.rights}</span>
         <span style={{ display: "flex", gap: 18 }}>

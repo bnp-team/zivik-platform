@@ -1,5 +1,5 @@
 /**
- * `next/navigation` under Astro — the three calls this codebase makes.
+ * `next/navigation` under Astro – the three calls this codebase makes.
  *
  * `notFound()` throws a marker the route adapter turns into the 404 page.
  * `usePathname()` reads the path from context: the route provides it on the

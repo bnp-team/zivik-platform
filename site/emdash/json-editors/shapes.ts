@@ -1,12 +1,12 @@
 /**
  * The shapes of the eight JSON fields of a decision summary, described for
- * the admin editor (./admin.tsx) — which draws a form from them instead of a
+ * the admin editor (./admin.tsx) – which draws a form from them instead of a
  * box of raw JSON.
  *
  * Each shape mirrors a type in src/content/summaries/types.ts; the labels are
  * the admin's words for it. Keys the description does not name are kept as
  * they are when the entry is saved, so a field the editor does not know yet
- * is never lost — it just is not shown.
+ * is never lost – it just is not shown.
  */
 
 export type Shape =
@@ -14,7 +14,7 @@ export type Shape =
   | { kind: "text"; label: string; multiline?: boolean; optional?: boolean; hint?: string }
   /** `{ uk, en }`. */
   | { kind: "loc"; label: string; multiline?: boolean; optional?: boolean; hint?: string }
-  /** `string | { uk, en }` — one value for both languages, or a pair. */
+  /** `string | { uk, en }` – one value for both languages, or a pair. */
   | { kind: "either"; label: string; optional?: boolean; hint?: string }
   | { kind: "number"; label: string; optional?: boolean; hint?: string }
   | { kind: "bool"; label: string; optional?: boolean; hint?: string }
@@ -27,7 +27,7 @@ export type Shape =
       label: string;
       item: Shape;
       optional?: boolean;
-      /** What a collapsed row says — the first filled of these keys. */
+      /** What a collapsed row says – the first filled of these keys. */
       title?: string[];
       /** «Додати …» */
       noun?: string;
@@ -55,7 +55,7 @@ const metric: Shape = {
   kind: "object",
   fields: {
     label: loc("Підпис"),
-    value: { kind: "either", label: "Значення", hint: "Число однакове для обох мов — впишіть лише UA." },
+    value: { kind: "either", label: "Значення", hint: "Число однакове для обох мов – впишіть лише UA." },
     percent: num("Частка, % (смужка)", { optional: true }),
     restLabel: loc("Підпис решти смужки", { optional: true }),
     count: num("Кількість", { optional: true }),
@@ -128,7 +128,7 @@ const objection: Shape = {
       optional: true,
       noun: "голосування",
       format: (v: { for?: number; against?: number; scope?: { uk?: string } }) =>
-        [`за ${v.for ?? "?"} · проти ${v.against ?? "?"}`, v.scope?.uk].filter(Boolean).join(" — "),
+        [`за ${v.for ?? "?"} · проти ${v.against ?? "?"}`, v.scope?.uk].filter(Boolean).join(" – "),
       item: {
         kind: "object",
         fields: {
@@ -370,14 +370,14 @@ export const SHAPES: Record<string, Shape> = {
 
 const linkList = (lang: string): Shape => ({
   kind: "list",
-  label: `Посилання — ${lang}`,
+  label: `Посилання – ${lang}`,
   noun: "посилання",
   title: ["text"],
   item: {
     kind: "object",
     fields: {
       text: text("Фрагмент абзацу", {
-        hint: "Має дослівно збігатися з частиною абзацу вище — інакше збірка зупиниться.",
+        hint: "Має дослівно збігатися з частиною абзацу вище – інакше збірка зупиниться.",
       }),
       href: text("Адреса", { hint: "https://…" }),
     },
@@ -403,7 +403,7 @@ Object.assign(SHAPES, {
   },
   /* Про проєкт → «Посилання в тексті». */
   aboutLinks: { kind: "object", fields: { uk: linkList("UA"), en: linkList("EN") } },
-  /* Мапа: ключі міст судів (MAP_COURTS) — події й країни. */
+  /* Мапа: ключі міст судів (MAP_COURTS) – події й країни. */
   courtKeys: { kind: "lines", label: "Міста судів (ключі, по одному в рядку)", hint: "Напр. hague, strasbourg, paris" },
   /* Мапа: події → «Огляди». */
   caseSlugs: { kind: "lines", label: "Огляди (slug, по одному в рядку)", hint: "Напр. icj-genocide" },
@@ -437,7 +437,7 @@ Object.assign(SHAPES, {
 type Json = unknown;
 const isObj = (v: Json): v is Record<string, Json> => typeof v === "object" && v !== null && !Array.isArray(v);
 
-/** Is this value «nothing» for an optional field — so the key is left out? */
+/** Is this value «nothing» for an optional field – so the key is left out? */
 export function isEmpty(shape: Shape, v: Json): boolean {
   if (v === undefined || v === null || v === "") return true;
   switch (shape.kind) {

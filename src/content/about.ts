@@ -7,15 +7,15 @@ import { locales } from "@/i18n/config";
  * 'NaSvitlo'.
  *
  * This renders on BOTH the home page's about band and /about, so anything
- * added here appears twice. The scope statement — which courts' practice the
- * library covers — deliberately lives in the about page's own prose instead:
+ * added here appears twice. The scope statement – which courts' practice the
+ * library covers – deliberately lives in the about page's own prose instead:
  * it was the home page's intro band and the user asked for it off the home
  * page entirely.
  *
  * ── The owner's own description, September 2026 ────────────────────────────
  * The first and third paragraphs are the platform's own text, handed over as
- * «Про платформу — опис повний»: what the library is, and who it is for. The
- * English is a translation of that Ukrainian, made here — the document
+ * «Про платформу – опис повний»: what the library is, and who it is for. The
+ * English is a translation of that Ukrainian, made here – the document
  * carries no English of its own, and the site cannot render a paragraph in
  * one language only.
  *
@@ -33,7 +33,7 @@ import { locales } from "@/i18n/config";
  *    sentence names both origins now.
  * 2. The resolution was identified only by its month. It is General Assembly
  *    resolution 68/262 «Територіальна цілісність України» of 27 March 2014,
- *    and it is named in full and linked — this archive's whole method is that
+ *    and it is named in full and linked – this archive's whole method is that
  *    a reader can check a statement against the document behind it.
  * ────────────────────────────────────────────────────────────────────────────
  */
@@ -51,7 +51,7 @@ export const about: AboutContent = {
   },
   paragraphs: {
     uk: [
-      "Бібліотека відповідальності та правосуддя для України «НаСвітло» — це онлайн-колекція міжнародної практики та практики іноземних судів, пов'язаної із забезпеченням відповідальності за порушення міжнародного права, вчинені у контексті війни Росії проти України. Платформа об'єднує в одному просторі аналіз рішень та інших матеріалів відповідних судових проваджень, роблячи їх доступними для системного пошуку, дослідження та аналізу.",
+      "Бібліотека відповідальності та правосуддя для України «НаСвітло» – це онлайн-колекція міжнародної практики та практики іноземних судів, пов'язаної із забезпеченням відповідальності за порушення міжнародного права, вчинені у контексті війни Росії проти України. Платформа об'єднує в одному просторі аналіз рішень та інших матеріалів відповідних судових проваджень, роблячи їх доступними для системного пошуку, дослідження та аналізу.",
       "Протиправний характер дій Росії був визнаний ще у 2014 році: схвалена Генеральною Асамблеєю ООН 27 березня 2014 року резолюція «Територіальна цілісність України» наголошувала на незаконності «референдуму» в Криму та закликала всі держави, міжнародні організації і спеціалізовані установи не визнавати жодних змін його статусу.",
       "«НаСвітло» задумана не просто як архів судових рішень, а як відкритий ресурс для дослідників, практикуючих юристів, студентів, представників громадянського суспільства та всіх, хто працює над питаннями відповідальності, правосуддя і верховенства права у контексті війни проти України.",
     ],
@@ -61,7 +61,7 @@ export const about: AboutContent = {
       "NaSvitlo is conceived not merely as an archive of court decisions but as an open resource for researchers, practising lawyers, students, civil society and everyone working on accountability, justice and the rule of law in the context of the war against Ukraine.",
     ],
   },
-  /* A/RES/68/262, in the UN Digital Library — not a PDF on a mirror, and not
+  /* A/RES/68/262, in the UN Digital Library – not a PDF on a mirror, and not
      the docs.un.org symbol permalink either. That one resolves, but it opens a
      JavaScript document viewer that renders nothing a reader can confirm the
      document by; this record page is titled with the resolution's own name,
@@ -84,7 +84,7 @@ export const about: AboutContent = {
 };
 
 /**
- * A link whose `text` is not in the prose renders as nothing at all — the
+ * A link whose `text` is not in the prose renders as nothing at all – the
  * paragraph reads correctly and the citation silently disappears, which is the
  * one failure this file cannot afford. Editing the sentence and forgetting the
  * link table now fails the build instead.

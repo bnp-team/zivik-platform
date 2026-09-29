@@ -5,7 +5,7 @@ import { pick, type AboutContent } from "@/content/types";
 import { linkAboutProse } from "@/content/about-prose";
 
 /**
- * "About the Library" — main text plus a marginalia side-rail (law-journal
+ * "About the Library" – main text plus a marginalia side-rail (law-journal
  * layout), so the section carries content instead of empty space.
  */
 export default function About({
@@ -38,19 +38,19 @@ export default function About({
       <div className="lbl">
         <span>{pick(about.title, locale)}</span>
       </div>
-      {/* Проза і вихід на сторінку — двома колонками.
+      {/* Проза і вихід на сторінку – двома колонками.
 
           Кнопка стояла окремим блоком під смугою, з від'ємним полем, яке
-          підтягувало її назад під підошву смуги, — і на широкому екрані вона
+          підтягувало її назад під підошву смуги, – і на широкому екрані вона
           опинялася під текстом, що займає ліві дві третини, з порожнім
           папером праворуч. Власниця: «може докладніше про проєкт поставимо
           праворуч від тексту в другу колонку?». Тепер це друга колонка тієї
           самої сітки: проза тримає свою міру, кнопка стоїть на верхній лінії
           першого абзаца. Вужче за 1000 колонки складаються, і кнопка
-          повертається під текст — туди, де й була. */}
+          повертається під текст – туди, де й була. */}
       <div className="nsv-about-grid">
       <div className="nsv-about-main">
-        {/* All prose of one rank, so one face, one size and one colour —
+        {/* All prose of one rank, so one face, one size and one colour –
             set together on `.nsv-about-main p` in home.css. The opening
             paragraph used to lead at 18px in the display serif, then by
             colour (--ink, 17.57:1, against --ink2's 7.78:1 for the rest);
@@ -63,7 +63,7 @@ export default function About({
       </div>
         {/* Спільна пігулка сайту, а не власна.
 
-            Тут стояла `.btn .btn-o` — прозора пігулка з червоним обідком, —
+            Тут стояла `.btn .btn-o` – прозора пігулка з червоним обідком, –
             і це був єдиний об'єкт такого роду на всьому сайті: більше ніде
             вона не вживається. Контрол на папері в нас інший, `.nsv-cta`:
             він стоїть у «Написати нам» на /about і /team та в «Підтримати
@@ -71,7 +71,7 @@ export default function About({
 
             І колір. У примітці до `.btn-lit` у home.css записано, чому
             кнопку в лампі свого часу зняли з червоного: червоний на цьому
-            сайті означає порушення, а навігаційна кнопка — не порушення. Ця
+            сайті означає порушення, а навігаційна кнопка – не порушення. Ця
             носила рівно той колір, від якого та відмовилась, і в тій самій
             ролі. Власниця питала, чи вибивається; вибивалася. */}
         <p className="nsv-about-go">

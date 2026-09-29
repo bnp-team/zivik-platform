@@ -60,7 +60,7 @@ export async function generateMetadata({
       description,
       images: [ogImage(defaultOgImage, dict.meta.ogAlt)],
     },
-    // A page that sets openGraph and no twitter inherits the layout's card —
+    // A page that sets openGraph and no twitter inherits the layout's card –
     // so this page used to share as the home page, title, text and image.
     twitter: {
       card: "summary_large_image",
@@ -105,14 +105,14 @@ const stageWord = (k: string | undefined) =>
               {dict.mapSection.backHome}
             </Link>
             {/* The same heading the home band carries, at the user's request:
-                one map, one title. The label rule above it comes with it — this
+                one map, one title. The label rule above it comes with it – this
                 page had its own wording for the same object. */}
             <div className="lbl">
               <span>{dict.mapSection.label}</span>
             </div>
             <h1>{dict.mapSection.heading}</h1>
             <p className="mp-lede">{dict.mapSection.pageLede}</p>
-            {/* No scope line here either — see the note in MapSection. */}
+            {/* No scope line here either – see the note in MapSection. */}
           </header>
 
           <EventsMap

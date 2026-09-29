@@ -3,10 +3,10 @@
  * EmDash row and the value `src/content/*.ts` exports.
  *
  * One description per collection drives three things:
- *   - the EmDash schema (`seedSchema`) — the collections and fields editors
+ *   - the EmDash schema (`seedSchema`) – the collections and fields editors
  *     see in /_emdash/admin;
- *   - the seed (`toRow`) — today's file content, imported into EmDash;
- *   - the build snapshot (`fromRow`) — published rows, turned back into
+ *   - the seed (`toRow`) – today's file content, imported into EmDash;
+ *   - the build snapshot (`fromRow`) – published rows, turned back into
  *     exactly the value the file exports, so every consumer, derivation and
  *     build-time check in src/content keeps working unchanged.
  *
@@ -18,8 +18,8 @@
  * Bilingual strings (`Localized`) become a pair of fields, `name_uk` and
  * `name_en`, side by side in one entry. EmDash's own i18n (a row per locale)
  * is not used: nearly every record here mixes translated text with facts
- * that must not differ between languages — an amount, a docket year, a
- * status — and a row per locale would make every such fact editable twice.
+ * that must not differ between languages – an amount, a docket year, a
+ * status – and a row per locale would make every such fact editable twice.
  * It would also force the Ukrainian pages off their `/uk` prefix.
  */
 
@@ -61,7 +61,7 @@ export interface Prop {
   /** For `text`: an array of short strings, one per line. */
   lines?: boolean;
   /**
-   * `string | Localized` in the value — a figure like "298" that needs no
+   * `string | Localized` in the value – a figure like "298" that needs no
    * translation, or a phrase that does. Stored as a pair like `localized`; an
    * empty EN field means the value is one string for both languages.
    */
@@ -80,7 +80,7 @@ export interface Prop {
   /**
    * For `string`/`text`: the most characters the site accepts. The admin
    * shows a live «N / max» counter under the field and stops typing at the
-   * limit — the one hint it renders (it does not show `help`).
+   * limit – the one hint it renders (it does not show `help`).
    */
   maxLength?: number;
   /** Admin editor from a plugin, "<plugin id>:<widget>" (site/emdash/json-editors). */
@@ -101,7 +101,7 @@ export interface Prop {
  *
  * EmDash draws an entry as one long column of fields in `sortOrder`, with no
  * sections or tabs, and does not render help text. So the sections are
- * written into the labels — «2 · Шапка — Суд (UA)» — and the order follows
+ * written into the labels – «2 · Шапка – Суд (UA)» – and the order follows
  * the page top to bottom, which is how an editor looks for a field: by where
  * its text sits on the page. `cf:content check` fails if a top-level
  * property is missing here or listed twice.
@@ -119,7 +119,7 @@ export interface CollectionSpec {
   labelSingular: string;
   /** How the value is exported: an ordered array, a record keyed by slug, or one object. */
   shape: "array" | "record" | "single";
-  /** Where the value lives today — the snapshot replaces this export's initializer. */
+  /** Where the value lives today – the snapshot replaces this export's initializer. */
   source: { file: string; export: string };
   /** The entry slug for a value (array/single shapes). */
   key?: (value: Record<string, unknown>, index: number) => string;
@@ -145,7 +145,7 @@ export interface CollectionSpec {
    * seed; never read back, so editing it changes nothing on the site.
    */
   listLabel?: (value: Record<string, unknown>, key: string) => string;
-  /** The admin form's sections — see `FormSection`. */
+  /** The admin form's sections – see `FormSection`. */
   form?: FormSection[];
   /** Up to four field slugs shown as columns in the admin list. */
   listColumns?: string[];
@@ -183,8 +183,8 @@ const OUTCOMES = ["judgment", "award", "verdict", "liability", "upheld", "warran
 /* ─── Decision summaries ───────────────────────────────────────────────────
  * DecisionSummary (src/content/summaries/types.ts) as editor-facing fields.
  *
- * Flat parts become ordinary fields; lists of flat records — the text of the
- * write-up itself, the chronology, the FAQ, the sources — become repeaters,
+ * Flat parts become ordinary fields; lists of flat records – the text of the
+ * write-up itself, the chronology, the FAQ, the sources – become repeaters,
  * one row per item. The parts that nest a list inside a list
  * (warrants → waves → persons → charges, objections → votes, the map's
  * theatres) stay JSON, one field per section: a repeater cannot hold another
@@ -214,8 +214,8 @@ const blockItems: Prop[] = [
  * The summary's admin form, top to bottom in the order of the decision page
  * (src/app/[locale]/cases/[slug]/page.tsx): the masthead, then the overview
  * band, the chronology, the map, the text, the findings and so on down to the
- * sources. What is not on the page — the search and share lines, the page
- * switches — is grouped at the top and the bottom. Owner's request: «зручніший
+ * sources. What is not on the page – the search and share lines, the page
+ * switches – is grouped at the top and the bottom. Owner's request: «зручніший
  * вигляд адмінки для огляду рішення».
  */
 const SUMMARY_FORM: FormSection[] = [
@@ -245,7 +245,7 @@ const SUMMARY_FORM: FormSection[] = [
   {
     title: "Google і соцмережі",
     fields: [
-      ["seoTitle", "Коротка назва для Google (порожньо — повна)"],
+      ["seoTitle", "Коротка назва для Google (порожньо – повна)"],
       ["metaDesc", "Опис для Google"],
       ["card.title", "Картка: назва (до ~45 знаків)"],
       ["card.eyebrow", "Картка: суд і дата"],
@@ -336,7 +336,7 @@ const SUMMARY_PROPS: Prop[] = [
     type: "string",
     localized: true,
     maxLength: 70,
-    help: "Лише для вкладки браузера, Google і соцмереж. На сторінці лишається повний заголовок. Порожнє — береться повний.",
+    help: "Лише для вкладки браузера, Google і соцмереж. На сторінці лишається повний заголовок. Порожнє – береться повний.",
   },
   { path: "metaDesc", label: "Опис для пошуковиків (до 160 знаків)", type: "text", localized: true, maxLength: 160 },
   { path: "asOf", label: "Станом на (РРРР-ММ-ДД)", type: "string" },
@@ -355,21 +355,21 @@ const SUMMARY_PROPS: Prop[] = [
     slug: "card_title",
     label: "Картка для соцмереж: заголовок",
     type: "string",
-    help: "Назва справи на картці, до ~45 знаків. Порожнє — коротка назва для пошуку або заголовок.",
+    help: "Назва справи на картці, до ~45 знаків. Порожнє – коротка назва для пошуку або заголовок.",
   },
   {
     path: "card.eyebrow",
     slug: "card_eyebrow",
     label: "Картка для соцмереж: суд і дата",
     type: "string",
-    help: "Напр. «ЄСПЛ, Велика палата · 9 липня 2025». Порожнє — інституція і рядок «Шапка (укр.): рішення».",
+    help: "Напр. «ЄСПЛ, Велика палата · 9 липня 2025». Порожнє – інституція і рядок «Шапка (укр.): рішення».",
   },
   {
     path: "card.kicker",
     slug: "card_kicker",
     label: "Картка для соцмереж: підсумок",
     type: "string",
-    help: "Один рядок під назвою: головний результат. Порожнє — виділена цифра з «Цифри».",
+    help: "Один рядок під назвою: головний результат. Порожнє – виділена цифра з «Цифри».",
   },
 
   { path: "plain.tldr", slug: "tldr", label: "Коротко", type: "text", localized: true, required: true },
@@ -605,11 +605,11 @@ export const COLLECTIONS: CollectionSpec[] = [
       {
         path: "logoFile",
         slug: "logo_file",
-        label: "Логотип — завантажити",
+        label: "Логотип – завантажити",
         type: "image",
         upload: { into: "logo", profile: "logo" },
       },
-      { path: "logo", label: "Логотип — шлях у /public (якщо не завантажено)", type: "string" },
+      { path: "logo", label: "Логотип – шлях у /public (якщо не завантажено)", type: "string" },
       { path: "url", label: "Сайт", type: "url" },
     ],
   },
@@ -635,16 +635,16 @@ export const COLLECTIONS: CollectionSpec[] = [
         type: "string",
         localized: true,
         required: true,
-        help: "Англійська роль — ключ групи на /about (див. teamGroups у src/content/team.ts).",
+        help: "Англійська роль – ключ групи на /about (див. teamGroups у src/content/team.ts).",
       },
       {
         path: "photoFile",
         slug: "photo_file",
-        label: "Фото — завантажити",
+        label: "Фото – завантажити",
         type: "image",
         upload: { into: "photo", profile: "portrait" },
       },
-      { path: "photo", label: "Фото — шлях у /public/team (якщо не завантажено)", type: "string" },
+      { path: "photo", label: "Фото – шлях у /public/team (якщо не завантажено)", type: "string" },
     ],
   },
   {
@@ -673,7 +673,7 @@ export const COLLECTIONS: CollectionSpec[] = [
         label: "Посилання в тексті",
         type: "json",
         widget: "nsv-json-editors:aboutLinks",
-        help: "Фрагмент абзацу, дослівно, і адреса — окремо для UA і EN.",
+        help: "Фрагмент абзацу, дослівно, і адреса – окремо для UA і EN.",
       },
     ],
   },
@@ -753,7 +753,7 @@ export const COLLECTIONS: CollectionSpec[] = [
     form: SUMMARY_FORM,
     listColumns: ["judgment_court_uk", "judgment_date", "as_of"],
   },
-  /* Блог — сторінки src/app/[locale]/blog; див. src/content/blog.ts. */
+  /* Блог – сторінки src/app/[locale]/blog; див. src/content/blog.ts. */
   {
     slug: "posts",
     label: "Блог",
@@ -797,11 +797,11 @@ export const COLLECTIONS: CollectionSpec[] = [
       {
         path: "coverFile",
         slug: "cover_file",
-        label: "Обкладинка — завантажити",
+        label: "Обкладинка – завантажити",
         type: "image",
         upload: { into: "cover", profile: "cover" },
       },
-      { path: "cover", label: "Обкладинка — шлях у /public/blog (якщо не завантажено)", type: "string" },
+      { path: "cover", label: "Обкладинка – шлях у /public/blog (якщо не завантажено)", type: "string" },
       { path: "coverAlt", label: "Опис обкладинки для незрячих", type: "string", localized: true },
       { path: "tags", label: "Теги (по одному в рядку)", type: "text", lines: true },
       {
@@ -848,7 +848,7 @@ function encode(p: Prop, v: unknown): unknown {
 function decode(p: Prop, v: unknown): unknown {
   if (p.type === "repeater") {
     const list = (typeof v === "string" ? JSON.parse(v) : v) as Row[] | null | undefined;
-    /* An empty list is kept as an empty list, and a missing one as missing —
+    /* An empty list is kept as an empty list, and a missing one as missing –
        except that a required list is always there. */
     if (!list) return p.required ? [] : undefined;
     return list.map((item) => decodeProps(p.items!, item));
@@ -953,7 +953,7 @@ function fieldDefs(props: Prop[], sub: boolean): Record<string, unknown>[] {
       fields.push({
         ...base,
         slug: `${slug}_en`,
-        label: p.either ? `${p.label} (EN; порожньо — те саме, що UA)` : `${p.label} (EN)`,
+        label: p.either ? `${p.label} (EN; порожньо – те саме, що UA)` : `${p.label} (EN)`,
         required: required && !p.either,
       });
     } else {
@@ -967,7 +967,7 @@ function fieldDefs(props: Prop[], sub: boolean): Record<string, unknown>[] {
 }
 
 /**
- * The props in form order, each labelled «N · Section — label». Props the
+ * The props in form order, each labelled «N · Section – label». Props the
  * form does not name keep their place after it; `formProblems` reports them.
  */
 function arranged(spec: CollectionSpec): Prop[] {
@@ -981,7 +981,7 @@ function arranged(spec: CollectionSpec): Prop[] {
       const p = byPath.get(path);
       if (!p || placed.has(path)) continue;
       placed.add(path);
-      out.push({ ...p, label: `${i + 1} · ${section.title} — ${label ?? p.label}` });
+      out.push({ ...p, label: `${i + 1} · ${section.title} – ${label ?? p.label}` });
     }
   });
   for (const p of spec.props) if (!placed.has(p.path)) out.push(p);
@@ -1028,7 +1028,7 @@ export function seedFields(spec: CollectionSpec): Record<string, unknown>[] {
       type: "integer",
       required: true,
       indexed: true,
-      options: { helpText: "Порядок, у якому записи йдуть на сайті (менше — вище)." },
+      options: { helpText: "Порядок, у якому записи йдуть на сайті (менше – вище)." },
     });
   }
   for (const f of fieldDefs(arranged(spec), false)) {

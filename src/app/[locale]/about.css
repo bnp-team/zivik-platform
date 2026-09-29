@@ -3,7 +3,7 @@
 
    Own palette, like .teampage and .registrypage: every surface carries its own
    scale from the --brand-* tokens rather than borrowing one from another
-   stylesheet. No hex literals — a literal does not follow the tokens, which is
+   stylesheet. No hex literals – a literal does not follow the tokens, which is
    the whole reason the contract forbids them.
 
    ── The page is bands ──────────────────────────────────────────────────────
@@ -15,9 +15,9 @@
 
    The answer is not to stretch the prose. 1800px of paragraph is unreadable,
    and the measure is the one thing on this page that was already right. It is
-   to let the page use the width where the width can carry something — a dark
+   to let the page use the width where the width can carry something – a dark
    masthead, the Centre's four mission points as four columns, a quotation with
-   a band of its own, a roster across the rail — and to leave the reading at
+   a band of its own, a roster across the rail – and to leave the reading at
    the measure inside it. Every band runs the full width of the window; every
    band's content sits on the site's one rail.
 
@@ -59,14 +59,14 @@
    As `.aboutpage a` this would tie with `.nsv-mobnav a` in header.css and win
    on source order, which repaints the mobile menu red on its dark ground. And
    `:not(.abt-dark)` is what keeps it off this page's own dark bands, where red
-   ink would be both wrong and unreadable — the masthead's back link and the
+   ink would be both wrong and unreadable – the masthead's back link and the
    quotation's rule take gold instead.
 
    `.abt-cite-link` is excluded for the same reason home.css excludes it: it is
    the citation of the General Assembly resolution inside the About prose, and
    cherry on this site means a finding of breach, not a destination. The rule
    that styles it lives in globals.css because the same paragraph renders on
-   the home page too — at (0,2,1) it exactly ties this selector and loses on
+   the home page too – at (0,2,1) it exactly ties this selector and loses on
    source order, so the exclusion has to be here rather than in the weight. */
 .aboutpage .abt-band:not(.abt-dark) a:not(.abt-cite-link, .nsv-cta) {
   color: var(--red);
@@ -85,7 +85,7 @@
 .abt-band {
   /* 672px against the 16px prose face: about 83 characters to the line. Wider
      than the 66 this page was set at, which is the textbook optimum and which
-     the owner found cramped in practice — the prose is leaded at 1.65, and
+     the owner found cramped in practice – the prose is leaded at 1.65, and
      generous leading is what buys a long line back. One number, one page. */
   /* Was a flat 672px. Inside a 1180px rail that left 508px of paper doing
      nothing beside every paragraph on the page. See --prose-max. */
@@ -102,7 +102,7 @@
    is neutral: on screen it reads as black, and the owner's note after the
    headings went cherry was that the quotation's ground and the first section
    had stayed that way. --brand-ember (#331311) is the warm dark this palette
-   already keeps — it is the glow over the decision page's masthead — and at
+   already keeps – it is the glow over the decision page's masthead – and at
    ΔRGB 34 from night it is a visibly different colour rather than a nudge.
 
    Measured on it, because a warmer ground is a lighter ground and every
@@ -114,7 +114,7 @@
 
    The floor for any of them is 4.5:1. Nothing on either band comes near it.
 
-   They still supply their own edge — a ground this much darker than the one
+   They still supply their own edge – a ground this much darker than the one
    above is its own boundary, and a pale seam across it would read as a
    frame. */
 .abt-dark {
@@ -131,7 +131,7 @@
    column never steps sideways as a reader scrolls.
 
    Everything inside is capped at the measure and capped against the LEFT edge
-   — not centred in the band. Left is the rule; centring a narrow column inside
+   – not centred in the band. Left is the rule; centring a narrow column inside
    a wide one is how four pages on this site ended up with four different left
    margins. */
 .abt-in {
@@ -153,7 +153,7 @@
 /* The page's own lit object: the light that falls on its title.
 
    Everything before this tried to give the page gold by colouring things it
-   already had — a rule over the H1, the quotation's marks — and both came off
+   already had – a rule over the H1, the quotation's marks – and both came off
    because neither was a source. A colour is not light. Light is a thing with
    a position, a falloff and a far side that stays dark, and once there is one
    the gold on the page stops being decoration and starts being what the lamp
@@ -161,7 +161,7 @@
 
    The site already owns this object: the decision pages light their masthead
    with an ember radial from above, over the page's dark ground. Same device,
-   aimed at this page's own subject — it sits over the title rather than at
+   aimed at this page's own subject – it sits over the title rather than at
    the centre, because on a page whose every left edge is the rail, the light
    falls where the reading starts.
 
@@ -169,7 +169,7 @@
    --brand-ember, which is the colour light makes and not the light: a wine
    rectangle, evenly bright corner to corner, with nothing to say where it
    came from. The ember is now the top of a fall to --brand-ink-black, so the
-   band is brightest over «Про проєкт» and darkest in the far corners — and
+   band is brightest over «Про проєкт» and darkest in the far corners – and
    the seam at its foot reads as the last of that light rather than as a line
    somebody drew.
 
@@ -195,7 +195,7 @@
    showing any light: the quotation carries a lit seam across the join at its
    top and this one carried nothing, so the page opened on a dark band that
    read as merely dark rather than as a surface under a lamp. The same
-   hairline, at the foot — where this band meets paper — so each dark band
+   hairline, at the foot – where this band meets paper – so each dark band
    marks its own edge against the light half of the page.
 
    `position: relative` on the band and the rule on a pseudo-element rather
@@ -232,7 +232,7 @@
   letter-spacing: 0.06em;
   text-transform: uppercase;
   /* 9.3:1 on --brand-night. --faint is an ink for paper and measures under 2:1
-     here — the back link would have been a grey ghost on a dark ground. */
+     here – the back link would have been a grey ghost on a dark ground. */
   color: var(--brand-muted-dark);
   text-decoration: none;
 }
@@ -241,13 +241,13 @@
 }
 /* No mark over the H1.
 
-   One was added here — the 34x3 gold rule the map page puts on its own dark
-   masthead — to answer the gold having gone thin on this page. It came off on
+   One was added here – the 34x3 gold rule the map page puts on its own dark
+   masthead – to answer the gold having gone thin on this page. It came off on
    the owner's word that it looked superfluous, and it did: a mark announces a
    section inside a page, and the H1 is not a section, it is the page. The
    four h2 below it each carry one because each opens something; over the
    title there is nothing to open. The map page's version earns its place by
-   carrying a word — «МАПА» — where the heading beneath it is a sentence; a
+   carrying a word – «МАПА» – where the heading beneath it is a sentence; a
    bare rule over «Про проєкт» said nothing the band's own edge did not.
 
    The gold on this page is the lit seam under this band, the two quotation
@@ -278,19 +278,19 @@
    than against the body. The gap under an h2 used to be --space-4, the same
    16px the prose uses between its own paragraphs, so a 29px display heading
    stood as far from its first line as two body paragraphs stand from each
-   other — and with the heading's tight 1.2 leading adding no half-leading of
+   other – and with the heading's tight 1.2 leading adding no half-leading of
    its own it read as glued to the text. */
 /* No mark over the h2 either.
 
    Each carried a bare 34x3 red rule, added to answer the page having no
    accent, and the owner's word for the result is that they looked like tags
    with the writing taken off. They did, and it is the same rule that took the
-   one over the H1 away: on this site a mark is a rule *and* a word — «ПРО
-   ПРОЄКТ» on the home page, «МАПА» on the map — and the word is what it is
+   one over the H1 away: on this site a mark is a rule *and* a word – «ПРО
+   ПРОЄКТ» on the home page, «МАПА» on the map – and the word is what it is
    for. The rule alone is the tag's holder.
 
    There are no words to give them. «ЦЕНТР» over «Хто веде проєкт», «МІСІЯ»
-   over «Місія Центру» — each would repeat the heading beneath it, and a label
+   over «Місія Центру» – each would repeat the heading beneath it, and a label
    that repeats its heading is worse than none.
 
    The page does not need them. Every section here is a band: its own ground,
@@ -301,13 +301,13 @@
   font-family: var(--brand-font-display), Georgia, serif;
   font-weight: 400;
   /* На крок більші, з макета власниці: «і заголовки інакше». Макет ставить
-     ці заголовки на clamp(28px, 3.4vw, 40px), тоді як `--t-h2` — це
+     ці заголовки на clamp(28px, 3.4vw, 40px), тоді як `--t-h2` – це
      clamp(23px, 2.4vw, 29px), розмір розділу всередині довгого тексту.
      Тут інше: сторінка коротка, і кожен заголовок відкриває власну смугу на
      своєму тлі, а не абзац усередині одного.
 
      `--t-mast`, а не новий крок: він починається рівно на 28 і сидить між
-     `--t-h2` і `--t-h1` — саме там, де його поставив макет. Шкала лишається
+     `--t-h2` і `--t-h1` – саме там, де його поставив макет. Шкала лишається
      тринадцятьма кроками. */
   font-size: var(--t-mast);
   line-height: 1.15;
@@ -318,7 +318,7 @@
      beside it and the heading under it is ink, so the colour sits in the
      signal rather than in the sentence. Measured on the two pages before the
      change, counting painted text colours: the home page ran gold x4 against
-     cherry x4 — gold-led, which is right, its subject is the lamp — and
+     cherry x4 – gold-led, which is right, its subject is the lamp – and
      /about ran cherry x6 with no gold in the text at all. Four cherry display
      headings made the light half of this page the loudest thing on the site.
 
@@ -340,23 +340,23 @@
   line-height: 1.65;
   color: var(--ink2);
 }
-/* ── `.abt-prose p:first-child { color: var(--ink) }` — removed ────────────
+/* ── `.abt-prose p:first-child { color: var(--ink) }` – removed ────────────
    It set the first paragraph of every block in full ink and left the rest in
-   --ink2. Same face, same size, same weight — rgb(26,25,23) against
-   rgb(85,82,77) — but at 16px a tone that different reads as a different
+   --ink2. Same face, same size, same weight – rgb(26,25,23) against
+   rgb(85,82,77) – but at 16px a tone that different reads as a different
    weight, and the owner's question on seeing two paragraphs side by side was
    why the fonts were different. They were not; only the colour was.
 
    It made sense while the first paragraph of the opening block was the lede.
    That sentence is the masthead's standfirst now, so the rule was darkening
-   whatever happened to come first — a paragraph with no claim to emphasis.
+   whatever happened to come first – a paragraph with no claim to emphasis.
 
    --ink2 for all of it, which is what every other reading surface on the site
    sets: the decision pages' prose and the legal documents are both --ink2. */
 
-/* Заголовок смуги і вихід із неї — в один рядок: заголовок ліворуч, шлях
+/* Заголовок смуги і вихід із неї – в один рядок: заголовок ліворуч, шлях
    назовні праворуч, на спільній базовій лінії, з макета власниці. Вузьким
-   екраном шлях стає під заголовком, бо два обʼєкти в рядку на 375 пікселях —
+   екраном шлях стає під заголовком, бо два обʼєкти в рядку на 375 пікселях –
    це два обрізані обʼєкти.
 
    `.abt-more` (той самий лінк під списком) пішов разом із розміткою: смуга
@@ -369,7 +369,7 @@
   gap: var(--space-3) var(--space-6);
   /* Відступ, який доти носив сам заголовок. `.abt-h-row h2` обнуляє
      `margin-bottom`, щоб заголовок і лінк стояли на спільній базовій лінії,
-     — і смуга команди, яка щойно дістала цей рядок, лишилася без простору
+     – і смуга команди, яка щойно дістала цей рядок, лишилася без простору
      під заголовком: підпис першої групи стояв упритул до нього. Власниця:
      «тут простору не вистачає». Відступ належить рядку, а не заголовку в
      ньому. */
@@ -411,7 +411,7 @@
 
    With the band's standard 24px under it, the four gold rules landed directly
    beneath «Місія Центру» and the leftmost one read as the heading's own
-   underline — so the heading looked like the label of the first column rather
+   underline – so the heading looked like the label of the first column rather
    than of all four, and the four peers looked like three peers and a title.
    40px is enough for the rules to read as the tops of four columns. */
 .aboutpage .abt-mission h2 {
@@ -435,7 +435,7 @@
 /* Two by two in the middle of the range.
 
    `auto-fit` fits as many 230px tracks as the rail allows, which is four on a
-   desktop and one on a phone — both correct — and three in between, where four
+   desktop and one on a phone – both correct – and three in between, where four
    items fall 3 + 1 and the last point sits alone under three others as though
    it had been added later. Four peers should break evenly or not at all. */
 @media (min-width: 680px) and (max-width: 1120px) {
@@ -447,7 +447,7 @@
 /* ---- the quotation ------------------------------------------------------ */
 
 /* Owner's request: set it apart. It was a paragraph with a gold rule down its
-   left side inside the reading column — which is how this site marks a
+   left side inside the reading column – which is how this site marks a
    citation quoted mid-argument, correct there and far too quiet for the one
    place on this page where a person speaks.
 
@@ -470,7 +470,7 @@
    It was here to let the centred quotation set its own width, and it did the
    opposite: at (0,2,0) it outweighs `.abt-quote blockquote` at (0,1,1), so
    the 40rem measure was dropped and the quotation ran the full width of the
-   rail — 990px at an 1100px window, centred and useless. The blockquote and
+   rail – 990px at an 1100px window, centred and useless. The blockquote and
    the figcaption already outweigh `.abt-in > *` on their own; nothing has to
    be unset for them. */
 /* A hairline, not a border: it fades to nothing at both ends so it reads as
@@ -491,7 +491,7 @@
   );
 }
 /* The light it casts down onto the band, under an eighth of the gold's
-   strength — felt rather than seen, and weak enough that every colour set on
+   strength – felt rather than seen, and weak enough that every colour set on
    the lit ground still clears AA. */
 .abt-seam::after {
   content: "";
@@ -509,7 +509,7 @@
 }
 /* Centred, with the quotation marks a quotation has.
 
-   It was moved onto the page's left edge — the page's whole identity is one
+   It was moved onto the page's left edge – the page's whole identity is one
    left edge, and a centred block was the only object that did not hold it.
    The owner compared the two and kept the centred one: on a dark band of its
    own, between two pages of left-aligned prose, the symmetry is what says
@@ -521,7 +521,7 @@
    but not punctuated still reads as the site's own sentence in a different
    suit; the guillemets are what make it somebody's words. Generated rather
    than written into `T.voice`, so the string stays the quotation and the
-   typography stays typography — and so the English page gets its own pair:
+   typography stays typography – and so the English page gets its own pair:
    «…» in Ukrainian, “…” in English, keyed off the `lang` the layout sets. */
 .abt-quote blockquote {
   /* 56rem. Two widenings, both the owner's: 40 to 46, then 46 to here.
@@ -529,7 +529,7 @@
      The reason the first was not enough is visible in the band: at 736px the
      four sentences still broke over six short lines inside a band running the
      full width of the window, and the quotation read as narrower than the
-     mission's four columns directly above it — the wrong order of weight,
+     mission's four columns directly above it – the wrong order of weight,
      since the quotation is the whole content of its band and the mission is a
      list inside one. 896px at --t-h3 is about 80 characters. That is past a
      pull-quote's usual range and it is a deliberate trade: this is centred
@@ -553,16 +553,16 @@
 }
 /* The marks take the cream of the words they enclose.
 
-   They were gold for a while — the site's "a source speaks" colour, the same
-   value as the seam above them — and the owner's word for the result was that
+   They were gold for a while – the site's "a source speaks" colour, the same
+   value as the seam above them – and the owner's word for the result was that
    it looked odd. It did, and the reason is that punctuation is not an
    ornament: a coloured mark inside a run of cream type reads as a setting
    error rather than as a flourish, and the closing one, sitting alone at the
    end of the last line, pulled the eye into a corner.
 
-   So they inherit. The gold on this page is its hairlines — the seam under
+   So they inherit. The gold on this page is its hairlines – the seam under
    the masthead, the seam over this band, the rule under the attribution, the
-   four over the mission — and that is the right amount for a page with no
+   four over the mission – and that is the right amount for a page with no
    lamp on it. The home page's gold comes from an object: the lamp, its light,
    the button under it. This page has no such object, and painting punctuation
    was an attempt to invent one. */
@@ -578,7 +578,7 @@
   margin: clamp(20px, 2.2vw, 28px) auto 0;
   padding: clamp(16px, 1.8vw, 22px) 0 0;
   text-align: center;
-  /* The attribution in the mono face — the face this site already gives to a
+  /* The attribution in the mono face – the face this site already gives to a
      source line, where `.nsvq-meta` sets the court, the stage and the date of
      the quoted ICJ order. The speaker's name keeps the weight, the role drops
      to it in the muted tone, and the pair reads as a citation rather than as
@@ -601,7 +601,7 @@
   height: 1px;
   background: color-mix(in srgb, var(--brand-gold-lit) 55%, transparent);
 }
-/* `<b>` defaults to `bolder`, which against a 600 caption resolves to 900 — a
+/* `<b>` defaults to `bolder`, which against a 600 caption resolves to 900 – a
    weight the mono is not loaded at, so both locales drew a synthesised bold. */
 .abt-quote figcaption b {
   display: block;
@@ -618,7 +618,7 @@
 
    Centring is what says "someone is speaking" when a block is wide enough to
    be a block. At 375px it is not: measured there, the quotation sets 32
-   characters to the line over thirteen lines of 20px antiqua — half the
+   characters to the line over thirteen lines of 20px antiqua – half the
    readable minimum of a line, and a ragged pyramid the eye cannot track from
    one line to the next. Nothing about the measure can be fixed at that width;
    319px is all there is, and a smaller face would only trade one fault for
@@ -627,7 +627,7 @@
    So the alignment gives way instead. Left-aligned, the same thirteen lines
    are an ordinary ragged-right block with one edge to return to, and the dark
    ground, the lit seam, the antiqua and the marks still carry everything the
-   centring was carrying. The attribution and its rule go left with it — a
+   centring was carrying. The attribution and its rule go left with it – a
    centred rule under left-aligned text is the join showing.
 
    `balance` goes too. It is for a short block that should look even and
@@ -657,9 +657,9 @@
    з порожньою половиною праворуч, а секція займала майже екран. Власниця:
    «мені дуже не подобається дизайн цієї секції».
 
-   Тепер група — один рядок, як у вихідних даних видання: посада ліворуч
+   Тепер група – один рядок, як у вихідних даних видання: посада ліворуч
    золотою капітеллю, її люди праворуч в один рядок через крапку. Лінійка
-   одна на групу, між групами, — розділяє ролі, а не людей. Колонка посади
+   одна на групу, між групами, – розділяє ролі, а не людей. Колонка посади
    однакова для всіх рядків, тож імена стоять на одному лівому краю. На
    вузькому екрані посада стає над іменами. */
 .abt-roles {
@@ -696,7 +696,7 @@
 }
 /* Імена звичайною вагою, текстовим шрифтом: виділення в рядку несе підпис
    посади, а сім напівжирних імен читалися як сім других заголовків.
-   `<b>` лишається тегом — ім'я те, за чим рядок знаходять. */
+   `<b>` лишається тегом – ім'я те, за чим рядок знаходять. */
 .abt-roster b {
   font-weight: 400;
   font-size: var(--t-body);
@@ -704,7 +704,7 @@
   color: var(--ink);
 }
 /* Той самий підпис, що над рядом інстанцій нижче: капітель, розрядка,
-   тепле золото. Одне правило на обидва — вони той самий об'єкт. */
+   тепле золото. Одне правило на обидва – вони той самий об'єкт. */
 .abt-role-h,
 .abt-forums-h {
   font: 700 var(--t-micro) var(--brand-font-body);
@@ -721,12 +721,12 @@
 /* The pill is excluded from the link rule rather than outweighing it.
 
    `.nsv-cta` (shared.css) sets its own red ground and its border but takes its
-   text colour from whatever it stands in — so on a page that paints every
+   text colour from whatever it stands in – so on a page that paints every
    anchor red, the label lands on the pill at 1:1 and the button renders as an
    empty red lozenge. That has now happened twice.
 
-   The first fix was `a.nsv-cta` — an element plus three classes, against the
-   link rule's three classes — which won on weight. It stopped winning the
+   The first fix was `a.nsv-cta` – an element plus three classes, against the
+   link rule's three classes – which won on weight. It stopped winning the
    moment the link rule gained `:not(.abt-dark)` to keep red ink off this
    page's dark bands: an argument inside `:not()` counts towards specificity,
    so the link rule went to four classes and the correction, still at three,
@@ -741,13 +741,13 @@
   color: var(--brand-cream-warm);
 }
 
-/* Перелік усередині міркування — власний об'єкт, а не смуга.
+/* Перелік усередині міркування – власний об'єкт, а не смуга.
 
    Він стоїть між двома абзацами розділу, тож заголовком бути не може: <h2>
    тут розірвав би розділ надвоє, а це один доказ в одному міркуванні. Отже
-   капітель, як підпис до ряду, і дві лінії — згори й знизу, — які кажуть,
+   капітель, як підпис до ряду, і дві лінії – згори й знизу, – які кажуть,
    де об'єкт починається і де закінчується. Проза обабіч тримає свою міру,
-   перелік бере рейку: шість назв на 820 пікселях — це 137 на колонку, а
+   перелік бере рейку: шість назв на 820 пікселях – це 137 на колонку, а
    «Міжнародний трибунал з морського права» довший. */
 .abt-forums-block {
   max-width: none;
@@ -769,11 +769,11 @@
 
    Шість назв через усю рейку, кожна з волосинкою згори, читалися як
    розтягнута таблиця: рисочки різної довжини, назви різної довжини і багато
-   повітря між ними. Власниця: «зроби гарним списком, не розтягуй в ширину —
+   повітря між ними. Власниця: «зроби гарним списком, не розтягуй в ширину –
    або тоді якісь блоки їм зроби, а не рисочки».
 
    Блок має край, і край робить об'єкт: шість однакових карток читаються як
-   набір, а не як рядки, що не доїхали до правого боку. Колія від 230 — на
+   набір, а не як рядки, що не доїхали до правого боку. Колія від 230 – на
    рейці це п'ять-шість у ряд, на планшеті три, на телефоні одна; `min(100%,
    …)`, щоб `auto-fit` не лишив колію ширшою за екран. */
 .abt-forums {
@@ -799,7 +799,7 @@
   color: var(--ink);
   text-wrap: pretty;
 }
-/* Знак — фішкою під назвою: у картці він мітка, за якою цей суд зветься
+/* Знак – фішкою під назвою: у картці він мітка, за якою цей суд зветься
    далі по сайту, а не другий рядок тієї самої фрази. */
 .abt-forums b {
   justify-self: start;
@@ -818,13 +818,13 @@
 
 /* Закладка на часі, при абзаці, який її розповідає.
 
-   Вона була рядком упоперек темної шапки — дата, речення, документ в один
+   Вона була рядком упоперек темної шапки – дата, речення, документ в один
    рядок. Власниця перенесла її сюди, до першої смуги тексту, і на папері
-   рядок уже не тримається: 340 пікселів збоку — це не рядок, а стовпчик.
+   рядок уже не тримається: 340 пікселів збоку – це не рядок, а стовпчик.
    Тож три речі стали одна під одною, з макета: золота лінія, дата,
    речення антиквою, документ під ним.
 
-   Антиква курсивом на одну річ на всю сторінку — це цитата з документа,
+   Антиква курсивом на одну річ на всю сторінку – це цитата з документа,
    а не проза сторінки, і вона стоїть у тій самій ролі, що епіграф. */
 .abt-res {
   display: block;
@@ -855,7 +855,7 @@
   text-decoration: underline;
   text-underline-offset: 4px;
 }
-/* Дві смуги цієї сторінки стоять у два стовпці: проза і щось при ній —
+/* Дві смуги цієї сторінки стоять у два стовпці: проза і щось при ній –
    закладка на часі ліворуч у першій, знак факультету праворуч у «Хто веде».
    Спільне в них усе, крім того, з якого боку вузька колонка, тож спільне
    сказано раз. Обидві складаються в один стовпець вужче за 1000: там
@@ -877,7 +877,7 @@
 .abt-first {
   grid-template-columns: minmax(0, 300px) minmax(0, var(--col));
 }
-/* Проза стоїть першою в розмітці, а ліворуч сідає закладка — не `order`, а
+/* Проза стоїть першою в розмітці, а ліворуч сідає закладка – не `order`, а
    пряме місце в сітці: обидві клітинки названі, тож ніщо не «переставлене»,
    просто кожна там, де їй бути. Коли колонки складаються в одну, обидва
    правила знімаються і все читається так, як написано. */
@@ -889,18 +889,18 @@
   grid-column: 1;
   grid-row: 1;
 }
-/* Вужче за 1000 закладка стає над прозою — і там вона мусить стишитися.
+/* Вужче за 1000 закладка стає над прозою – і там вона мусить стишитися.
 
    Збоку антиква курсивом у 22,5 пікселя читається як позначка на полі: її
    міра 300, а поруч на 820 йде проза, і більший кегль там нікого не
    переважує. У стовпчик, на всю ширину, той самий рядок стає першим
-   великим реченням сторінки — власниця: «в мобільній версії Генеральна
+   великим реченням сторінки – власниця: «в мобільній версії Генеральна
    Асамблея звучить як найголовніше». І це неправда: сторінка про
    бібліотеку, а не про резолюцію, яку вона цитує абзацом нижче.
 
    Тож на вузькому екрані закладка набирається тим самим шрифтом і кеглем,
    що проза під нею, тільки тихішим чорнилом; від блоку лишаються дата,
-   лінія і посилання — тобто він і далі позначка, просто більше не
+   лінія і посилання – тобто він і далі позначка, просто більше не
    заголовок. Порядок не міняється: у розмітці й на екрані вона там сама,
    де й була. */
 @media (max-width: 1000px) {
@@ -925,7 +925,7 @@
   }
 }
 
-/* Пункти місії з номерами — з макета. Номер лічить, не називає. */
+/* Пункти місії з номерами – з макета. Номер лічить, не називає. */
 .abt-mission ul li {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);
@@ -937,19 +937,19 @@
   font-variant-numeric: lining-nums;
   line-height: 1;
   /* --faint, not --brand-faint-dark: that one is an ink for the dark
-     scenes, and on this band's paper it measured 3.24:1 — under AA for a
+     scenes, and on this band's paper it measured 3.24:1 – under AA for a
      numeral at this size. --faint is the paper's own caption ink. */
   color: var(--faint);
 }
 
-/* Знак факультету — бічна колонка при прозі, не плитка під нею.
+/* Знак факультету – бічна колонка при прозі, не плитка під нею.
 
-   Рейка тут 1180, міра прози — 820; праворуч лишається близько 340, і саме
+   Рейка тут 1180, міра прози – 820; праворуч лишається близько 340, і саме
    стільки треба знакові з підписом. Смуга через це єдина на сторінці, що
    знімає обмеження `--col` зі свого вмісту: обмеження тримає колонка прози
    всередині, а не обгортка.
 
-   `align-items: start` — знак стоїть на верхній лінії першого абзаца, а не
+   `align-items: start` – знак стоїть на верхній лінії першого абзаца, а не
    посередині трьох; вертикально центрований, він опинявся навпроти другого
    і читався як ілюстрація до нього. */
 .abt-who {
@@ -957,20 +957,20 @@
 }
 /* Картка, яку видно, що можна натиснути.
 
-   Спершу це був підпис без коробки — волосинка згори, знак, рядок під ним.
+   Спершу це був підпис без коробки – волосинка згори, знак, рядок під ним.
    Власниця: «допрацюй цей елемент, щоб він мав тінь, контури, наведення
    тощо». Підпис і посилання виглядають однаково доти, доки на них не
    наведеш, а на цій сторінці це єдиний вихід назовні, який щось важить.
 
    Тож: біла поверхня над папером смуги, волосинкова рамка, найлегша з трьох
    тіней системи. Наведення піднімає картку на два пікселі й міняє тінь на
-   середню — рух, який каже «це підніметься», а не світиться. Рамка при
+   середню – рух, який каже «це підніметься», а не світиться. Рамка при
    цьому стає червоною, тобто тим самим кольором, яким набрано підпис.
    Натиснення саджає її назад на місце.
 
-   `:focus-visible` — не те саме, що наведення: клавіатурі потрібен контур,
+   `:focus-visible` – не те саме, що наведення: клавіатурі потрібен контур,
    який видно на білому, тож там ще й обвід у два пікселі з відступом.
-   Читачеві, який попросив менше руху, лишаються рамка, тінь і обвід —
+   Читачеві, який попросив менше руху, лишаються рамка, тінь і обвід –
    зникає тільки зсув. */
 .abt-fac {
   display: block;
@@ -979,7 +979,7 @@
      Вона розтягувалася на колонку, у якій стоїть, і на ширшому екрані це
      давало коробку помітно більшу за знак із підписом: усе тулиться до
      лівого краю, решта порожня. Власниця: «трошки відцентруй текст і лого в
-     кнопці або зміни ширину кнопки». Ширина чесніша за центрування —
+     кнопці або зміни ширину кнопки». Ширина чесніша за центрування –
      центрований вміст у завеликій коробці лишається завеликою коробкою. */
   width: fit-content;
   max-width: 100%;
@@ -1040,25 +1040,25 @@
   text-underline-offset: 3px;
   text-decoration-thickness: 1px;
 }
-/* Вужче — одна колонка: 340 пікселів збоку тут уже немає, і знак стає під
+/* Вужче – одна колонка: 340 пікселів збоку тут уже немає, і знак стає під
    прозою, лівим краєм на її лівому краї. */
 /* Під прозою картка лягає рядком, а не стовпчиком.
 
-   Збоку вона стовпчик — знак, під ним підпис, — бо колонка вузька і
+   Збоку вона стовпчик – знак, під ним підпис, – бо колонка вузька і
    вертикаль там єдина можлива. Коли колонки складаються в одну, той самий
    стовпчик розтягується на всю міру: широка коробка, а вміст тулиться до
    лівого верхнього кута і півкартки порожнє. Власниця: «дивно виглядає».
 
-   Тож знак і підпис стають в один рядок на спільній осі, а сама картка —
+   Тож знак і підпис стають в один рядок на спільній осі, а сама картка –
    по вмісту: об'єкт розміром із те, що в ньому, замість коробки на всю
    ширину з дірою. */
 @media (max-width: 1000px) {
-  /* Обидві смуги складаються в один стовпець — одне правило на дві.
+  /* Обидві смуги складаються в один стовпець – одне правило на дві.
 
      Стоїть нижче за обидва базові оголошення навмисне: у `.abt-first` і
      `.abt-who` селектори тієї самої ваги, що й тут, і при рівній вазі
      виграє той, хто пізніше у файлі. Поставлене вище, це правило програвало
-     базовому `.abt-who` — смуга не складалася і на 375 виводила сторінку за
+     базовому `.abt-who` – смуга не складалася і на 375 виводила сторінку за
      край на тридцять пікселів. */
   .abt-first,
   .abt-who {
@@ -1077,7 +1077,7 @@
     margin-bottom: 0;
   }
 }
-/* Найвужче — знову стовпчик: на 375 знак і підпис поруч лишають підпису
+/* Найвужче – знову стовпчик: на 375 знак і підпис поруч лишають підпису
    близько 150 пікселів, і «СТОРІНКА ЦЕНТРУ НА САЙТІ УКУ» ламається на
    три рядки. Краще одне під одним, ніж поруч і покришене. */
 @media (max-width: 560px) {

@@ -8,7 +8,7 @@ import HeroMap from "./HeroMap";
  * `.dchain` pull-cord are static markup; <LampShell/> wires the toggle + fade.
  *
  * Order follows the content brief: wordmark, lead, the collection's scope,
- * then the two ways in — and nothing after them. The credit moved out
+ * then the two ways in – and nothing after them. The credit moved out
  * entirely: the footer already names the centre and the faculty, so carrying
  * it here too was three more lines on a first screen that was already dense.
  */
@@ -109,7 +109,7 @@ export default function Hero({ dict, locale }: { dict: Dictionary; locale: Local
           {/* The library's own page, not a band on this one.
 
               It was `#registry`, an anchor into a section further down the
-              home page — which was a reasonable link while that section was
+              home page – which was a reasonable link while that section was
               the library's front door, and became a link to nothing the moment
               the owner asked for the section to come off. A reader who presses
               the one button under the lamp is asking for the archive, and the
@@ -121,7 +121,7 @@ export default function Hero({ dict, locale }: { dict: Dictionary; locale: Local
 
         {/* A colophon, not a sentence. Run on one line the two names read as
             two peers separated by a bullet, when the centre is in fact part of
-            the faculty — in Ukrainian they are a genitive chain, so they stack
+            the faculty – in Ukrainian they are a genitive chain, so they stack
             and the separator goes. Faculty last and faintest: its mark already
             sits in the top bar, so here it is context, not the headline. */}
         <p className="nsv-credit">

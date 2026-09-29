@@ -1,5 +1,5 @@
 /* ============================================================
-   Header chrome — owned by <Header/> so every page that renders
+   Header chrome – owned by <Header/> so every page that renders
    the component gets its behaviour, not just the homepage.
 
    The bar itself is inline-styled in Header.tsx (it needs the
@@ -8,7 +8,7 @@
    the same dark ground on every page.
    ============================================================ */
 
-/* 44, а не 40. Це єдиний вхід до навігації на телефоні — і на 390 він
+/* 44, а не 40. Це єдиний вхід до навігації на телефоні – і на 390 він
    був на чотири пікселі менший за ціль, яку сайт дає кнопкам масштабу мапи
    й «Підтримати нас» у меню, що ним же відкривається. Три риски
    лишаються 20-піксельними: росте поле, не значок. */
@@ -31,7 +31,7 @@
   box-shadow: 0 6px 0 currentColor, 0 -6px 0 currentColor;
 }
 
-/* UA / EN. The glyph pair is 15×15 — under the 24×24 floor of WCAG 2.5.8,
+/* UA / EN. The glyph pair is 15×15 – under the 24×24 floor of WCAG 2.5.8,
    and there is no larger control on the page that switches language. An
    inline-flex box with a min size grows the target without moving the type:
    the centres stay 28px apart, so two 24px targets still do not touch. */
@@ -49,7 +49,7 @@
 }
 
 /* The drawer is the bar continued, so it takes the bar's ground rather than a
-   near-black of its own. It was #1a0f0d — a literal, and a fourth dark that no
+   near-black of its own. It was #1a0f0d – a literal, and a fourth dark that no
    token names, on a site whose contract says the header has one ground on
    every page. Measured: rgb(26,15,13) → rgb(23,17,15), the same value
    Header.tsx already sets on the bar above it, so the two now meet without a
@@ -95,7 +95,7 @@
    The brand link holds the faculty mark at its 48px floor, a divider and the
    wordmark; the row holds that, «UA / EN» and the burger. Measured on the
    built page: at 320px the English wordmark was drawn 33px underneath the
-   language links — flex shrinks the brand link but not the text inside it, so
+   language links – flex shrinks the brand link but not the text inside it, so
    nothing wrapped, the two simply collided.
 
    The breakpoint is set by the Ukrainian wordmark, not the English one.
@@ -126,5 +126,5 @@
     border-bottom: 0;
   }
 }
-/* Поріг дотику для контролів висувного меню — у shared.css, у блоці, що
+/* Поріг дотику для контролів висувного меню – у shared.css, у блоці, що
    тримає всі пороги сайту одним правилом. */

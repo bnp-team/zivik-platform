@@ -6,20 +6,20 @@ import { siteUrl } from "@/lib/seo";
 import { analyticsEnabled } from "@/lib/analytics";
 
 /**
- * Legal pages — the Privacy Policy and the Terms of Use, bilingual.
+ * Legal pages – the Privacy Policy and the Terms of Use, bilingual.
  *
  * Adapted from the Faculty of Law's existing policy and terms, which were
  * written for the faculty's admissions site. Everything that belonged to that
  * site and not to this one was dropped rather than translated across:
  * admission questionnaires, scholarship applications, study contracts, the
  * state education database and the applicant's cabinet. This site has no
- * forms at all — the only personal data it can receive is an email address
+ * forms at all – the only personal data it can receive is an email address
  * someone chooses to send us, so the policy says that and nothing more.
  *
  * Two clauses the source lacked are added here because this library needs
  * them: an accuracy / "not legal advice" clause (a summary is not the
  * decision), and an intellectual-property clause that separates the court
- * acts we merely link to — which are not ours — from the summaries,
+ * acts we merely link to – which are not ours – from the summaries,
  * chronologies, translations, maps and design, which are.
  *
  * The legal framing stays Ukrainian: Закон України «Про захист персональних
@@ -35,7 +35,7 @@ import { analyticsEnabled } from "@/lib/analytics";
  * Contact address for the pages. Mirrors `footer.email` in the dictionaries
  * (`src/i18n/dictionaries/uk.ts` → `footer.email`) so the address a reader is
  * given in the footer is the address the legal pages name; keep the two in
- * sync — and `data-check.mjs` now checks that they are, because they drifted:
+ * sync – and `data-check.mjs` now checks that they are, because they drifted:
  * the footer moved to the research centre's address and this one stayed on the
  * old project mailbox, so the legal pages named an address the site no longer
  * gave anywhere else. A comment asking a human to keep two constants equal is
@@ -66,27 +66,27 @@ export const registrySummarised = registryCases.filter(
 export const legalPhone = "+38 (032) 240-99-40";
 
 /**
- * The production host — похідний від `siteUrl`, а не вписаний руками.
+ * The production host – похідний від `siteUrl`, а не вписаний руками.
  *
  * Тут стояв літерал `zivik-platform.vercel.app` з приміткою «MUST BE
  * CONFIRMED BEFORE LAUNCH»: сайт тим часом переїхав на Cloudflare
- * (`*.workers.dev`), а константа лишилася на Vercel. Тепер зміна домену —
+ * (`*.workers.dev`), а константа лишилася на Vercel. Тепер зміна домену –
  * це одна змінна збірки, NEXT_PUBLIC_SITE_URL, і ця константа йде за нею
  * разом з канонічними URL і sitemap (docs/LAUNCH.md).
  *
  * У прозі й далі НЕ використовується: обидва документи називають сайт на
  * ім'я («НаСвітло» / the Site), тож переїзд на інший домен тексту не
- * змінює. Якщо колись пункт муситиме назвати адресу — брати звідси.
+ * змінює. Якщо колись пункт муситиме назвати адресу – брати звідси.
  */
 export const legalHost = new URL(siteUrl).host;
 
 /**
- * Date of the current revision of both documents, ISO — for `<time dateTime>`
+ * Date of the current revision of both documents, ISO – for `<time dateTime>`
  * and for the human string below, so the two can never disagree.
  *
  * Дві редакції, бо розділ «Файли cookie та аналітика» має два варіанти
- * (`cookiesBlocks` нижче): без аналітики — редакція від 25 серпня, з
- * Cloudflare Web Analytics — від дня, коли написано абзац про неї. Збірка з
+ * (`cookiesBlocks` нижче): без аналітики – редакція від 25 серпня, з
+ * Cloudflare Web Analytics – від дня, коли написано абзац про неї. Збірка з
  * NEXT_PUBLIC_CF_ANALYTICS_TOKEN показує другу дату, і обіцянка з тексту
  * («назвемо сервіс … та оновимо дату редакції») виконується сама.
  * Правлячи будь-який із двох варіантів, оновлюйте відповідну дату.
@@ -143,7 +143,7 @@ export interface LegalDocument {
   /** Route segment under `/{locale}/`. */
   slug: "privacy" | "terms";
   title: Localized;
-  /** Standfirst — one honest sentence about what the document says. */
+  /** Standfirst – one honest sentence about what the document says. */
   lede: Localized;
   sections: LegalSection[];
 }
@@ -151,7 +151,7 @@ export interface LegalDocument {
 /* ── Privacy policy ─────────────────────────────────────────────────────── */
 
 /**
- * Розділ «Файли cookie та аналітика» — залежно від збірки.
+ * Розділ «Файли cookie та аналітика» – залежно від збірки.
  *
  * Текст мусить бути правдою про ту саму збірку, яку читач відкрив: маячок
  * Cloudflare Web Analytics вмикається змінною NEXT_PUBLIC_CF_ANALYTICS_TOKEN
@@ -159,34 +159,34 @@ export interface LegalDocument {
  * політика або обіцяла б «аналітики немає» на сторінці з маячком, або
  * описувала б сервіс, якого немає.
  *
- * Що саме стверджує варіант з аналітикою — з документації Cloudflare
+ * Що саме стверджує варіант з аналітикою – з документації Cloudflare
  * (developers.cloudflare.com/web-analytics і /speed/observatory/rum-beacon):
  * скрипт нічого не зберігає в браузері й не читає (cookie, localStorage,
  * sessionStorage, IndexedDB); IP-адресу Cloudflare відкидає в найближчому
  * дата-центрі й не зберігає; у звітах дані доступні за попередні шість
- * місяців. Якщо Cloudflare змінить ці умови — змінити й текст.
+ * місяців. Якщо Cloudflare змінить ці умови – змінити й текст.
  */
 const cookiesBlocks: LegalBlock[] = analyticsEnabled
   ? [
       {
         kind: "p",
         text: {
-          uk: "Сайт не встановлює файлів cookie. Щоб розуміти, скільки людей читає бібліотеку і які сторінки відкривають, ми використовуємо Cloudflare Web Analytics — сервіс вебаналітики компанії Cloudflare, Inc. Його скрипт не зберігає у вашому браузері нічого (ні cookie, ні localStorage чи інших сховищ) і не створює «відбитка» пристрою, тож банера згоди на cookie ми не показуємо.",
+          uk: "Сайт не встановлює файлів cookie. Щоб розуміти, скільки людей читає бібліотеку і які сторінки відкривають, ми використовуємо Cloudflare Web Analytics – сервіс вебаналітики компанії Cloudflare, Inc. Його скрипт не зберігає у вашому браузері нічого (ні cookie, ні localStorage чи інших сховищ) і не створює «відбитка» пристрою, тож банера згоди на cookie ми не показуємо.",
           en: "The Site sets no cookies. To understand how many people read the library and which pages they open, we use Cloudflare Web Analytics, a web-analytics service of Cloudflare, Inc. Its script stores nothing in your browser (no cookies, no localStorage or other storage) and does not fingerprint your device, so we show no cookie consent banner.",
         },
       },
       {
         kind: "p",
         text: {
-          uk: "Під час перегляду сторінки скрипт надсилає до Cloudflare знеособлені технічні відомості: адресу сторінки й сторінки, з якої ви перейшли, тип браузера й пристрою, країну та показники швидкості завантаження. IP-адресу Cloudflare відкидає одразу в найближчому дата-центрі й не зберігає. Ми бачимо лише зведену статистику — без даних про окремих читачів; у звітах вона доступна за попередні шість місяців.",
+          uk: "Під час перегляду сторінки скрипт надсилає до Cloudflare знеособлені технічні відомості: адресу сторінки й сторінки, з якої ви перейшли, тип браузера й пристрою, країну та показники швидкості завантаження. IP-адресу Cloudflare відкидає одразу в найближчому дата-центрі й не зберігає. Ми бачимо лише зведену статистику – без даних про окремих читачів; у звітах вона доступна за попередні шість місяців.",
           en: "When a page is viewed, the script sends Cloudflare anonymised technical information: the page address and the referring page, the browser and device type, the country and page-load performance measurements. Cloudflare discards the IP address at the nearest data centre and does not store it. We see only aggregate statistics, with nothing about individual readers; reports cover the previous six months.",
         },
       },
       {
         kind: "p",
         text: {
-          uk: "Мета — підтримувати бібліотеку корисною та швидкою; підстава — законний інтерес Факультету. Щоб скрипт не завантажувався, достатньо блокувальника вмісту чи вбудованого захисту від стеження у вашому браузері — бібліотека працює й без нього.",
-          en: "The purpose is to keep the library useful and fast; the ground is the Faculty’s legitimate interest. To stop the script from loading, a content blocker or your browser’s built-in tracking protection is enough — the library works without it.",
+          uk: "Мета – підтримувати бібліотеку корисною та швидкою; підстава – законний інтерес Факультету. Щоб скрипт не завантажувався, достатньо блокувальника вмісту чи вбудованого захисту від стеження у вашому браузері – бібліотека працює й без нього.",
+          en: "The purpose is to keep the library useful and fast; the ground is the Faculty’s legitimate interest. To stop the script from loading, a content blocker or your browser’s built-in tracking protection is enough – the library works without it.",
         },
       },
     ]
@@ -222,7 +222,7 @@ export const privacy: LegalDocument = {
         {
           kind: "p",
           text: {
-            uk: "Ця Політика конфіденційності (далі — Політика) пояснює, які персональні дані збирає та обробляє Факультет права Українського католицького університету (далі — Факультет, ми) через вебсайт бібліотеки «НаСвітло» (далі — Сайт), з якою метою та на яких підставах.",
+            uk: "Ця Політика конфіденційності (далі – Політика) пояснює, які персональні дані збирає та обробляє Факультет права Українського католицького університету (далі – Факультет, ми) через вебсайт бібліотеки «НаСвітло» (далі – Сайт), з якою метою та на яких підставах.",
             en: "This Privacy Policy (the Policy) explains what personal data the Faculty of Law of the Ukrainian Catholic University (the Faculty, we) collects and processes through the website of the NaSvitlo library (the Site), for what purposes and on what grounds.",
           },
         },
@@ -257,12 +257,12 @@ export const privacy: LegalDocument = {
           kind: "ul",
           items: {
             uk: [
-              "Електронна адреса та зміст листа — якщо ви пишете нам або просите надсилати вам щомісячний лист бібліотеки. Підписка сьогодні оформлена як звичайний лист: посилання «Підписатися» відкриває ваш поштовий застосунок, тож ваша адреса надходить до нас у складі листа, який надсилаєте ви самі, разом із тим, що додає до нього ваш поштовий клієнт (ім'я відправника, дата, службові заголовки). Жодної форми, яка передавала б дані на Сайт, не існує.",
-              "Технічні дані про відвідування — IP-адреса, тип пристрою та браузера, запитані сторінки, час звернення. Їх у службових журналах фіксує постачальник хостингу, як це робить кожен вебсервер; ці записи потрібні для роботи та безпеки Сайту, ми не пов'язуємо їх з особою і не використовуємо для спостереження за читачами.",
+              "Електронна адреса та зміст листа – якщо ви пишете нам або просите надсилати вам щомісячний лист бібліотеки. Підписка сьогодні оформлена як звичайний лист: посилання «Підписатися» відкриває ваш поштовий застосунок, тож ваша адреса надходить до нас у складі листа, який надсилаєте ви самі, разом із тим, що додає до нього ваш поштовий клієнт (ім'я відправника, дата, службові заголовки). Жодної форми, яка передавала б дані на Сайт, не існує.",
+              "Технічні дані про відвідування – IP-адреса, тип пристрою та браузера, запитані сторінки, час звернення. Їх у службових журналах фіксує постачальник хостингу, як це робить кожен вебсервер; ці записи потрібні для роботи та безпеки Сайту, ми не пов'язуємо їх з особою і не використовуємо для спостереження за читачами.",
             ],
             en: [
-              "Your email address and the content of your message — if you write to us, or ask to receive the library’s monthly letter. The subscription is currently an ordinary email: the “Subscribe” link opens your mail application, so your address reaches us inside a message you send yourself, together with whatever your mail client adds to it (sender name, date, technical headers). There is no form on the Site that transmits data to us.",
-              "Ordinary technical data about your visit — IP address, device and browser type, pages requested, time of the request. These are recorded in server logs by the hosting provider, as every web server does; the records are needed to keep the Site running and secure, we do not link them to a person and we do not use them to watch readers.",
+              "Your email address and the content of your message – if you write to us, or ask to receive the library’s monthly letter. The subscription is currently an ordinary email: the “Subscribe” link opens your mail application, so your address reaches us inside a message you send yourself, together with whatever your mail client adds to it (sender name, date, technical headers). There is no form on the Site that transmits data to us.",
+              "Ordinary technical data about your visit – IP address, device and browser type, pages requested, time of the request. These are recorded in server logs by the hosting provider, as every web server does; the records are needed to keep the Site running and secure, we do not link them to a person and we do not use them to watch readers.",
             ],
           },
         },
@@ -286,14 +286,14 @@ export const privacy: LegalDocument = {
           kind: "ul",
           items: {
             uk: [
-              "Відповісти на ваше звернення — обробка потрібна, щоб розглянути лист, який ви надіслали з власної ініціативи, і відповісти на нього.",
-              "Надсилати щомісячний лист бібліотеки — виключно на підставі вашої згоди, яку ви даєте, попросивши про підписку, і можете відкликати будь-коли.",
-              "Забезпечувати роботу, доступність і безпеку Сайту — на підставі законного інтересу Факультету підтримувати публічну бібліотеку в робочому стані.",
+              "Відповісти на ваше звернення – обробка потрібна, щоб розглянути лист, який ви надіслали з власної ініціативи, і відповісти на нього.",
+              "Надсилати щомісячний лист бібліотеки – виключно на підставі вашої згоди, яку ви даєте, попросивши про підписку, і можете відкликати будь-коли.",
+              "Забезпечувати роботу, доступність і безпеку Сайту – на підставі законного інтересу Факультету підтримувати публічну бібліотеку в робочому стані.",
             ],
             en: [
-              "To answer your message — processing is needed to consider and reply to correspondence you sent on your own initiative.",
-              "To send the library’s monthly letter — solely on the basis of your consent, given when you ask to be subscribed and withdrawable at any time.",
-              "To keep the Site working, available and secure — on the basis of the Faculty’s legitimate interest in maintaining a public library in working order.",
+              "To answer your message – processing is needed to consider and reply to correspondence you sent on your own initiative.",
+              "To send the library’s monthly letter – solely on the basis of your consent, given when you ask to be subscribed and withdrawable at any time.",
+              "To keep the Site working, available and secure – on the basis of the Faculty’s legitimate interest in maintaining a public library in working order.",
             ],
           },
         },
@@ -327,17 +327,17 @@ export const privacy: LegalDocument = {
           items: {
             uk: [
               analyticsEnabled
-                ? "постачальникам технічних послуг — хостинг Сайту, сервіс вебаналітики Cloudflare Web Analytics і поштова служба університету, у межах, потрібних для того, щоб Сайт відкривався, статистика відвідувань рахувалася, а лист доходив;"
-                : "постачальникам технічних послуг — хостинг Сайту та поштова служба університету, у межах, потрібних для того, щоб Сайт відкривався, а лист доходив;",
-              "іншим підрозділам Українського католицького університету — лише тоді й у тому обсязі, як цього вимагає розгляд вашого звернення;",
-              "державним органам — у випадках, прямо передбачених законодавством України.",
+                ? "постачальникам технічних послуг – хостинг Сайту, сервіс вебаналітики Cloudflare Web Analytics і поштова служба університету, у межах, потрібних для того, щоб Сайт відкривався, статистика відвідувань рахувалася, а лист доходив;"
+                : "постачальникам технічних послуг – хостинг Сайту та поштова служба університету, у межах, потрібних для того, щоб Сайт відкривався, а лист доходив;",
+              "іншим підрозділам Українського католицького університету – лише тоді й у тому обсязі, як цього вимагає розгляд вашого звернення;",
+              "державним органам – у випадках, прямо передбачених законодавством України.",
             ],
             en: [
               analyticsEnabled
-                ? "technical service providers — the Site’s hosting, the Cloudflare Web Analytics service and the University’s mail service, to the extent needed for the Site to load, for visits to be counted and for an email to arrive;"
-                : "technical service providers — the Site’s hosting and the University’s mail service, to the extent needed for the Site to load and for an email to arrive;",
-              "other units of the Ukrainian Catholic University — only where and to the extent that handling your message requires it;",
-              "state authorities — in the cases directly provided for by the legislation of Ukraine.",
+                ? "technical service providers – the Site’s hosting, the Cloudflare Web Analytics service and the University’s mail service, to the extent needed for the Site to load, for visits to be counted and for an email to arrive;"
+                : "technical service providers – the Site’s hosting and the University’s mail service, to the extent needed for the Site to load and for an email to arrive;",
+              "other units of the Ukrainian Catholic University – only where and to the extent that handling your message requires it;",
+              "state authorities – in the cases directly provided for by the legislation of Ukraine.",
             ],
           },
         },
@@ -383,14 +383,14 @@ export const privacy: LegalDocument = {
             uk: [
               "знати, які ваші дані ми обробляємо, звідки вони й з якою метою;",
               "отримати доступ до цих даних, вимагати їх виправлення, оновлення чи видалення;",
-              "відкликати згоду на обробку — зокрема відмовитися від щомісячного листа;",
+              "відкликати згоду на обробку – зокрема відмовитися від щомісячного листа;",
               "заперечувати проти обробки у випадках, визначених законом;",
-              "звернутися зі скаргою до Уповноваженого Верховної Ради України з прав людини — органу, що контролює додержання законодавства про захист персональних даних.",
+              "звернутися зі скаргою до Уповноваженого Верховної Ради України з прав людини – органу, що контролює додержання законодавства про захист персональних даних.",
             ],
             en: [
               "to know what data of yours we process, where it came from and for what purpose;",
               "to obtain access to that data and to require its correction, updating or deletion;",
-              "to withdraw your consent to processing — including unsubscribing from the monthly letter;",
+              "to withdraw your consent to processing – including unsubscribing from the monthly letter;",
               "to object to processing in the cases set out by law;",
               "to lodge a complaint with the Ukrainian Parliament Commissioner for Human Rights (the Ombudsman), the authority supervising compliance with personal data protection law.",
             ],
@@ -426,8 +426,8 @@ export const privacy: LegalDocument = {
         {
           kind: "p",
           text: {
-            uk: "Водночас жоден спосіб передавання даних через інтернет не є абсолютно захищеним, а звичайна електронна пошта захищеним каналом не є. Якщо ви працюєте з чутливою інформацією — про потерпілих, свідків чи незавершені провадження, — не надсилайте її нам звичайним листом.",
-            en: "That said, no method of transmitting data over the internet is completely secure, and ordinary email is not a secure channel. If you work with sensitive information — about victims, witnesses or pending proceedings — please do not send it to us by ordinary email.",
+            uk: "Водночас жоден спосіб передавання даних через інтернет не є абсолютно захищеним, а звичайна електронна пошта захищеним каналом не є. Якщо ви працюєте з чутливою інформацією – про потерпілих, свідків чи незавершені провадження, – не надсилайте її нам звичайним листом.",
+            en: "That said, no method of transmitting data over the internet is completely secure, and ordinary email is not a secure channel. If you work with sensitive information – about victims, witnesses or pending proceedings – please do not send it to us by ordinary email.",
           },
         },
       ],
@@ -440,11 +440,11 @@ export const privacy: LegalDocument = {
           kind: "p",
           text: {
             uk: analyticsEnabled
-              ? "Ми можемо оновлювати цю Політику — зокрема якщо зміниться сервіс аналітики або на Сайті з'явиться форма підписки. Чинна редакція завжди опублікована на цій сторінці із зазначенням дати оновлення."
-              : "Ми можемо оновлювати цю Політику — зокрема якщо на Сайті з'являться аналітика чи форма підписки. Чинна редакція завжди опублікована на цій сторінці із зазначенням дати оновлення.",
+              ? "Ми можемо оновлювати цю Політику – зокрема якщо зміниться сервіс аналітики або на Сайті з'явиться форма підписки. Чинна редакція завжди опублікована на цій сторінці із зазначенням дати оновлення."
+              : "Ми можемо оновлювати цю Політику – зокрема якщо на Сайті з'являться аналітика чи форма підписки. Чинна редакція завжди опублікована на цій сторінці із зазначенням дати оновлення.",
             en: analyticsEnabled
-              ? "We may update this Policy — in particular if the analytics service changes or a subscription form appears on the Site. The current revision is always published on this page with the date of the update."
-              : "We may update this Policy — in particular if analytics or a subscription form appears on the Site. The current revision is always published on this page with the date of the update.",
+              ? "We may update this Policy – in particular if the analytics service changes or a subscription form appears on the Site. The current revision is always published on this page with the date of the update."
+              : "We may update this Policy – in particular if analytics or a subscription form appears on the Site. The current revision is always published on this page with the date of the update.",
           },
         },
       ],
@@ -488,7 +488,7 @@ export const terms: LegalDocument = {
   slug: "terms",
   title: { uk: "Умови користування", en: "Terms of use" },
   lede: {
-    uk: "Бібліотека відкрита і безкоштовна. Головне, про що просимо пам'ятати: огляд — це не рішення, і ніщо тут не є юридичною консультацією.",
+    uk: "Бібліотека відкрита і безкоштовна. Головне, про що просимо пам'ятати: огляд – це не рішення, і ніщо тут не є юридичною консультацією.",
     en: "The library is open and free to use. The main things to keep in mind: a summary is not the decision, and nothing here is legal advice.",
   },
   sections: [
@@ -499,7 +499,7 @@ export const terms: LegalDocument = {
         {
           kind: "p",
           text: {
-            uk: "Ці Умови користування (далі — Умови) регулюють доступ до вебсайту бібліотеки «НаСвітло» (далі — Сайт) і користування ним. Сайт веде Дослідницький центр Луї Зона Факультету права Українського католицького університету, вул. Іларіона Свєнціцького, 17, м. Львів, 79011, Україна.",
+            uk: "Ці Умови користування (далі – Умови) регулюють доступ до вебсайту бібліотеки «НаСвітло» (далі – Сайт) і користування ним. Сайт веде Дослідницький центр Луї Зона Факультету права Українського католицького університету, вул. Іларіона Свєнціцького, 17, м. Львів, 79011, Україна.",
             en: "These Terms of use (the Terms) govern access to and use of the website of the NaSvitlo library (the Site). The Site is run by the Louis Sohn Research Centre at the Faculty of Law of the Ukrainian Catholic University, 17 Svientsitskoho St., Lviv, 79011, Ukraine.",
           },
         },
@@ -523,12 +523,12 @@ export const terms: LegalDocument = {
              been re-conceived cannot go on being described by its old name:
              the map carried a marker per event when this was written and now
              shows the States whose courts hear these proceedings. Of every
-             place on the site where that name survived, this was the worst —
+             place on the site where that name survived, this was the worst –
              a legal document is the text a reader is entitled to rely on. The
              name used here is the map page's own title. */
           kind: "p",
           text: {
-            uk: "Сайт — це відкрита бібліотека проваджень проти Російської Федерації в міжнародних судах, трибуналах та арбітражах: перелік справ, огляди рішень, хронології, мапа судів і посилання на першоджерела. Він адресований науковцям, практикам, журналістам і всім, хто цікавиться темою.",
+            uk: "Сайт – це відкрита бібліотека проваджень проти Російської Федерації в міжнародних судах, трибуналах та арбітражах: перелік справ, огляди рішень, хронології, мапа судів і посилання на першоджерела. Він адресований науковцям, практикам, журналістам і всім, хто цікавиться темою.",
             en: "The Site is an open library of proceedings against the Russian Federation before international courts, tribunals and arbitrations: a list of cases, decision summaries, chronologies, a map of the courts and links to primary sources. It is addressed to scholars, practitioners, journalists and anyone interested in the subject.",
           },
         },
@@ -552,7 +552,7 @@ export const terms: LegalDocument = {
         {
           kind: "p",
           text: {
-            uk: "Огляд — це не рішення. Матеріали Сайту є стислим викладом, аналізом і неофіційним перекладом судових актів, який готують дослідники Центру. Автентичним є лише текст, оприлюднений відповідним судом чи трибуналом мовою судочинства; у разі будь-якої розбіжності діє він, а не наш виклад.",
+            uk: "Огляд – це не рішення. Матеріали Сайту є стислим викладом, аналізом і неофіційним перекладом судових актів, який готують дослідники Центру. Автентичним є лише текст, оприлюднений відповідним судом чи трибуналом мовою судочинства; у разі будь-якої розбіжності діє він, а не наш виклад.",
             en: "A summary is not the decision. The materials on the Site are a condensed account, an analysis and an unofficial translation of judicial acts, prepared by the Centre’s researchers. Only the text published by the court or tribunal itself, in the language of the proceedings, is authoritative; in the event of any discrepancy that text prevails, not our account.",
           },
         },
@@ -566,14 +566,14 @@ export const terms: LegalDocument = {
         {
           kind: "p",
           text: {
-            uk: "Матеріали Сайту мають інформаційний і науковий характер. Вони не є юридичною консультацією, не замінюють її і не створюють відносин «правник — клієнт» між вами та Факультетом, Центром чи авторами матеріалів. Щодо конкретної справи звертайтеся до кваліфікованого правника.",
+            uk: "Матеріали Сайту мають інформаційний і науковий характер. Вони не є юридичною консультацією, не замінюють її і не створюють відносин «правник – клієнт» між вами та Факультетом, Центром чи авторами матеріалів. Щодо конкретної справи звертайтеся до кваліфікованого правника.",
             en: "The materials are informational and scholarly. They are not legal advice, they are no substitute for it, and they create no lawyer–client relationship between you and the Faculty, the Centre or the authors. For a specific matter, consult a qualified lawyer.",
           },
         },
         {
           kind: "p",
           text: {
-            uk: "Ми докладаємо зусиль, щоб матеріали були точними й актуальними, однак право і практика змінюються, а провадження тривають. Якщо ви помітили помилку чи застарілі дані — напишіть нам, і ми виправимо.",
+            uk: "Ми докладаємо зусиль, щоб матеріали були точними й актуальними, однак право і практика змінюються, а провадження тривають. Якщо ви помітили помилку чи застарілі дані – напишіть нам, і ми виправимо.",
             en: "We work to keep the materials accurate and current, but the law and the case-law move and proceedings continue. If you spot an error or something out of date, write to us and we will correct it.",
           },
         },
@@ -596,15 +596,15 @@ export const terms: LegalDocument = {
         {
           kind: "p",
           text: {
-            uk: "Що справді є нашим — це те, що ми створюємо самі: огляди й аналітичні тексти, хронології, неофіційні переклади, добір та впорядкування матеріалів у бібліотеці, мапи, ілюстрації, дизайн і код Сайту. Ці матеріали є об'єктами авторського права і належать Факультету права УКУ та Дослідницькому центру Луї Зона або використовуються на законних підставах.",
+            uk: "Що справді є нашим – це те, що ми створюємо самі: огляди й аналітичні тексти, хронології, неофіційні переклади, добір та впорядкування матеріалів у бібліотеці, мапи, ілюстрації, дизайн і код Сайту. Ці матеріали є об'єктами авторського права і належать Факультету права УКУ та Дослідницькому центру Луї Зона або використовуються на законних підставах.",
             en: "What is ours is what we make ourselves: the summaries and analytical texts, the chronologies, the unofficial translations, the selection and arrangement of the material in the library, the maps, the illustrations, and the design and code of the Site. These are subject to copyright and belong to the UCU Faculty of Law and the Louis Sohn Research Centre, or are used on lawful grounds.",
           },
         },
         {
           kind: "p",
           text: {
-            uk: "Наші матеріали поширюються на умовах ліцензії Creative Commons Attribution 4.0 International (CC BY 4.0). Ви можете вільно копіювати, поширювати, переробляти й використовувати їх — зокрема в комерційних цілях — за єдиної умови: зазначте авторство («НаСвітло», Дослідницький центр Луї Зона Факультету права УКУ), дайте активне посилання на відповідну сторінку Сайту й вкажіть, чи вносили ви зміни.",
-            en: "Our materials are released under the Creative Commons Attribution 4.0 International licence (CC BY 4.0). You are free to copy, redistribute, adapt and build upon them — including commercially — on one condition: give attribution (NaSvitlo, the Louis Sohn Research Centre at the UCU Faculty of Law), link to the relevant page of the Site, and indicate whether you made changes.",
+            uk: "Наші матеріали поширюються на умовах ліцензії Creative Commons Attribution 4.0 International (CC BY 4.0). Ви можете вільно копіювати, поширювати, переробляти й використовувати їх – зокрема в комерційних цілях – за єдиної умови: зазначте авторство («НаСвітло», Дослідницький центр Луї Зона Факультету права УКУ), дайте активне посилання на відповідну сторінку Сайту й вкажіть, чи вносили ви зміни.",
+            en: "Our materials are released under the Creative Commons Attribution 4.0 International licence (CC BY 4.0). You are free to copy, redistribute, adapt and build upon them – including commercially – on one condition: give attribution (NaSvitlo, the Louis Sohn Research Centre at the UCU Faculty of Law), link to the relevant page of the Site, and indicate whether you made changes.",
           },
         },
         {
@@ -632,12 +632,12 @@ export const terms: LegalDocument = {
           items: {
             uk: [
               "порушують законодавство України чи права третіх осіб;",
-              "шкодять роботі Сайту — спроби зламу, обхід технічних обмежень, поширення шкідливого коду, автоматизовані запити в обсязі, що заважає іншим читачам;",
+              "шкодять роботі Сайту – спроби зламу, обхід технічних обмежень, поширення шкідливого коду, автоматизовані запити в обсязі, що заважає іншим читачам;",
               "полягають у надсиланні нам на контактні адреси недостовірної інформації, спаму чи образливого змісту.",
             ],
             en: [
               "breaches the legislation of Ukraine or the rights of third parties;",
-              "harms the operation of the Site — attempts to break in, circumvention of technical limits, distribution of malicious code, or automated requests on a scale that gets in the way of other readers;",
+              "harms the operation of the Site – attempts to break in, circumvention of technical limits, distribution of malicious code, or automated requests on a scale that gets in the way of other readers;",
               "consists in sending false information, spam or abusive content to our contact addresses.",
             ],
           },
@@ -645,7 +645,7 @@ export const terms: LegalDocument = {
         {
           kind: "p",
           text: {
-            uk: "Це відкрита бібліотека, і читати її машиною ми не забороняємо. Якщо ви плануєте систематично завантажувати матеріали для дослідження — напишіть нам, і ми домовимося, як зробити це без шкоди для Сайту.",
+            uk: "Це відкрита бібліотека, і читати її машиною ми не забороняємо. Якщо ви плануєте систематично завантажувати матеріали для дослідження – напишіть нам, і ми домовимося, як зробити це без шкоди для Сайту.",
             en: "This is an open library and we do not forbid reading it by machine. If you plan to download material systematically for research, write to us and we will agree a way to do it that does not hurt the Site.",
           },
         },
@@ -661,14 +661,14 @@ export const terms: LegalDocument = {
         {
           kind: "p",
           text: {
-            uk: "Сайт містить багато посилань на сторонні ресурси — насамперед на офіційні бази судових рішень і документів (Міжнародного суду ООН, ЄСПЛ, Міжнародного кримінального суду, Постійної палати третейського суду та інших), а також на сайти партнерів. Ми не контролюємо їхнього змісту, доступності, точності чи політики конфіденційності, і посилання не означає схвалення. Перехід за ними здійснюється на ваш розсуд.",
-            en: "The Site carries many links to third-party resources — above all to the official databases of judgments and documents (of the International Court of Justice, the ECtHR, the International Criminal Court, the Permanent Court of Arbitration and others) and to partners’ websites. We do not control their content, availability, accuracy or privacy practices, and a link is not an endorsement. You follow such links at your own discretion.",
+            uk: "Сайт містить багато посилань на сторонні ресурси – насамперед на офіційні бази судових рішень і документів (Міжнародного суду ООН, ЄСПЛ, Міжнародного кримінального суду, Постійної палати третейського суду та інших), а також на сайти партнерів. Ми не контролюємо їхнього змісту, доступності, точності чи політики конфіденційності, і посилання не означає схвалення. Перехід за ними здійснюється на ваш розсуд.",
+            en: "The Site carries many links to third-party resources – above all to the official databases of judgments and documents (of the International Court of Justice, the ECtHR, the International Criminal Court, the Permanent Court of Arbitration and others) and to partners’ websites. We do not control their content, availability, accuracy or privacy practices, and a link is not an endorsement. You follow such links at your own discretion.",
           },
         },
         {
           kind: "p",
           text: {
-            uk: "Посилання на першоджерела з часом псуються — суди змінюють структуру своїх сайтів. Якщо посилання не працює, напишіть нам, і ми його полагодимо.",
+            uk: "Посилання на першоджерела з часом псуються – суди змінюють структуру своїх сайтів. Якщо посилання не працює, напишіть нам, і ми його полагодимо.",
             en: "Links to primary sources decay over time, as courts reorganise their websites. If a link is broken, write to us and we will fix it.",
           },
         },
@@ -681,8 +681,8 @@ export const terms: LegalDocument = {
         {
           kind: "p",
           text: {
-            uk: "Матеріали Сайту надаються «як є», без гарантій точності, повноти чи актуальності. Ми не гарантуємо безперебійної роботи Сайту й не несемо відповідальності за шкоду, що виникла внаслідок користування Сайтом, неможливості ним скористатися чи покладання на його матеріали, — у межах, дозволених законодавством України.",
-            en: "The materials are provided “as is”, without warranty of accuracy, completeness or currency. We do not guarantee uninterrupted operation of the Site and are not liable for loss arising from use of the Site, from inability to use it, or from reliance on its materials — to the extent permitted by the legislation of Ukraine.",
+            uk: "Матеріали Сайту надаються «як є», без гарантій точності, повноти чи актуальності. Ми не гарантуємо безперебійної роботи Сайту й не несемо відповідальності за шкоду, що виникла внаслідок користування Сайтом, неможливості ним скористатися чи покладання на його матеріали, – у межах, дозволених законодавством України.",
+            en: "The materials are provided “as is”, without warranty of accuracy, completeness or currency. We do not guarantee uninterrupted operation of the Site and are not liable for loss arising from use of the Site, from inability to use it, or from reliance on its materials – to the extent permitted by the legislation of Ukraine.",
           },
         },
       ],
@@ -711,8 +711,8 @@ export const terms: LegalDocument = {
         {
           kind: "p",
           text: {
-            uk: "Ми можемо змінювати ці Умови — зокрема в міру того, як бібліотека наповнюється. Чинна редакція завжди опублікована на цій сторінці із зазначенням дати оновлення.",
-            en: "We may amend these Terms — in particular as the library grows. The current revision is always published on this page with the date of the update.",
+            uk: "Ми можемо змінювати ці Умови – зокрема в міру того, як бібліотека наповнюється. Чинна редакція завжди опублікована на цій сторінці із зазначенням дати оновлення.",
+            en: "We may amend these Terms – in particular as the library grows. The current revision is always published on this page with the date of the update.",
           },
         },
       ],
@@ -724,7 +724,7 @@ export const terms: LegalDocument = {
         {
           kind: "p",
           text: {
-            uk: "Ці Умови регулюються законодавством України. Спори, що виникають у зв'язку з користуванням Сайтом, вирішуються шляхом переговорів, а якщо згоди досягти не вдасться — у судовому порядку відповідно до законодавства України.",
+            uk: "Ці Умови регулюються законодавством України. Спори, що виникають у зв'язку з користуванням Сайтом, вирішуються шляхом переговорів, а якщо згоди досягти не вдасться – у судовому порядку відповідно до законодавства України.",
             en: "These Terms are governed by the legislation of Ukraine. Disputes arising in connection with use of the Site are settled by negotiation and, failing agreement, before the courts in accordance with the legislation of Ukraine.",
           },
         },

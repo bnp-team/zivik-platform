@@ -3,7 +3,7 @@
    moved back with it: --gold for the figures and the marks (9.98:1 on the
    band), --cream and --muted for the words (15.53:1 and 9.06:1), --red for the
    half of a proportion that is a breach (5.61:1). The paper twins they wore in
-   between measure 3.33:1, 1.06:1, 2.40:1 and 1.81:1 here — under AA every one
+   between measure 3.33:1, 1.06:1, 2.40:1 and 1.81:1 here – under AA every one
    of them, and the values in the ledger would simply have gone out. */
 .casepage .takings {
   display: grid;
@@ -45,17 +45,17 @@
   border-radius: 50%;
   background: var(--gold);
 }
-/* The proportion — and the track only means something on one of these bars.
+/* The proportion – and the track only means something on one of these bars.
 
    The red track was written for a single figure: 9.5% of the deported children
    returned, where the unfilled part is nine in ten who have not, and drawing
    it as empty grey said nothing at all. Then it was applied to every share on
    the site, and four of the five say nothing of the kind. «Частка кредитування
-   в Криму — 45%» has a remainder of 55%, and that 55% is the bank's lending
+   в Криму – 45%» has a remainder of 55%, and that 55% is the bank's lending
    everywhere else. Painting it the colour this site gives a breach asserts
    something no source does.
 
-   So the breach track belongs to a share that has named its remainder — which
+   So the breach track belongs to a share that has named its remainder – which
    `restLabel` already marks, because naming it is exactly the editorial act of
    saying the other side means something. Everything else gets a quiet track:
    the fill is the statement, and the rest is the rest. */
@@ -63,7 +63,7 @@
   height: 12px;
   border-radius: var(--r-pill);
   /* --rule: a trough, not a claim. 1.28:1 against the band, which is what a
-     divider inside a component is allowed — the information is the fill's
+     divider inside a component is allowed – the information is the fill's
      length and the figure printed above it. */
   background: var(--rule);
   overflow: hidden;
@@ -79,15 +79,15 @@
   border-radius: var(--r-pill);
   /* --gold, 9.98:1 on the band. On paper this pair was a dark red track under
      a lit gold fill and read as a proportion at 5.50:1 between the two halves.
-     On the night ground both halves are lit — the red had to come up to be
-     seen at all — and 5.50 collapses to 1.78, which is one bar in two tones of
+     On the night ground both halves are lit – the red had to come up to be
+     seen at all – and 5.50 collapses to 1.78, which is one bar in two tones of
      the same brightness. Nothing in the palette fixes that: a fill that clears
      3:1 against --brand-breach would have to be darker than the band.
 
      So the boundary is drawn by the ground instead of by the pair. The gold
      ends two pixels short of where the share ends and the band shows through,
      which is the device .money-bar already uses between its segments; each
-     half is then read against --brand-night — 9.98:1 and 5.61:1 — rather than
+     half is then read against --brand-night – 9.98:1 and 5.61:1 – rather than
      against the other. The shadow has no blur and no spread and the track
      clips it, so at a share of 100% there is no notch and the gold runs to the
      end. */
@@ -112,7 +112,7 @@
 .casepage .ts-share {
   color: var(--gold);
 }
-/* 5.61:1 — the track's own colour, which is the point of the pair. */
+/* 5.61:1 – the track's own colour, which is the point of the pair. */
 .casepage .ts-rest {
   color: var(--red);
 }
@@ -181,8 +181,8 @@
    whatever is behind the segments and the segments themselves have to be read
    against something. On paper that something could be the bar's gold, since
    the ramp below runs light-dark-light against it. On night every step of the
-   ramp is lit — there is nothing under the ground to be the dark end of a
-   ramp — so gold gaps would leave 1.56:1 and 1.66:1 boundaries between the
+   ramp is lit – there is nothing under the ground to be the dark end of a
+   ramp – so gold gaps would leave 1.56:1 and 1.66:1 boundaries between the
    parts. Against --brand-night the same three read 9.98:1, 15.53:1 and
    6.03:1.
 
@@ -207,7 +207,7 @@
    Without it a bar was a gold shape alone on the ground, and a small one had
    nothing to be small against: DTEK's costs are 0.26% of the award on that
    page and drew as a stub with a red line under it explaining that its width
-   was not to be believed — which reads as a fault in the drawing rather than
+   was not to be believed – which reads as a fault in the drawing rather than
    as a small sum. In the rail the same stub is legible as what it is. --rule
    is the hairline colour of these dark bands, so the track is a groove rather
    than a second lit shape competing with the bar in it. */
@@ -215,7 +215,7 @@
   border-radius: var(--r-xs);
   background: var(--rule);
 }
-/* An estimate is hatched rather than solid — the hatch runs gold over the
+/* An estimate is hatched rather than solid – the hatch runs gold over the
    band's own ground, so the bar still reads as gold at a glance and as
    provisional up close. It was gold over --seam, the paper band's edge grey,
    which on this ground would be a 10.34:1 pale stripe alternating with the
@@ -229,22 +229,22 @@
   outline: 1px solid var(--gold);
   outline-offset: -1px;
 }
-/* Three segments of one award — and colour alone cannot tell them apart.
+/* Three segments of one award – and colour alone cannot tell them apart.
 
    The comment that stood here reported each segment's contrast against the
    ground (9.98, 15.53, 6.03) and called that three different things to the
    eye. It measured the wrong pair. In a stacked bar what a reader has to
    separate is each segment from the one it touches, and those were 1.56, 1.66
-   and 2.58 — every one under the 3:1 that adjacent graphical parts need.
+   and 2.58 – every one under the 3:1 that adjacent graphical parts need.
 
    It cannot be fixed with colour, and that is arithmetic rather than a want of
    palette. Three tones each 3:1 from the next need luminances near 0.02, 0.25
    and 0.85; the darkest must also clear 3:1 against this ground, which forces
    it up to about 0.07, and the lightest would then have to exceed 1.0. No
-   three colours in this palette manage it — checked, all 120 combinations.
+   three colours in this palette manage it – checked, all 120 combinations.
 
    So the separation moves to a second channel. Each segment keeps its place on
-   the gold ramp — never red, so a sum is never mistaken for a finding — and
+   the gold ramp – never red, so a sum is never mistaken for a finding – and
    takes a weave of the ground: solid, then vertical, then dotted. The key
    below wears the same three treatments, so a swatch identifies its segment
    without the reader counting positions. This also survives the reader who
@@ -271,7 +271,7 @@
 }
 /* Lit from the key, which is where the pointer is. A keyline of the band's own
    ground, inset: every segment here is a lit colour, so the ring that marks
-   one has to be the dark — 9.98:1, 15.53:1 and 6.03:1 against the three. On
+   one has to be the dark – 9.98:1, 15.53:1 and 6.03:1 against the three. On
    paper it is --ink for the same reason with the tones the other way up. */
 .casepage .money-seg[data-on="yes"] {
   outline: 2px solid var(--bg);
@@ -311,7 +311,7 @@
 }
 /* The key's swatches are the bar's segments and have to stay the same three
    colours. 9.98:1, 15.53:1, 6.03:1 on the band. */
-/* Each swatch wears the weave of the segment it names, not only its tone —
+/* Each swatch wears the weave of the segment it names, not only its tone –
    the tones are 1.56 to 2.58 apart and cannot carry the mapping alone. These
    rules live here, beside the rest of the key, because the pair of them further
    up the file lost to these on order and drew nothing.
@@ -341,13 +341,13 @@
    could not find on the drawing, and picking an entry lit a segment that was
    not rendered. On those keys MoneyBars leaves `data-seg` off the swatch
    altogether, so the two rules above do not match and every mark falls back to
-   the plain gold of `.money-key i` — no rule here is needed for that, and the
+   the plain gold of `.money-key i` – no rule here is needed for that, and the
    one that stood here could never match: a key without segments has no
    `[data-seg]` to select.
 
    What does need a rule is the bar whose split is legible on a desktop and
-   not on a phone. `data-thin` is set on the narrow ones — a part between 1%
-   and 2.5% of the rail — and 900px is where 2.5% of a rail stops being eight
+   not on a phone. `data-thin` is set on the narrow ones – a part between 1%
+   and 2.5% of the rail – and 900px is where 2.5% of a rail stops being eight
    pixels.
    `[data-estimated="no"]` so an estimated bar keeps its hatch when its
    segments go: the two rules are the same weight, and this one is written
@@ -363,7 +363,7 @@
     background: var(--gold);
   }
 }
-/* 15.53:1 — the picked entry brightens rather than changing hue. */
+/* 15.53:1 – the picked entry brightens rather than changing hue. */
 .casepage .money-key li[data-on="yes"] button {
   color: var(--cream);
 }
@@ -421,8 +421,8 @@
   background: var(--seam);
 }
 /* Each mark is a press: it takes the reader to the row it stands for, opens it
-   and puts the keyboard on it. The rail used to be `aria-hidden` decoration —
-   a row of dots that answered nothing — and it read that way.
+   and puts the keyboard on it. The rail used to be `aria-hidden` decoration –
+   a row of dots that answered nothing – and it read that way.
 
    The button is 24px square with the dot painted in the middle of it, rather
    than an 11px target: 11 is what the mark should look like on a 1px rule and
@@ -509,8 +509,8 @@
      date, the track chip, the label and the note. Those are four columns, not
      one line. The row never ran 151 characters.
 
-     The cap then squeezed the row itself — its box, its hairline and its grid
-     — to about 850px of a 1180px rail, which is what the owner saw and asked
+     The cap then squeezed the row itself – its box, its hairline and its grid
+     – to about 850px of a 1180px rail, which is what the owner saw and asked
      about. The prose inside was already held: `.ctl-note` below caps at 66ch,
      which is the right place for a measure, on the paragraph rather than on
      the ledger row that contains it. */
@@ -522,7 +522,7 @@
 /* The row grid has a track column only when the timeline actually has tracks.
    .ctl-track is rendered conditionally, so a fixed four-column template put
    the event text into the 8.5rem track slot on every track-less case and left
-   the 1fr column empty — the whole chronology wrapped one word per line on
+   the 1fr column empty – the whole chronology wrapped one word per line on
    icj-genocide, icj-cerd-icsft, hague-mh17 and finland-torden. CaseTimeline
    sets data-tracks; the two shapes below are the only ones that exist. */
 .casepage .ctl {
@@ -590,8 +590,8 @@
 }
 /* Two states, not four.
 
-   Four kinds are authored across the 75 events of the eight chronologies —
-   judgment 13, order 21, filing 15, context 26 — and each used to get its own
+   Four kinds are authored across the 75 events of the eight chronologies –
+   judgment 13, order 21, filing 15, context 26 – and each used to get its own
    setting: gold and bold, ink at 500, ink at 400, --muted. The owner asked
    twice what the colours meant, the second time after a key had been added
    under the filters. A key the person who commissioned the page has to consult
@@ -602,10 +602,10 @@
    annulling the award and the Cassation quashing that annulment, the US
    appellate refusal of Russian immunity, the Grand Chamber's admissibility
    ruling, the Court's effective-control finding, the ICJ's provisional
-   measures — and, beside them, "hearings in Paris", "the trial opens in The
+   measures – and, beside them, "hearings in Paris", "the trial opens in The
    Hague", Russia's expulsion from the Council of Europe and a €87m seizure in
    France. `filing` holds the Application, the Memorial, the Counter-Memorial,
-   six preliminary objections and 33 declarations of intervention — and an
+   six preliminary objections and 33 declarations of intervention – and an
    arrest at Helsinki airport. Neither bucket is "what the court ordered" or
    "what a party filed"; both are "a step in the proceedings". A weight of 500
    against 400 was being asked to carry a line that does not exist, at a
@@ -615,19 +615,19 @@
    halves of it say so in their own words, so neither needs a key:
 
    - The operative acts, at 600. Eleven of the thirteen name themselves in the
-     label — «Рішення», «Вирок», «Ордери» — so the weight confirms what the
+     label – «Рішення», «Вирок», «Ордери» – so the weight confirms what the
      line already says rather than encoding something the reader must look up.
      The gold is gone with the key: on this page gold is structure and
      furniture (the date column, the rail, the +), and DESIGN.md keeps prose in
      ink. Weight alone survives greyscale, which colour never did.
-   - Background — Euromaidan, MH17, the full-scale invasion — recedes, and does
+   - Background – Euromaidan, MH17, the full-scale invasion – recedes, and does
      it in italic as well as in tone, so the distinction survives a monochrome
      screen and does not rest on colour (WCAG 1.4.1).
 
    --muted is why the tone changed, and it was not a taste call. It resolves to
    --brand-muted-dark, which is a dark-ground colour, and this band moved to
    paper: #c9afa8 measures 1.99:1 on --brand-paper and 1.87:1 on
-   --brand-paper-2 — the chronology alternates between the two — and 2.06:1 on
+   --brand-paper-2 – the chronology alternates between the two – and 2.06:1 on
    the white a row lifts to on hover. A third of every chronology was a ghost,
    and this is body content, not decoration. --ink3 (--brand-faint, #6d6964)
    is 5.26 / 4.95 / 5.45:1 on the same three grounds. The rest of the rows are
@@ -641,13 +641,13 @@
 }
 .casepage .ctl-list li[data-kind="context"] .ctl-label {
   color: var(--ink3);
-  /* Fira's italics are their own loader call, at 400 and 500 — see
+  /* Fira's italics are their own loader call, at 400 and 500 – see
      globals.css. This row is the 400 of the two. */
   font-family: var(--brand-font-body-italic), sans-serif;
   font-style: italic;
 }
 /* The date recedes in tone only. It is set in IBM Plex Mono, which is loaded
-   at 400 and 500 upright and has no italic here — asking for one would get a
+   at 400 and 500 upright and has no italic here – asking for one would get a
    synthetic slant of a monospace face. */
 .casepage .ctl-list li[data-kind="context"] .ctl-date {
   color: var(--ink3);
@@ -667,7 +667,7 @@
 
    Its ground was --brand-night-2, the raised night, chosen so the band would
    "read as its own" against the map band above it. Measured, that separation
-   was 1.07:1 — the map ended and the chronology began with nothing between
+   was 1.07:1 – the map ended and the chronology began with nothing between
    them, and this was the third dark band in a row. A chronology of filings,
    orders and hearings is docket furniture, not one of the three scenes
    DESIGN.md keeps dark, so it is on paper: --brand-paper-2 under
@@ -685,7 +685,7 @@
 .casepage .machinery-stack {
   display: grid;
   /* One explicit track, allowed below its content's width. The implicit
-     track is `auto`, which grows to the widest child — at 320px the
+     track is `auto`, which grows to the widest child – at 320px the
      objections and attribution blocks pushed the page to 338 and it
      scrolled sideways. */
   grid-template-columns: minmax(0, 1fr);
@@ -693,7 +693,7 @@
 }
 .casepage .mach-note {
   margin: calc(var(--space-2) * -1) 0 var(--space-6);
-  /* 62ch при 14px — це близько 520 пікселів у рейці на 1180, тобто текст
+  /* 62ch при 14px – це близько 520 пікселів у рейці на 1180, тобто текст
      обривався десь на середині смуги і лишав праворуч порожнє поле. Міра
      та сама, що й у решти прози на сторінці. Власниця: «тут знову обрізаний
      текст з правого боку». */
@@ -722,8 +722,8 @@
 }
 /* The cards of one route stack, one per row.
 
-   They were a grid of their own — `auto-fit minmax(190px)` inside a column
-   already 566px wide — so the route with three bodies drew two side by side
+   They were a grid of their own – `auto-fit minmax(190px)` inside a column
+   already 566px wide – so the route with three bodies drew two side by side
    and left the third alone under them, while the route with two drew a tidy
    pair. Nothing in the case makes the Bank of Russia a sibling of the military
    and the Crimean authorities its subordinate; that shape was the grid
@@ -736,15 +736,15 @@
   display: grid;
   gap: var(--space-2);
 }
-/* The bracket that used to be drawn here — a rule across the cards with a tick
-   into each — is gone. Its rule sat a few pixels under the route's own gold
+/* The bracket that used to be drawn here – a rule across the cards with a tick
+   into each – is gone. Its rule sat a few pixels under the route's own gold
    border and drew a second bracket for the same set: two horizontals, one
    grey, one gold, four pixels apart. The route's border is the bracket. */
 /* A card is quiet until it is the one being read.
 
    The whole selected state was a 2px gold line along the top edge of one card
    in five, on cards that all carried the same white ground and the same
-   shadow — at a glance nothing on the drawing said which body the sentence
+   shadow – at a glance nothing on the drawing said which body the sentence
    underneath was about. Now the ground carries it: the four that are not
    selected sit flat on the band with a hairline, the one that is rises onto
    the page's card white with a shadow and its gold edge. */
@@ -789,16 +789,16 @@
 /* The sentence names the body it is about.
 
    It sits under both routes, and a reader who had just pressed a card in the
-   right-hand column found the answer at the foot of the left one — the gold
+   right-hand column found the answer at the foot of the left one – the gold
    rule beside it pointed at nothing in particular. Naming the actor makes the
    sentence self-contained, whichever card it came from. */
 .casepage .attr-did {
   margin: var(--space-6) 0 0;
   padding-left: var(--space-5);
   border-left: 2px solid var(--pgold);
-  /* 68ch при 14px — це 531 піксель у смузі на 676, тобто рядок спинявся за
+  /* 68ch при 14px – це 531 піксель у смузі на 676, тобто рядок спинявся за
      півтори сотні пікселів до краю і виглядав обрізаним. Власниця показала
-     саме на цей блок. Міра сторінки дає тут 86 знаків — довше за ідеал, але
+     саме на цей блок. Міра сторінки дає тут 86 знаків – довше за ідеал, але
      це один абзац на дві-три стрічки, а не суцільне читання. */
   max-width: var(--prose);
   font-size: var(--t-sm);
@@ -814,7 +814,7 @@
    Measured at 1440 before this: four cards across the 1180 rail, 283px each,
    carrying a 22.5px Charis SIL heading. «Рішення не мало б практичного
    ефекту» wrapped to three lines and the heading stood 111px tall inside a
-   315px card — the label taking more room than the thing it labels. The
+   315px card – the label taking more room than the thing it labels. The
    heading was 2.05x every other element in the card and the only serif among
    four faces, so it did not read as the top of a hierarchy; it read as one
    enormous thing with fine print under it.
@@ -836,7 +836,7 @@
   padding: 0;
   display: grid;
   /* min(100%, 320px): a 320px minimum cannot fit a 320px screen once the
-     gutters are taken — the cards ran 18px past the edge and the page
+     gutters are taken – the cards ran 18px past the edge and the page
      scrolled sideways. */
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
   gap: var(--space-4);
@@ -875,7 +875,7 @@
 /* The outcome and the counter share the card's first line.
 
    The verdict used to be pinned to the foot with `margin-top: auto`, which
-   lined the six outcomes up along the bottom of the row — tidy, and the wrong
+   lined the six outcomes up along the bottom of the row – tidy, and the wrong
    place. What a reader wants from this block is which of the six objections
    worked (one, on one ground, in part), and that answer sat below three lines
    of what Russia argued. Moved to the top edge, the six outcomes read across
@@ -904,7 +904,7 @@
   text-wrap: pretty;
 }
 .casepage .obj-latin {
-  /* Fira's italics are their own loader call — see globals.css. This is the
+  /* Fira's italics are their own loader call – see globals.css. This is the
      only thing on the site that asks for one at 500. */
   font: italic 500 var(--t-cap) var(--brand-font-body-italic);
   color: var(--ink3);
@@ -928,8 +928,8 @@
   padding-top: var(--space-3);
   border-top: 1px solid var(--prule);
 }
-/* The dot carries the outcome as well as the word does — red for rejected,
-   gold for the one that got somewhere — so the colour is legible before the
+/* The dot carries the outcome as well as the word does – red for rejected,
+   gold for the one that got somewhere – so the colour is legible before the
    label is read, and the label is there for anyone who cannot see it. */
 .casepage .obj-verdict {
   margin-left: auto;
@@ -955,13 +955,13 @@
 }
 
 /* How the bench divided.
-   This was a run of 6px-on/2px-off gradient ticks, one per seat — at a 14px
+   This was a run of 6px-on/2px-off gradient ticks, one per seat – at a 14px
    height in a 283px card it read as a row of ASCII blocks, not a graphic, and
    it stood beside a tally that already carried the whole of its information:
    "15–1" states the majority, the minority and the bench in four characters.
    A chart that encodes strictly less than the number printed next to it has
    not earned its place, so the bar is gone and the tally is set the way this
-   system sets a figure — the mono face, tabular, with its scope beneath. */
+   system sets a figure – the mono face, tabular, with its scope beneath. */
 .casepage .obj-votes {
   margin-top: auto;
   padding-top: var(--space-3);
@@ -999,14 +999,14 @@
 }
 /* The rule over each stage is one continuous line across the strip, and it is
    the state of the award: gold while it stands, red where it does not. On
-   Oschadbank that line runs gold — 2018, breaks red — 2021, and resumes gold —
+   Oschadbank that line runs gold – 2018, breaks red – 2021, and resumes gold –
    2022, 2025. The award fell and came back, which is the most interesting fact
    in the block, and as four separate cards with four separate flags a reader
    had to assemble it from four readings and hold it in their head.
 
    The segments meet: negative margins on the gaps carry the line across them,
    so it reads as one thing that changes rather than four things that differ.
-   The flag under each stage is untouched — the state is never in the colour
+   The flag under each stage is untouched – the state is never in the colour
    alone. */
 .casepage .afterlife li {
   display: grid;
@@ -1032,7 +1032,7 @@
 }
 /* Перемичка через проміжок тримається всередині списку.
    `:first-child` і `:last-child` прибирають виліт у самого початку і самого
-   кінця — але при трьох колонках останній у ПЕРШОМУ рядку не є жодним із
+   кінця – але при трьох колонках останній у ПЕРШОМУ рядку не є жодним із
    них, і його перемичка вилазила на 16 пікселів за край. Скільки саме
    колонок, знає лише розкладка (`auto-fit`), тож правило не виражається
    селектором; список просто не випускає її за себе. */
@@ -1040,7 +1040,7 @@
   overflow: hidden;
 }
 /* The break. A stage where the award did not stand is drawn as a gap in the
-   line rather than a differently-coloured length of it — the award was not a
+   line rather than a differently-coloured length of it – the award was not a
    different colour in 2021, it was not there. */
 .casepage .afterlife li[data-standing="no"]::before {
   background: repeating-linear-gradient(
@@ -1054,10 +1054,10 @@
   color: var(--ink3);
   font-variant-numeric: tabular-nums;
 }
-/* 22,5px у колонці на 215 — це заголовок статті в картці завширшки з абзац:
+/* 22,5px у колонці на 215 – це заголовок статті в картці завширшки з абзац:
    «Анулювання скасовано» ламалося надвоє й нависало над своєю ж приміткою на
    14. Власниця: «завеликий шрифт заголовків». 16 із тим самим дисплейним
-   накресленням і вагою тримає ту саму відстань від примітки — так само, як
+   накресленням і вагою тримає ту саму відстань від примітки – так само, як
    ім'я в картці ордера відрізняється від посади під ним. */
 .casepage .af-title {
   font: 700 var(--t-body) / 1.3 var(--brand-font-display), serif;
@@ -1083,7 +1083,7 @@
 /* Every figure's share of the largest, in words.
 
    The bar is drawn to a shared scale and cannot be read to a decimal place by
-   eye, and the smallest sums are drawn wider than they are — a bar under 1.2%
+   eye, and the smallest sums are drawn wider than they are – a bar under 1.2%
    of the rail is not visible at all, so it is floored. That compromise is fine
    as long as it is not silent: on a page about money the number is the record
    and the drawing is the aid. */
@@ -1094,7 +1094,7 @@
   color: var(--faint);
   font-variant-numeric: tabular-nums;
 }
-/* The admission that a bar had to be widened — 9.06:1, and no longer in red.
+/* The admission that a bar had to be widened – 9.06:1, and no longer in red.
 
    Red on this site is a breach, and this line is a note about a drawing: on
    the DTEK block it was the brightest thing in the panel, louder than the sum
@@ -1117,8 +1117,8 @@
    `.attr-stem` dropped a 1px line from the respondent's card into the gap
    between two columns and stopped there, so the drawing had a root, two
    columns, and nothing joining them. The rule below runs the full width of the
-   routes — no arithmetic about column centres, so it is right at any number of
-   columns — and each route drops its own tick onto it. */
+   routes – no arithmetic about column centres, so it is right at any number of
+   columns – and each route drops its own tick onto it. */
 .casepage .attr-routes {
   position: relative;
   display: grid;
@@ -1179,13 +1179,13 @@
   color: var(--ink2);
 }
 
-/* Скільки рішення коштує сьогодні і що з нього взято — під самою смугою
+/* Скільки рішення коштує сьогодні і що з нього взято – під самою смугою
    французьких судів, бо це її історія, а не те, що вирішив арбітраж. */
 .casepage .af-sums {
   margin-top: var(--space-10);
 }
 
-/* Рік як шов до хронології — та сама тиха позначка, що й була, лише
+/* Рік як шов до хронології – та сама тиха позначка, що й була, лише
    натискається. Підкреслення з'являється під курсором, щоб рядок карток не
    рябів чотирма лінками. */
 .casepage .af-year-link {

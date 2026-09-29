@@ -1,7 +1,7 @@
 /**
  * Which site the suite is looking at.
  *
- * `BASE_URL` unset: the local build (`dist/client`) served by serve.mjs —
+ * `BASE_URL` unset: the local build (`dist/client`) served by serve.mjs –
  * content from src/content, no Worker. `BASE_URL` set to a deployed origin:
  * that site, Worker and all. The Worker-only checks key off `LIVE`, so a run
  * against the local build skips them with a reason instead of failing on
@@ -27,4 +27,4 @@ export const ORIGIN = new URL(BASE_URL).origin;
 export const LIVE = !/^https?:\/\/(localhost|127\.0\.0\.1|\[::1\])(:\d+)?$/.test(ORIGIN);
 
 export const LIVE_ONLY =
-  "Worker behaviour (redirects, headers, admin, files the Worker serves) exists only on a deployed site — run with BASE_URL=https://… (npm run test:e2e:live)";
+  "Worker behaviour (redirects, headers, admin, files the Worker serves) exists only on a deployed site – run with BASE_URL=https://… (npm run test:e2e:live)";

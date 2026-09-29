@@ -23,7 +23,7 @@ import "../legal.css";
 const T = {
   back: { uk: "На головну", en: "Home" },
   revised: { uk: "Редакція від", en: "Revised" },
-  also: { uk: "Які персональні дані ми отримуємо й що з ними робимо — про це", en: "What personal data reaches us and what we do with it —" },
+  also: { uk: "Які персональні дані ми отримуємо й що з ними робимо – про це", en: "What personal data reaches us and what we do with it –" },
   privacy: { uk: "Політика конфіденційності", en: "Privacy policy" },
 } as const;
 
@@ -43,7 +43,7 @@ export async function generateMetadata({
   const title = pick(terms.title, locale);
   const description = pick(terms.lede, locale);
   /* openGraph and twitter are replaced wholesale, not merged, by the nearest
-     generateMetadata that sets them — so both blocks are complete here, as on
+     generateMetadata that sets them – so both blocks are complete here, as on
      /registry and /team, rather than inheriting the home page's card. */
   return {
     metadataBase: new URL(siteUrl),

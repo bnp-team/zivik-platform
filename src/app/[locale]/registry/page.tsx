@@ -37,16 +37,16 @@ import "./registry.css";
 const T = {
   title: { uk: "Бібліотека рішень", en: "Library of decisions" },
   /* The standfirst on the page. It runs to 222 characters in Ukrainian and 279
-     in English because it does a job on the page — it tells the reader that a
+     in English because it does a job on the page – it tells the reader that a
      row's date is the year the proceeding opened, not the year of the
      judgment, and that the tags run on two axes. Both facts stop the table
      from being misread, so neither is cut.
      It used to double as the meta description, which put 279 characters into a
      field that is truncated at about 160. They are two strings now, the way
      /about already splits them. */
-  /* Not «Усі провадження». The review's question is the right one — «чи
+  /* Not «Усі провадження». The review's question is the right one – «чи
      правильно буде писати про КОЖНЕ провадження. А якщо ми щось пропустимо?
-     Похибка можлива» — and it is the same correction the home band's heading
+     Похибка можлива» – and it is the same correction the home band's heading
      already took, where «Кожне провадження проти Росії» became «Провадження
      проти Росії». One proceeding nobody has reached yet makes a claim of
      completeness false, and this page is the one a reader would cite it from.
@@ -54,23 +54,23 @@ const T = {
      each row carries. */
   lede: {
     /* «Росії», не «РФ»: це перше, що читач зустрічає на сторінці, і решта
-       сайту пише державу словом. І «тип рішення», а не «тип» — колонка
+       сайту пише державу словом. І «тип рішення», а не «тип» – колонка
        зветься так, відколи власниця її перейменувала, а лід лишався
        поясненням до попередньої таблиці. */
-    uk: "Провадження проти Росії у міжнародних судах, трибуналах та арбітражах. Кожен рядок має рік відкриття провадження, а де рішення вже ухвалене — його точну дату. Дві окремі колонки кажуть, на якому етапі провадження — стан розгляду — і що саме суд ухвалив — тип рішення.",
+    uk: "Провадження проти Росії у міжнародних судах, трибуналах та арбітражах. Кожен рядок має рік відкриття провадження, а де рішення вже ухвалене – його точну дату. Дві окремі колонки кажуть, на якому етапі провадження – стан розгляду – і що саме суд ухвалив – тип рішення.",
     en: "Proceedings against Russia across international courts, tribunals and arbitrations. Each row carries the year the proceeding was opened and, where a decision has been handed down, its exact date. Two separate columns carry the stage of the proceedings and the type of decision the court issued.",
   },
   /* The meta description: about 133 / 147 characters, both inside the ~160 a
      search result shows. Says what the page holds and what can be done with
-     it. The figure is `{n}` rather than a literal — it was typed as 39 and
+     it. The figure is `{n}` rather than a literal – it was typed as 39 and
      went stale the moment the six ICC warrants stopped being rows, which is
      the whole argument for `registryTotal` in content/legal.ts. */
   metaDesc: {
-    uk: "{n} проваджень проти Росії в міжнародних судах, трибуналах і арбітражах — з фільтрами за судом, станом розгляду і типом рішення.",
+    uk: "{n} проваджень проти Росії в міжнародних судах, трибуналах і арбітражах – з фільтрами за судом, станом розгляду і типом рішення.",
     en: "{n} proceedings against Russia before international courts, tribunals and arbitrations, filterable by court, by stage of proceedings and by type of decision.",
   },
-  // The wordmark is «НаСвітло» / "NaSvitlo" everywhere — see i18n/dictionaries/uk.ts.
-  // Team and map both say "Home"/"На головну" — so does this now.
+  // The wordmark is «НаСвітло» / "NaSvitlo" everywhere – see i18n/dictionaries/uk.ts.
+  // Team and map both say "Home"/"На головну" – so does this now.
   back: { uk: "На головну", en: "Home" },
   search: {
     uk: "Сторона, суд, номер справи, рік, тема…",
@@ -81,7 +81,7 @@ const T = {
   courtsAll: { uk: "Усі суди", en: "All courts" },
   /* The filter over a column is named for the column. «Етап» and «Ухвалено»
      named neither the data nor the heading above it; the library calls these
-     two dimensions «стан розгляду» and «тип» everywhere now — the column
+     two dimensions «стан розгляду» and «тип» everywhere now – the column
      heading, the filter, the sort axis and the tag's assistive-technology
      prefix all say the same words. It was «тип рішення» until the owner cut
      it: the column stands beside «Стан розгляду» in a table of decisions,
@@ -89,23 +89,23 @@ const T = {
      they had not been told by the page they were on. */
   stages: { uk: "Стан розгляду", en: "Stage" },
   stagesAll: { uk: "Будь-який стан", en: "Any stage" },
-  /* «Тип» саме по собі нічого не називало — поруч стояли «Стан розгляду»
+  /* «Тип» саме по собі нічого не називало – поруч стояли «Стан розгляду»
      і «Галузь», і три з них читалися як три таксономії без предмета.
      Власниця: «не тип а тип рішення». Так само зветься і колонка. */
   outcomes: { uk: "Тип рішення", en: "Decision type" },
   outcomesAll: { uk: "Будь-який тип рішення", en: "Any decision type" },
   /* ── «Галузь» прибрано як критерій ──────────────────────────────────────
-     Власниця: «галузь як критурій пошуку прибрати». Випав увесь фасет —
+     Власниця: «галузь як критурій пошуку прибрати». Випав увесь фасет –
      список, стан у рядку адреси, чип, предикат і обидва рядки. Сама
      величина лишилася в записі (`type` у content/cases.ts) і далі
      відповідає на текстовий запит: прибрано критерій-контрол, а не слово,
      яке треба зробити незнайденним. */
   /* ── «Матеріали» стали «Станом опрацювання» ─────────────────────────────
      Власниця: «Матеріали фільтр - заміни на стан опрацювання: є огляд і в
-     процесі опрацювання». Фільтр питав, що в рядка є — огляд, документ
+     процесі опрацювання». Фільтр питав, що в рядка є – огляд, документ
      суду; тепер він питає, на чому рядок стоїть у нас. Це та сама одна
      величина `lit`, але названа з боку читача: або огляд готовий, або ми
-     його пишемо. Посилання на документ суду нікуди не поділося — воно на
+     його пишемо. Посилання на документ суду нікуди не поділося – воно на
      самому рядку, просто перестало бути критерієм. */
   materials: { uk: "Стан опрацювання", en: "Editorial state" },
   materialsAll: { uk: "Будь-який стан", en: "Any state" },
@@ -116,7 +116,7 @@ const T = {
   matLit: { uk: "Є огляд", en: "Summary ready" },
   matWip: { uk: "В процесі опрацювання", en: "Being worked on" },
   /* The link itself, in the wording `dict.pending.official` already uses on
-     the page a row without a summary leads to — the reader meets the same
+     the page a row without a summary leads to – the reader meets the same
      three words in the list and at the destination. */
   doc: { uk: "Документ суду", en: "The court's document" },
   sort: { uk: "Порядок", en: "Sort" },
@@ -146,8 +146,8 @@ const T = {
   },
   ofTotal: { uk: "з {total}", en: "of {total}" },
   /* The acts folded into a proceeding's row. Today that is the ICC's six
-     arrest warrants in ICC-01/22: the library counts them — the row says
-     «6 ордерів» — and shows them here rather than as six rows of their own.
+     arrest warrants in ICC-01/22: the library counts them – the row says
+     «6 ордерів» – and shows them here rather than as six rows of their own.
      Keyed by `outcome`, so the next kind of act that folds has to be named
      before it can appear. */
   actWord: {
@@ -157,14 +157,14 @@ const T = {
     },
   },
   /* Review: «додати вказівку з зірочкою, що це 6, про які публічно відомо».
-     The Court does not publish every warrant it issues — some stay under
-     seal — so the figure is what is on the public record, not a total. */
+     The Court does not publish every warrant it issues – some stay under
+     seal – so the figure is what is on the public record, not a total. */
   actsNote: {
     uk: "про які відомо публічно",
     en: "those on the public record",
   },
   combine: {
-    uk: "Кілька значень в одному фільтрі — будь-яке з них; різні фільтри діють разом.",
+    uk: "Кілька значень в одному фільтрі – будь-яке з них; різні фільтри діють разом.",
     en: "Several values in one filter mean any of them; different filters apply together.",
   },
   reset: { uk: "Скинути", en: "Reset" },
@@ -183,25 +183,25 @@ const T = {
 
      The index over the eight write-ups is a file now (`/search-index.json`),
      asked for the moment a reader reaches for the field. Until it lands, a
-     query runs against the thirty-three rows and nothing else — which is what
+     query runs against the thirty-three rows and nothing else – which is what
      the library did before the index existed, and which finds «Ощадбанк» but
      not «депортація дітей». A search that answers short without saying so is
      the exact failure the index was built to end, so the count line says
      which half is running rather than letting the reader conclude the archive
      holds nothing. */
   searchLoading: {
-    uk: "Пошук поки що лише в рядках — покажчик конспектів ще завантажується.",
-    en: "Searching the rows only for now — the write-up index is still loading.",
+    uk: "Пошук поки що лише в рядках – покажчик конспектів ще завантажується.",
+    en: "Searching the rows only for now – the write-up index is still loading.",
   },
   searchNoIndex: {
-    uk: "Покажчик конспектів не завантажився — пошук лише в рядках.",
-    en: "The write-up index did not load — this is searching the rows only.",
+    uk: "Покажчик конспектів не завантажився – пошук лише в рядках.",
+    en: "The write-up index did not load – this is searching the rows only.",
   },
   matched: { uk: "збіг:", en: "matched:" },
   /* Distinct from `matched`, which names a hidden field of the *row*. This one
      names a part of the write-up behind the row, and each part is a link. */
   matchedIn: { uk: "в огляді:", en: "in the write-up:" },
-  /* The decision page's own bands, in its own words — these labels have to be
+  /* The decision page's own bands, in its own words – these labels have to be
      the ones a reader sees on arriving at the anchor, or the link lies about
      where it goes. Copied from `T` and `pageSections` in
      app/[locale]/cases/[slug]/page.tsx.
@@ -213,7 +213,7 @@ const T = {
      shipping a per-case label table for a single band; it is noted rather than
      built, and it is the only place these two lists differ. */
   section: {
-    /* «Картка справи»: секція, на яку веде цей чип, тепер зветься так —
+    /* «Картка справи»: секція, на яку веде цей чип, тепер зветься так –
        реквізити справи, а під ними речення про неї. «Якщо коротко» більше
        не заголовок нічого. */
     overview: { uk: "Картка справи", en: "Case at a glance" },
@@ -235,9 +235,9 @@ const T = {
     visible: { uk: "назва", en: "name" },
   },
   decidedOn: { uk: "рішення", en: "decided" },
-  noDate: { uk: "—", en: "—" },
+  noDate: { uk: "–", en: "–" },
   mProceedings: { uk: "проваджень", en: "proceedings" },
-  /* Twelve bodies, and one of them — EU / Belgium enforcement measures — is
+  /* Twelve bodies, and one of them – EU / Belgium enforcement measures – is
      not a court: `content/institutions.ts` files it as `executive`. "Courts"
      counted them wrongly and "instances" is a false friend for «інстанція»
      (a court instance is a level of jurisdiction, not an item). "Institutions"
@@ -247,21 +247,21 @@ const T = {
   /* The state of the collection, said in words under the figures.
 
      Review's instruction: «на сторінці бібліотека додати вказівку конкретну
-     про те, що не всі рішення є проаналізовані — бо це зразу не зрозуміло,
+     про те, що не всі рішення є проаналізовані – бо це зразу не зрозуміло,
      якщо попередньо людина не прочитала розділ про нас». It was not: the page
      printed «8 опрацьовано» beside «39 проваджень» and left the reader to
      draw the conclusion from two numbers. A figure is not a statement, and
      the reader who most needs this one is the reader who arrived here first.
 
-     The sentence itself came off /about in the same review — it was «Стан
-     бібліотеки» there — and this is where it was supposed to land. The claim
+     The sentence itself came off /about in the same review – it was «Стан
+     бібліотеки» there – and this is where it was supposed to land. The claim
      it makes is the one content/legal.ts already makes, so the two cannot
      disagree.
 
      One clause came off it on the way. It read «у бібліотеці та на мапі вони
      позначені як такі», which was true when it was written and had not been
      for some time: the map carried a marker per case then, and it was
-     re-conceived as the states whose courts hear these proceedings — no case
+     re-conceived as the states whose courts hear these proceedings – no case
      markers, and a legend that names only a court and a forum State. The
      sentence outlived the thing it described, which is what a claim about
      another surface does unless something checks it. Checked here rather than
@@ -274,36 +274,36 @@ const T = {
      on the library rather than on the reader's question, and «провадження
      вносимо до неї раніше, ніж встигаємо їх опрацювати» is a process
      described where an outcome was wanted. Two sentences now, each with one
-     job — what the marks in the list mean, and what an absence does not
+     job – what the marks in the list mean, and what an absence does not
      mean.
 
      The first sentence had the mark the wrong way round, which is the whole
-     reason for this pass. It said «провадження без огляду — вони позначені
+     reason for this pass. It said «провадження без огляду – вони позначені
      окремо», and nothing in the list marks a row for lacking a summary: the
-     mark is on the rows that have one — `.reg-drow.is-lit .reg-court .dot`
-     is the lit gold dot, grey on every other row — and «Документ суду»
+     mark is on the rows that have one – `.reg-drow.is-lit .reg-court .dot`
+     is the lit gold dot, grey on every other row – and «Документ суду»
      appears on any row with a court document, summarised or not. A reader
      hunting for a "no summary yet" badge would have found none.
 
      The owner's own sentence, after four drafts and four continuations. It
      opens on the proceedings already summarised rather than on the ones that
-     are not — the same facts in the order that does not read as an apology —
+     are not – the same facts in the order that does not read as an apology –
      and it is one clause and a comma rather than two sentences.
 
      It also drops the growth clause the earlier drafts all carried
      («список далі поповнюємо новими справами»). That was the note's second
      job: telling a reader who cannot find a case that the list is still
-     being added to. It is not said here any more, deliberately — flagged to
+     being added to. It is not said here any more, deliberately – flagged to
      the owner rather than smuggled back in.
 
-     And it is said in the first person — owner's instruction, «давай від
+     And it is said in the first person – owner's instruction, «давай від
      себе писати». The archive is kept by people and the rest of the site
      already says so («ми проливаємо на них світло», «ми шукаємо
      інституції»); a passive «бібліотека наповнюється» was the one line that
      described the work as weather. So: ми опрацювали, ми читаємо, ми
      поповнюємо.
 
-     «Підсвітили», not «позначили золотим» — owner's word, and the better
+     «Підсвітили», not «позначили золотим» – owner's word, and the better
      one. The archive is called НаСвітло, its footer says «ми проливаємо на
      них світло», and the mark this sentence points at is a lit gold dot.
      One verb now carries both the fact (that row has a summary) and the
@@ -311,7 +311,7 @@ const T = {
      a colour and left the figure on the floor.
 
      Whatever the verb, it has to point the right way: it names the rows we
-     have lit, not — as the sentence had it before this pass — a badge on
+     have lit, not – as the sentence had it before this pass – a badge on
      the rows that lack a summary. Nothing marks those. */
   state: {
     uk: "Частину проваджень ми вже опрацювали й підсвітили, над іншими ще працюємо.",
@@ -322,7 +322,7 @@ const T = {
 /**
  * The exact date of a case's operative decision, or null.
  *
- * `cases.ts` records a bare year — the year the proceeding was commenced, which
+ * `cases.ts` records a bare year – the year the proceeding was commenced, which
  * is why it disagrees with the judgment year on every summarised case (ICJ GL
  * 166 was filed in 2017 and decided in 2024). The only precise dates the
  * archive holds are `judgment.date` on the eight published summaries, so those
@@ -340,7 +340,7 @@ function decisionDate(
   return Number.isFinite(year) ? { precision: "day", iso, year } : null;
 }
 
-/** «31.01.2024» / «31 Jan 2024» — the day is a fact, so it is shown as one. */
+/** «31.01.2024» / «31 Jan 2024» – the day is a fact, so it is shown as one. */
 function formatDay(iso: string, locale: Locale): string {
   const [y, m, d] = iso.split("-");
   return locale === "uk"
@@ -362,7 +362,7 @@ function both(v: Localized | null | undefined): string {
 /**
  * Resolve a whole table of localized strings, keeping its keys.
  *
- * `Object.fromEntries` loses them — it returns `{ [k: string]: string }`, and
+ * `Object.fromEntries` loses them – it returns `{ [k: string]: string }`, and
  * an index signature satisfies any `Record<Something, string>` the caller
  * asks for whether the keys are there or not. That is how the sort control
  * came to ask for a label the dictionary no longer had: the types agreed all
@@ -396,8 +396,8 @@ export async function generateMetadata({
   /*
    * `openGraph` and `twitter` are replaced wholesale, not merged, by the
    * nearest generateMetadata that sets them. This block used to set og:title,
-   * og:description, og:url and og:type only — which dropped the layout's
-   * og:image and og:site_name — and set no twitter key at all, so the Twitter
+   * og:description, og:url and og:type only – which dropped the layout's
+   * og:image and og:site_name – and set no twitter key at all, so the Twitter
    * card fell all the way back to the layout's home-page card: the home
    * title, the home description and the home image on a link to the registry.
    * Same shape as /map and /team, plus the twitter block they are also
@@ -458,7 +458,7 @@ export default async function RegistryPage({
     const stageLabels = c.stage
       ? { uk: dictUk.registry.stage[c.stage], en: dictEn.registry.stage[c.stage] }
       : null;
-    /* Acts folded into this proceeding — see `partOf` in content/types.ts. */
+    /* Acts folded into this proceeding – see `partOf` in content/types.ts. */
     const actRows = actsOf(c.id);
     const acts = actRows.map((a) => ({
       id: a.id,
@@ -500,7 +500,7 @@ export default async function RegistryPage({
       /* Both locales go into every group. Most case names are recorded only in
          English while the interface is Ukrainian, and until `nameUk` a reader
          typing «Нафтогаз» or «Укренерго» could not reach the row that is about
-         it — only the institution's Ukrainian abbreviation and seat were
+         it – only the institution's Ukrainian abbreviation and seat were
          searchable, not the title. The Ukrainian line goes into the search
          whatever locale is being read, so a Ukrainian query finds the case on
          the English page too. */
@@ -542,8 +542,8 @@ export default async function RegistryPage({
 
   /* What is left of the content index on this page: eight section labels.
 
-     The postings are language-agnostic — both locales of every field went into
-     them — but the page carrying them was not, so the same 24,137 gzipped
+     The postings are language-agnostic – both locales of every field went into
+     them – but the page carrying them was not, so the same 24,137 gzipped
      bytes shipped inside /uk/registry and again inside /en/registry, to every
      reader who opened the library and not only to the ones who searched it.
      They are one static file now, fetched once, cached, and shared by both
@@ -593,7 +593,7 @@ export default async function RegistryPage({
             never seen. It was seen by every reader and every crawler in
             production: `useSearchParams` bails a statically rendered route
             out to client-side rendering, and the built HTML for this page
-            carried an 815-byte <main> — masthead, then a
+            carried an 815-byte <main> – masthead, then a
             BAILOUT_TO_CLIENT_SIDE_RENDERING marker where thirty-three
             proceedings should have been. Dev renders on demand, so the hole
             only existed in the artefact nobody was reading.
@@ -665,8 +665,8 @@ export default async function RegistryPage({
 
           It was the home page's support ask, brought over so that a reader who
           arrives from a shared filtered link is asked something too. The ask is
-          in the top bar on every page now — which is that same reasoning
-          carried further — and the band's heading and paragraph are the text
+          in the top bar on every page now – which is that same reasoning
+          carried further – and the band's heading and paragraph are the text
           the owner asked to remove. One ask, one place, one appearance. */}
     </div>
   );

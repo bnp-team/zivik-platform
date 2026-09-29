@@ -1,9 +1,9 @@
 /* ============================================================================
-   Events map — where the harm happened and which courts are hearing it.
+   Events map – where the harm happened and which courts are hearing it.
 
    Colour carries one distinction and one only: whether there is a decision to
-   read. The three category hues this file once held are gone — see the note on
-   `--c` below — so nothing on the drawing is classified by hue. Every value
+   read. The three category hues this file once held are gone – see the note on
+   `--c` below – so nothing on the drawing is classified by hue. Every value
    comes from a --brand-* token; the old iframe was painted dark whatever the
    reader had chosen.
    ========================================================================== */
@@ -11,7 +11,7 @@
 .emap {
   padding-bottom: var(--space-7);
   /* One colour for every site. Three category hues used to live here, but the
-     criterion behind them did not hold — see the note in EventsMap.tsx — so
+     criterion behind them did not hold – see the note in EventsMap.tsx – so
      colour no longer classifies anything. The markers take the lamp's gold,
      and the only distinction the map draws is the one it can justify: whether
      there is a decision to read. */
@@ -20,8 +20,8 @@
 }
 
 /* ---- the drawing ---- */
-/* The card is absolutely placed against the drawing, so the drawing — not the
-   whole block — is the positioning context. Anchored to .emap it floated over
+/* The card is absolutely placed against the drawing, so the drawing – not the
+   whole block – is the positioning context. Anchored to .emap it floated over
    the text list below it. */
 .emap-figure {
   position: relative;
@@ -40,8 +40,8 @@
 
        0.731·(W−R) + 11·(W−R)/1200 + 6 ≤ W − 316
 
-     for R — the marker, its hit radius, six pixels of air, and the card's 300px
-     plus its 16px offset — gives R ≥ 436px − 35.2%. Above about 1240px that is
+     for R – the marker, its hit radius, six pixels of air, and the card's 300px
+     plus its 16px offset – gives R ≥ 436px − 35.2%. Above about 1240px that is
      negative and the reserve is nothing, which is why the markers keep the
      26.4px they had; at 1000px it is 84px, and at 641px, the narrowest width
      where the card still floats, 210px.
@@ -54,7 +54,7 @@
      1000px drops the drawing to 0.729 CSS pixels per unit, which puts a site
      target at 23.4px and takes the whole band below the 24px floor at exactly
      the width the list's own media query says it is usable at. The Atlantic
-     framing at 1000px has no slack either — its court targets come out at
+     framing at 1000px has no slack either – its court targets come out at
      24.7px, and any reserve at all takes them under. So the two courts stay
      under the card while a card is open, which closing it or pressing
      «Європа» undoes, and the seat list on the map's own page reaches them
@@ -65,7 +65,7 @@
   --emap-safe-left: 0px;
 }
 /* Not drawn: it carries the reserved strips as padding, which is what makes
-   them resolve to pixels — a custom property read back through
+   them resolve to pixels – a custom property read back through
    getComputedStyle is still the tokens it was written with, calc and all.
    Percentages in padding resolve against the containing block's width, which
    here is the figure. */
@@ -103,7 +103,7 @@
      four: 0.5 units came out 0.31 CSS pixels in the Atlantic framing, 0.43 in
      the European one and 0.6 zoomed into Ukraine. A third of a pixel is not a
      thin line, it is a line the screen cannot resolve, and it is the other
-     half of why the outlines were invisible — colour alone would not have
+     half of why the outlines were invisible – colour alone would not have
      fixed it. Constant weight is also what a border wants: zoomed all the way
      in, the scaling version reached six pixels. */
   vector-effect: non-scaling-stroke;
@@ -112,28 +112,28 @@
 /* The six states whose courts hear these proceedings, lit out of the grey.
 
    Drawn over .emap-ctx and under .emap-ua, so a forum state is the same land
-   as its neighbours with a light on it — not a shape pasted over the map. The
+   as its neighbours with a light on it – not a shape pasted over the map. The
    colour is --brand-forum-lit, which is already the archive's institutional
    blue on night grounds: it names the courts on the registry and on every
    decision page, so a reader arrives here having seen it mean exactly this.
 
    Why a fill and not a marker. The old map put a dot on each seat and ran a
    dashed line from it to whichever event it was hearing, which made the
-   drawing a claim about particular events — and the reviewers' objection is on
+   drawing a claim about particular events – and the reviewers' objection is on
    the record: the map is meant to show how far the response reaches, not to
    tie itself to six incidents. "Which states" is a question about states, so
    it is answered in the shape of a state.
 
    55%, and the number is measured rather than judged by eye. This fill is a
    graphical object carrying meaning, so the floor is WCAG 1.4.11's 3:1 against
-   what sits next to it — the grey land at --brand-map-land. The first attempt
+   what sits next to it – the grey land at --brand-map-land. The first attempt
    here was 26%, held down on the theory that lit countries would compete with
    Ukraine's gold. Sampled against the rendered map that came to 1.67:1: a
    reader looking straight at the Netherlands could not tell it from Belgium,
    which is the whole fact the map exists to carry. 55% measures 3.03:1.
 
    The theory it was held down for was wrong, and worth writing down so it is
-   not reinvented. Ukraine's fill is 1.26:1 against the same land — it is not
+   not reinvented. Ukraine's fill is 1.26:1 against the same land – it is not
    the fill that makes Ukraine read as the subject, it is the 1.4px gold
    stroke, the oblast mesh and the gold markers. Fill and stroke are doing
    different jobs here, so a legible blue does not take anything from the
@@ -141,7 +141,7 @@
 .emap-forum-state {
   /* Light falling on the ground, not paint covering it.
 
-     The fill is deliberately thin — 30% — so the land, its border and the
+     The fill is deliberately thin – 30% – so the land, its border and the
      coastline stay visible underneath: a country that is lit is still the same
      country. Presence comes from the glow instead, the same drop-shadow idiom
      the site dots and a selected court already use, and for the reason given
@@ -155,7 +155,7 @@
   stroke: color-mix(in srgb, var(--brand-gold-lit) 62%, transparent);
   filter: drop-shadow(0 0 3px color-mix(in srgb, var(--brand-gold-lit) 45%, transparent))
     drop-shadow(0 0 9px color-mix(in srgb, var(--brand-gold-lit) 30%, transparent));
-  /* Non-scaling and 0.8, matching .emap-ctx exactly — these are context
+  /* Non-scaling and 0.8, matching .emap-ctx exactly – these are context
      countries that happen to be lit, and a heavier border would make them read
      as a separate layer of the drawing. See the note there for why a stroke
      measured in projection units disappears at the wide framing. */
@@ -164,7 +164,7 @@
   /* Unconditionally, and for the reason given at .emap-court-hit: the browser
      draws its own ring around the *bounding box* of an SVG path, so a focused
      country came up as a blue rectangle with a white halo standing over the
-     map — a box around Germany, not Germany. Scoping the reset to
+     map – a box around Germany, not Germany. Scoping the reset to
      :focus-visible left that box showing for every other way the shape can be
      focused, which is how it survived to the live site. Nothing here is a
      styled control the ring could sit on correctly; the indicators below are
@@ -172,7 +172,7 @@
   outline: none;
 }
 /* A lit country answers when pressed, so it says so: a pointer, a brighter
-   edge while it is the selected one, and — for the keyboard — light along the
+   edge while it is the selected one, and – for the keyboard – light along the
    contour rather than a ring around it. Only where there is something to
    press: a shape with no country entry behind it keeps the plain rule above
    and stays scenery. */
@@ -185,9 +185,9 @@
   stroke: color-mix(in srgb, var(--brand-gold-lit) 85%, transparent);
 }
 /* The keyboard's indicator: the same light the layer is already made of, wound
-   up. The edge goes to full pale gold at 2 non-scaling pixels — 2 real pixels
+   up. The edge goes to full pale gold at 2 non-scaling pixels – 2 real pixels
    at every framing, like the court's ring, rather than 2 projection units that
-   thin as the map widens — and the glow doubles in reach, so the country reads
+   thin as the map widens – and the glow doubles in reach, so the country reads
    as lit from within instead of boxed in.
 
    `:focus`, not `:focus-visible`. The browser focuses an SVG shape on
@@ -220,14 +220,14 @@
 
 /* The 27 oblasts, drawn as the lines between them rather than as 27 shapes.
    Deliberately far quieter than the outer border above: that stroke is gold at
-   55% over 0.9 units, this one is the same gold at 26% over 0.45 — a third of
+   55% over 0.9 units, this one is the same gold at 26% over 0.45 – a third of
    the weight and half the width, so the country still reads as one shape and
    the regions as its inside. They are the reason the six markers no longer sit
    in a blank silhouette, and Crimea is one of them, on the same terms as
    Kherson or Donetsk: the mesh knows nothing about which unit is which. */
 .emap-regions {
   fill: none;
-  /* Half the outer border's opacity and half its width, as before — 32 against
+  /* Half the outer border's opacity and half its width, as before – 32 against
      62 and 0.7px against 1.4px, where it used to be 26 against 55 and 0.45
      units against 0.9. Both numbers moved with the ones above and the
      relationship between them did not. */
@@ -259,7 +259,7 @@
   cursor: pointer;
   /* `all`, not the default `visiblePainted`. Under `visiblePainted` a shape is
      only hit-tested where it is actually painted, so the hit circle answers
-     the pointer only for as long as it keeps a fill — and any rule that takes
+     the pointer only for as long as it keeps a fill – and any rule that takes
      the fill away silently turns the marker into a hole in the drawing. That
      is exactly what happened: `:focus` below set `fill: none`, the browser
      focuses an SVG shape on mousedown, and the mouseup then landed on the
@@ -269,12 +269,12 @@
      pointer is tested against. */
   pointer-events: all;
   /* Unconditionally, not only under :focus-visible. The browser draws its own
-     ring around the bounding box of an SVG circle — a blue square with a white
-     halo around a round marker — and scoping the reset to one state left that
+     ring around the bounding box of an SVG circle – a blue square with a white
+     halo around a round marker – and scoping the reset to one state left that
      square showing in the others. */
   outline: none;
 }
-/* `outline` on an SVG circle is drawn as a rectangle — a square box around a
+/* `outline` on an SVG circle is drawn as a rectangle – a square box around a
    round marker, which is what made the selected court look wrong. A stroke
    follows the shape. The fill stays `transparent` here: see above. */
 .emap-court-hit:focus {
@@ -334,7 +334,7 @@
    on .emap-hit, its sibling. The rule it meant to write is with the rest of
    the selection states below, where it can be read against them. */
 /* The interaction lives on its own circle so the drawn dot keeps the size the
-   map wants. At r=6 the dot rendered 14.4px wide on a 1440px screen — under
+   map wants. At r=6 the dot rendered 14.4px wide on a 1440px screen – under
    the 24px minimum; r=11 renders 26.4px. */
 .emap-hit {
   fill: transparent;
@@ -358,13 +358,13 @@
 }
 
 /* The site's name on the drawing. Charis SIL and sentence case, so it does not
-   read as a second court label — the courts are uppercase Fira Sans, and the
+   read as a second court label – the courts are uppercase Fira Sans, and the
    two layers should not be confusable.
 
    `font-size` and `stroke-width` are set on the element, not here: they are in
    projection units and have to be recomputed from the rendered scale so the
    type stays 11px however far the reader has zoomed. The stroke is a halo, not
-   an outline — paint-order puts it behind the fill, which keeps the label at
+   an outline – paint-order puts it behind the fill, which keeps the label at
    14.0:1 against --brand-night wherever it lands. Without it a label crossing a
    lit halo sits at 4.99:1: still AA, but only just, and only by measurement. */
 .emap-site-label {
@@ -383,7 +383,7 @@
 /* ---- the card ---- */
 /* Top-anchored, not bottom-anchored. At `bottom: 16px; right: 16px` the card
    sat exactly where Ukraine is drawn, so opening one site covered four of the
-   six markers — probed live: Затримання was under one of the card's own
+   six markers – probed live: Затримання was under one of the card's own
    links, MH17 under .emap-forums, Схід under .emap-note, Воєнні злочини under
    the card itself. Only Крим and Енергоактиви stayed clickable, which is why
    the map appeared stuck on whichever site you opened first and could only be
@@ -395,9 +395,9 @@
   top: var(--emap-card-top, 16px);
   max-height: calc(100% - var(--emap-card-top, 16px) - 16px);
   overflow-y: auto;
-  /* A card can be taller than the drawing it floats over — measured, the
+  /* A card can be taller than the drawing it floats over – measured, the
      tallest is The Hague's at 733px, which seats four institutions and lists
-     eight decisions, against 524px of home band at 1440px — and it has always
+     eight decisions, against 524px of home band at 1440px – and it has always
      scrolled. What it did not do is say so: macOS draws an overlay scrollbar
      that is invisible until something moves, so the card simply ended
      mid-decision and read as broken rather than as scrollable. Asking for a
@@ -406,15 +406,15 @@
   scrollbar-width: thin;
   scrollbar-color: color-mix(in srgb, var(--brand-gold-lamp) 70%, transparent)
     var(--brand-night-rule);
-  /* 300px until the card became a table. Four columns — abbreviation, name,
-     count, chevron — left «Постійна палата третейського суду» wrapping to
+  /* 300px until the card became a table. Four columns – abbreviation, name,
+     count, chevron – left «Постійна палата третейського суду» wrapping to
      two lines in a 300px card, and a wrapped name under a right-aligned
      number reads as two rows, not one.
 
      430 is measured, not chosen: the longest court name on this map is the
      English Dutch row, "The Hague District Court · the Supreme Court", at
      284px in --t-sm, and the three other tracks and the card's padding take
-     146. Paris's PCA line still wraps and is meant to — it is a sentence
+     146. Paris's PCA line still wraps and is meant to – it is a sentence
      about where an arbitration sat, not a court's name. The `calc` floor is
      unchanged, so a narrow window still gets the card minus its gutters. */
   width: min(430px, calc(100% - 32px));
@@ -477,13 +477,13 @@
   font: 500 var(--t-micro) var(--brand-font-mono);
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  /* --brand-faint-dark measured 4.01:1 on the card ground — under AA at this
+  /* --brand-faint-dark measured 4.01:1 on the card ground – under AA at this
      size. --brand-muted-dark is the next step up and clears it. */
   color: var(--brand-muted-dark);
 }
 
 /* ---- the same content as text ---- */
-/* These were light cards under a black drawing — six white blocks hanging off
+/* These were light cards under a black drawing – six white blocks hanging off
    the bottom edge of the map, reading as a separate component that happened to
    be adjacent. The map is one object, so the list shares its ground. */
 .emap-list {
@@ -542,11 +542,11 @@
   color: var(--brand-faint-dark);
 }
 
-/* On a narrow screen the drawing stops carrying the detail — the reach lines
-   and the card crowd each other — so the list becomes the map. */
+/* On a narrow screen the drawing stops carrying the detail – the reach lines
+   and the card crowd each other – so the list becomes the map. */
 @media (max-width: 640px) {
   /* The markers stop pretending to be buttons. At 390px the drawing is 390px
-     wide, which puts a hit target at 7.1px with 5px between neighbours — 16.8
+     wide, which puts a hit target at 7.1px with 5px between neighbours – 16.8
      and 13 even in the close framing, against a 24px minimum. Growing the
      circles to 24px would make each one cover its neighbour entirely, so the
      top one would always win: a target you cannot aim at is worse than no
@@ -556,11 +556,11 @@
 
      The rule itself moved out of this media query and onto [data-coarse]
      below: deciding it here as well as in the component gave the map two
-     sources of truth for one question, and when they disagreed — a browser
-     reporting a zero width before layout matches `max-width:640px` — the CSS
+     sources of truth for one question, and when they disagreed – a browser
+     reporting a zero width before layout matches `max-width:640px` – the CSS
      made every marker inert while nothing was left to switch it back. */
-  /* Not 4/3, which is what this was. The drawing is a picture here — the
-     markers are inert and the list below is the interface — and a picture
+  /* Not 4/3, which is what this was. The drawing is a picture here – the
+     markers are inert and the list below is the interface – and a picture
      should show its subject rather than the sea around it. The projection is
      1200 x 460 and the framing strip takes a fixed 60px off the top, which at
      390px wide is 185 projection units; 645 is the two added together, so the
@@ -575,7 +575,7 @@
      1200/645 was measured for the home band, where the drawing was a picture
      among a dozen sections and the list under it was the interface. The band
      is gone and the ratio stayed, so on a 375px phone the page whose entire
-     subject is the map gave it 202 pixels of height — a quarter of the screen,
+     subject is the map gave it 202 pixels of height – a quarter of the screen,
      with Europe in a strip across the middle and the zoom controls sitting on
      top of it.
 
@@ -590,8 +590,8 @@
   }
   .emap-card {
     /* `relative`, not `static`: the close button inside is absolutely placed,
-       so a static card hands it to the nearest positioned ancestor — the
-       figure — and the × floated over the top-right corner of the drawing,
+       so a static card hands it to the nearest positioned ancestor – the
+       figure – and the × floated over the top-right corner of the drawing,
        yards from the card it closes, at every width where the card stops
        floating. `inset: auto` clears the offsets the floating card sets. */
     position: relative;
@@ -608,7 +608,7 @@
 
 /* ---- legend ---- */
 /* Was a flat row of four colour chips. Three groups now: what the colours
-   stand for, how to read the drawing, and where the courts sit — the last of
+   stand for, how to read the drawing, and where the courts sit – the last of
    which used to be a `title` tooltip, i.e. invisible on a phone. */
 .emap-legend {
   display: grid;
@@ -666,7 +666,7 @@
   line-height: 1.4;
   color: var(--brand-cream);
 }
-/* What the registry says this seat is carrying — the court-side counterpart of
+/* What the registry says this seat is carrying – the court-side counterpart of
    the count on each of the six site cards, and the one thing the seat list
    held that a reader could not get without clicking every city in turn. */
 .emap-seat-count {
@@ -744,7 +744,7 @@
    And it is not the same kind of thing as the event card's over-title, which
    shares the class: there the slot holds a date, which is machinery and takes
    the mono face; here it holds a city. A city is a place, and a place on this
-   map is uppercase Fira Sans — that is what the drawing labels Гаага with, and
+   map is uppercase Fira Sans – that is what the drawing labels Гаага with, and
    a reader who clicked that label should meet it again in the card wearing the
    same face. The institution below is the serif, so the pair the owner asked
    to see apart is apart on every surface it appears on. */
@@ -757,10 +757,10 @@
    than a name; it takes a smaller size and a tighter leading than an event
    title, which is always one thing. */
 /* Same row as a decision link, but it moves the selection rather than
-   navigating — so it is a button, and says so by not being underlined. */
+   navigating – so it is a button, and says so by not being underlined. */
 .emap-court-site:hover,
 
-/* The cards' wrapper must not become a layout box of its own — they are
+/* The cards' wrapper must not become a layout box of its own – they are
    absolutely placed against .emap-figure. It is no longer the live region:
    wrapping the cards and marking them atomic meant picking The Hague read its
    whole card aloud, about three thousand characters of registry citation, in
@@ -841,14 +841,14 @@
    the card a click opens, and the key to the three colours; the seat list, the
    how-to-read column and the six site cards move to the map's own page.
 
-   The site cards are not merely decoration, though — where the markers are not
+   The site cards are not merely decoration, though – where the markers are not
    aimable this list is the only way in, so it is hidden on the band only where
    the drawing can actually be used.
 
    1000px, not 641px. Measured on the band, in the wide framing the map opens
    in: a site's hit target renders 24.3px at 1000px, 20.7px at 900, 17.1px at
-   800 and 11.4px at 641 — under the 24px minimum everywhere below about
-   990px — and the two closest markers, MH17 and eastern Ukraine, are 12.8px
+   800 and 11.4px at 641 – under the 24px minimum everywhere below about
+   990px – and the two closest markers, MH17 and eastern Ukraine, are 12.8px
    apart at 1000px and 7.1px at 700. So between 641 and 1000 the old rule hid
    the only usable interface and left the reader a drawing they could not aim
    at. The threshold is a media query rather than the component's own
@@ -864,14 +864,14 @@
    proxy while both framings were framings of Europe; the Atlantic framing
    breaks it, because it can put the six sites under the 24px floor on a 1440px
    band. Wherever they are inert the list is the interface, whatever the window
-   is — and this only ever adds an interface, so the flash the media query was
+   is – and this only ever adds an interface, so the flash the media query was
    written to avoid cannot come back through it. */
 .emap[data-coarse="yes"] .emap-list[data-variant="band"] {
   display: grid;
 }
 
 /* Below the same width, the card stops floating over the drawing and takes its
-   own place under it — the answer a phone already gets, for the same reason.
+   own place under it – the answer a phone already gets, for the same reason.
    The band's drawing is as tall as its width × 500/1200, so the room the card
    has shrinks with the window while the card does not: measured, the tallest
    site card is 408px and the band gives it 339px at 1000px, 297 at 900, 255 at
@@ -881,8 +881,8 @@
 @media (max-width: 999px) {
   .emap[data-variant="band"] .emap-card {
     /* `relative`, not `static`: the close button inside is absolutely placed,
-       so a static card hands it to the nearest positioned ancestor — the
-       figure — and the × floated over the top-right corner of the drawing,
+       so a static card hands it to the nearest positioned ancestor – the
+       figure – and the × floated over the top-right corner of the drawing,
        yards from the card it closes, at every width where the card stops
        floating. `inset: auto` clears the offsets the floating card sets. */
     position: relative;
@@ -900,17 +900,17 @@
    a card open, nine markers under it at 1024, nine at 1100, seven at 1280 and
    three at 1440, including every one of the six sites at the first three.
    Reserving a strip instead needs 269px at 1280, which drops the drawing to
-   0.435 CSS pixels per unit and takes the court targets to 19.5px — the
+   0.435 CSS pixels per unit and takes the court targets to 19.5px – the
    framing that exists to show a court in Montreal would be the framing in
    which no court can be clicked.
 
    So in this framing, and only in it, the card stops floating and takes its
-   own place under the drawing — the same answer the band already gives below
+   own place under the drawing – the same answer the band already gives below
    1000px, for the same reason. The picture is 2.3 times as wide as the
    projection and every marker is in the right-hand tenth of it; there is
    nowhere on it a 300px card can stand without covering something. */
 /* In this framing the band shows one thing and says nothing: how far Montreal
-   is. The card and the six site cards both put themselves away — the card
+   is. The card and the six site cards both put themselves away – the card
    because there is nowhere on a picture 2.3 times as wide as the projection
    that a 300px panel can stand without covering something, and the list
    because it only ever appears where the marks are too small to aim at, which
@@ -930,7 +930,7 @@
 /* On the home band the legend stops being a band of its own. It was a full
    ruled strip under the drawing with two stacked headed groups, which read as
    a second section rather than as a caption to the map above it. One line of
-   keys, no box, no rule, no group headings — the six words are enough. */
+   keys, no box, no rule, no group headings – the six words are enough. */
 .emap-legend[data-variant="band"] {
   display: flex;
   flex-wrap: wrap;
@@ -946,7 +946,7 @@
 .emap-legend[data-variant="band"] .emap-leg-group :is(h2, h3) {
   display: none;
 }
-/* The band renders no seat index at all — that block is map-page only — so
+/* The band renders no seat index at all – that block is map-page only – so
    nothing here has to hide it. */
 .emap-legend[data-variant="band"] ul {
   display: flex;
@@ -1091,21 +1091,21 @@
    face, its case and its tracking to the city label sitting directly above it.
    Measured on the built page, ГААГА came back as Fira Sans 600 / 9.17px /
    uppercase / 0.73px of tracking and ICJ · ICC · PCA as Fira Sans 600 /
-   7.92px / uppercase / 0.63px — the same face at 1.25px apart, which is the
+   7.92px / uppercase / 0.63px – the same face at 1.25px apart, which is the
    court and its city in one voice. That is the thing the owner asked to be
    told apart, and this file already said how; it just could not out-specify
    itself. `.emap-court text.emap-court-abbr` can.
 
    Sentence case, not uppercase: a court whose citations carry no acronym is
-   badged with the shortest true name this archive gives it — «Суди Литви»,
-   «Окружний суд Гельсінкі» — and a name shouted in capitals beside a city
+   badged with the shortest true name this archive gives it – «Суди Литви»,
+   «Окружний суд Гельсінкі» – and a name shouted in capitals beside a city
    shouted in capitals is two labels of the same kind. The place is uppercase
    sans; the institution is mono, as it is in every citation on this site. */
 .emap-court text.emap-court-abbr {
   font-family: var(--brand-font-mono), monospace;
   /* The roman above this is body face at 600 and has a 600 file; this one is
      mono, which stops at 500, so 600 here was the browser smearing the 500
-     face — inside a stroked halo, where a smear reads as a fuzzy edge. */
+     face – inside a stroked halo, where a smear reads as a fuzzy edge. */
   font-weight: 500;
   letter-spacing: 0.02em;
   text-transform: none;
@@ -1121,7 +1121,7 @@
    Council decided the MH17 case the ICJ is now hearing on appeal. It used to
    be filtered out of the drawing under a comment claiming the legend named it;
    the legend did not. It is docked against the frame's western edge now, and
-   the tail and the chevron say the city is not there — they point along the
+   the tail and the chevron say the city is not there – they point along the
    real bearing and run off the picture, which the SVG clips. */
 .emap-court-tail {
   stroke: var(--brand-gold-lamp);
@@ -1158,8 +1158,8 @@
   .emap-court text {
     transition: none;
   }
-  /* The highlight still applies — the line brightens, both ends light, the
-     badge appears — it simply arrives instead of travelling. */
+  /* The highlight still applies – the line brightens, both ends light, the
+     badge appears – it simply arrives instead of travelling. */
   .emap-glint[data-on="yes"] {
     animation: none;
   }
@@ -1169,18 +1169,18 @@
 .emap-svg {
   cursor: grab;
   /* A drag across the drawing used to sweep the place labels into a text
-     selection — blue highlight boxes over Stockholm and Helsinki, and a caret
+     selection – blue highlight boxes over Stockholm and Helsinki, and a caret
      left behind. They are aria-hidden decoration drawn in projection units;
      the text a reader would want to copy is the list below. */
   user-select: none;
   -webkit-user-select: none;
 }
-/* All the gestures or none of them — see `gestures` in EventsMap.tsx.
+/* All the gestures or none of them – see `gestures` in EventsMap.tsx.
 
    `touch-action: pan-y` was in force here and was the worst of the three
    answers: a finger could drag the map east and west, a finger dragged north
-   or south scrolled the page out from under it, and pinch — the first thing a
-   hand tries on a map — was withheld from the browser *and* from this
+   or south scrolled the page out from under it, and pinch – the first thing a
+   hand tries on a map – was withheld from the browser *and* from this
    component, which is why a phone had no zoom gesture at all. One axis of pan
    is not a map. It is a map taking half of a scroll. */
 .emap-svg[data-gest="yes"] {
@@ -1261,7 +1261,7 @@
   stroke-dasharray: 4 4;
 }
 /* The docked seat, drawn at the legend's scale from the same two marks the
-   drawing uses — .emap-court-tail and .emap-court-bearing — so the reader
+   drawing uses – .emap-court-tail and .emap-court-bearing – so the reader
    matches the glyph to the map by sight rather than by reading about it. */
 .emap-key .k-bearing {
   fill: none;
@@ -1290,17 +1290,17 @@
   outline-offset: 2px;
 }
 
-/* The court's own caseload, from the registry — «28 проваджень у бібліотеці».
+/* The court's own caseload, from the registry – «28 проваджень у бібліотеці».
    Mono, because it is a count, and because the seat list under the full map
    prints the same sentence from the same call and has always set it in mono
    (.emap-seat-count). One sentence in two faces on two surfaces was the kind
    of drift the type scale exists to stop. */
-/* Quieter than the court above it. It was gold, uppercase, mono and 11px —
+/* Quieter than the court above it. It was gold, uppercase, mono and 11px –
    the loudest line on the card, over the name of the institution it is a
    footnote to. A count is a footnote. */
 /* The seats of a marker, as a list of links into the registry.
 
-   It was one run-on line with em-dashes inside it and interpuncts between —
+   It was one run-on line with em-dashes inside it and interpuncts between –
    four courts in a paragraph, none of them reachable. Each is a row now, and
    each row is the way into that court's own caseload. No dash between the
    abbreviation and the name: the abbreviation is set apart in mono, which is
@@ -1313,8 +1313,8 @@
 .emap-seats li + li {
   margin-top: var(--space-3);
 }
-/* A row is a grid, not a flex line: four columns — abbreviation, name,
-   count, chevron — and every row in a card takes the same track widths, so
+/* A row is a grid, not a flex line: four columns – abbreviation, name,
+   count, chevron – and every row in a card takes the same track widths, so
    the court names start on one edge instead of stepping right by however
    long the acronym before them was. That stagger is what made the card read
    as four unrelated lines rather than a table of one place's courts.
@@ -1351,7 +1351,7 @@
   color: var(--brand-faint-dark);
 }
 /* The heading over them. It replaced a state name repeated on every national
-   row — in a card already titled НІДЕРЛАНДИ, that was the same word three
+   row – in a card already titled НІДЕРЛАНДИ, that was the same word three
    times over. Said once, and only where there is a national row under it. */
 .emap-seats-group {
   margin: var(--space-4) 0 var(--space-2);
@@ -1407,7 +1407,7 @@
   border-bottom-color: currentColor;
 }
 /* The sum, as a sentence rather than a mono label in capitals. It was set
-   like a system caption — «22 ПРОВАДЖЕННЯ У БІБЛІОТЕЦІ» — which at this
+   like a system caption – «22 ПРОВАДЖЕННЯ У БІБЛІОТЕЦІ» – which at this
    length wrapped to two uppercase lines and read as a warning. The figure
    is the part a reader is after, so the figure is what is lit. */
 .emap-caseload {
@@ -1427,8 +1427,8 @@
    it. See the note in the max-width:640px block above.
 
    Two attributes, not one, because the question has two answers. The sites and
-   the courts crowd each other by different amounts — 16.9 projection units
-   between the closest two sites, 32 between the closest two courts — and the
+   the courts crowd each other by different amounts – 16.9 projection units
+   between the closest two sites, 32 between the closest two courts – and the
    Atlantic framing lands between: at 1440px it renders a site target at 20.9px
    and a court target at 24.8px. Asking the sites' question of the courts would
    have made the framing that exists to show Montreal a framing in which
@@ -1442,7 +1442,7 @@
 
 /* ---- the wheel, on the band ---- */
 /* The band scrolls the page like any other band and zooms on Ctrl or ⌘, and
-   this says so — for a moment, after a bare wheel, in the middle of the
+   this says so – for a moment, after a bare wheel, in the middle of the
    drawing where the reader is already looking. A permanent caption would be
    furniture; a silent refusal would read as a broken map. */
 .emap-hint {
@@ -1485,7 +1485,7 @@
 
 /* What the drawing says where it is a picture rather than a control: below the
    24px floor the marks stop answering, correctly, and until now nothing said
-   so — the grab cursor and the framing stepper stayed on, promising a surface
+   so – the grab cursor and the framing stepper stayed on, promising a surface
    that answered nothing, and the only way to a usable scale was twelve presses
    of "+" that ended in a corner of the Atlantic. */
 .emap-overview {
@@ -1522,7 +1522,7 @@
 }
 
 /* Held full, the drawing is the only thing on the screen. A phone gives it
-   390 x 780 instead of 390 x 202 — 2.5 CSS pixels per projection unit, past
+   390 x 780 instead of 390 x 202 – 2.5 CSS pixels per projection unit, past
    every threshold on this page: the marks answer, the sites are labelled, the
    cities are named. It works in either orientation, which is why it is here
    rather than a "turn your phone" prompt: most phones have autorotate locked,
@@ -1569,7 +1569,7 @@
   display: none;
 }
 /* The way out. A square with a glyph rather than a labelled button: spelled
-   out — «Вийти з повного екрана» is 26 characters — it ran clean across a
+   out – «Вийти з повного екрана» is 26 characters – it ran clean across a
    375px phone and under the framing strip anchored to the other corner. The
    glyph carries its name in `aria-label` and `title`, which is what the card's
    own × has always done. 36px, clear of the 24px floor on both axes. */
@@ -1598,7 +1598,7 @@
    the right edge, so on a 375px phone it covered 85% of the drawing. The
    Atlantic framing is the one to drop there, and it is dropped by name rather
    than by position: it is only the strip's first button on the map's own page,
-   and on the home band — which does not offer it — the same `:first-child`
+   and on the home band – which does not offer it – the same `:first-child`
    would have taken «Європа» away instead.
 
    Why this one. It fits a span two and a half times the projection's own, so
@@ -1614,11 +1614,11 @@
 
 /* Long registry captions in a 300px column. Four of them now rather than
    twenty-two, but a forty-word arbitration style is still forty words, and
-   what a card owes the reader is enough to recognise the thing — not the whole
+   what a card owes the reader is enough to recognise the thing – not the whole
    citation, which is what the registry is for. */
 /* And the way to all of it. */
 
-/* "Written up: 3 of 11" — the gap between what a place accounts for and what a
+/* "Written up: 3 of 11" – the gap between what a place accounts for and what a
    reader can open. Quieter than the links under it: it is a fact about the
    list, not another entry in it. */
 .emap-written {
@@ -1661,13 +1661,13 @@
 /* ---- the ground a marker speaks for ---- */
 /* Two of the six marks are not places. «Воєнні злочини» is the ICC's situation
    in Ukraine entire, drawn on Mariupol; «Енергоактиви» is generation and grid
-   across the country, drawn on one point in the middle of it. The dot stays —
-   a reader needs somewhere to aim — and the ground it stands for lights behind
+   across the country, drawn on one point in the middle of it. The dot stays –
+   a reader needs somewhere to aim – and the ground it stands for lights behind
    it, so the map stops claiming a place the record does not fix.
 
    Warm, low and unstroked: the country's own gold outline is the one edge that
    has to win here, and a second stroke on the same coast would fight it. What
-   changes is the fill — the same country, lit. */
+   changes is the fill – the same country, lit. */
 .emap-area {
   fill: color-mix(in srgb, var(--brand-gold-lamp) 17%, transparent);
   stroke: none;
@@ -1742,7 +1742,7 @@ button.emap-key[aria-pressed="true"]::after {
   background: var(--brand-gold-pale);
 }
 
-/* What a press does. Everything not in the named set goes quiet — not hidden:
+/* What a press does. Everything not in the named set goes quiet – not hidden:
    the drawing has to keep its shape, and a mark that vanished would take its
    own place on the map with it. `.emap-hit` keeps its pointer either way, so a
    quietened mark can still be picked; this is a highlight, not a lock. */
@@ -1752,8 +1752,8 @@ button.emap-key[aria-pressed="true"]::after {
 .emap[data-hi] .emap-court-tail,
 .emap[data-hi] .emap-court-bearing {
   /* No transition on this one. Measured: the group's opacity transition never
-     advanced — `getAnimations()` reported it running at currentTime 0 while
-     the computed value stayed at 1 — so pressing a key set the attribute and
+     advanced – `getAnimations()` reported it running at currentTime 0 while
+     the computed value stayed at 1 – so pressing a key set the attribute and
      changed nothing on the screen. The marks that light are transitioned by
      the rules below and are unaffected; what this needed was to apply. */
   opacity: 0.16;
@@ -1770,7 +1770,7 @@ button.emap-key[aria-pressed="true"]::after {
 /* ---- the seat index ---- */
 /* Nine seats, one row each, and the figure at the end of the row.
    The one thing this block holds that the registry does not is nine caseloads
-   side by side — and they used to be set under the text in a four-column grid,
+   side by side – and they used to be set under the text in a four-column grid,
    where no two of them lined up and the comparison the block exists for could
    not be made. Rows, hairlines, and the number in a right-hand column in
    figures that share a width, so the eye runs down them. */
@@ -1815,7 +1815,7 @@ button.emap-key[aria-pressed="true"]::after {
 /* The figure alone, not «28 проваджень у бібліотеці» nine times over: the
    heading of the column is the sentence, and repeating it on every row was
    three words of chrome for one digit of content. It is the way through to
-   those rows — the library opens filtered on every institution this seat
+   those rows – the library opens filtered on every institution this seat
    holds. `a.` for the same reason as `.emap-more` above: a class alone loses
    to a page's own `a`. */
 .emap-index a.emap-seat-count,
@@ -1836,13 +1836,13 @@ a.emap-seat-count:focus-visible {
 
 /* ---- what a proceeding stands at, and what is at stake in it ---- */
 /* The map counted rows and said nothing about consequences: a number of
-   proceedings, no posture, no figure — while the registry beside it carries
+   proceedings, no posture, no figure – while the registry beside it carries
    both on every row, and the largest award in the collection, $1.1bn in
    Oschadbank, appeared nowhere on the map at all.
 
    Two tags, and they are different kinds of thing. The stage is a word from a
    closed list and takes the quiet treatment every other status word here
-   takes; the sum is a quantity, set in the figures face and given the gold —
+   takes; the sum is a quantity, set in the figures face and given the gold –
    it is the one number on the card that is about the world rather than about
    the archive. */
 .emap-tags {
@@ -1879,7 +1879,7 @@ a.emap-seat-count:focus-visible {
 
 /* ---- folding the key away ---- */
 /* A legend is read once and then remembered. After that it is a column of
-   things the reader already knows, sitting where the map could be — so it
+   things the reader already knows, sitting where the map could be – so it
    folds, and the drawing takes the height back (see map-page.css). */
 .emap-leg-toggle {
   display: flex;
@@ -1938,7 +1938,7 @@ a.emap-seat-count:focus-visible {
 }
 .emap[data-legend="off"] .emap-leg-group,
 /* The invitation folds with the key. It is the one line that teaches the map,
-   which is an argument for keeping it out — and against it, that folded came
+   which is an argument for keeping it out – and against it, that folded came
    out 349 x 103 instead of one line, which is not folded. */
 .emap[data-legend="off"] .emap-leg-how {
   display: none;
@@ -1951,7 +1951,7 @@ a.emap-seat-count:focus-visible {
 
 /* The seat index belongs to the page, not to the overlay. It was not in the
    list of things the full screen puts away, so it rendered under a
-   viewport-tall drawing inside a fixed panel — the map, then the card, then
+   viewport-tall drawing inside a fixed panel – the map, then the card, then
    nine courts, in something that is supposed to be one drawing at the size it
    needs. */
 .emap[data-full="yes"] .emap-index {
@@ -1964,7 +1964,7 @@ a.emap-seat-count:focus-visible {
    ========================================================================== */
 
 /* The map's own page is the map, and everything under it is furniture below
-   the fold. Neither block is decoration, so neither is deleted — they fold.
+   the fold. Neither block is decoration, so neither is deleted – they fold.
 
    One heading, used twice, and it is a control: chevron, name, count. The
    count is the point of the heading. Folded, «Суди засідають у · 9» says as
@@ -2004,13 +2004,13 @@ a.emap-seat-count:focus-visible {
   color: var(--brand-gold-pale);
 }
 
-/* The six places. `auto` is not a state the reader chose — it is "whatever the
-   surface needs" — and on the map's own page what it needs is for them to be
+/* The six places. `auto` is not a state the reader chose – it is "whatever the
+   surface needs" – and on the map's own page what it needs is for them to be
    open.
 
    They were folded here too, and that was right until the card stopped opening
    by default. Measured after it did: the map arrives at 0.94 CSS pixels per
-   unit, the site labels want 2.6, and nothing was selected — so the drawing
+   unit, the site labels want 2.6, and nothing was selected – so the drawing
    named its nine courts and left the six places the archive is *about* as
    unlabelled dots, with the only list of their names folded under it. Six
    marks with no names is not a map of anything.
@@ -2018,7 +2018,7 @@ a.emap-seat-count:focus-visible {
    Asking the labels to appear per marker instead does not rescue it: the
    closest pair of *any* two marks is about 32 units, which is 30px at this
    scale, and two names do not fit in 30px. The names live in the list, so the
-   list is open. The nine seats stay folded — they are a directory, and the
+   list is open. The nine seats stay folded – they are a directory, and the
    registry is a better one. */
 .emap[data-list="off"] .emap-list {
   display: none;
@@ -2030,10 +2030,10 @@ a.emap-seat-count:focus-visible {
 .emap[data-seats="off"] .emap-fold-h:last-of-type {
   border-bottom: 1px solid var(--brand-night-rule);
 }
-/* `auto` для судів — дзеркало `auto` для ключа вище: на широкому вікні
+/* `auto` для судів – дзеркало `auto` для ключа вище: на широкому вікні
    складено, на вузькому відкрито. На телефоні ключ ховається, а перелік
-   відкривається, бо там мапа — смужка, де дев'ять міст злипаються, і
-   перелік — єдине місце, де їх видно поіменно (див. `seatsUser` в
+   відкривається, бо там мапа – смужка, де дев'ять міст злипаються, і
+   перелік – єдине місце, де їх видно поіменно (див. `seatsUser` в
    EventsMap.tsx). Та сама межа 900px, що й у ключа, і JS питає ту саму,
    тож `aria-expanded` збігається з тим, що намальовано. */
 @media (min-width: 901px) {
@@ -2048,8 +2048,8 @@ a.emap-seat-count:focus-visible {
 
 /* ---- the key on the home band ---- */
 /* A small block on the drawing rather than a strip under it. It was a band of
-   its own below the map — full width, three keys and a sentence spread across
-   1400px — which is a lot of page for six words, and it read as a section
+   its own below the map – full width, three keys and a sentence spread across
+   1400px – which is a lot of page for six words, and it read as a section
    rather than as a caption. Three marks and one line, in the corner of the
    picture they belong to. */
 @media (min-width: 760px) {
@@ -2090,7 +2090,7 @@ a.emap-seat-count:focus-visible {
     line-height: 1.4;
   }
   /* The band reserves nothing for this block, unlike the map's own page.
-     Reserving a strip does not move a panel — it widens the frame — and on a
+     Reserving a strip does not move a panel – it widens the frame – and on a
      band that is 1200 units of projection the 264px this one stands on came to
      275 units of extra picture, all of it Atlantic: the opening view ran from
      x = −269 instead of 0. That cost the drawing its scale and, once the far
@@ -2099,14 +2099,14 @@ a.emap-seat-count:focus-visible {
      that coast is.
 
      So the key lies on the drawing and covers what it covers. It is one press
-     from folding, which is what folding is for, and the marks it can reach —
-     Paris, The Hague, Strasbourg — are all reachable from the list of six and
+     from folding, which is what folding is for, and the marks it can reach –
+     Paris, The Hague, Strasbourg – are all reachable from the list of six and
      from the seat index on the map's own page. */
 }
 
 
 /* The band ends where the drawing ends. `.emap` carries 28px of padding under
-   it for the block that follows — the six site cards, the key — and on the
+   it for the block that follows – the six site cards, the key – and on the
    home band above 1000px neither is in flow: the cards are hidden and the key
    is a panel lying on the picture. What was left was 28px of the map's own
    near-black between the drawing and the next section, reading as a seam that
@@ -2119,7 +2119,7 @@ a.emap-seat-count:focus-visible {
   padding-bottom: var(--space-5);
 }
 
-/* The recentre control. A ring with four ticks off it — drawn rather than
+/* The recentre control. A ring with four ticks off it – drawn rather than
    lettered, because it stands beside − and + and belongs to them. */
 .emap-reticle {
   width: 15px;
@@ -2139,7 +2139,7 @@ a.emap-seat-count:focus-visible {
 .emap[data-hi="unlit"] .emap-site[data-lit="no"] .emap-halo,
 .emap[data-hi="area"] .emap-site[data-area="yes"] .emap-halo {
   /* Instant, for the same reason the dim above is: the halo carries an opacity
-     transition for selection, and measured on this change it did not advance —
+     transition for selection, and measured on this change it did not advance –
      the attribute flipped and the halo stayed at the 0.06 an unwritten place
      is drawn with. A key that answers has to answer. */
   transition: none;
@@ -2150,7 +2150,7 @@ a.emap-seat-count:focus-visible {
   filter: drop-shadow(0 0 5px var(--c)) drop-shadow(0 0 12px var(--c));
 }
 /* The hollow ring cannot glow from a fill it does not have, so it thickens and
-   warms instead — the same distinction it draws at rest, said louder. */
+   warms instead – the same distinction it draws at rest, said louder. */
 .emap[data-hi="unlit"] .emap-site[data-lit="no"] .emap-dot {
   stroke: var(--brand-gold-pale);
   stroke-width: 2.6;
@@ -2172,7 +2172,7 @@ a.emap-seat-count:focus-visible {
 
    The name leads, in the serif the card gives every name. The citation is the
    thing you quote, so it is mono and quiet. The note is metadata about the
-   citation, so it is smaller than the citation and quieter again — a step
+   citation, so it is smaller than the citation and quieter again – a step
    down, not a repeat. */
 /* The step between the citation and its docket note is size, not opacity.
    Opacity was the first try and it is the wrong tool for a step this small:

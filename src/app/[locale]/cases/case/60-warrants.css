@@ -148,16 +148,16 @@
   display: grid;
   gap: var(--space-6);
 }
-/* Три лінії звинувачення — три однакові колонки, а не гнучкий ряд.
+/* Три лінії звинувачення – три однакові колонки, а не гнучкий ряд.
    Власниця: «оце щось дивне». Гнучкий ряд ставив дві поруч, а третю кидав
    самотньою на другий рядок під першою, і кожна діставала свою ширину, тож
    підписи під ними починалися на різній висоті. Рівні колонки або рівний
-   стовпчик — інших станів немає. */
-/* Три лінії звинувачення — стовпчик, а не колонки.
+   стовпчик – інших станів немає. */
+/* Три лінії звинувачення – стовпчик, а не колонки.
    Власниця: «оце треба допрацювати якісь квадрати чи блоки».
 
    Спершу був гнучкий ряд: дві поруч, третя самотньою під першою. Потім три
-   рівні колонки: рівні, але вузькі — назва ламалася надвоє, речення на 210
+   рівні колонки: рівні, але вузькі – назва ламалася надвоє, речення на 210
    пікселях лягало в чотири рядки, і три блоки різної висоти читалися як три
    квадрати, а не як ключ. Колонка їм не потрібна: це три рядки ключа, кожен
    з одного речення, і в рядок вони лягають без жодного обриву. */
@@ -232,25 +232,25 @@
   /* Cards keep the height their own text needs. Grid stretches items by
      default, and the open detail panel shares this grid, so selecting a
      suspect used to inflate the card next to the panel to the panel's height
-     — a name, a role, a date, and then a hand's width of nothing under them. */
+     – a name, a role, a date, and then a hand's width of nothing under them. */
   align-items: start;
 }
 /* ── Ордер як запис, а не як картка ───────────────────────────────────────
-   Власниця: «ця діаграма використовує якийсь власний стиль — ми ніде таких
+   Власниця: «ця діаграма використовує якийсь власний стиль – ми ніде таких
    заокруглених штук не використовували».
 
    Так і було: скруглення і тіні по всьому сайту рахуються одиницями, і
-   більшість із них жила саме в цій смузі — заокруглена картка з тінню, що
+   більшість із них жила саме в цій смузі – заокруглена картка з тінню, що
    підлітає на два пікселі під курсором, і трипіксельний кант згори. Жоден
    інший запис на сторінці так не виглядає.
 
    Тепер ордер виглядає як усе інше на папері: без радіуса, без тіні, з
-   лівим кантом у кольорі своєї лінії звинувачення — тим самим приладом,
+   лівим кантом у кольорі своєї лінії звинувачення – тим самим приладом,
    яким позначені позиція Суду (`.rule`) і панель подробиць нижче. Наведення
    міняє тло, а не висоту: аркуш не підлітає.
 
-   Колір лишився там, де й був, і значить те саме: червоний — депортація
-   дітей, золотий — кампанія проти енергосистеми. */
+   Колір лишився там, де й був, і значить те саме: червоний – депортація
+   дітей, золотий – кампанія проти енергосистеми. */
 .casepage .wr-node {
   display: grid;
   gap: 2px;
@@ -269,7 +269,7 @@
 .casepage .wr-node:hover {
   background: var(--paper2);
 }
-/* Вибраний — товщий кант і світліше тло. Обведення навколо всієї картки
+/* Вибраний – товщий кант і світліше тло. Обведення навколо всієї картки
    малювало другий прямокутник поверх першого; кант уже на місці, йому
    досить подвоїтися. */
 .casepage .wr-node[data-on="yes"] {
@@ -300,14 +300,14 @@
    Full width of the rung, under the row of cards rather than beside one of
    them. In a shared auto-fit grid it took a 240px-minimum cell like any card,
    so the charges were read in a column narrower than the ladder while the rest
-   of the rung sat empty — and the card beside it was stretched to match. */
+   of the rung sat empty – and the card beside it was stretched to match. */
 .casepage .wr-detail {
   grid-column: 1 / -1;
   display: grid;
   gap: var(--space-3);
   animation: wr-open var(--dur-slow) var(--ease) both;
   background: var(--card);
-  /* Той самий лівий кант, що й у картки над нею, лише товщий: панель — це
+  /* Той самий лівий кант, що й у картки над нею, лише товщий: панель – це
      розгорнутий запис, а не окремий предмет. Без радіуса і без тіні. */
   border-left: 4px solid var(--pgold);
   padding: var(--space-6);
@@ -351,7 +351,7 @@
 
 
 /* The panel is an answer to a click, so it arrives rather than appearing.
-   8px and a fade — enough to say where it came from, not enough to perform.
+   8px and a fade – enough to say where it came from, not enough to perform.
    These are warrants for the deportation of children; the motion here exists
    to make the structure legible, and stops at that. */
 @keyframes wr-open {

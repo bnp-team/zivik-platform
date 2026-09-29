@@ -4,18 +4,18 @@
  *   npm run cf:pull              from the deployed D1 database (--remote)
  *   npm run cf:pull -- --local   from the local dev database
  *   npm run cf:pull -- --drafts  published entries with their unpublished
- *                                edits applied, plus never-published ones —
+ *                                edits applied, plus never-published ones –
  *                                for the staging build only (docs/STAGING.md)
  *
- * Reads every collection described in site/content/collections.ts — only
+ * Reads every collection described in site/content/collections.ts – only
  * entries whose status is `published` (a saved draft lives in `revisions`
- * and never touches these columns) — turns each row back into the value the
+ * and never touches these columns) – turns each row back into the value the
  * file in src/content exports, and writes `.emdash/snapshot.json`. The build
  * then compiles those values in place of the files' own (site/content/
  * vite-plugin.mjs), so the site is exactly what editors last published.
  *
- * A database EmDash has not set up yet — no tables, or no published entry in
- * any collection — yields no snapshot, and the build falls back to the files.
+ * A database EmDash has not set up yet – no tables, or no published entry in
+ * any collection – yields no snapshot, and the build falls back to the files.
  * That is the first deploy: the site goes up from the files, and the admin
  * imports the same files as its starting content (npm run cf:content seed).
  */
@@ -31,7 +31,7 @@ const local = process.argv.includes("--local");
 /* Staging: what editors are working on, not what readers see. A saved draft
    lives in `revisions` (the row keeps the published values), so each row with
    a draft_revision_id takes that revision's data on top; entries never
-   published (status `draft`) are included too. Never for production — the
+   published (status `draft`) are included too. Never for production – the
    production build runs cf:pull without it. */
 const drafts = process.argv.includes("--drafts");
 
@@ -50,7 +50,7 @@ function query(sql: string): Row[][] {
       `cf:pull: could not read ${local ? "local" : "remote"} D1 "${DB}".\n` +
         (local
           ? ""
-          : "If this is Workers Builds: give the build's API token D1 access — My Profile → " +
+          : "If this is Workers Builds: give the build's API token D1 access – My Profile → " +
             "API Tokens → the Workers Builds token → add Account · D1 · Edit. See docs/CLOUDFLARE.md.\n") +
         (e.stderr || e.stdout || String(err)),
     );
@@ -66,23 +66,23 @@ function tables(): Set<string> {
 
 const present = tables();
 /* A collection added after the seed (`optional`) that D1 does not have yet is
-   left out of the snapshot, so its value comes from the file — the build does
+   left out of the snapshot, so its value comes from the file – the build does
    not fail on a schema change the admin has not caught up with. */
 const pending = COLLECTIONS.filter((c) => c.optional && !present.has(`ec_${c.slug}`));
 for (const c of pending) {
-  console.warn(`  cf:pull: ${DB} has no ec_${c.slug} yet — ${c.slug} builds from ${c.source.file}.`);
+  console.warn(`  cf:pull: ${DB} has no ec_${c.slug} yet – ${c.slug} builds from ${c.source.file}.`);
 }
 const PULLED = COLLECTIONS.filter((c) => !pending.includes(c));
 const missing = PULLED.filter((c) => !present.has(`ec_${c.slug}`)).map((c) => c.slug);
 if (missing.length === PULLED.length) {
   rmSync(OUT, { force: true });
-  console.warn(`  cf:pull: EmDash has not set up ${DB} yet — building from src/content.`);
+  console.warn(`  cf:pull: EmDash has not set up ${DB} yet – building from src/content.`);
   process.exit(0);
 }
 if (missing.length) {
   throw new Error(
     `cf:pull: ${DB} has no table for ${missing.join(", ")}. The schema in the database is behind ` +
-      "site/content/collections.ts — add the collection in the admin (or re-seed) before building.",
+      "site/content/collections.ts – add the collection in the admin (or re-seed) before building.",
   );
 }
 
@@ -137,7 +137,7 @@ await resolveUploads(collections);
 
 if (total === 0) {
   rmSync(OUT, { force: true });
-  console.warn(`  cf:pull: nothing is published in ${DB} yet — building from src/content.`);
+  console.warn(`  cf:pull: nothing is published in ${DB} yet – building from src/content.`);
   process.exit(0);
 }
 

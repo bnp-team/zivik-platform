@@ -1,9 +1,9 @@
 /* ============================================================================
-   Legal pages — the privacy policy and the terms of use share this sheet.
+   Legal pages – the privacy policy and the terms of use share this sheet.
 
    Both are reading pages and nothing else: a masthead, a revision date and a
    run of numbered clauses. Own palette, like .casepage, .registrypage and
-   .teampage — every value is a --brand-* token so nothing here depends on
+   .teampage – every value is a --brand-* token so nothing here depends on
    another surface's stylesheet having loaded first, and there is not a hex
    literal in the file (see docs/DESIGN.md).
 
@@ -24,7 +24,7 @@
   /* Reading measure, not page width: 680px of prose at 16px is the 60–70
      characters the design contract asks for. The cap goes on the content and
      the gutter is added on top, the same way .casepage .rail does it. */
-  /* Was a flat 680px in a 1180px rail — a 500px hole down the right of
+  /* Was a flat 680px in a 1180px rail – a 500px hole down the right of
      every terms and privacy page. See --prose-max. */
   --measure: min(100%, var(--prose-max));
   --gutter: clamp(24px, 5vw, 72px);
@@ -54,7 +54,7 @@
    inset the header and the footer already use: a flat gutter on a narrow
    window, and above 1024px whatever keeps the content inside 1180px. A
    surface that sets its own `max-width` and centres itself lands somewhere
-   else — measured at a 1800px window, the header's mark sat at 310 and this
+   else – measured at a 1800px window, the header's mark sat at 310 and this
    page's text at 560, and a reader scrolling down from the bar watches the
    column step sideways.
 
@@ -136,7 +136,7 @@
 }
 /* The clause number hangs in the margin, the way a numbered legal document
    sets one, rather than sitting inline as a small raised mono glyph beside a
-   22.5px serif heading — two faces, two sizes and two baselines competing
+   22.5px serif heading – two faces, two sizes and two baselines competing
    inside one line. Hanging it leaves the headings flush with the prose below
    them and gives the numbers a column of their own to be scanned down. */
 .legal-sec h2 {
@@ -152,7 +152,7 @@
   color: var(--gold);
 }
 /* Below the point where the margin runs out there is nowhere to hang it, so
-   it returns inline — still the display face, still on the heading's own
+   it returns inline – still the display face, still on the heading's own
    baseline. */
 @media (max-width: 900px) {
   .legal-sec h2::before {

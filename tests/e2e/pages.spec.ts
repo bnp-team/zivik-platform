@@ -1,8 +1,8 @@
 /**
  * Every kind of public page, at both widths: it answers, it has its heading,
  * the browser raised no error (fixtures.ts), and nothing pushes the document
- * wider than the window. At the desktop width — the markup does not change
- * with it — also the basics a search engine and a citation manager read.
+ * wider than the window. At the desktop width – the markup does not change
+ * with it – also the basics a search engine and a citation manager read.
  */
 import { META_MAX, META_MIN } from "@/lib/seo";
 import { defaultLocale, localeHtmlLang } from "@/i18n/config";
@@ -74,7 +74,7 @@ async function checkSeo(page: import("@playwright/test").Page, route: Route) {
  * expected failure (`test.fail`) at the desktop width, where the SEO checks
  * run: the report lists it as such, and the day it is fixed the test "passes
  * unexpectedly" and fails the run until its line here is deleted. Nothing
- * else about the page is excused — every check before the failing one still
+ * else about the page is excused – every check before the failing one still
  * runs.
  */
 const KNOWN_DEFECTS: Record<string, string> = {};

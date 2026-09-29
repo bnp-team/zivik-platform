@@ -6,7 +6,7 @@ import { pick, type Partner } from "@/content/types";
 /**
  * The partner band: who funded this, and an open door for who might next.
  *
- * It was a row of marks and nothing else — the whole account, on the owner's
+ * It was a row of marks and nothing else – the whole account, on the owner's
  * instruction that partners belong on the home page and nowhere else (a
  * `/{locale}/partners` page and a header tab held the same single mark twice
  * more and are gone). What a row of one mark could not say is the two things
@@ -32,7 +32,7 @@ export default function Partners({
   partners: Partner[];
 }) {
   const p = dict.partners;
-  /* The ask stands on its own — it is about partnerships this archive does
+  /* The ask stands on its own – it is about partnerships this archive does
      not have yet, so it does not wait for one it does. The supporters column
      is what disappears when there is nobody in it. */
   const hasPartners = partners.length > 0;
@@ -42,7 +42,7 @@ export default function Partners({
     const name = pick(partner.name, locale);
     const blurb = partner.blurb ? pick(partner.blurb, locale) : null;
     /* The mark sits on white whatever the band's ground is. A supplied logo
-       is a fixed artwork — ifa's is black type beside a red mark — and it is
+       is a fixed artwork – ifa's is black type beside a red mark – and it is
        theirs to look right on the paper it was drawn for, not ours to tint.
        The alt text carries the name because the caption under it is a
        heading about the partner, not a label for the picture. */
@@ -102,7 +102,7 @@ export default function Partners({
 
         {/* The dark half. Same night as the footer it runs into, so the page
             closes in one colour rather than two, and the one warm light in it
-            comes from the top edge — the lamp, which is the whole site's
+            comes from the top edge – the lamp, which is the whole site's
             figure for this. */}
         <div className="nsv-open">
           <p className="nsv-open-lbl">{p.openLabel}</p>

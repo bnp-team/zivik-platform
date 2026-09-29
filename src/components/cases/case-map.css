@@ -2,7 +2,7 @@
    The decision page's map, as an instrument.
 
    Owned and imported by components/cases/CaseMap.tsx. The drawing's own
-   look — the ground, the outline, the marks, the labels — stays where it is,
+   look – the ground, the outline, the marks, the labels – stays where it is,
    in cases/case/20-dashboard.css, so there is never a second definition of
    one selector. This file adds only what the map did not have when it was a
    picture: targets, the two states a mark can be in, and a legend that is the
@@ -17,7 +17,7 @@
 /* ---- targets ---- */
 /* The mark a reader aims at is not the mark they see. The seat is drawn at 10
    units and a zone at 9, which at this frame's scale is 24px and 21px across
-   at 1180 and under 8px on a phone — the same reason the events map carries a
+   at 1180 and under 8px on a phone – the same reason the events map carries a
    hit circle behind every marker. The radius is set here rather than on the
    element so it can step with the drawing: 16 units is 38px at the desktop
    size, 46 is 35px at the phone's. */
@@ -31,15 +31,15 @@
      fill away turns the marker into a hole in the drawing. */
   pointer-events: all;
   /* Unconditionally, not scoped to one state. That scoping is what left the
-     browser's own ring showing — a blue square around a round mark, reported
-     from a screenshot of exactly that — and answering it with a gold outline
+     browser's own ring showing – a blue square around a round mark, reported
+     from a screenshot of exactly that – and answering it with a gold outline
      of my own only changed the square's colour. */
   outline: none;
 }
 /* An `outline` on an SVG circle is drawn around its bounding box: a square
    around a round mark, which is the second thing that came back from the map.
    A stroke follows the shape, which is what the events map does with the same
-   problem — and there the ring is the shape of the mark, not a box near it. */
+   problem – and there the ring is the shape of the mark, not a box near it. */
 .casepage .mk-hit:focus {
   stroke: var(--brand-gold-pale);
   /* Real pixels rather than projection units: one unit is 1.4px on a wide
@@ -57,7 +57,7 @@
 /* ---- the two states ---- */
 /* `rest` is every mark at full strength, which is what the map shows until a
    reader asks it something. After that there is exactly one relation on the
-   drawing and everything else steps back — 0.16, the events map's own figure.
+   drawing and everything else steps back – 0.16, the events map's own figure.
    No transition on the quietening: measured there, a group's opacity
    transition inside an SVG did not advance, and the attribute changed while
    the screen did not. */
@@ -87,7 +87,7 @@
 .casepage .zone-area[data-state="on"] {
   fill: color-mix(in srgb, var(--brand-gold-lamp) 30%, transparent);
 }
-/* The connector, selected: the events map's own figures — 0.85 and 1.6, not
+/* The connector, selected: the events map's own figures – 0.85 and 1.6, not
    0.9 and a hairline, so it stops being a line and becomes the beam between
    the two. */
 .casepage .map .reach {
@@ -148,17 +148,17 @@
 /* ---- the legend, as the other end of the control ---- */
 /* It was a row of spans carrying the one sentence that says what happened at
    each place, with no way to tell the reader which mark that sentence belongs
-   to — on a case with two theatres, the only way to pair them was to match
+   to – on a case with two theatres, the only way to pair them was to match
    the words by eye. */
 /* The hit area grows upwards and downwards only.
 
-   It was `padding: 8px` against `margin: -8px` on every side — the usual way
+   It was `padding: 8px` against `margin: -8px` on every side – the usual way
    to give a control a bigger target without moving what it looks like. On a
    phone the legend is back in the flow at the full width of the band, so the
    button measured 391px inside a 375px page and hung 8px off the right edge:
    the whole document scrolled sideways by those 8px, on every decision page
    with a map. Bleeding out of a full-width container has nowhere to bleed to.
-   Vertically it does — and vertical is where the target was short. */
+   Vertically it does – and vertical is where the target was short. */
 .casepage .map-legend button {
   display: grid;
   padding: var(--space-2) 0;
@@ -185,8 +185,8 @@
    it; the theatre rows keep their two-line grid from theatre-legend.css. */
 .casepage .map-legend button.lg-seat {
   display: flex;
-  /* Крапка сідає на перший рядок тексту — тим самим відступом, що й у
-     театрів поруч, — а не по центру всього запису. */
+  /* Крапка сідає на перший рядок тексту – тим самим відступом, що й у
+     театрів поруч, – а не по центру всього запису. */
   align-items: start;
   gap: var(--space-2);
 }
@@ -194,7 +194,7 @@
   margin-top: 0.32em;
 }
 
-/* That the marks answer at all — one line, and only where there is more than
+/* That the marks answer at all – one line, and only where there is more than
    one thing to tell apart. */
 
 @media (prefers-reduced-motion: reduce) {
@@ -203,7 +203,7 @@
   .casepage .map .reach {
     transition: none;
   }
-  /* The highlight still applies — the line brightens and both ends light — it
+  /* The highlight still applies – the line brightens and both ends light – it
      simply arrives instead of travelling. */
   .casepage .map .glint[data-state="on"] {
     animation: none;
@@ -222,7 +222,7 @@
   pointer-events: none;
 }
 
-/* Столиця — орієнтир, а не предмет справи: кільце, не заповнена позначка.
+/* Столиця – орієнтир, а не предмет справи: кільце, не заповнена позначка.
    Заповнені золоті кружечки на цій карті означають місце, про яке ордер;
    Київ ордером не названий, і виглядати однаково вони не мають. */
 .casepage .mk-capital {

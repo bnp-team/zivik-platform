@@ -1,5 +1,5 @@
 /**
- * i18n configuration — single source of truth for supported locales.
+ * i18n configuration – single source of truth for supported locales.
  *
  * Locales are exposed as URL prefixes (`/uk`, `/en`) by `src/proxy.ts` and the
  * `app/[locale]` route segment. Keep this list and `defaultLocale` in sync with
@@ -33,15 +33,15 @@ export const localeShortNames: Record<Locale, string> = {
  * The `lang` a run of text needs when it is not in the page's language.
  *
  * Thirty-five of the registry's thirty-nine case names are Latin-script and
- * carry no Cyrillic at all — "Allegations of Genocide under the Convention…",
+ * carry no Cyrillic at all – "Allegations of Genocide under the Convention…",
  * "Russia v Belbek/Kolomoisky (Hoge Raad)". On a `lang="uk"` page a screen
  * reader speaks those with Ukrainian phonetics, which is not English with an
  * accent: it is unintelligible. WCAG 3.1.2 (AA) asks for the change of
  * language to be marked, and marking it is all a synthesiser needs to switch
  * voice.
  *
- * Script, not language detection. A name that mixes the two scripts —
- * "Lithuania v a serviceman of the 177th Marine Regiment (UJ, катування)" —
+ * Script, not language detection. A name that mixes the two scripts –
+ * "Lithuania v a serviceman of the 177th Marine Regiment (UJ, катування)" –
  * is left alone: tagging the
  * whole string would be a worse lie than tagging none of it, and the Cyrillic
  * half is the half the Ukrainian voice gets right. Returns `undefined` when
@@ -67,7 +67,7 @@ export const localeHtmlLang: Record<Locale, string> = {
  * `og:locale` is not BCP-47 and not the same string as `<html lang>`: the
  * Open Graph protocol specifies `language_TERRITORY` with an underscore, and
  * Facebook's crawler validates the value against a fixed list of supported
- * locales — a bare "uk" or "en" is dropped and the default (`en_US`) is
+ * locales – a bare "uk" or "en" is dropped and the default (`en_US`) is
  * assumed, which is how a Ukrainian page ends up announced as American.
  *
  * Territories chosen deliberately:
@@ -86,7 +86,7 @@ export const localeOpenGraph: Record<Locale, string> = {
 };
 
 /**
- * The other locales' `og:locale` values, for `og:locale:alternate` — this is
+ * The other locales' `og:locale` values, for `og:locale:alternate` – this is
  * how a share card says "the same page also exists in that language".
  */
 export function alternateOpenGraphLocales(locale: Locale): string[] {

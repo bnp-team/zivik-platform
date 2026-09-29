@@ -6,13 +6,13 @@ import verbatimUk from "./dtek-krymenergo.uk.json";
  * JSC DTEK Krymenergo v. The Russian Federation, PCA Case No. 2018-41,
  * Award of 1 November 2023.
  *
- * `verbatim` is the doc's DTEK tab as ingested — including its quirks (a
+ * `verbatim` is the doc's DTEK tab as ingested – including its quirks (a
  * Cyrillic "с" in "enactсed", stray footnote digits, a dispositif that ends
  * on "; and"): the tab is not yet marked finalized in the source doc, and the
  * page will re-ingest when it is. The visualization layer follows the same
  * two rules as Oschadbank: everything up to the dispositif restates the
- * Award; everything after 1 November 2023 — the US confirmation, the Dutch
- * seizure of Gazprom International shares — is enforcement record with its
+ * Award; everything after 1 November 2023 – the US confirmation, the Dutch
+ * seizure of Gazprom International shares – is enforcement record with its
  * own citations, kept in `afterlife`, the timeline and `sources`.
  */
 export const dtekKrymenergo: DecisionSummary = {
@@ -22,7 +22,7 @@ export const dtekKrymenergo: DecisionSummary = {
     masthead: { official: string; parties: string; judgment: string };
     blocks: SummaryBlock[];
   }),
-  // Ukrainian translation of the body, structurally 1:1 (50 blocks) — draft,
+  // Ukrainian translation of the body, structurally 1:1 (50 blocks) – draft,
   // pending legal review.
   blocksUk: (verbatimUk as { blocks: SummaryBlock[] }).blocks,
 
@@ -37,7 +37,7 @@ export const dtekKrymenergo: DecisionSummary = {
     eyebrow: "Постійна палата третейського суду · 1 листопада 2023",
     kicker: "$207,8 млн + відсотки за кримську енергомережу",
   },
-  /* The masthead in Ukrainian — the caption under the title and the line
+  /* The masthead in Ukrainian – the caption under the title and the line
      in the eyebrow. `masthead` keeps the decision's own English, which is
      what the citation block reproduces; this is what a Ukrainian reader
      sees at the top of the page. See `mastheadUk` in summaries/types.ts. */
@@ -64,8 +64,8 @@ export const dtekKrymenergo: DecisionSummary = {
 
   plain: {
     tldr: {
-      uk: "«Крименерго» — кримський енергооператор групи ДТЕК: 27 тисяч км² мережі, понад 780 тисяч споживачів. У 2015 році Росія забрала компанію. Арбітраж у Гаазі відхилив усі п'ять заперечень Росії і визнав незаконну експропріацію: 207,8 млн доларів відшкодування плюс відсотки — разом близько 267 млн. Росія добровільно не платить, тож ДТЕК стягує борг через суди США і Нідерландів — аж до арешту акцій структур «Газпрому».",
-      en: "Krymenergo was DTEK's Crimean grid operator: 27,000 km² of network, more than 780,000 customers. In 2015 Russia took the company. A tribunal in The Hague rejected all five of Russia's objections and found an unlawful expropriation: USD 207.8 million in damages plus interest — about USD 267 million in all. Russia has not paid, so DTEK is enforcing through US and Dutch courts — up to the seizure of Gazprom-linked shares.",
+      uk: "«Крименерго» – кримський енергооператор групи ДТЕК: 27 тисяч км² мережі, понад 780 тисяч споживачів. У 2015 році Росія забрала компанію. Арбітраж у Гаазі відхилив усі п'ять заперечень Росії і визнав незаконну експропріацію: 207,8 млн доларів відшкодування плюс відсотки – разом близько 267 млн. Росія добровільно не платить, тож ДТЕК стягує борг через суди США і Нідерландів – аж до арешту акцій структур «Газпрому».",
+      en: "Krymenergo was DTEK's Crimean grid operator: 27,000 km² of network, more than 780,000 customers. In 2015 Russia took the company. A tribunal in The Hague rejected all five of Russia's objections and found an unlawful expropriation: USD 207.8 million in damages plus interest – about USD 267 million in all. Russia has not paid, so DTEK is enforcing through US and Dutch courts – up to the seizure of Gazprom-linked shares.",
     },
   },
 
@@ -110,7 +110,7 @@ export const dtekKrymenergo: DecisionSummary = {
       },
       em: true,
     },
-    { value: "5", label: { uk: "заперечень Росії — всі відхилено", en: "objections by Russia — all rejected" } },
+    { value: "5", label: { uk: "заперечень Росії – всі відхилено", en: "objections by Russia – all rejected" } },
     {
       value: { uk: "27 000 км²", en: "27,000 km²" },
       label: { uk: "території обслуговувала мережа", en: "of territory the grid served" },
@@ -139,7 +139,7 @@ export const dtekKrymenergo: DecisionSummary = {
     { id: "enforcement", label: { uk: "Стягнення", en: "Enforcement" } },
   ],
 
-  /* Карта закриває розділ фактичних обставин — див. `mapAfterPart`
+  /* Карта закриває розділ фактичних обставин – див. `mapAfterPart`
      у summaries/types.ts. */
   mapAfterPart: 0,
 
@@ -171,7 +171,7 @@ export const dtekKrymenergo: DecisionSummary = {
       iso: "2015-01-22",
       track: "background",
       kind: "context",
-      label: { uk: "Росія забирає компанію — дата, з якої біжать відсотки", en: "Russia takes the company — the date interest runs from" },
+      label: { uk: "Росія забирає компанію – дата, з якої біжать відсотки", en: "Russia takes the company – the date interest runs from" },
       note: {
         uk: "Адміністративні й законодавчі заходи, виконані «місцевими судами і фізичною силою». Саме з цього дня диспозитив нараховує відсотки.",
         en: "Administrative and legislative measures enforced \"through local courts and physical force\". The dispositif runs interest from this day.",
@@ -184,7 +184,7 @@ export const dtekKrymenergo: DecisionSummary = {
       kind: "filing",
       label: { uk: "ДТЕК подає позов", en: "DTEK files the claim" },
       note: {
-        uk: "Вимога — не менш як 421,2 млн доларів. Росія, на відміну від справи Ощадбанку, бере участь у процесі.",
+        uk: "Вимога – не менш як 421,2 млн доларів. Росія, на відміну від справи Ощадбанку, бере участь у процесі.",
         en: "The claim: at least USD 421.2 million. Unlike in Oschadbank, Russia takes part in the proceedings.",
       },
     },
@@ -198,7 +198,7 @@ export const dtekKrymenergo: DecisionSummary = {
         en: "Award: unlawful expropriation, USD 207.8M plus interest",
       },
       note: {
-        uk: "Усі п'ять заперечень відхилено; порушено статті 2, 3 і 5 ДІД; з відсотками — близько 267 млн доларів.",
+        uk: "Усі п'ять заперечень відхилено; порушено статті 2, 3 і 5 ДІД; з відсотками – близько 267 млн доларів.",
         en: "All five objections rejected; Articles 2, 3 and 5 of the BIT breached; about USD 267 million with interest.",
       },
     },
@@ -209,8 +209,8 @@ export const dtekKrymenergo: DecisionSummary = {
       kind: "order",
       label: { uk: "Клопотання про визнання рішення у суді США", en: "Petition to confirm filed in US federal court" },
       note: {
-        uk: "Окружний суд округу Колумбія, за Нью-Йоркською конвенцією — через шість днів після рішення.",
-        en: "The DC federal court, under the New York Convention — six days after the award.",
+        uk: "Окружний суд округу Колумбія, за Нью-Йоркською конвенцією – через шість днів після рішення.",
+        en: "The DC federal court, under the New York Convention – six days after the award.",
       },
     },
     {
@@ -249,8 +249,8 @@ export const dtekKrymenergo: DecisionSummary = {
       markerKeys: ["crimea"],
       areas: ["crimea"],
       summary: {
-        uk: "23 районні та 2 міські мережі, 27 000 км², 780 000+ споживачів — усе вилучено у 2015 році.",
-        en: "23 district and 2 municipal networks, 27,000 km², 780,000+ consumers — all taken in 2015.",
+        uk: "23 районні та 2 міські мережі, 27 000 км², 780 000+ споживачів – усе вилучено у 2015 році.",
+        en: "23 district and 2 municipal networks, 27,000 km², 780,000+ consumers – all taken in 2015.",
       },
     },
   ],
@@ -258,7 +258,7 @@ export const dtekKrymenergo: DecisionSummary = {
   takings: {
     heading: { uk: "Що було вилучено", en: "What was taken" },
     note: {
-      uk: "Масштаб компанії — з фактичних висновків рішення: єдиний оператор розподілу електроенергії на півострові.",
+      uk: "Масштаб компанії – з фактичних висновків рішення: єдиний оператор розподілу електроенергії на півострові.",
       en: "The company's scale, from the award's findings of fact: the peninsula's power-distribution operator.",
     },
     metrics: [
@@ -286,14 +286,14 @@ export const dtekKrymenergo: DecisionSummary = {
 
   amounts: {
     note: {
-      uk: "Просили не менш як 421,2 млн; присуджено 207,8 млн (більшістю) плюс відсотки з дня вилучення — разом близько 267 млн на день рішення. Стягнення йде через суди США і Нідерландів.",
-      en: "At least 421.2M was claimed; 207.8M awarded (by majority) plus interest from the day of the taking — about 267M at the award date. Enforcement runs through US and Dutch courts.",
+      uk: "Просили не менш як 421,2 млн; присуджено 207,8 млн (більшістю) плюс відсотки з дня вилучення – разом близько 267 млн на день рішення. Стягнення йде через суди США і Нідерландів.",
+      en: "At least 421.2M was claimed; 207.8M awarded (by majority) plus interest from the day of the taking – about 267M at the award date. Enforcement runs through US and Dutch courts.",
     },
     // NOTATION. Every `display` here is a pair, because Ukrainian and English
     // group and point numbers differently and this card printed one notation
     // to both readers. Ukrainian groups with a space and takes a comma for the
-    // decimal — $10 764 067,64; English groups with a comma and takes a
-    // point — $10,764,067.64. The symbol leads in both, which is what the
+    // decimal – $10 764 067,64; English groups with a comma and takes a
+    // point – $10,764,067.64. The symbol leads in both, which is what the
     // stats tiles above ("$207,8 млн" / "$207.8M") and the holdings row
     // already do. Before this the bars mixed all three systems on one card:
     // ASCII-space grouping on the totals, comma-and-cents on the parts of one
@@ -301,7 +301,7 @@ export const dtekKrymenergo: DecisionSummary = {
     //
     // The `amount` fields carry the exact cents too. They only scale the bars,
     // but rounding them to whole dollars made the two costs parts sum to
-    // 10 764 068 against a total of 10 764 067 — a one-dollar gap with no
+    // 10 764 068 against a total of 10 764 067 – a one-dollar gap with no
     // source behind it. The award's own figures are exact; they are used.
     figures: [
       {
@@ -351,24 +351,24 @@ export const dtekKrymenergo: DecisionSummary = {
   },
 
   objections: {
-    /* Без числа — див. примітку в icj-genocide.ts. */
+    /* Без числа – див. примітку в icj-genocide.ts. */
     heading: { uk: "Заперечення Росії", en: "Russia's objections" },
     note: {
-      uk: "На відміну від справи Ощадбанку, Росія брала участь і боронилася. Трибунал відхилив усі заперечення. Щодо «території» — одностайно; щодо строку за статтею 12 — більшістю голосів.",
-      en: "Unlike in Oschadbank, Russia appeared and fought. The tribunal rejected every objection — on territory unanimously, on the Article 12 timing point by majority.",
+      uk: "На відміну від справи Ощадбанку, Росія брала участь і боронилася. Трибунал відхилив усі заперечення. Щодо «території» – одностайно; щодо строку за статтею 12 – більшістю голосів.",
+      en: "Unlike in Oschadbank, Russia appeared and fought. The tribunal rejected every objection – on territory unanimously, on the Article 12 timing point by majority.",
     },
     benchSize: 3,
     /* The count is five, and it is the award's own.
      *
      * § 210: "Russia raises four jurisdictional objections and one
      * admissibility objection, which, Claimant submits, should all be
-     * dismissed." The dispositif dismisses exactly those five — First to
+     * dismissed." The dispositif dismisses exactly those five – First to
      * Fourth Jurisdictional plus the Admissibility Objection.
      *
      * A long note here used to argue the opposite: that the site under-counted
      * and a sixth objection had to be found in the award and written up. It
      * reasoned from verbatim block 10, "The Respondent raised 6 preliminary
-     * objections" — but that line is the summary author's heading, not the
+     * objections" – but that line is the summary author's heading, not the
      * award's text, and the award says six nowhere. The note also instructed
      * whoever came next NOT to close the gap by correcting the six, on the
      * ground that doing so would put the site in conflict with its own
@@ -392,10 +392,10 @@ export const dtekKrymenergo: DecisionSummary = {
            in Article 1(4) (§ 292, the President and Mr Rowley); the estoppel
            ground carried the whole bench, and it is the dismissal that this
            field records. This was recorded as 2-1 and the objection below as
-           3-0 — the two were the wrong way round. */
+           3-0 – the two were the wrong way round. */
         votes: [{ for: 3, against: 0 }],
         reasoning: {
-          uk: "«Територія РФ» — це простір під її контролем на відповідну дату; Крим безспірно був під контролем Росії. І естопель: не можна проголошувати Крим своїм суверенним і водночас заперечувати це для цілей ДІД.",
+          uk: "«Територія РФ» – це простір під її контролем на відповідну дату; Крим безспірно був під контролем Росії. І естопель: не можна проголошувати Крим своїм суверенним і водночас заперечувати це для цілей ДІД.",
           en: "\"Territory of the Russian Federation\" is the area under its control at the relevant date; Crimea indisputably was. And estoppel: a State cannot proclaim Crimea sovereign territory while denying it for BIT purposes.",
         },
       },
@@ -403,7 +403,7 @@ export const dtekKrymenergo: DecisionSummary = {
         ground: { uk: "Час (ст. 12)", en: "Timing (Art. 12)" },
         latin: "ratione temporis",
         objection: {
-          uk: "Значна частина активів — «радянські», збудовані до 01.01.1992, тож ст. 12 їх не захищає.",
+          uk: "Значна частина активів – «радянські», збудовані до 01.01.1992, тож ст. 12 їх не захищає.",
           en: "Much of the assets are \"Soviet\", built before 1 Jan 1992, so Article 12 leaves them unprotected.",
         },
         outcome: "rejected",
@@ -415,20 +415,20 @@ export const dtekKrymenergo: DecisionSummary = {
         votes: [{ for: 2, against: 1 }],
         reasoning: {
           uk: "Одностайно: інвестицію «зроблено», коли інвестор набув власність (ius in rem), а це сталося після 1992 року за версією обох сторін (1995 або 2012).",
-          en: "Unanimously: an investment is \"made\" when the investor acquires ownership (ius in rem) — after 1992 on both parties' versions (1995 or 2012).",
+          en: "Unanimously: an investment is \"made\" when the investor acquires ownership (ius in rem) – after 1992 on both parties' versions (1995 or 2012).",
         },
       },
       {
         ground: { uk: "Поняття інвестиції", en: "What counts as an investment" },
         latin: "ratione materiae",
         objection: {
-          uk: "Ст. 1(1) вимагає активного транскордонного вкладення, законного на момент здійснення, — кумулятивно й одночасно.",
-          en: "Article 1(1) requires an active, cross-border, lawful commitment — cumulatively and at inception.",
+          uk: "Ст. 1(1) вимагає активного транскордонного вкладення, законного на момент здійснення, – кумулятивно й одночасно.",
+          en: "Article 1(1) requires an active, cross-border, lawful commitment – cumulatively and at inception.",
         },
         outcome: "rejected",
         reasoning: {
-          uk: "Визначення ст. 1(1) широке — «усі види майнових та інтелектуальних цінностей»; активи «Крименерго» під нього підпадають. Позивач переміг у всіх юрисдикційних питаннях (диспозитив).",
-          en: "Article 1(1)'s definition is broad — \"all kinds of assets and intellectual values\"; Krymenergo's assets fall within it. The claimant prevailed on all jurisdictional defences (dispositif).",
+          uk: "Визначення ст. 1(1) широке – «усі види майнових та інтелектуальних цінностей»; активи «Крименерго» під нього підпадають. Позивач переміг у всіх юрисдикційних питаннях (диспозитив).",
+          en: "Article 1(1)'s definition is broad – \"all kinds of assets and intellectual values\"; Krymenergo's assets fall within it. The claimant prevailed on all jurisdictional defences (dispositif).",
         },
       },
       {
@@ -447,12 +447,12 @@ export const dtekKrymenergo: DecisionSummary = {
       {
         ground: { uk: "Корупція", en: "Corruption" },
         objection: {
-          uk: "45% акцій нібито придбано корупційно — вимога неприйнятна або поза юрисдикцією.",
-          en: "The 45% stake was allegedly acquired corruptly — the claim is inadmissible or outside jurisdiction.",
+          uk: "45% акцій нібито придбано корупційно – вимога неприйнятна або поза юрисдикцією.",
+          en: "The 45% stake was allegedly acquired corruptly – the claim is inadmissible or outside jurisdiction.",
         },
         outcome: "rejected",
         reasoning: {
-          uk: "Трибунал відхилив звинувачення в корупції і зберіг юрисдикцію (аналіз IAReporter; повний розбір — у тексті рішення).",
+          uk: "Трибунал відхилив звинувачення в корупції і зберіг юрисдикцію (аналіз IAReporter; повний розбір – у тексті рішення).",
           en: "The tribunal rejected the corruption allegations and upheld jurisdiction (IAReporter's analysis; the full treatment is in the award).",
         },
       },
@@ -462,15 +462,15 @@ export const dtekKrymenergo: DecisionSummary = {
   afterlife: {
     heading: { uk: "Рішення на стадії стягнення", en: "The award in enforcement" },
     note: {
-      uk: "Росія добровільно не платить, тож рішення виконується за Нью-Йоркською конвенцією — у США та Нідерландах, аж до арешту акцій структур «Газпрому».",
-      en: "Russia has not paid voluntarily, so the award is being enforced under the New York Convention — in the US and the Netherlands, up to the seizure of Gazprom-linked shares.",
+      uk: "Росія добровільно не платить, тож рішення виконується за Нью-Йоркською конвенцією – у США та Нідерландах, аж до арешту акцій структур «Газпрому».",
+      en: "Russia has not paid voluntarily, so the award is being enforced under the New York Convention – in the US and the Netherlands, up to the seizure of Gazprom-linked shares.",
     },
     stages: [
       {
         year: "2023",
         title: { uk: "Рішення ухвалено", en: "Award rendered" },
         note: {
-          uk: "207,8 млн + відсотки; через шість днів — клопотання про визнання у суді США.",
+          uk: "207,8 млн + відсотки; через шість днів – клопотання про визнання у суді США.",
           en: "USD 207.8M plus interest; six days later, a petition to confirm in US court.",
         },
         standing: "yes",
@@ -500,8 +500,8 @@ export const dtekKrymenergo: DecisionSummary = {
     {
       term: { uk: "«Територія» = контроль", en: "\"Territory\" = control" },
       ruling: {
-        uk: "Більшістю: «територія Російської Федерації» — це географічний простір під контролем РФ на відповідну дату. Суверенітет вирішувати не потрібно — і це той самий підхід, що у справі Ощадбанку.",
-        en: "By majority: \"territory of the Russian Federation\" is the geographical area under its control at the relevant date. Sovereignty need not be decided — the same approach as in Oschadbank.",
+        uk: "Більшістю: «територія Російської Федерації» – це географічний простір під контролем РФ на відповідну дату. Суверенітет вирішувати не потрібно – і це той самий підхід, що у справі Ощадбанку.",
+        en: "By majority: \"territory of the Russian Federation\" is the geographical area under its control at the relevant date. Sovereignty need not be decided – the same approach as in Oschadbank.",
       },
     },
     {
@@ -514,8 +514,8 @@ export const dtekKrymenergo: DecisionSummary = {
     {
       term: { uk: "Коли інвестицію «зроблено» (ст. 12)", en: "When an investment is \"made\" (Art. 12)" },
       ruling: {
-        uk: "Одностайно: у момент набуття інвестором власності чи іншого речового права — не в момент побудови активу і не в момент зміни контролю над територією у 2014 році.",
-        en: "Unanimously: when the investor acquires ownership or another right in rem — not when the asset was built, and not when control of the territory changed in 2014.",
+        uk: "Одностайно: у момент набуття інвестором власності чи іншого речового права – не в момент побудови активу і не в момент зміни контролю над територією у 2014 році.",
+        en: "Unanimously: when the investor acquires ownership or another right in rem – not when the asset was built, and not when control of the territory changed in 2014.",
       },
     },
     {
@@ -526,7 +526,7 @@ export const dtekKrymenergo: DecisionSummary = {
       },
     },
     {
-      term: { uk: "Чотири умови ст. 5 — кумулятивні", en: "Article 5's four conditions are cumulative" },
+      term: { uk: "Чотири умови ст. 5 – кумулятивні", en: "Article 5's four conditions are cumulative" },
       ruling: {
         uk: "Вилучення провалило всі чотири: без компенсації, не в суспільних інтересах, без належної процедури, дискримінаційне. Для незаконності вистачило б однієї.",
         en: "The taking failed all four: no compensation, no public interest, no due process, discriminatory. Any one failure would have sufficed for unlawfulness.",
@@ -543,7 +543,7 @@ export const dtekKrymenergo: DecisionSummary = {
     {
       url: "https://cisarbitration.com/wp-content/uploads/2026/03/Gazprom_DTEK_CoA_Judgment_English.pdf",
       title:
-        "JSC DTEK Krymenergo v Russian Federation — Judgment of the Hague Court of Appeal in summary proceedings, 24 February 2026 (English translation)",
+        "JSC DTEK Krymenergo v Russian Federation – Judgment of the Hague Court of Appeal in summary proceedings, 24 February 2026 (English translation)",
       authors: "Gerechtshof Den Haag",
       publication: "CIS Arbitration Forum",
       date: "2026",
@@ -558,10 +558,10 @@ export const dtekKrymenergo: DecisionSummary = {
       date: "2025",
       type: "news/insight",
     },
-    // — the award and the instruments (the doc's own in-text links) —
+    // – the award and the instruments (the doc's own in-text links) –
     {
       url: "https://www.italaw.com/sites/default/files/case-documents/180426.pdf",
-      title: "JSC DTEK Krymenergo v. The Russian Federation — Award of 1 November 2023 (full text)",
+      title: "JSC DTEK Krymenergo v. The Russian Federation – Award of 1 November 2023 (full text)",
       authors: "",
       publication: "italaw",
       date: "1 November 2023",
@@ -569,7 +569,7 @@ export const dtekKrymenergo: DecisionSummary = {
     },
     {
       url: "https://jusmundi.com/en/document/decision/en-pjsc-dtek-krymenergo-v-russian-federation-sunday-1st-january-2017",
-      title: "DTEK v. Russia — Award page (with separate opinion)",
+      title: "DTEK v. Russia – Award page (with separate opinion)",
       authors: "",
       publication: "Jus Mundi",
       date: "2023",
@@ -577,7 +577,7 @@ export const dtekKrymenergo: DecisionSummary = {
     },
     {
       url: "https://jusmundi.com/en/document/treaty/en-agreement-between-the-governement-of-the-russian-federation-and-the-cabinet-of-ministers-of-the-ukraine-on-the-encouragement-and-mutual-protection-of-investments-russian-federation-ukraine-bit-1998-friday-27th-november-1998",
-      title: "Russia–Ukraine BIT (1998) — treaty text",
+      title: "Russia–Ukraine BIT (1998) – treaty text",
       authors: "",
       publication: "Jus Mundi",
       date: "27 November 1998",
@@ -593,16 +593,16 @@ export const dtekKrymenergo: DecisionSummary = {
     },
     {
       url: "https://jusmundi.com/en/document/pdf/other/en-pjsc-dtek-krymenergo-v-russian-federation-petition-to-confirm-foreign-arbitration-award-tuesday-7th-november-2023",
-      title: "Petition to confirm the award — US District Court for the District of Columbia",
+      title: "Petition to confirm the award – US District Court for the District of Columbia",
       authors: "",
       publication: "Jus Mundi",
       date: "7 November 2023",
       type: "official/filing",
     },
-    // — research and reporting —
+    // – research and reporting –
     {
       url: "https://www.iareporter.com/arbitration-cases/dtek-krymenergo-v-russia/",
-      title: "DTEK Krymenergo v. Russia — case page and enforcement updates",
+      title: "DTEK Krymenergo v. Russia – case page and enforcement updates",
       authors: "",
       publication: "IAReporter",
       date: "2023–2026",
@@ -642,7 +642,7 @@ export const dtekKrymenergo: DecisionSummary = {
     },
     {
       url: "https://www.transnational-dispute-management.com/legal-and-regulatory-detail.asp?key=34006",
-      title: "DTEK wins Hague case against Russia over seized Crimean assets — press release",
+      title: "DTEK wins Hague case against Russia over seized Crimean assets – press release",
       authors: "",
       publication: "TDM Journal",
       date: "2 November 2023",

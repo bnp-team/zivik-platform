@@ -12,8 +12,8 @@ import "./blog.css";
 /**
  * The blog's index: every post in this language, newest first.
  *
- * Absent — a 404, left out of the Cloudflare build altogether by
- * `staticPaths` — while there is nothing to list in this language. An empty
+ * Absent – a 404, left out of the Cloudflare build altogether by
+ * `staticPaths` – while there is nothing to list in this language. An empty
  * section that says «coming soon» is a promise a reader checks and finds
  * unkept; the menu, the footer and the sitemap follow the same rule
  * (`blogEnabled`).

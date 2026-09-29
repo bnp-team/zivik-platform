@@ -77,7 +77,7 @@ test("burger opens and closes the menu; Escape closes it", async ({ page }, test
 test("burger works on a page without React (the header-only script)", async ({ page }, testInfo) => {
   test.skip(!isMobile(testInfo.project.name), "the burger is shown under 1080px only");
   /* /about hydrates nothing but the bar, so it runs site/islands/header.ts
-     instead of React — the same control, a different implementation. */
+     instead of React – the same control, a different implementation. */
   await page.goto("/uk/about");
   await openDrawer(page);
   await page.keyboard.press("Escape");

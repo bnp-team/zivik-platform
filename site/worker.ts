@@ -11,7 +11,7 @@ export { PluginBridge };
  * What reaches the Worker: the EmDash admin and its API, `/`, and 404s. The
  * public pages are static assets and never get here.
  *
- * The cron also retries a publish whose rebuild was lost — see
+ * The cron also retries a publish whose rebuild was lost – see
  * `retryMissedPublish`.
  *
  * Four things are settled before EmDash sees the request (the fourth, the
@@ -34,7 +34,7 @@ export { PluginBridge };
  *   - `X-Robots-Tag: noindex` on the admin, and no `Server-Timing` anywhere.
  *     The login page had neither a robots tag nor a header, so a crawler that
  *     ignores robots.txt could list it; and EmDash's Server-Timing told any
- *     visitor how long each D1 step took — a free map of the runtime.
+ *     visitor how long each D1 step took – a free map of the runtime.
  */
 const HSTS = "max-age=63072000; includeSubDomains";
 
@@ -66,13 +66,13 @@ const emdashScheduled = createScheduledHandler();
  * A publish whose rebuild never happened, retried once.
  *
  * The publish plugin calls the deploy hook and logs the outcome, and that is
- * all it can do: if the call is lost — a network error, a 5xx, a secret that
- * was being replaced at that moment — the entry reads «Опубліковано» and the
+ * all it can do: if the call is lost – a network error, a 5xx, a secret that
+ * was being replaced at that moment – the entry reads «Опубліковано» and the
  * site never changes. This cron already runs every five minutes for EmDash's
  * own scheduled publishing, so it also compares the newest live revision in D1
  * with the moment this deployment's snapshot was taken. A publish newer than
  * the snapshot and 10–15 minutes old means no build picked it up; one cron
- * tick falls in that window, so the hook is called once — never in a loop, so
+ * tick falls in that window, so the hook is called once – never in a loop, so
  * a publish that fails the build does not start a build every five minutes.
  */
 async function retryMissedPublish(env: { DB: D1Database }) {
@@ -122,7 +122,7 @@ export default {
       return new Response("Not found", { status: 404, headers: { "strict-transport-security": HSTS } });
     }
     /* The health probe answers anyone, and EmDash's answer names its exact
-       version — a free lookup against the next advisory. A monitor needs to
+       version – a free lookup against the next advisory. A monitor needs to
        know it is up, not which release; the admin, with its session, still
        gets the full reply. */
     if (pathname === "/_emdash/api/health" && !hasSession(request)) {

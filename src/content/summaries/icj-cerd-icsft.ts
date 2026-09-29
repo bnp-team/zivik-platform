@@ -6,13 +6,13 @@ import verbatimUk from "./icj-cerd-icsft.uk.json";
  * ICSFT & CERD (Ukraine v. Russian Federation), ICJ Judgment of 31 January 2024.
  *
  * `verbatim` holds the summary prose exactly as ingested from the source .docx
- * (English — the language of the judgment). The fields below add a localized
- * visualization layer — stats, facts, timeline, verdicts and theatres — whose
+ * (English – the language of the judgment). The fields below add a localized
+ * visualization layer – stats, facts, timeline, verdicts and theatres – whose
  * every value restates something already in that prose:
  *   • timeline dates all appear in the text (Crimea 2014, filing 2017, the
  *     19 April 2017 Order, the 31 January 2024 Judgment);
  *   • the verdict matrix mirrors the operative findings in "4. LEGAL
- *     CONSEQUENCES" (the dispositif) — four violations, the rest rejected;
+ *     CONSEQUENCES" (the dispositif) – four violations, the rest rejected;
  *   • the theatres restate the two factual tracks (eastern Ukraine → ICSFT,
  *     Crimea → CERD) and anchor them to the map.
  * Short chrome strings are localized UA/EN; the body prose stays English.
@@ -27,7 +27,7 @@ export const icjCerdIcsft: DecisionSummary = {
   blocksUk: (verbatimUk as { blocks: SummaryBlock[] }).blocks,
 
   /* «Стандартизована назва з одним розміром шрифту. Замінюємо назву на таку»
-     — the owner's own wording, and it is the ICJ's full case name. What stood
+     – the owner's own wording, and it is the ICJ's full case name. What stood
      here was «Україна проти Російської Федерації», which is also the h1 of
      icj-genocide: the archive's two ICJ cases carried one headline between
      them and neither said which it was.
@@ -39,7 +39,7 @@ export const icjCerdIcsft: DecisionSummary = {
      тероризму», and that is what the caption on this page and every other
      mention in the archive already use. On a page about that convention the
      h1 cannot be the one place that names it differently, so the official
-     wording stands here — flagged to the owner, hers to overrule.
+     wording stands here – flagged to the owner, hers to overrule.
 
      Set in sentence case, not the capitals of the review document: the caps
      there are that document's heading style, and 130 characters of display
@@ -53,12 +53,12 @@ export const icjCerdIcsft: DecisionSummary = {
   card: {
     title: "Україна проти Російської Федерації",
     eyebrow: "Міжнародний суд ООН · рішення 31 січня 2024",
-    kicker: "4 порушення двох конвенцій — ICSFT і CERD",
+    kicker: "4 порушення двох конвенцій – ICSFT і CERD",
   },
   seoTitle: {
-    uk: "Україна проти Росії (ICSFT і CERD) — Міжнародний суд ООН",
-    en: "Ukraine v. Russia (ICSFT and CERD) — International Court of Justice",
-  },  /* The masthead in Ukrainian — the caption under the title and the line
+    uk: "Україна проти Росії (ICSFT і CERD) – Міжнародний суд ООН",
+    en: "Ukraine v. Russia (ICSFT and CERD) – International Court of Justice",
+  },  /* The masthead in Ukrainian – the caption under the title and the line
      in the eyebrow. `masthead` keeps the decision's own English, which is
      what the citation block reproduces; this is what a Ukrainian reader
      sees at the top of the page. See `mastheadUk` in summaries/types.ts. */
@@ -66,7 +66,7 @@ export const icjCerdIcsft: DecisionSummary = {
     /* The same sentence as `title`, deliberately. The caption used to stop
        before «(Україна проти Російської Федерації)», so with the full case
        name in the h1 it rendered as a shortened copy of the headline directly
-       under it — one name at two sizes, which is what the review asked to end.
+       under it – one name at two sizes, which is what the review asked to end.
        Identical, the masthead prints it once; see the guard on `.fullname` in
        cases/[slug]/page.tsx. The English `masthead.official` is untouched and
        is what the citation block reproduces. */
@@ -77,7 +77,7 @@ export const icjCerdIcsft: DecisionSummary = {
 
   /**
    * Explicit rather than relying on the page template's default. That default
-   * is invisible from the data, so every other consumer has to know about it —
+   * is invisible from the data, so every other consumer has to know about it –
    * and map-links.ts did not, which is why this decision showed no forum on
    * the events map.
    */
@@ -92,14 +92,14 @@ export const icjCerdIcsft: DecisionSummary = {
   /* Search-result description. `plain.tldr` used to serve as this and runs
      three to four sentences, so the snippet was cut off mid-word. */
   metaDesc: {
-    uk: "Рішення МС ООН від 31 січня 2024: два порушення — Росія не розслідувала фінансування тероризму і згорнула українську освіту в Криму.",
-    en: "ICJ judgment of 31 January 2024: two breaches upheld — Russia failed to investigate terrorism financing and curtailed Ukrainian schooling in Crimea.",
+    uk: "Рішення МС ООН від 31 січня 2024: два порушення – Росія не розслідувала фінансування тероризму і згорнула українську освіту в Криму.",
+    en: "ICJ judgment of 31 January 2024: two breaches upheld – Russia failed to investigate terrorism financing and curtailed Ukrainian schooling in Crimea.",
   },
 
   plain: {
     tldr: {
     /* The judgment's own opening paragraph, not a retelling of it. The one
-       that stood here was written for the page and showed it — and it also
+       that stood here was written for the page and showed it – and it also
        carried «лише два порушення» while the dashboard beside it counted
        four. Review: «Цей абзац я б теж переписала, бо дуже видно, що це ШІ
        склав. На наступний текст (він взятий з колонки САМЕРІ, тому звідти
@@ -178,16 +178,16 @@ export const icjCerdIcsft: DecisionSummary = {
 
      They did not, and the review found the result: «Хронологія подана не в
      хронологічному порядку». Events without `iso` sort last, so «поч. 2014»
-     and «2017» — the two oldest — printed under the 2024 judgment.
+     and «2017» – the two oldest – printed under the 2024 judgment.
 
      The reasoning that left them keyless was that widening a season or a year
      into 1 January invents a day. It does, but `iso` is not the printed date:
      the visible label still reads «поч. 2014», and `TimelineEvent.iso` is
      documented as a sort key whose date «may be a range or a month». The
-     timeline already reads a four-character key at year precision — see the
+     timeline already reads a four-character key at year precision – see the
      rail in CaseTimeline.tsx, which places `"2014"` as `2014-01-01`. So the
      key is given at the precision the label claims and no finer. */
-  /* Карта закриває розділ фактичних обставин — див. `mapAfterPart`
+  /* Карта закриває розділ фактичних обставин – див. `mapAfterPart`
      у summaries/types.ts. */
   mapAfterPart: 0,
 
@@ -326,7 +326,7 @@ export const icjCerdIcsft: DecisionSummary = {
    * determinations, condensed: «Кошти» (ICSFT), racial discrimination under
    * CERD Article 1(1), and the clean-hands doctrine. The write-up sets out
    * each of them under «Попередні визначення», in the Court's own words and
-   * with the argument it answered — so the page said the same three things
+   * with the argument it answered – so the page said the same three things
    * twice, in two shapes, eight bands apart, and a reader who met the short
    * form second had no way to know it was the same ruling.
    *
@@ -346,22 +346,22 @@ export const icjCerdIcsft: DecisionSummary = {
 
   /* Empty, so the «Тимчасові заходи» band does not render on this page.
    *
-   * It held three rows — the measure, whether it was kept, and a note with
-   * the paragraph number — and the write-up answers each of the Order's
+   * It held three rows – the measure, whether it was kept, and a note with
+   * the paragraph number – and the write-up answers each of the Order's
    * three limbs under «Наказ про тимчасові заходи», with the Court's own
    * words and the same paragraph numbers. The one thing the band had that
    * the text did not was the plain statement of what each measure
    * required, and that has moved onto the limb it belongs to.
    *
    * Owner: «розділ тимчасові заходи дублює те що вказано у правових
-   * висновках — можеш спробувати обʼєднати».
+   * висновках – можеш спробувати обʼєднати».
    */
   provisionalMeasures: [],
 
 
   theatres: [
     {
-      /* «Схід України», not «Східна Україна» — review's correction. The
+      /* «Схід України», not «Східна Україна» – review's correction. The
          adjective names a region as though it were a fixed entity; the
          genitive names a part of the country, which is what the theatre is. */
       place: { uk: "Схід України", en: "East of Ukraine" },
@@ -369,8 +369,8 @@ export const icjCerdIcsft: DecisionSummary = {
       markerKeys: ["donetsk", "luhansk"],
       areas: ["east"],
       summary: {
-        uk: "Ймовірне фінансування збройних груп «ДНР» і «ЛНР» — трек фінансування тероризму.",
-        en: "Alleged financing of armed groups linked to the “DPR” and “LPR” — terrorism-financing track.",
+        uk: "Ймовірне фінансування збройних груп «ДНР» і «ЛНР» – трек фінансування тероризму.",
+        en: "Alleged financing of armed groups linked to the “DPR” and “LPR” – terrorism-financing track.",
       },
     },
     {

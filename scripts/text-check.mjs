@@ -3,8 +3,8 @@
  * Homoglyphs, and other things that are wrong in a way nobody can see.
  *
  * A Latin "C" and a Cyrillic "С" are the same shape. One of them was sitting
- * at the front of «Cпрямування» in four registry records — the charge note
- * shared by four ICC suspects — where it had presumably been pasted in from a
+ * at the front of «Cпрямування» in four registry records – the charge note
+ * shared by four ICC suspects – where it had presumably been pasted in from a
  * document in the other alphabet. Nothing looked wrong. Nothing was going to
  * look wrong. But a reader searching the page for «Спрямування» would not
  * find those four rows, a screen reader announces the word in the wrong
@@ -15,7 +15,7 @@
  *
  * WHAT IS ALLOWED, and why the exceptions are narrow:
  *   - Files listed in EXEMPT hold text ingested verbatim from a source
- *     document, quirks deliberately preserved — see the docstrings in
+ *     document, quirks deliberately preserved – see the docstrings in
  *     summaries/dtek-krymenergo.ts and echr-ukraine-netherlands.ts, which name
  *     the two artefacts and say the tabs will be re-ingested. Preserving a
  *     source's transcription error is a defensible archival choice; making it
@@ -23,8 +23,8 @@
  *   - A word that is entirely Latin, or entirely Cyrillic, is nobody's
  *     business. Only a word that mixes the two scripts is reported, and only
  *     when the Latin letters it mixes in are ones with a Cyrillic twin.
- *   - Abbreviations that are genuinely Latin inside Ukrainian prose — "IP-адреса"
- *     — are real and are listed in ALLOWED_WORDS rather than suppressed by a
+ *   - Abbreviations that are genuinely Latin inside Ukrainian prose – "IP-адреса"
+ *     – are real and are listed in ALLOWED_WORDS rather than suppressed by a
  *     rule that would also hide real defects.
  */
 import { readdirSync, readFileSync, statSync } from "node:fs";
@@ -80,7 +80,7 @@ for (const file of walk(SRC)) {
 if (found > 0) {
   console.error(
     `\ntext-check: ${found} word${found === 1 ? "" : "s"} written in two alphabets at once.\n` +
-      `If a mix is genuinely correct, add the word to ALLOWED_WORDS or the file to EXEMPT — with a reason.`,
+      `If a mix is genuinely correct, add the word to ALLOWED_WORDS or the file to EXEMPT – with a reason.`,
   );
   process.exit(1);
 }

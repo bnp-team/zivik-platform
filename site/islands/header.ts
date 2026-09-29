@@ -1,12 +1,12 @@
 /**
- * The header's burger, without React — for pages whose only island is the
+ * The header's burger, without React – for pages whose only island is the
  * header.
  *
  * On /about, /team, the legal pages, every pending case and the 404, the bar
  * is the one client component on the page, and hydrating it was the only
  * reason those pages loaded the island runtime: react-dom and the rest, about
  * 197 KB of script, to flip one attribute on a <nav>. Everything else the bar
- * does is markup — links, the language switch, the active item — and the
+ * does is markup – links, the language switch, the active item – and the
  * server has already rendered all of it with the right pathname. So on those
  * pages Document.astro loads this instead of client.tsx, and the server
  * render of Header.tsx is left as it is: same elements, same ids, same
@@ -22,8 +22,8 @@
  *   - following one of the drawer's items shuts it (the support link opens a
  *     new tab, so the page stays and the drawer must not).
  *
- * A page with any other island hydrates the header with React as before —
- * see Document.astro — so there is never a second handler on the button.
+ * A page with any other island hydrates the header with React as before –
+ * see Document.astro – so there is never a second handler on the button.
  * Under Next the header is always React: the framework's runtime loads on
  * every page regardless, and there is nothing to save.
  *
@@ -53,7 +53,7 @@ if (burger && drawer) {
   }
 
   burger.addEventListener("click", () => set(!open));
-  /* The drawer's own items — the page links and the support ask, which sit
+  /* The drawer's own items – the page links and the support ask, which sit
      directly in it. The language switch nested inside it has no handler in
      Header.tsx either, so it has none here. */
   drawer.addEventListener("click", (e) => {

@@ -40,7 +40,7 @@
   color: var(--gold);
   margin-bottom: var(--space-6);
 }
-/* Was var(--rule) — a hairline colour used as text, 1.28:1 on the masthead
+/* Was var(--rule) – a hairline colour used as text, 1.28:1 on the masthead
    ground. It is punctuation between two facts, so it needs to be seen, and
    it is aria-hidden in the markup so it is not read aloud as "middle dot". */
 .casepage .eyebrow .dot {
@@ -56,12 +56,12 @@
    `30ch` and one step down the scale for the two ICJ pages, whose official
    name runs to 182 characters. Both caps were measures for prose, and this
    is not prose: at 30ch the Court's full case name came out as seven short
-   centred-looking lines down the left third of a 1990px page — a poem, in
-   the owner's word — while the rail beside it stood empty.
+   centred-looking lines down the left third of a 1990px page – a poem, in
+   the owner's word – while the rail beside it stood empty.
 
    So there is no cap and no long variant. The heading takes the rail's own
    1180px, which is the width every other band on this page uses, and one
-   size — --t-h1 — for every title again: 182 characters at that measure is
+   size – --t-h1 – for every title again: 182 characters at that measure is
    four lines, fewer than the seven the smaller step was buying.
 
    `text-wrap: pretty`, not `balance`. Balance evens the lines out, which is
@@ -88,7 +88,7 @@
   /* The design's own ramp, on this project's steps: 22.5 and 30 are both
      declared type steps (--t-h3 and the floor of --t-h1), which puts the
      heading within half a pixel of the mock at the small end and two at the
-     large one. It was --t-h1 — 30 to 50 — at line-height 1.02 and -0.028em,
+     large one. It was --t-h1 – 30 to 50 – at line-height 1.02 and -0.028em,
      a poster setting on a caption that runs to 182 characters. */
   font-size: clamp(22.5px, 2.7vw, 30px);
   line-height: 1.24;
@@ -101,7 +101,7 @@
    It replaced `.parties` (a line of instruments) and `.actions` (two filled
    pills). Everything here is a reference, so everything here is set as one:
    an abbreviation and a year, a word and an arrow. Wraps rather than
-   scrolls — on a phone these become four items in two rows, which is a list,
+   scrolls – on a phone these become four items in two rows, which is a list,
    where a sideways scroll would be a list with half of it hidden. */
 .casepage .hero-meta {
   display: flex;
@@ -138,7 +138,7 @@
 }
 /* The ways out. The first is the decision itself and carries the lamp's own
    pale gold; the second is the docket around it and steps back to the muted
-   tone — a hierarchy the two identical pills could not express. */
+   tone – a hierarchy the two identical pills could not express. */
 .casepage .hm-cta {
   display: inline-flex;
   align-items: center;
@@ -155,13 +155,13 @@
 .casepage .hm-cta:focus-visible {
   border-bottom-color: var(--brand-gold-pale);
 }
-/* Поле під пальцем — більше за те, що намальовано.
+/* Поле під пальцем – більше за те, що намальовано.
 
-   Виміряно на 390: «Читати рішення» і «Справа на сайті Суду» — 16 пікселів
-   заввишки, абревіатура інструмента поруч — 17. Це 11-піксельний капс із
-   рискою під ним, і риска — частина вигляду: `min-height` чи `padding`
+   Виміряно на 390: «Читати рішення» і «Справа на сайті Суду» – 16 пікселів
+   заввишки, абревіатура інструмента поруч – 17. Це 11-піксельний капс із
+   рискою під ним, і риска – частина вигляду: `min-height` чи `padding`
    відсунули б її від слів. Тож росте не коробка, а прозорий `::after` поверх
-   неї, на 6 пікселів у кожен бік. Шість — половина `--space-3`, проміжку між
+   неї, на 6 пікселів у кожен бік. Шість – половина `--space-3`, проміжку між
    рядами `.hero-meta`: поля двох рядів сходяться впритул і не
    перекриваються, тож кожне натискання влучає в те, що під пальцем. */
 .casepage .hm-cta,
@@ -192,17 +192,17 @@
 
 /* ---- 2. Plain-language lede (paper) --------------------------------------- */
 /* The one white band on the page, and the paper the dark dashboard below it
-   stands on — it is what makes that band an island rather than a second storey
+   stands on – it is what makes that band an island rather than a second storey
    of the masthead, so it renders on every decision and is never conditional.
 
    It used to draw a --brand-seam hairline underneath itself, because
    --brand-surface against --brand-paper-2 is 1.06:1 and an edge that faint has
    to be drawn rather than implied. The ground below is --brand-night now,
-   18.69:1, and the seam over it was a 1.75:1 grey line lying on a black band —
+   18.69:1, and the seam over it was a 1.75:1 grey line lying on a black band –
    the grounds carry this edge on their own. */
 /* White, and it keeps its seam.
 
-   The seam under this band was dropped while the overview below it was dark —
+   The seam under this band was dropped while the overview below it was dark –
    a 1.75:1 grey hairline lying on a black band is a stray line. The band below
    is paper again, where --brand-surface against --brand-paper-2 is 1.06:1 and
    the edge has to be drawn or it is not there. */
@@ -211,5 +211,5 @@
   border-bottom: 1px solid var(--seam);
   padding-block: clamp(32px, 4vw, 56px);
 }
-/* `.lede-grid` і `.why` — див. примітку в 80-page.css. */
+/* `.lede-grid` і `.why` – див. примітку в 80-page.css. */
 

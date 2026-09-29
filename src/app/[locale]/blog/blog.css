@@ -2,7 +2,7 @@
    Blog: the index and a post.
 
    Own palette from the --brand-* tokens, like .teampage and .casepage. On the
-   site rail (--page-gutter), with the column capped against the LEFT edge —
+   site rail (--page-gutter), with the column capped against the LEFT edge –
    DESIGN.md §2. A post reads at the reading measure (--prose-max); the index
    is a list of entries at the same measure, so a reader moving from one to the
    other does not watch the column change width.
@@ -32,7 +32,7 @@
   max-width: var(--prose-max);
 }
 
-/* Links in the page body only — `.blogpage a` would tie with the mobile menu's
+/* Links in the page body only – `.blogpage a` would tie with the mobile menu's
    rule and repaint it (see the note in team.css). */
 .blog-wrap a {
   color: var(--red);

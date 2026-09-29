@@ -11,7 +11,7 @@ import { decisionSlugs, proceedingCount } from "./routes";
 const rows = (page: Page) => page.locator(".reg-list .reg-drow");
 const shown = (page: Page) => page.locator(".reg-count p[aria-live] b");
 
-/** Rows in the list and the number the count line prints — which must agree. */
+/** Rows in the list and the number the count line prints – which must agree. */
 async function expectRows(page: Page, n: number) {
   await expect(rows(page)).toHaveCount(n);
   await expect(shown(page)).toHaveText(String(n));

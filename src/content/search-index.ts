@@ -6,8 +6,8 @@ import type { Localized } from "@/content/types";
  * A search index over what the write-ups *say*, built at build time.
  *
  * ── The problem ─────────────────────────────────────────────────────────────
- * The library page searched five groups of row metadata — name, note, court,
- * status, subject field, date — and nothing else. Eight of the thirty-three
+ * The library page searched five groups of row metadata – name, note, court,
+ * status, subject field, date – and nothing else. Eight of the thirty-three
  * proceedings have a full write-up: a plain-language summary, a chronology, a
  * table of the court's findings, provisional measures, a who's-who and an
  * FAQ. None of it was reachable. A reader looking for «депортація
@@ -24,8 +24,8 @@ import type { Localized } from "@/content/types";
  * ── The unit is a section, not a case ───────────────────────────────────────
  * A row in the table is a case, but a match may be in a chronology entry three
  * screens down. Each unit is (case, section), and the sections are the decision
- * page's own anchors — `#overview`, `#chronology`, `#machinery`, `#rulings`,
- * `#measures`, `#handbook`, `#questions`, `#fulltext` — so a hit can be
+ * page's own anchors – `#overview`, `#chronology`, `#machinery`, `#rulings`,
+ * `#measures`, `#handbook`, `#questions`, `#fulltext` – so a hit can be
  * rendered as a link that lands on the part that matched.
  *
  * ── Morphology, honestly ────────────────────────────────────────────────────
@@ -51,7 +51,7 @@ import type { Localized } from "@/content/types";
  *     index answers "does this section match", never "what did it match".
  *
  * ── What is NOT indexed ─────────────────────────────────────────────────────
- * `blocks` / `blocksUk` — the verbatim body of each summary — are excluded, and
+ * `blocks` / `blocksUk` – the verbatim body of each summary – are excluded, and
  * that is where most of the 730 kB is. See INDEX_VERBATIM below for the
  * measurement and the reasoning.
  */
@@ -62,7 +62,7 @@ export const PREFIX = 6;
 /**
  * Where the built index is served from.
  *
- * It is a file, not part of the library page — see `app/search-index.json/
+ * It is a file, not part of the library page – see `app/search-index.json/
  * route.ts`, which is prerendered from `contentIndex` below and asserts that
  * its own directory name matches this string. The registry page hands this
  * path to `RegistryTable`, which asks for it the first time a reader reaches
@@ -76,8 +76,8 @@ export const CONTENT_INDEX_PATH = "/search-index.json";
  * Measured both ways during the build (gzipped bytes of the whole prerendered
  * `/uk/registry` document, which is what a reader actually downloads):
  * the figures are in the report accompanying this change. The authored layer
- * — tldr, findings, chronology, who's-who, FAQ, instruments, measures,
- * theatres — is a small fraction of the weight and carries the
+ * – tldr, findings, chronology, who's-who, FAQ, instruments, measures,
+ * theatres – is a small fraction of the weight and carries the
  * vocabulary a reader searches with, because it is the layer written *for*
  * a reader. The verbatim body is the judgment's own procedural English and
  * roughly triples the index for matches that mostly land on the same cases the
@@ -94,7 +94,7 @@ const INDEX_VERBATIM = false;
  * `#sources` is deliberately absent: it is apparatus, not a destination.
  * `questions` and `related` both stood here once. A hit has to land on text
  * the reader can see, and neither the FAQ band nor the neighbouring-decisions
- * band is on the decision page any more — #questions and #related would each
+ * band is on the decision page any more – #questions and #related would each
  * scroll to nothing.
  */
 export const SECTIONS = [
@@ -112,7 +112,7 @@ export type SectionId = (typeof SECTIONS)[number];
  * The shipped index.
  *
  * `cases` are the summary slugs, in a fixed order; a posting is two base-36
- * characters — case index, then section index — so a term's whole posting list
+ * characters – case index, then section index – so a term's whole posting list
  * is one string with no separators and no array literals. At 8 cases and 8
  * sections both fit in one base-36 digit with room for 36 of each; the build
  * refuses to produce an index that would overflow that.
@@ -122,12 +122,12 @@ export interface ContentIndex {
   cases: string[];
   /** term prefix → concatenated 2-character postings. */
   terms: Record<string, string>;
-  /** Characters kept per token — the client must truncate its query the same. */
+  /** Characters kept per token – the client must truncate its query the same. */
   prefix: number;
 }
 
 /* ============================================================================
-   Normalisation — the same rule the row search uses.
+   Normalisation – the same rule the row search uses.
 
    Kept as its own copy rather than imported from RegistryTable: that module is
    `"use client"`, and importing it here would pull the whole table, and with
@@ -176,7 +176,7 @@ function sectionText(s: DecisionSummary): Record<SectionId, string> {
   out.overview.push(
     /* `plain.whyMatters` більше не тут: відступ «Чому це важливо» зі
        сторінки прибрано, а індекс обіцяє читачеві, що слова, які він шукав,
-       на сторінці є. Обіцянку, якої сторінка не тримає, краще не давати —
+       на сторінці є. Обіцянку, якої сторінка не тримає, краще не давати –
        та сама причина, з якої звідси свого часу пішли `questions` і
        `related`. Згодом і саме поле прибрано з даних. */
     all(s.title, s.metaDesc, s.plain.tldr),
@@ -275,12 +275,12 @@ function sectionText(s: DecisionSummary): Record<SectionId, string> {
   );
 
   /* The «Хто є хто» section stood here, indexing the cast list against
-     #handbook. The band is gone from the decision page — it had come down to a
-     restatement of «Картка справи» — so the anchor is gone with it, and text
+     #handbook. The band is gone from the decision page – it had come down to a
+     restatement of «Картка справи» – so the anchor is gone with it, and text
      that is no longer on the page must not be searchable into it. */
 
   /* `#glossary` stood here too, indexing each decision's terms. The glossary
-     is gone from the site — owner: «вимикаємо словник» — and with it the
+     is gone from the site – owner: «вимикаємо словник» – and with it the
      band a hit would have scrolled to. It had been indexed only on builds
      that published the glossary, which production never did, so no
      production index loses anything. */
@@ -307,7 +307,7 @@ function sectionText(s: DecisionSummary): Record<SectionId, string> {
  * and neither costs a search a reader would make:
  *
  *   • tokens under three characters. In both languages these are prepositions,
- *     conjunctions and articles — «на», «до», «із», "of", "to", "in" — which
+ *     conjunctions and articles – «на», «до», «із», "of", "to", "in" – which
  *     occur in nearly every section of every write-up, so they carry the
  *     longest posting lists in the index and discriminate nothing. A
  *     two-letter query still works: it is matched as a prefix over the key
@@ -364,17 +364,17 @@ function build(): ContentIndex {
 export const contentIndex: ContentIndex = build();
 
 /**
- * What the index weighs is announced on every build — from
+ * What the index weighs is announced on every build – from
  * `app/search-index.json/route.ts`, which is the module that serves it.
  *
- * Weight is a live concern on this project — the home page is already ~100 kB
- * gzipped — and an index is exactly the kind of thing that grows quietly with
+ * Weight is a live concern on this project – the home page is already ~100 kB
+ * gzipped – and an index is exactly the kind of thing that grows quietly with
  * the ninth summary and the tenth. `next.config.ts` already prints one line
  * per build about a setting nobody would otherwise notice; this is the same
  * idea for a number nobody would otherwise measure.
  *
  * It is printed there rather than here because this module is now reached by
- * three build graphs — the Ukrainian library, the English one and the route —
+ * three build graphs – the Ukrainian library, the English one and the route –
  * and each worker gets its own module instance, so one number printed three
  * times. The route is reached by one, and it is also where the number and the
  * bytes a reader downloads are the same string.
@@ -414,17 +414,17 @@ export const contentIndex: ContentIndex = build();
   for (const [input, expected] of samples) {
     if (norm(input) !== expected) {
       throw new Error(
-        `content search index: normalisation drifted — norm(${JSON.stringify(input)}) ` +
+        `content search index: normalisation drifted – norm(${JSON.stringify(input)}) ` +
           `is ${JSON.stringify(norm(input))}, expected ${JSON.stringify(expected)}`,
       );
     }
   }
 
   // An empty index means the field walk above stopped matching the content
-  // model — a silent failure that would look exactly like "nothing matches".
+  // model – a silent failure that would look exactly like "nothing matches".
   if (Object.keys(contentIndex.terms).length < 500) {
     throw new Error(
-      `content search index: only ${Object.keys(contentIndex.terms).length} terms — ` +
+      `content search index: only ${Object.keys(contentIndex.terms).length} terms – ` +
         "the field walk in sectionText() has probably stopped seeing the summaries.",
     );
   }

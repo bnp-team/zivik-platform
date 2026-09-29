@@ -3,7 +3,7 @@ import verbatim from "./icc-ukraine.verbatim.json";
 import verbatimUk from "./icc-ukraine.uk.json";
 
 /**
- * Situation in Ukraine, ICC-01/22 — the investigation and the six warrants of
+ * Situation in Ukraine, ICC-01/22 – the investigation and the six warrants of
  * arrest issued by Pre-Trial Chamber II (17 March 2023, 5 March 2024,
  * 24 June 2024).
  *
@@ -11,7 +11,7 @@ import verbatimUk from "./icc-ukraine.uk.json";
  * The Court's site sits behind a Cloudflare rule that refuses automated
  * fetches, curl and a real browser alike ("Sorry, you have been blocked").
  * The way through is the Internet Archive's captures of the Court's own
- * pages — the ICC's text, not a secondary account of it:
+ * pages – the ICC's text, not a secondary account of it:
  *
  *     http://archive.org/wayback/available?url=icc-cpi.int/situations/ukraine
  *     curl -sL --compressed "http://web.archive.org/web/<ts>id_/<url>"
@@ -24,13 +24,13 @@ import verbatimUk from "./icc-ukraine.uk.json";
  * the situation number, Pre-Trial Chamber II and its three judges, "referred
  * to the ICC by 43 States Parties: March - April 2022", the 21 November 2013
  * scope, all three warrant dates and all six names, and every Rome Statute
- * article cited below — 8(2)(a)(vii), 8(2)(b)(viii), 8(2)(b)(ii), 8(2)(b)(iv),
+ * article cited below – 8(2)(a)(vii), 8(2)(b)(viii), 8(2)(b)(ii), 8(2)(b)(iv),
  * 7(1)(k), 25(3)(a), 25(3)(b), 28(a), 28(b).
  *
  * The two figures that looked like staleness risks are both right, and both
  * were worth checking rather than assuming:
- *   - 125 States Parties. The Assembly's own page, captured 15 August 2026 —
- *     six days before this file's `asOf` — reads "125 countries are States
+ *   - 125 States Parties. The Assembly's own page, captured 15 August 2026 –
+ *     six days before this file's `asOf` – reads "125 countries are States
  *     Parties", its regional breakdown sums to 125 (33+19+20+28+25), and
  *     Hungary is still on the list despite its announced withdrawal.
  *   - Karim Khan led the OTP 2022-2025. The Office's page, captured 23 August
@@ -43,12 +43,12 @@ import verbatimUk from "./icc-ukraine.uk.json";
  * for this situation, "Finding under article 87(7) … on the non-compliance by
  * Mongolia … and referral to the Assembly of States Parties", ICC-01/22-90,
  * 24-10-2024. The Tajikistan finding is ICC-01/22-143 of 19 March 2026,
- * referred to the Assembly through the Presidency — it postdates the register
+ * referred to the Assembly through the Presidency – it postdates the register
  * capture by eight days, which is why a first pass found no trace of it.
  *
  * "No suspect in custody" is verified too, and by the Court rather than by
  * inference: the defendant page for Vladimir Vladimirovich Putin, captured
- * 21 August 2026 — this file's own `asOf` — carries the status "At large".
+ * 21 August 2026 – this file's own `asOf` – carries the status "At large".
  * Only that page has a capture; the other five rest on the same footing, that
  * no case in this situation has reached a trial phase and the Court holds no
  * trials in absentia (article 63(1) of the Statute).
@@ -60,15 +60,15 @@ import verbatimUk from "./icc-ukraine.uk.json";
  *
  *  1. Everything inside the warrant wall, the verdict rows and the jurisdiction
  *     timeline restates the verbatim text or an ICC document linked from it.
- *  2. Context the summary does not carry — Mongolia's non-arrest, Ukraine's
+ *  2. Context the summary does not carry – Mongolia's non-arrest, Ukraine's
  *     ratification mechanics, the scale figures, Russia's retaliation, the
- *     aggression tribunal — is marked as context (`kind: "context"`, or an
+ *     aggression tribunal – is marked as context (`kind: "context"`, or an
  *     explicit caveat in the note) and every item cites its source in
  *     `sources`. The full research trail lives in
  *     docs/research/icc-ukraine-sources.md.
  *
  * An ICC situation page differs from a judgment page: there is no dispositif
- * and no verdict on guilt — a warrant states "reasonable grounds to believe",
+ * and no verdict on guilt – a warrant states "reasonable grounds to believe",
  * nothing more. The chrome says so wherever a reader could mistake a warrant
  * for a conviction.
  */
@@ -92,9 +92,9 @@ export const iccUkraine: DecisionSummary = {
   card: {
     title: "Ситуація в Україні",
     eyebrow: "Міжнародний кримінальний суд · ICC-01/22",
-    kicker: "6 ордерів на арешт — одна вертикаль влади",
+    kicker: "6 ордерів на арешт – одна вертикаль влади",
   },
-  /* The masthead in Ukrainian — the caption under the title and the line
+  /* The masthead in Ukrainian – the caption under the title and the line
      in the eyebrow. `masthead` keeps the decision's own English, which is
      what the citation block reproduces; this is what a Ukrainian reader
      sees at the top of the page. See `mastheadUk` in summaries/types.ts. */
@@ -104,13 +104,13 @@ export const iccUkraine: DecisionSummary = {
        how it is cited, including in Ukrainian legal writing, and the
        translations the page carried are ones the Court does not use of
        itself. Applied at every occurrence rather than only where it was
-       marked — the page had been running three names for one bench:
+       marked – the page had been running three names for one bench:
        «Палата досудового провадження II» in the Ukrainian summary and the
        States-Parties answer, «Палатою попереднього провадження II» in this
        masthead, and the English name in the warrant wall. A bare «Палата»
        with no numeral is left alone: that is "the Chamber", not the name. */
     official:
-      "Ситуація в Україні, ICC-01/22 — розслідування та ордери на арешт, видані Pre-Trial Chamber II",
+      "Ситуація в Україні, ICC-01/22 – розслідування та ордери на арешт, видані Pre-Trial Chamber II",
     judgment: "Ордери від 17 березня 2023 · 5 березня 2024 · 24 червня 2024",
   },
 
@@ -122,13 +122,13 @@ export const iccUkraine: DecisionSummary = {
   /* Search-result description. `plain.tldr` used to serve as this and runs
      three to four sentences, so the snippet was cut off mid-word. */
   metaDesc: {
-    uk: "Ситуація в Україні (ICC-01/22): розслідування МКС і шість ордерів на арешт — за депортацію дітей і ракетну кампанію проти енергосистеми.",
-    en: "Situation in Ukraine (ICC-01/22): the ICC investigation and six arrest warrants — over the deportation of children and the strikes on the power grid.",
+    uk: "Ситуація в Україні (ICC-01/22): розслідування МКС і шість ордерів на арешт – за депортацію дітей і ракетну кампанію проти енергосистеми.",
+    en: "Situation in Ukraine (ICC-01/22): the ICC investigation and six arrest warrants – over the deportation of children and the strikes on the power grid.",
   },
 
   plain: {
     tldr: {
-      uk: "Міжнародний кримінальний суд розслідує воєнні злочини, злочини проти людяності та геноцид на території України з 2013 року. Судді видали шість ордерів на арешт: Путіну і Львовій-Бєловій — за депортацію українських дітей, чотирьом вищим військовим командувачам — за ракетну кампанію проти енергосистеми. Це не вирок: ордер означає обґрунтовану підозру, а судити МКС може лише тих, кого заарештують.",
+      uk: "Міжнародний кримінальний суд розслідує воєнні злочини, злочини проти людяності та геноцид на території України з 2013 року. Судді видали шість ордерів на арешт: Путіну і Львовій-Бєловій – за депортацію українських дітей, чотирьом вищим військовим командувачам – за ракетну кампанію проти енергосистеми. Це не вирок: ордер означає обґрунтовану підозру, а судити МКС може лише тих, кого заарештують.",
       en: "The International Criminal Court is investigating war crimes, crimes against humanity and genocide on the territory of Ukraine since 2013. Its judges have issued six arrest warrants: for Putin and Lvova-Belova over the deportation of Ukrainian children, and for four top military commanders over the missile campaign against the power grid. None of this is a verdict: a warrant means reasonable grounds to believe, and the ICC can only try a person it has in custody.",
     },
   },
@@ -165,7 +165,7 @@ export const iccUkraine: DecisionSummary = {
 
          What the note says is the limit of our knowledge, and nothing about
          the Court. The review also asks for the ICC's policy on which
-         warrants are published to be looked up — that is a claim about the
+         warrants are published to be looked up – that is a claim about the
          Court's practice, it needs a source, and it is not made here. */
       note: { uk: "про які відомо публічно", en: "publicly known" },
     },
@@ -205,8 +205,8 @@ export const iccUkraine: DecisionSummary = {
     {
       /* Where the Court's reach begins in fact, as against where it begins
          in law. The declarations below set the jurisdictional window; this
-         is the Court's own position on when the armed conflict — the
-         precondition for a war crime — was already under way. Owner's
+         is the Court's own position on when the armed conflict – the
+         precondition for a war crime – was already under way. Owner's
          date and owner's proposition; no paragraph is cited here because
          none was supplied, and this page does not invent one. */
       date: { uk: "не пізніше 26 лют. 2014", en: "no later than 26 Feb 2014" },
@@ -294,13 +294,13 @@ export const iccUkraine: DecisionSummary = {
       track: "warrants",
       kind: "judgment",
       label: {
-        uk: "Ордери Путіну та Львовій-Бєловій — депортація дітей",
-        en: "Warrants for Putin and Lvova-Belova — deportation of children",
+        uk: "Ордери Путіну та Львовій-Бєловій – депортація дітей",
+        en: "Warrants for Putin and Lvova-Belova – deportation of children",
       },
       note: {
         /* Примітка казала «уперше» і «лише вдруге в історії Суду, після
-           аль-Башира». Жодного з цих порівнянь в огляді немає — звірено
-           обома мовами, — тож це була наша аналітика під виглядом факту.
+           аль-Башира». Жодного з цих порівнянь в огляді немає – звірено
+           обома мовами, – тож це була наша аналітика під виглядом факту.
            Власниця: «перші два прибери». Лишилося те, що в ордерах
            справді написано. */
         uk: "Палата попереднього провадження II видала ордери на арешт Володимира Путіна і Марії Львової-Бєлової.",
@@ -313,11 +313,11 @@ export const iccUkraine: DecisionSummary = {
       track: "warrants",
       kind: "judgment",
       label: {
-        uk: "Ордери Кобилашу та Соколову — удари по енергосистемі",
-        en: "Warrants for Kobylash and Sokolov — strikes on the power grid",
+        uk: "Ордери Кобилашу та Соколову – удари по енергосистемі",
+        en: "Warrants for Kobylash and Sokolov – strikes on the power grid",
       },
       note: {
-        uk: "Командувачі дальньої авіації та Чорноморського флоту — за ракетні удари по українській електроінфраструктурі.",
+        uk: "Командувачі дальньої авіації та Чорноморського флоту – за ракетні удари по українській електроінфраструктурі.",
         en: "The commanders of Long-Range Aviation and of the Black Sea Fleet, over missile strikes against Ukraine's electric infrastructure.",
       },
     },
@@ -327,11 +327,11 @@ export const iccUkraine: DecisionSummary = {
       track: "warrants",
       kind: "judgment",
       label: {
-        uk: "Ордери Шойгу та Герасимову — вершина командної вертикалі",
-        en: "Warrants for Shoigu and Gerasimov — the top of the chain of command",
+        uk: "Ордери Шойгу та Герасимову – вершина командної вертикалі",
+        en: "Warrants for Shoigu and Gerasimov – the top of the chain of command",
       },
       note: {
-        uk: "Міністр оборони і начальник Генштабу — за ту саму кампанію проти енергосистеми (щонайменше 10.10.2022 – 09.03.2023).",
+        uk: "Міністр оборони і начальник Генштабу – за ту саму кампанію проти енергосистеми (щонайменше 10.10.2022 – 09.03.2023).",
         en: "The Defence Minister and the Chief of the General Staff, for the same campaign against the grid (at least 10 Oct 2022 – 9 Mar 2023).",
       },
     },
@@ -383,7 +383,7 @@ export const iccUkraine: DecisionSummary = {
       track: "jurisdiction",
       kind: "judgment",
       label: {
-        uk: "Україна — 125-та держава-учасниця Римського статуту",
+        uk: "Україна – 125-та держава-учасниця Римського статуту",
         en: "Ukraine becomes the 125th State Party to the Rome Statute",
       },
       note: {
@@ -401,12 +401,12 @@ export const iccUkraine: DecisionSummary = {
         en: "Tajikistan receives Putin without arresting him",
       },
       note: {
-        uk: "Путін прибув до Душанбе на саміт СНД; Таджикистан — держава-учасниця Статуту — його не заарештував, пославшись на зобов'язання в межах СНД щодо імунітету глав держав. Другий такий візит після монгольського.",
+        uk: "Путін прибув до Душанбе на саміт СНД; Таджикистан – держава-учасниця Статуту – його не заарештував, пославшись на зобов'язання в межах СНД щодо імунітету глав держав. Другий такий візит після монгольського.",
         en: "Putin arrived in Dushanbe for a CIS summit; Tajikistan, a State Party, did not arrest him, citing CIS undertakings on head-of-State immunity. The second such visit after Mongolia's.",
       },
     },
     {
-      /* Split out of the Tajikistan entry — review: «Про Таджикистан
+      /* Split out of the Tajikistan entry – review: «Про Таджикистан
          розділити». One row had held both, under a date range of a quarter,
          and they are different things: a State Party's failure to execute a
          warrant, and Russia's prosecution of the Court's own officers. The
@@ -430,7 +430,7 @@ export const iccUkraine: DecisionSummary = {
          here: the page had Tajikistan's failure to arrest but not the Court's
          response to it, which is the part that carries legal weight. Same
          instrument as the Mongolia finding of 24 October 2024, referred to the
-         Assembly the same way — see ICC-01/22-143 and the Presidency's referral
+         Assembly the same way – see ICC-01/22-143 and the Presidency's referral
          notice. */
       date: { uk: "19 берез. 2026", en: "19 Mar 2026" },
       iso: "2026-03-19",
@@ -448,7 +448,7 @@ export const iccUkraine: DecisionSummary = {
     {
       /* Review: «Був запит від якоїсь країни щодо того чи можна призупинити
          ордер на арешт, якщо хтось хоче приїхати в іншу країну на мирні
-         переговори. Так, якщо ці переговори під егідою РБ. — є по цьому
+         переговори. Так, якщо ці переговори під егідою РБ. – є по цьому
          рішення МКС». There is, and it is on this docket.
 
          ── The one thing on this page that is not verified against the
@@ -457,8 +457,8 @@ export const iccUkraine: DecisionSummary = {
          refuses automated fetches the way the rest of icc-cpi.int does (403);
          the Internet Archive had no capture of it to fall back on. What is
          written below rests on two independent legal commentaries that quote
-         the ruling and link the same PDF — Opinio Juris, 21 July 2026, and
-         EJIL:Talk! — and on nothing else. Both are in `sources`.
+         the ruling and link the same PDF – Opinio Juris, 21 July 2026, and
+         EJIL:Talk! – and on nothing else. Both are in `sources`.
 
          Neither carries the ICC filing number, so this entry gives none: the
          page cites ICC-01/22-90 and ICC-01/22-143 because those numbers were
@@ -466,8 +466,8 @@ export const iccUkraine: DecisionSummary = {
          would make an unread number look like a read one. Owner's decision:
          «постав посилання на PDF без номера».
 
-         Note what the ruling does *not* say. The review's recollection — «так,
-         якщо ці переговори під егідою РБ» — is the half the press carried. The
+         Note what the ruling does *not* say. The review's recollection – «так,
+         якщо ці переговори під егідою РБ» – is the half the press carried. The
          Chamber created no exception: a conference formally convened by the
          United Nations makes UN Charter obligations *relevant*, and it is the
          Court, not the host State, that reconciles them. */
@@ -480,8 +480,8 @@ export const iccUkraine: DecisionSummary = {
         en: "The Chamber: peace talks do not lift the duty to arrest",
       },
       note: {
-        uk: "Держава-учасниця, яку Суд не називає, звернулася за консультаціями за ст. 97 Статуту: чи може вона приймати мирні переговори за участю Путіна. Палата відповіла, що винятку з обов'язку арешту немає і держава не може призупинити виконання ордера сама; конференція, формально скликана ООН, робить зобов'язання за Статутом ООН релевантними, але зважує їх Суд. Єдиний шлях, яким провадження взагалі можна призупинити, — стаття 16 Статуту: відстрочка на прохання Ради Безпеки ООН, і просити про неї держава не може.",
-        en: "A State Party the Court does not name sought consultations under article 97: whether it could host peace talks with Mr Putin present. The Chamber answered that no exception to the duty to arrest exists and that a State cannot suspend a warrant on its own initiative; a conference formally convened by the United Nations makes UN Charter obligations relevant, but it is the Court that weighs them. The one route by which proceedings can be suspended at all is article 16 — a deferral at the request of the UN Security Council, which is not a State's to ask for.",
+        uk: "Держава-учасниця, яку Суд не називає, звернулася за консультаціями за ст. 97 Статуту: чи може вона приймати мирні переговори за участю Путіна. Палата відповіла, що винятку з обов'язку арешту немає і держава не може призупинити виконання ордера сама; конференція, формально скликана ООН, робить зобов'язання за Статутом ООН релевантними, але зважує їх Суд. Єдиний шлях, яким провадження взагалі можна призупинити, – стаття 16 Статуту: відстрочка на прохання Ради Безпеки ООН, і просити про неї держава не може.",
+        en: "A State Party the Court does not name sought consultations under article 97: whether it could host peace talks with Mr Putin present. The Chamber answered that no exception to the duty to arrest exists and that a State cannot suspend a warrant on its own initiative; a conference formally convened by the United Nations makes UN Charter obligations relevant, but it is the Court that weighs them. The one route by which proceedings can be suspended at all is article 16 – a deferral at the request of the UN Security Council, which is not a State's to ask for.",
       },
     },
   ],
@@ -495,16 +495,16 @@ export const iccUkraine: DecisionSummary = {
       /* Five, not three. Review's edit: «по дітях додати Херсон і Запоріжжя
          на мапу». The warrants for the deportation of children name those two
          oblasts beside Crimea, Donetsk and Luhansk, and the drawing showed
-         three of the five — so the theatre under-reported its own subject.
+         three of the five – so the theatre under-reported its own subject.
          The two points were added to the atlas generator in the same commit;
          a key with no point behind it draws at [0,0]. */
       markerKeys: ["crimea", "donetsk", "luhansk", "kherson", "zaporizhzhia"],
       /* П'ять кружечків без жодного підпису: читач бачив їх і не мав як
-         дізнатися, що один із них — Херсонщина. Власниця: «підпиши».
-         Луганщина відсунута вгору-праворуч — вона за двадцять чотири одиниці
+         дізнатися, що один із них – Херсонщина. Власниця: «підпиши».
+         Луганщина відсунута вгору-праворуч – вона за двадцять чотири одиниці
          від Донеччини, і два підписи під крапками лягли б один на одного. */
       /* Зсуви виміряні, не вгадані: п'ять назв на ширину двох областей не
-         вміщаються під своїми крапками поспіль, тож вони йдуть сходинками —
+         вміщаються під своїми крапками поспіль, тож вони йдуть сходинками –
          Донеччина над своєю крапкою, далі Луганщина праворуч, Запоріжжя,
          Херсонщина і Крим щораз нижче. Перевірено обрахунком перетинів
          прямокутників на ширині смуги 778 px: жодного. */
@@ -518,20 +518,20 @@ export const iccUkraine: DecisionSummary = {
       areas: ["crimea", "east"],
       // keep the caption clear of the three markers it points at
       summary: {
-        uk: "Депортація та незаконне переміщення українських дітей до РФ — перша хвиля ордерів.",
-        en: "Deportation and unlawful transfer of Ukrainian children to Russia — the first wave of warrants.",
+        uk: "Депортація та незаконне переміщення українських дітей до РФ – перша хвиля ордерів.",
+        en: "Deportation and unlawful transfer of Ukrainian children to Russia – the first wave of warrants.",
       },
     },
     {
       place: { uk: "Енергосистема України", en: "Ukraine's power grid" },
       tag: { uk: "ЕНЕРГОСИСТЕМА", en: "POWER GRID" },
-      /* Ключ лишається як якір для променя і назви — але крапки не буде.
-         «Два театри, але другий театр — це ж не одна точка»: ракетна кампанія
-         проти енергосистеми — не місце, і власне речення театру каже «по всій
+      /* Ключ лишається як якір для променя і назви – але крапки не буде.
+         «Два театри, але другий театр – це ж не одна точка»: ракетна кампанія
+         проти енергосистеми – не місце, і власне речення театру каже «по всій
          країні». Намальована крапкою біля Києва, вона ставала шостою поруч із
          п'ятьма окупованими областями. Тепер театр несе земля. */
       markerKeys: ["kyiv"],
-      /* Єдина назва, яку цей театр пише на карті, — столиця. Не тому, що
+      /* Єдина назва, яку цей театр пише на карті, – столиця. Не тому, що
          кампанія була про Київ (вона була про всю країну, і саме тому театр
          несе земля, а не крапка), а тому, що карта без жодного орієнтира в
          центрі країни читається гірше. Власниця: «достав точку Київ». */
@@ -540,18 +540,18 @@ export const iccUkraine: DecisionSummary = {
       areas: ["country"],
       // lift the label clear of the Kyiv marker and its city caption
       summary: {
-        uk: "Ракетна кампанія проти електроінфраструктури по всій країні — друга і третя хвилі.",
-        en: "The missile campaign against electric infrastructure nationwide — the second and third waves.",
+        uk: "Ракетна кампанія проти електроінфраструктури по всій країні – друга і третя хвилі.",
+        en: "The missile campaign against electric infrastructure nationwide – the second and third waves.",
       },
     },
   ],
 
   warrants: {
-    /* «Одна вертикаль влади» — твердження, якого запис не робить, і смуга
+    /* «Одна вертикаль влади» – твердження, якого запис не робить, і смуга
        його робила двічі: у заголовку й у підводці «від верховного
        головнокомандувача до командувачів авіації та флоту». Ордери за дітей
        називають главу держави та уповноважену з прав дитини; ордери за
-       енергосистему — міністра оборони, начальника Генштабу і двох
+       енергосистему – міністра оборони, начальника Генштабу і двох
        командувачів. Путіна в другій лінії немає взагалі. Це дві вертикалі по
        дві сходинки, а не одна на чотири. Власниця: «переробляй на дві
        вертикалі».
@@ -590,7 +590,7 @@ export const iccUkraine: DecisionSummary = {
       { uk: "Оперативні командувачі", en: "Operational commanders" },
     ],
     note: {
-      uk: "Дві лінії звинувачення, і кожна має власну вертикаль. У справі дітей Суд піднявся до глави держави; у справі енергосистеми — до міністра оборони та начальника Генштабу. Жоден ордер не називає главу держави за удари по енергосистемі. Кожен ордер — висновок Палати про «обґрунтовані підстави вважати», не вирок; натисніть ім'я, щоб побачити статті звинувачення.",
+      uk: "Дві лінії звинувачення, і кожна має власну вертикаль. У справі дітей Суд піднявся до глави держави; у справі енергосистеми – до міністра оборони та начальника Генштабу. Жоден ордер не називає главу держави за удари по енергосистемі. Кожен ордер – висновок Палати про «обґрунтовані підстави вважати», не вирок; натисніть ім'я, щоб побачити статті звинувачення.",
       en: "Two lines of accusation, each with a vertical of its own. Over the children the Court reached the head of state; over the grid, the Defence Minister and the Chief of the General Staff. No warrant names the head of state for the strikes on the grid. Each warrant is the Chamber's finding of \"reasonable grounds to believe\", not a verdict; press a name for the articles charged.",
     },
     waves: [
@@ -625,7 +625,7 @@ export const iccUkraine: DecisionSummary = {
             modes: [
               {
                 art: "25(3)(a)",
-                label: { uk: "вчинення — особисто, спільно чи через інших", en: "commission — directly, jointly or through others" },
+                label: { uk: "вчинення – особисто, спільно чи через інших", en: "commission – directly, jointly or through others" },
               },
               {
                 art: "28(b)",
@@ -656,7 +656,7 @@ export const iccUkraine: DecisionSummary = {
             modes: [
               {
                 art: "25(3)(a)",
-                label: { uk: "вчинення — особисто, спільно чи через інших", en: "commission — directly, jointly or through others" },
+                label: { uk: "вчинення – особисто, спільно чи через інших", en: "commission – directly, jointly or through others" },
               },
             ],
           },
@@ -666,7 +666,7 @@ export const iccUkraine: DecisionSummary = {
         line: "grid",
         date: { uk: "5 березня 2024", en: "5 March 2024" },
         iso: "2024-03-05",
-        theme: { uk: "Удари по енергосистемі — виконавці", en: "Strikes on the grid — the operators" },
+        theme: { uk: "Удари по енергосистемі – виконавці", en: "Strikes on the grid – the operators" },
         summary: {
           uk: "Ракетні удари сил під їхнім командуванням по українській електроінфраструктурі.",
           en: "Missile strikes by forces under their command against Ukraine's electric infrastructure.",
@@ -738,7 +738,7 @@ export const iccUkraine: DecisionSummary = {
         line: "grid",
         date: { uk: "24 червня 2024", en: "24 June 2024" },
         iso: "2024-06-24",
-        theme: { uk: "Удари по енергосистемі — командна вертикаль", en: "Strikes on the grid — the chain of command" },
+        theme: { uk: "Удари по енергосистемі – командна вертикаль", en: "Strikes on the grid – the chain of command" },
         summary: {
           uk: "Та сама кампанія (щонайменше 10.10.2022 – 09.03.2023) на рівні міністра оборони та начальника Генштабу.",
           en: "The same campaign (at least 10 Oct 2022 – 9 Mar 2023) at the level of the Defence Minister and the Chief of the General Staff.",
@@ -814,7 +814,7 @@ export const iccUkraine: DecisionSummary = {
      одне: це цифри, яких Суд не встановлював, і взяті вони не в нього. */
     heading: { uk: "Цифри поза Судом", en: "Figures from outside the Court" },
     note: {
-      uk: "Ордери кількість не називають. Ці цифри — з офіційної бази «Діти війни», звітів Human Rights Watch і повідомлень уряду; джерела внизу сторінки.",
+      uk: "Ордери кількість не називають. Ці цифри – з офіційної бази «Діти війни», звітів Human Rights Watch і повідомлень уряду; джерела внизу сторінки.",
       en: "The warrants state no numbers. These figures come from the official \"Children of War\" database, Human Rights Watch and government reporting; sources at the foot of the page.",
     },
     metrics: [
@@ -822,7 +822,7 @@ export const iccUkraine: DecisionSummary = {
         label: { uk: "Дітей у базі «Діти війни»", en: "Children in the \"Children of War\" database" },
         value: { uk: "19 546+", en: "19,546+" },
         note: { uk: "депортовані або примусово переміщені", en: "deported or forcibly transferred" },
-        /* The official database against what the ombudspersons put it at —
+        /* The official database against what the ombudspersons put it at –
            two measures of one thing, an order of magnitude apart. */
         alt: {
           label: { uk: "оцінки омбудсменів", en: "ombudspersons' estimates" },
@@ -832,17 +832,17 @@ export const iccUkraine: DecisionSummary = {
       {
         label: { uk: "З них повернуто", en: "Of those, returned" },
         value: { uk: "1 859", en: "1,859" },
-        /* Частка того, що стоїть просто над нею, — і малюється в тій самій
+        /* Частка того, що стоїть просто над нею, – і малюється в тій самій
            плитці, бо в двох колонках «з них» не мало до чого відсилати. */
         partOfAbove: true,
         percent: 9.5,
-        restLabel: { uk: "решта — досі ні", en: "the rest — still not" },
+        restLabel: { uk: "решта – досі ні", en: "the rest – still not" },
         note: { uk: "станом на грудень 2025", en: "as of December 2025" },
       },
-      /* Тут стояла третя плитка — «Держав-учасниць, що не виконали ордер: 2».
+      /* Тут стояла третя плитка – «Держав-учасниць, що не виконали ордер: 2».
          Вона казала неправду про власну смугу: заголовок обіцяє цифри «поза
          Судом», а це дві констатації самого Суду за ст. 87(7). І вона казала
-         це вчетверте — просто над смугою два рядки матриці, у хронології дві
+         це вчетверте – просто над смугою два рядки матриці, у хронології дві
          події, у тлумаченнях механізм. Смуга лишилася з одним предметом:
          скільки вивезли, скільки повернулося і наскільки непевна навіть
          перша цифра. Власниця: «прибрав би третю плитку… давай». */
@@ -853,8 +853,8 @@ export const iccUkraine: DecisionSummary = {
     {
       term: { uk: "Юрисдикція без членства", en: "Jurisdiction without membership" },
       ruling: {
-        uk: "Держава — не учасниця Статуту може визнати юрисдикцію Суду заявою за ст. 12(3). Дві заяви України (2014, 2015) відкрили МКС усі злочини на її території з 21 листопада 2013 року — задовго до ратифікації.",
-        en: "A non-party State can accept the Court's jurisdiction by an art. 12(3) declaration. Ukraine's two declarations (2014, 2015) opened its whole territory to the ICC from 21 November 2013 — years before ratification.",
+        uk: "Держава – не учасниця Статуту може визнати юрисдикцію Суду заявою за ст. 12(3). Дві заяви України (2014, 2015) відкрили МКС усі злочини на її території з 21 листопада 2013 року – задовго до ратифікації.",
+        en: "A non-party State can accept the Court's jurisdiction by an art. 12(3) declaration. Ukraine's two declarations (2014, 2015) opened its whole territory to the ICC from 21 November 2013 – years before ratification.",
       },
     },
     {
@@ -865,7 +865,7 @@ export const iccUkraine: DecisionSummary = {
       },
     },
     /* The three enforcement rulings were on this page as dated events, as rows
-       in the matrix and as citations — everywhere except the one band that
+       in the matrix and as citations – everywhere except the one band that
        states what the law now holds. So a reader met «Монголія порушила» three
        times without ever being told what a finding under article 87(7) does,
        or what the Court answered when a State asked whether peace talks let it
@@ -873,41 +873,41 @@ export const iccUkraine: DecisionSummary = {
     {
       term: { uk: "Що буває, коли ордер не виконують", en: "What follows when a warrant is not executed" },
       ruling: {
-        uk: "Стаття 87(7) Статуту: Палата констатує невиконання і передає питання Асамблеї держав-учасниць через Президію Суду. Іншого важеля немає — власної поліції МКС не має. У цій ситуації таких констатацій уже дві: Монголія (24 жовтня 2024, ICC-01/22-90) і Таджикистан (19 березня 2026, ICC-01/22-143).",
-        en: "Article 87(7): the Chamber records the failure and refers the matter to the Assembly of States Parties through the Presidency. There is no other lever — the ICC has no police of its own. In this situation there are two such findings already: Mongolia (24 October 2024, ICC-01/22-90) and Tajikistan (19 March 2026, ICC-01/22-143).",
+        uk: "Стаття 87(7) Статуту: Палата констатує невиконання і передає питання Асамблеї держав-учасниць через Президію Суду. Іншого важеля немає – власної поліції МКС не має. У цій ситуації таких констатацій уже дві: Монголія (24 жовтня 2024, ICC-01/22-90) і Таджикистан (19 березня 2026, ICC-01/22-143).",
+        en: "Article 87(7): the Chamber records the failure and refers the matter to the Assembly of States Parties through the Presidency. There is no other lever – the ICC has no police of its own. In this situation there are two such findings already: Mongolia (24 October 2024, ICC-01/22-90) and Tajikistan (19 March 2026, ICC-01/22-143).",
       },
     },
     /* Written strictly from the chronology entry for 9 June 2026, and it rests
-       on the same two commentaries that entry names — the decision itself is a
+       on the same two commentaries that entry names – the decision itself is a
        CourtRecords PDF that refuses automated fetches, and no capture exists.
        Stating a holding in this band gives it more authority than a dated note
        does, so nothing is claimed here that those two do not both carry, and
-       the half the press got wrong — that talks under UN auspices create an
-       exception — is stated as what the ruling denies. */
+       the half the press got wrong – that talks under UN auspices create an
+       exception – is stated as what the ruling denies. */
     {
       term: { uk: "Мирні переговори не зупиняють ордер", en: "Peace talks do not suspend a warrant" },
       ruling: {
-        uk: "Рішення за ст. 97 Статуту від 9 червня 2026 року: винятку з обов'язку арешту для мирних переговорів немає, і держава не може призупинити виконання ордера сама. Конференція, формально скликана ООН, робить зобов'язання за Статутом ООН релевантними, але зважує їх Суд, а не держава-господар. Єдиний шлях призупинити провадження — ст. 16: відстрочка на прохання Ради Безпеки ООН, і просити про неї держава не може.",
-        en: "The article 97 decision of 9 June 2026: there is no peace-talks exception to the duty to arrest, and a State cannot suspend a warrant on its own initiative. A conference formally convened by the United Nations makes UN Charter obligations relevant, but it is the Court, not the host State, that weighs them. The one route to suspension is article 16 — a deferral at the request of the UN Security Council, which is not a State's to ask for.",
+        uk: "Рішення за ст. 97 Статуту від 9 червня 2026 року: винятку з обов'язку арешту для мирних переговорів немає, і держава не може призупинити виконання ордера сама. Конференція, формально скликана ООН, робить зобов'язання за Статутом ООН релевантними, але зважує їх Суд, а не держава-господар. Єдиний шлях призупинити провадження – ст. 16: відстрочка на прохання Ради Безпеки ООН, і просити про неї держава не може.",
+        en: "The article 97 decision of 9 June 2026: there is no peace-talks exception to the duty to arrest, and a State cannot suspend a warrant on its own initiative. A conference formally convened by the United Nations makes UN Charter obligations relevant, but it is the Court, not the host State, that weighs them. The one route to suspension is article 16 – a deferral at the request of the UN Security Council, which is not a State's to ask for.",
       },
     },
     {
       term: { uk: "«Обґрунтовані підстави вважати»", en: "\"Reasonable grounds to believe\"" },
       ruling: {
-        uk: "Стандарт доказування для ордера (ст. 58 Статуту) — нижчий за стандарт вироку. Ордер відкриває шлях до арешту й суду, але нічого не вирішує про вину.",
-        en: "The evidentiary standard for a warrant (art. 58) — lower than that for conviction. A warrant opens the road to arrest and trial; it decides nothing about guilt.",
+        uk: "Стандарт доказування для ордера (ст. 58 Статуту) – нижчий за стандарт вироку. Ордер відкриває шлях до арешту й суду, але нічого не вирішує про вину.",
+        en: "The evidentiary standard for a warrant (art. 58) – lower than that for conviction. A warrant opens the road to arrest and trial; it decides nothing about guilt.",
       },
     },
     {
       term: { uk: "Дві теорії справи", en: "Two theories of the case" },
       ruling: {
-        uk: "Прокуратура будує ситуацію як дві лінії: депортація дітей (політичне керівництво, хвиля 1) і кампанія проти енергосистеми (військова вертикаль — від командувачів до міністра оборони й Генштабу, хвилі 2–3).",
+        uk: "Прокуратура будує ситуацію як дві лінії: депортація дітей (політичне керівництво, хвиля 1) і кампанія проти енергосистеми (військова вертикаль – від командувачів до міністра оборони й Генштабу, хвилі 2–3).",
         en: "The Prosecution has built two lines: the deportation of children (the political leadership, wave 1) and the campaign against the grid (the military chain, from operational commanders up to the Defence Minister and General Staff, waves 2–3).",
       },
     },
     /* Back, and this is why it stands alone.
        It was removed as a duplicate of the FAQ entry that says the same
-       thing — «А хто судитиме за сам напад на Україну?» — and then the
+       thing – «А хто судитиме за сам напад на Україну?» – and then the
        FAQ turned out not to render: that band was taken off these pages
        earlier in the project, and the questions have since left the data.
        So this was not the second telling, it was the only one, and taking
@@ -924,17 +924,17 @@ export const iccUkraine: DecisionSummary = {
   ],
 
   sources: [
-    /* Three entries are gone from this list — the Office of the Prosecutor's
+    /* Three entries are gone from this list – the Office of the Prosecutor's
        statement concluding the preliminary examination (11 December 2020) and
        the two statements around the opening of the investigation (28 February
-       and 2 March 2022). Owner's instruction: «забрати це з джерел — 3, 4, 5
+       and 2 March 2022). Owner's instruction: «забрати це з джерел – 3, 4, 5
        забрати». Identified by title rather than by position: the ratification
        law was added to this list in the same review pass and had shifted the
        three of them down to 4, 5 and 6.
 
        The chronology still carries all three moments; what it no longer
        carries is a citation for them. */
-    // — Official ICC record (the in-text links of the source summary) —
+    // – Official ICC record (the in-text links of the source summary) –
     {
       url: "https://www.icc-cpi.int/itemsDocuments/997/declarationRecognitionJuristiction09-04-2014.pdf",
       title: "Declaration of the Government of Ukraine accepting ICC jurisdiction (9 April 2014)",
@@ -961,7 +961,7 @@ export const iccUkraine: DecisionSummary = {
     },
     {
       url: "https://www.icc-cpi.int/sites/default/files/2022-04/JAPAN_referral.pdf",
-      title: "State Party referral — Japan",
+      title: "State Party referral – Japan",
       authors: "",
       publication: "International Criminal Court",
       date: "2022",
@@ -969,7 +969,7 @@ export const iccUkraine: DecisionSummary = {
     },
     {
       url: "https://www.icc-cpi.int/sites/default/files/2022-04/State-Party-Referral-North-Macedonia.pdf",
-      title: "State Party referral — North Macedonia",
+      title: "State Party referral – North Macedonia",
       authors: "",
       publication: "International Criminal Court",
       date: "2022",
@@ -977,7 +977,7 @@ export const iccUkraine: DecisionSummary = {
     },
     {
       url: "https://www.icc-cpi.int/sites/default/files/2022-04/20220321164751497-ukraine-referral-montenegro.pdf",
-      title: "State Party referral — Montenegro",
+      title: "State Party referral – Montenegro",
       authors: "",
       publication: "International Criminal Court",
       date: "21 March 2022",
@@ -985,7 +985,7 @@ export const iccUkraine: DecisionSummary = {
     },
     {
       url: "https://www.icc-cpi.int/sites/default/files/2022-04/20220401-Chile-Letter-to-OTP.PDF",
-      title: "State Party referral — Chile",
+      title: "State Party referral – Chile",
       authors: "",
       publication: "International Criminal Court",
       date: "1 April 2022",
@@ -1071,7 +1071,7 @@ export const iccUkraine: DecisionSummary = {
     },
     {
       /* The domestic act behind the deposit and the entry into force, added
-         with the chronology entry for it — review: «додати про закон про
+         with the chronology entry for it – review: «додати про закон про
          ратифікацію». */
       url: "https://zakon.rada.gov.ua/go/3909-20",
       title:
@@ -1089,7 +1089,7 @@ export const iccUkraine: DecisionSummary = {
       date: "January 2025",
       type: "official/ICC",
     },
-    // — Research and commentary (from the source doc) —
+    // – Research and commentary (from the source doc) –
     {
       url: "https://jurfem.com.ua/en/arrest-warrant-for-putin-what-does-it-mean/",
       title: "Arrest Warrant for Putin: What Does It Mean?",
@@ -1218,7 +1218,7 @@ export const iccUkraine: DecisionSummary = {
       date: "2025",
       type: "preprint/repository",
     },
-    // — Context added by this page (the research trail) —
+    // – Context added by this page (the research trail) –
     {
       url: "https://www.asil.org/ILIB/icc-finds-mongolia-violated-rome-statute-failing-arrest-putin",
       title: "ICC Finds Mongolia Violated Rome Statute by Failing to Arrest Putin",
@@ -1245,7 +1245,7 @@ export const iccUkraine: DecisionSummary = {
     },
     {
       url: "https://brill.com/view/journals/icla/25/6/article-p1040_003.xml",
-      title: "Ukraine and Article 124 Rome Statute — a Jurisdictional Dilemma Through the Lens of Selectivity",
+      title: "Ukraine and Article 124 Rome Statute – a Jurisdictional Dilemma Through the Lens of Selectivity",
       authors: "",
       publication: "International Criminal Law Review",
       date: "2025",

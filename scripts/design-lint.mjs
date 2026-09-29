@@ -10,7 +10,7 @@
  * each of them, and AGENTS.md tells anyone touching the site to read it first.
  * A measured audit still found 94 hard-coded font sizes producing 26 distinct
  * sizes on a nine-step scale, 151 off-grid spacing values, 13 colour literals,
- * and three sibling headings of the same rank at 31px, 27px and 26px — set as
+ * and three sibling headings of the same rank at 31px, 27px and 26px – set as
  * inline React styles, where no stylesheet could reach them.
  *
  * A contract nothing checks is a document, not a system. This is the check.
@@ -19,7 +19,7 @@
  *
  * ── What counts as a violation ─────────────────────────────────────────────
  * A font size, a spacing value or a colour written as a literal, in a place
- * where a token exists for it — and a width written in fixed pixels, which is
+ * where a token exists for it – and a width written in fixed pixels, which is
  * a size the viewport cannot argue with. Everything on this site is
  * responsive; the `fluid` rule is what makes that a check rather than a
  * habit. Three things are explicitly NOT violations,
@@ -34,7 +34,7 @@
  *     2px optical nudge. Sub-8px lengths are rhythm-neutral and skipped; a
  *     font size on a glyph-only element is opted out by name in GLYPH_ONLY.
  *   - Anything inside `clamp()`. DESIGN.md is explicit: "Fluid gutters stay in
- *     clamp(). A scale governs rhythm, not responsive ranges —
+ *     clamp(). A scale governs rhythm, not responsive ranges –
  *     `padding-block: clamp(32px, 4vw, 56px)` is correct as written." A first
  *     draft of this file ignored that and reported 164 spacing violations, of
  *     which the great majority were correctly-written fluid gutters. A linter
@@ -54,15 +54,15 @@
  * a bare `design-lint-ignore` does not parse and does not silence anything.
  *
  * It is for values that are not the thing this file measures. Two exist:
- *   - `.nsv-hero` padding-top on a phone, 158px — clearance for the lamp above
+ *   - `.nsv-hero` padding-top on a phone, 158px – clearance for the lamp above
  *     the wordmark. Illustration geometry, which DESIGN.md keeps off-scale.
- *   - `.mp-mast` padding-right in landscape, 330px — the width of the zoom
+ *   - `.mp-mast` padding-right in landscape, 330px – the width of the zoom
  *     control the title must not run under. A position measured against
  *     another element, not a rhythm chosen from a scale.
  *
  * Both were snapped to `--space-24` by a mechanical pass and both broke: the
  * hero lost 62px of lamp clearance and the map title started sliding under its
- * own zoom stepper. That is the shape of a legitimate ignore — the value
+ * own zoom stepper. That is the shape of a legitimate ignore – the value
  * answers to something in the layout rather than to the reader's eye. "It
  * looked better" is not that, and neither is "I did not want to re-measure".
  */
@@ -107,7 +107,7 @@ if (TYPE_STEPS.size === 0 || SPACE_STEPS.size === 0) {
   console.error(
     "design-lint: could not read the scale out of src/app/globals.css.\n" +
       "Either the token names changed or the file moved. Fix this before\n" +
-      "trusting a passing run — an empty scale silently passes everything.",
+      "trusting a passing run – an empty scale silently passes everything.",
   );
   process.exit(2);
 }
@@ -217,7 +217,7 @@ for (const file of files(join(ROOT, "src"), [".css"])) {
        other three take. That exemption says a drawing may use colours and
        lengths the type and spacing scales do not name, which is true and has
        nothing to do with whether it fits on a screen. Written inside the
-       exemption, this rule was silent on `.page .pj{width:900px}` — the exact
+       exemption, this rule was silent on `.page .pj{width:900px}` – the exact
        declaration it exists to catch, skipped because `.pj` is the lamp's
        stage. A check that cannot see the bug that motivated it is worse than
        no check: it reports clean.
@@ -227,12 +227,12 @@ for (const file of files(join(ROOT, "src"), [".css"])) {
        an exemption and an argument.
 
        Owner's rule: everything on this site is responsive. The most expensive
-       counter-example the site has had was that hero stage — authored as a
+       counter-example the site has had was that hero stage – authored as a
        fixed 900px box because the lamp's fixtures were placed at fixed
        coordinates. The fixtures were later re-anchored to `calc(50% ± n)` and
        the width stayed, so on a 2000px monitor the first screen was a 900px
-       box with 550px of dead ground down each side, and the map inside it —
-       `inset: 0` of that element — could not reach the screen however far its
+       box with 550px of dead ground down each side, and the map inside it –
+       `inset: 0` of that element – could not reach the screen however far its
        geometry ran. Four attempts were made at the map's outlines before
        anyone measured the box.
 
@@ -241,7 +241,7 @@ for (const file of files(join(ROOT, "src"), [".css"])) {
        either overflows or boxes the layout. Below it a fixed width is usually
        a control or an icon and is nobody's layout.
 
-       `max-width` is not caught, and that is the point — it is the responsive
+       `max-width` is not caught, and that is the point – it is the responsive
        way to say the same thing. Neither is a width built out of `%`, `vw`,
        `min()`, `max()`, `clamp()` or `calc()`: those answer to the viewport.
        Height is not measured; a fixed height has its own failure mode, but it
@@ -259,7 +259,7 @@ for (const file of files(join(ROOT, "src"), [".css"])) {
             no,
             "fluid",
             `${decl.prop}: ${v}px is fixed (${selector || "?"})`,
-            "the site is responsive everywhere — use max-width, a %, or a clamp()/min() the viewport can win",
+            "the site is responsive everywhere – use max-width, a %, or a clamp()/min() the viewport can win",
           );
         }
       }
@@ -277,8 +277,8 @@ for (const file of files(join(ROOT, "src"), [".css"])) {
         const prop = decl.prop;
         const value = decl.value;
 
-        // 1. type. A bespoke ramp is still a ramp — both ends of a clamp have
-        //    to be steps — so only the vw term is dropped, not the range.
+        // 1. type. A bespoke ramp is still a ramp – both ends of a clamp have
+        //    to be steps – so only the vw term is dropped, not the range.
         if (
           (prop === "font-size" || prop === "font") &&
           !GLYPH_ONLY.test(selector) &&
@@ -299,7 +299,7 @@ for (const file of files(join(ROOT, "src"), [".css"])) {
           }
         }
 
-        // 2. spacing. clamp() ranges are responsive rather than rhythm — see
+        // 2. spacing. clamp() ranges are responsive rather than rhythm – see
         //    the note at the top of this file.
         if (
           /^(padding|margin|gap|row-gap|column-gap)/.test(prop) &&
@@ -333,7 +333,7 @@ for (const file of files(join(ROOT, "src"), [".css"])) {
           "colour",
           `${m[0]} is a literal (${selector || "?"})`,
           known
-            ? `it is exactly var(${known}) — use the token`
+            ? `it is exactly var(${known}) – use the token`
             : "add a --brand-* token in globals.css, or color-mix() an existing one",
         );
       }
@@ -347,7 +347,7 @@ for (const file of files(join(ROOT, "src"), [".css"])) {
 /* ── rule 4: the widow guard ────────────────────────────────────────────────
    Owner's rule: no paragraph on this site ends on a single word.
 
-   A linter cannot see a widow — where a line breaks is decided by the
+   A linter cannot see a widow – where a line breaks is decided by the
    browser, at a width nobody knows at build time. What it can do is check
    that the one declaration which prevents them is still there and still
    covers the elements that carry prose. That is the whole failure mode: the
@@ -375,7 +375,7 @@ const PROSE_ELEMENTS = ["p", "li", "blockquote", "figcaption"];
       0,
       "widows",
       "no text-wrap rule in globals.css",
-      "every paragraph on the site relies on one declaration to avoid ending on a single word — restore `p,li,blockquote,figcaption,dd{text-wrap:pretty}`",
+      "every paragraph on the site relies on one declaration to avoid ending on a single word – restore `p,li,blockquote,figcaption,dd{text-wrap:pretty}`",
     );
   } else {
     const selectors = rule[1]
@@ -389,7 +389,7 @@ const PROSE_ELEMENTS = ["p", "li", "blockquote", "figcaption"];
           0,
           "widows",
           `<${el}> is not covered by the text-wrap rule`,
-          "it carries prose, so it can end on a one-word line — add it to the selector list",
+          "it carries prose, so it can end on a one-word line – add it to the selector list",
         );
       }
     }
@@ -398,24 +398,24 @@ const PROSE_ELEMENTS = ["p", "li", "blockquote", "figcaption"];
 
 /* ── rule 5: a var() that names nothing ─────────────────────────────────────
    The most expensive class of bug this file can catch, because it is silent.
-   CSS drops the whole declaration when a var() resolves to nothing — not just
-   the colour, the entire property — so one wrong character takes a background
+   CSS drops the whole declaration when a var() resolves to nothing – not just
+   the colour, the entire property – so one wrong character takes a background
    or a font size off the page with no warning anywhere.
 
    Two of these were found by hand on 26-27 August 2026, and neither was
    visible in the source:
-     - `.reg-name-uk{color:var(--ink-2)}` — the token is `--ink2`, so the
+     - `.reg-name-uk{color:var(--ink-2)}` – the token is `--ink2`, so the
        Ukrainian line under every case name inherited full ink and shouted at
        the citation it was meant to sit quietly under.
      - `.casepage .mast{background: … var(--brand-ember) …}` while the token
-       was still being added — the masthead lost its dark ground entirely and
+       was still being added – the masthead lost its dark ground entirely and
        cream text landed on paper, twenty contrast failures at once.
 
    Definitions are unioned across every stylesheet, not read per-file: a
    surface legitimately uses tokens its own file does not declare. */
 
 const DEFINED = new Set();
-/** Tokens declared on `:root` in globals.css — available to every surface. */
+/** Tokens declared on `:root` in globals.css – available to every surface. */
 const GLOBAL_TOKENS = new Set(
   [...decomment(globals).matchAll(/(--[a-z0-9-]+)\s*:/g)].map((m) => m[1]),
 );
@@ -452,7 +452,7 @@ for (const file of files(join(ROOT, "src"), [".css"])) {
     .forEach((line, i) => {
       /* `var(--x, fallback)` is a different statement from `var(--x)`: the
          first says "if this is not set, use that", which is how a value handed
-         in from JavaScript is read — the lamp's `--lit` and `--mx` are set on
+         in from JavaScript is read – the lamp's `--lit` and `--mx` are set on
          the element by the hero. Only the bare form can silently drop a
          declaration, so only the bare form is an error. */
       for (const m of line.matchAll(/var\(\s*(--[a-z0-9-]+)\s*([,)])/gi)) {
@@ -463,14 +463,14 @@ for (const file of files(join(ROOT, "src"), [".css"])) {
             file,
             i + 1,
             "undefined-token",
-            `var(${m[1]}) — nothing declares it`,
+            `var(${m[1]}) – nothing declares it`,
             "a var() that resolves to nothing drops the whole declaration; check the spelling against globals.css",
           );
           continue;
         }
         /* Declared, but not where this file can see it.
 
-           A surface's own aliases — `.registrypage{--ink:…}` — are declared
+           A surface's own aliases – `.registrypage{--ink:…}` – are declared
            and used in the same stylesheet, which is fine. Reaching for a token
            that only another surface declares is not: it resolves to nothing
            and takes the declaration with it. `--t-h1` was documented in
@@ -480,7 +480,7 @@ for (const file of files(join(ROOT, "src"), [".css"])) {
            called that "defined", which is exactly how it missed them. */
         /* Only the namespaced system tokens. `--ink`, `--gold`, `--cream` and
            the like are a surface's own aliases, and a component stylesheet
-           reaching for them is the intended pattern — `case-map.css` renders
+           reaching for them is the intended pattern – `case-map.css` renders
            inside `.casepage` and inherits its palette, `events-map.css` reads
            the `--emap-safe-*` insets the map page sets on it. Static analysis
            cannot tell those from a mistake, and flagging them made the rule
@@ -514,11 +514,11 @@ for (const file of files(join(ROOT, "src"), [".tsx"])) {
         i + 1,
         "inline-type",
         `fontSize: ${m[1]} set on the element`,
-        'inline styles beat every stylesheet — use a class, or fontSize: "var(--t-*)"',
+        'inline styles beat every stylesheet – use a class, or fontSize: "var(--t-*)"',
       );
     }
     /* The same responsiveness rule, inside a style object. `maxWidth` is not
-       matched and `<Image width={900}>` is not either — that is an intrinsic
+       matched and `<Image width={900}>` is not either – that is an intrinsic
        pixel size for the image loader, not a layout width. The leading
        boundary is what keeps `sizes="(max-width: 560px)"` out of it. */
     for (const w of line.matchAll(/(?:^|[{,\s])(width|minWidth):\s*(\d+)\b/g)) {
@@ -528,7 +528,7 @@ for (const file of files(join(ROOT, "src"), [".tsx"])) {
         i + 1,
         "inline-fluid",
         `${w[1]}: ${w[2]} set on the element`,
-        "the site is responsive everywhere — maxWidth, a percentage, or a class that can hold a media query",
+        "the site is responsive everywhere – maxWidth, a percentage, or a class that can hold a media query",
       );
     }
   });
@@ -542,7 +542,7 @@ function nearest(v, steps, prefix) {
     prefix === "--t-"
       ? (globals.match(new RegExp(`(--t-[a-z0-9-]+):\\s*${best}px`)) ?? [])[1]
       : (globals.match(new RegExp(`(--space-\\d+):\\s*${best}px`)) ?? [])[1];
-  return `nearest step is ${best}px${name ? ` — var(${name})` : ""}`;
+  return `nearest step is ${best}px${name ? ` – var(${name})` : ""}`;
 }
 
 const RULES = {

@@ -18,7 +18,7 @@ export const institutions: Institution[] = [
   {
     id: "ecthr",
     /* ECtHR, not «ЄСПЛ», і в українській теж. Власниця: «ЄСПЛ - пиши
-       англійською мовою». Це був єдиний кириличний бейдж у наборі — поруч
+       англійською мовою». Це був єдиний кириличний бейдж у наборі – поруч
        стояли ICJ, ICC, ITLOS, PCA, і один знак іншою абеткою читався як
        інший рід об'єкта. Повна назва в рядку під ним лишається українською. */
     abbr: { uk: "ECtHR", en: "ECtHR" },
@@ -131,8 +131,8 @@ export const institutions: Institution[] = [
     id: "eu",
     abbr: { uk: "ЄС", en: "EU" },
     name: {
-      uk: "ЄС / Бельгія — виконавчі заходи",
-      en: "EU / Belgium — enforcement measures",
+      uk: "ЄС / Бельгія – виконавчі заходи",
+      en: "EU / Belgium – enforcement measures",
     },
     seat: null,
     category: "executive",

@@ -5,7 +5,7 @@ import { contentIndex, CONTENT_INDEX_PATH } from "@/content/search-index";
  *
  * It used to travel inside `/uk/registry` and `/en/registry`. Measured on the
  * built documents: 73,676 characters of postings in the flight payload, 24,137
- * gzipped bytes of a 53,379-byte page — 45% of the Ukrainian library and 48%
+ * gzipped bytes of a 53,379-byte page – 45% of the Ukrainian library and 48%
  * of the English one, downloaded by every reader who opened the library,
  * including the ones who never touched the search field. And downloaded twice
  * across the two locales, because the postings are language-agnostic (both
@@ -18,7 +18,7 @@ import { contentIndex, CONTENT_INDEX_PATH } from "@/content/search-index";
  * `force-static` is what makes this a file rather than a function: the route
  * is prerendered during `next build` alongside the 96 pages, so it is served
  * from the CDN and nothing here runs per request. The index is a build-time
- * constant — it is computed while this module is evaluated — so there is
+ * constant – it is computed while this module is evaluated – so there is
  * nothing for a request to add.
  *
  * The folder name is the URL and `CONTENT_INDEX_PATH` is what the client asks
@@ -26,7 +26,7 @@ import { contentIndex, CONTENT_INDEX_PATH } from "@/content/search-index";
  * a directory name cannot be spelled by a constant.
  *
  * ONE THING TO KNOW ABOUT SERVING IT. `next start` does not compress route
- * handler responses — measured on this build, 70,672 B for this file against
+ * handler responses – measured on this build, 70,672 B for this file against
  * 23,282 B of the same bytes gzipped, and `/robots.txt` and `/sitemap.xml`
  * come back uncompressed from it too, while every page and everything under
  * `public/` is gzipped. A CDN in front of the deployment compresses it and the
@@ -56,10 +56,10 @@ const body = JSON.stringify(contentIndex);
  * Weight is a live concern here and an index is exactly the kind of thing that
  * grows quietly with the ninth write-up and the tenth. The line used to be
  * printed by `content/search-index.ts`; once this route existed, three graphs
- * reached that module — the Ukrainian library, the English one and this — and
+ * reached that module – the Ukrainian library, the English one and this – and
  * each build worker gets its own module instance, so one number printed three
  * times and read as three indexes. Here it prints once per build phase that
- * evaluates the route, which is two — collecting page data and prerendering —
+ * evaluates the route, which is two – collecting page data and prerendering –
  * the same two lines `next.config.ts` already prints for SITE_INDEXABLE.
  *
  * And this is the honest place for it regardless: `body` is the string a

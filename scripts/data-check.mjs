@@ -23,7 +23,7 @@
  * document's length and about which came first, and that the library's search
  * captions a decision page's band with the name that band actually wears.
  *
- * It reads the source files as TEXT — the same crude method the registry pass
+ * It reads the source files as TEXT – the same crude method the registry pass
  * uses, and for the same reason: these are TypeScript modules with path
  * aliases and plain `node` cannot import them. So it knows what a file SAYS,
  * and a change to the shape of these files (an entry reindented, a field split
@@ -32,7 +32,7 @@
  *
  * It CANNOT tell you whether any of it is true. Whether ICJ GL 182 really was
  * decided on 2 February 2024, whether the Naftogaz award really was 4.63bn,
- * whether the ICC warrant really names those articles of the Rome Statute —
+ * whether the ICC warrant really names those articles of the Rome Statute –
  * none of that is in this file's reach. Those are checks against the courts'
  * own documents, one case at a time, and a green run here says nothing about
  * them. Nor does it reach a claim made in prose: the «≈6% основної суми» that
@@ -100,7 +100,7 @@ for (const r of records) {
     rowYear.set(slug, year && year !== "null" ? Number(year) : null);
   }
 
-  // 1. lit and summarySlug must agree — one says "there is a write-up", the
+  // 1. lit and summarySlug must agree – one says "there is a write-up", the
   //    other is the write-up.
   if (lit && !slug) flag(id, "lit-no-summary", "lit: true with no summarySlug");
   if (!lit && slug) flag(id, "summary-not-lit", `summarySlug ${slug} but lit: false`);
@@ -128,7 +128,7 @@ for (const r of records) {
 
   /* `outcome` is deliberately NOT checked against the free-text status, and
      the first draft of this file was wrong to try. The two answer different
-     questions by design — ecthr-5 carries outcome "judgment" (the Court
+     questions by design – ecthr-5 carries outcome "judgment" (the Court
      delivered one) with status «Очікує сатисфакції» (just satisfaction is
      still pending), and both are true at once. That is the whole reason the
      single `statusKey` was split into `stage` + `outcome`. A checker that
@@ -148,7 +148,7 @@ for (const r of records) {
     const n = Number(amount);
     if (!Number.isFinite(n)) flag(id, "amount-unparseable", amount);
     else if (Math.abs(n) < 1000)
-      flag(id, "amount-suspicious", `${n} — is this dollars or millions?`);
+      flag(id, "amount-suspicious", `${n} – is this dollars or millions?`);
   }
 }
 
@@ -186,7 +186,7 @@ const listOf = (src, key, open = "[", close = "]") => {
   const end = src.indexOf(`\n  ${close},`, start);
   return end < 0 ? null : src.slice(start, end);
 };
-/** The object literals directly inside such a list — four spaces of indent. */
+/** The object literals directly inside such a list – four spaces of indent. */
 const itemsOf = (list) =>
   list ? list.split(/\n    \{\n/).slice(1).map((e) => e.split(/\n    \},?/)[0]) : [];
 const each = (text, re) => [...(text ?? "").matchAll(re)].map((m) => m[1]);
@@ -202,7 +202,7 @@ const CITATION_TYPES = new Set(each(typeBlock, /^\s*"([^"]+)":/gm));
 
 /* Where each seat on the map is. `mapFocus.forumKey` picks the marker a
    decision page draws its seat on, and the label beside it comes from
-   `forum.seat` — so the two have to name the same city. */
+   `forum.seat` – so the two have to name the same city. */
 const mapSrc = readFileSync("src/content/map.ts", "utf8");
 const cityOfCourt = new Map(
   [...mapSrc.matchAll(/key: "([a-z]+)",[\s\S]{0,1200}?city: \{ uk: "([^"]+)"/g)].map(
@@ -215,8 +215,8 @@ const markers = new Set(
 
 for (const [slug, src] of summarySrc) {
   /* 7. a related card that names a decision must lead to it. Every registry
-        row is addressable, so "#registry" — the fallback from before that was
-        true — now lands a reader on the home page's preview of all 39. */
+        row is addressable, so "#registry" – the fallback from before that was
+        true – now lands a reader on the home page's preview of all 39. */
   for (const href of each(listOf(src, "related"), /^\s*href: "([^"]+)"/gm)) {
     const m = /^\/cases\/([a-z0-9-]+)$/.exec(href);
     if (!m) flag(slug, "related-not-a-case", `related href "${href}" is not /cases/<slug|id>`);
@@ -248,8 +248,8 @@ for (const [slug, src] of summarySrc) {
          and the `#ev-<iso>` anchor the verdict matrix links to is absent.
 
          A key may be a year or a month rather than a day. The rule used to
-         demand YYYY-MM-DD, which left two entries on icj-cerd-icsft keyless —
-         «поч. 2014» and «2017», a season and a year — and keyless entries sort
+         demand YYYY-MM-DD, which left two entries on icj-cerd-icsft keyless –
+         «поч. 2014» and «2017», a season and a year – and keyless entries sort
          last, so the chronology printed its two oldest events under the 2024
          judgment. `TimelineEvent.iso` is documented as a sort key whose
          printed date «may be a range or a month», and CaseTimeline already
@@ -268,7 +268,7 @@ for (const [slug, src] of summarySrc) {
     }
     isos.add(iso);
     /* 11. and the key has to agree with the date printed above it. A visible
-           date may be a range — «2014–2022», "Nov 2013 – Feb 2014" — and the
+           date may be a range – «2014–2022», "Nov 2013 – Feb 2014" – and the
            key is then a moment inside it, so the test is containment and not
            equality. */
     if (date) {
@@ -382,7 +382,7 @@ for (const [slug, src] of summarySrc) {
 /* `partOf`: a record that is an act within another proceeding.
  *
  * Three ways it can be wrong, and all three are silent at runtime. A parent id
- * that does not exist drops the act off every surface — it is not a row, and
+ * that does not exist drops the act off every surface – it is not a row, and
  * nothing prints it either. A missing `actName` makes the parent's row fall
  * back to an English surname on a Ukrainian page. And an act pointing at
  * another act would build a chain the row renderer does not walk. */
@@ -401,15 +401,15 @@ for (const [slug, src] of summarySrc) {
     else if (parents.get(r.partOf).partOf)
       flag(id, "partof-chained", `partOf "${r.partOf}" is itself an act`);
     if (!r.named)
-      flag(id, "partof-unnamed", "partOf without actName — the parent's row would print the citation");
+      flag(id, "partof-unnamed", "partOf without actName – the parent's row would print the citation");
   }
 }
 
 /* ──────────────────────────────────────────────────────────────────────────
    A findings block's `outcomes` against its own head lines.
 
-   The array is keyed by position — one entry per «ICSFT — …» / «CERD — …»
-   line, in order — and an array keyed by position is only honest while
+   The array is keyed by position – one entry per «ICSFT – …» / «CERD – …»
+   line, in order – and an array keyed by position is only honest while
    something counts it. Insert a finding and the outcomes slide one heading
    to the left, silently, and the page prints «ПОРУШЕНО» over a claim that
    was rejected. That is the kind of error this archive cannot ship.
@@ -433,7 +433,7 @@ for (const [slug, src] of summarySrc) {
       /* Two ways a block can name its findings, and the count has to hold
          for whichever one it uses. Written into the prose, the head is the
          treaty acronym at the start of a line; recorded, it is an entry in
-         `heads`, one per enumerated line. The second is the general one —
+         `heads`, one per enumerated line. The second is the general one –
          see the note on `heads` in summaries/types.ts. */
       const lines = String(b.text ?? "")
         .split("\n")
@@ -441,7 +441,7 @@ for (const [slug, src] of summarySrc) {
         .filter(Boolean);
       const inProse = lines.filter((l) => /^(ICSFT|CERD)\s*[-\u2013\u2014]/.test(l)).length;
       /* Three shapes, one rule: the head written into the prose, the head
-         recorded in `heads`, or a list the author enumerated himself — where
+         recorded in `heads`, or a list the author enumerated himself – where
          the answer sits on the line and there is no head at all. */
       const ENUM = /^\s*(?:[\u2013\u2014-]\s+|\d{1,2}[.)]\s+)/;
       const enumerated =
@@ -479,14 +479,14 @@ for (const [slug, src] of summarySrc) {
 
    It used to say so only for the forum, and an unmarked line fell through
    to the party. That was safe while the renderer read "everything after the
-   first marker is the forum" — and the day it changed to "every change of
+   first marker is the forum" – and the day it changed to "every change of
    voice opens a block", five paragraphs of the Court's reasoning in
    icj-cerd-icsft began printing under «Сторона твердила», including the
    only CERD violation it found. Nothing failed, because nothing was
    watching: the lint reads type and colour, and the data check read the
    records against each other. Neither can see an attribution.
 
-   So the absence of a decision is what fails here, not a wrong one —
+   So the absence of a decision is what fails here, not a wrong one –
    detecting a wrong one would mean reading legal prose and guessing, which
    is the thing this archive does not do. Every line carries a marker or the
    build stops, and the next change to the reader cannot quietly re-assign a
@@ -523,7 +523,7 @@ for (const [slug, src] of summarySrc) {
           flag(
             f,
             "voice-unmarked",
-            `block ${i}, «${head.slice(0, 40)}»: a line opens with neither voice — ` +
+            `block ${i}, «${head.slice(0, 40)}»: a line opens with neither voice – ` +
               `«${l.slice(0, 56)}…»`,
           );
         }
@@ -537,7 +537,7 @@ for (const [slug, src] of summarySrc) {
 
    The field is an index into the write-up's h2s: the map is drawn at the end
    of that part, and the contents rail puts its chip after the same one. Two
-   walks read one number, which is the point of recording it — but only while
+   walks read one number, which is the point of recording it – but only while
    the number is in range. Out of range the page still draws the map, from the
    tail case, and the rail never emits the chip at all: a band on the page
    with nothing in the contents pointing at it.
@@ -563,7 +563,7 @@ for (const [slug, src] of summarySrc) {
       flag(
         slug,
         "map-after-part-out-of-range",
-        `mapAfterPart is ${want} and the write-up has ${parts} part(s) — ` +
+        `mapAfterPart is ${want} and the write-up has ${parts} part(s) – ` +
           `the map would draw at the foot of the article with no chip in the contents`,
       );
     }
@@ -588,9 +588,9 @@ if (!issues.length) {
     console.log("");
   }
   /* And it stops the build.
-     It never did. Every contradiction this script has ever found — a
+     It never did. Every contradiction this script has ever found – a
      summary that names a record that is not there, a verdict count that
-     does not match its findings, and now a paragraph with no voice — was
+     does not match its findings, and now a paragraph with no voice – was
      printed into a passing run and scrolled past. `npm run check` chains
      on &&, so a script that exits 0 is a script that only ever advised.
      The tree is clean as this lands, so nothing starts failing today that

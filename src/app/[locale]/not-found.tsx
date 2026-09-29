@@ -4,14 +4,14 @@ import type { Metadata } from "next";
  * 404 boundary for everything under `/[locale]`.
  *
  * It exists for the metadata, not the markup. `notFound()` thrown inside a
- * locale segment — a decision slug that does not exist, say — discards the
+ * locale segment – a decision slug that does not exist, say – discards the
  * page's own metadata and leaves only the enclosing layout's, and
  * `[locale]/layout.tsx` supplies `homeMetadata`. So a dead case link served a
  * correct 404 status wrapped in the *home page's* head: the home title,
  * `canonical` pointing at `/uk`, the home hreflang pair, and the home
  * og:image. Pasted into Slack, a broken link unfurled as a healthy site.
  *
- * This file overrides that head and nothing else — the UI is the same root
+ * This file overrides that head and nothing else – the UI is the same root
  * 404 component that already rendered here, so the page looks identical.
  *
  * `null` is the documented way to clear an inherited field: `canonical` and
@@ -21,7 +21,7 @@ import type { Metadata } from "next";
  * the home card would keep the lie.
  *
  * Note this is a `not-found.tsx`, so it takes no params and cannot know the
- * locale — hence one bilingual title, in the same spirit as the root 404's
+ * locale – hence one bilingual title, in the same spirit as the root 404's
  * bilingual body.
  */
 export const metadata: Metadata = {

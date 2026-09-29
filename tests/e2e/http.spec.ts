@@ -1,7 +1,7 @@
 /**
  * What the deployed site answers before any page is drawn: the Worker's
  * redirect and admin, the headers, and the files crawlers read. Read-only
- * GETs against public URLs — no sign-in, no cookies, nothing written.
+ * GETs against public URLs – no sign-in, no cookies, nothing written.
  *
  * Skipped against the local build: none of this is in dist/client's HTML, and
  * the local static server does not pretend to be the Worker (serve.mjs).
@@ -91,8 +91,8 @@ test("sitemap.xml parses, and indexing is either fully on or fully off", async (
 
   /* The site is closed to search engines until launch (src/lib/seo.ts,
      SITE_INDEXABLE): an empty sitemap and noindex on every page. Half of that
-     — a sitemap full of pages that say noindex, or indexable pages with no
-     sitemap — is a misconfigured launch, whichever half it is. */
+     – a sitemap full of pages that say noindex, or indexable pages with no
+     sitemap – is a misconfigured launch, whichever half it is. */
   const indexable = parsed!.locs.length > 0;
   const home = await get(request, "/uk");
   expect(header(home, "x-robots-tag").includes("noindex"), "X-Robots-Tag noindex on /uk").toBe(!indexable);

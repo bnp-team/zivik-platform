@@ -9,8 +9,8 @@
 /* The aliases point at the dark scale, because this page has no light ground
    anywhere on it.
  
-   They pointed at the paper scale and were then overridden further down —
-   `--ink` for the heading, `--red` for the back link — and those overrides won
+   They pointed at the paper scale and were then overridden further down –
+   `--ink` for the heading, `--red` for the back link – and those overrides won
    by source order, not by weight. That works until something reorders the
    stylesheets, and it fails visibly for as long as this file has not arrived:
    until it does, the heading is #1a1917 and the link #7f1716 on a near-black
@@ -50,7 +50,7 @@
   margin: 0 auto;
   padding: var(--space-10) clamp(20px, 5vw, 44px) var(--space-6);
 }
-/* The one control in the masthead, and it measured 89.8 x 13 — an 11px cap
+/* The one control in the masthead, and it measured 89.8 x 13 – an 11px cap
    line with nothing round it, against the 24px floor every other control on
    this page clears. The padding is what makes the box, so the margin below it
    gives back what the padding adds and the masthead keeps its rhythm. */
@@ -65,12 +65,12 @@
 /* The `.mp-mast h1` rule that used to sit here is gone.
 
    It set margin, family, weight, `clamp(28px, 4.4vw, 40px)`, line-height and
-   `--ink` — and a second `.mp-mast h1` further down this same file sets every
+   `--ink` – and a second `.mp-mast h1` further down this same file sets every
    one of those properties again. Same specificity, so source order decided it
    and the later block won all six: nothing here ever painted. It is a
    leftover from when this masthead was a header on a light page, before it
    became the dark panel floating over the drawing. Its `--ink` colour is the
-   tell — on the panel's near-black ground that would have been unreadable. */
+   tell – on the panel's near-black ground that would have been unreadable. */
 .mp-lede {
   margin: 0;
   font-size: var(--t-sm);
@@ -88,10 +88,10 @@
 }
 /* The drawing takes the screen; the legend and the text list follow beneath
    it, a scroll away. 71px is the measured height of the top bar at desktop
-   widths — below 900px the stage stops being viewport-height anyway, so the
+   widths – below 900px the stage stops being viewport-height anyway, so the
    constant never has to hold at the sizes where the bar wraps. */
 .mp-stage .emap-figure {
-  /* The drawing takes the screen, less the top bar — and less the legend,
+  /* The drawing takes the screen, less the top bar – and less the legend,
      which is the point. It used to take the whole of it, so the keys were a
      scroll below the map: pressing one to see the five sites with a written
      decision showed you nothing, because the drawing they light was off the
@@ -99,9 +99,9 @@
      the marks.
 
      It costs nothing to look at. The fit is bound by the width on every
-     desktop shape this page is read at — at 1440 x 900 the drawing gets 1.20
+     desktop shape this page is read at – at 1440 x 900 the drawing gets 1.20
      CSS pixels per unit by width against 1.39 by height, and at 1000 x 900,
-     0.83 against 1.39 — so taking 210px off the height does not shrink the
+     0.83 against 1.39 – so taking 210px off the height does not shrink the
      map at all. Where the window is tall and narrow enough for the height to
      bind, the floor below catches it. */
   height: calc(100dvh - 71px);
@@ -109,7 +109,7 @@
 }
 .mp-stage .emap-svg {
   /* No aspect ratio here: the frame is whatever the viewport gives it. The
-     drawing takes that shape rather than being cropped into it — `slice` used
+     drawing takes that shape rather than being cropped into it – `slice` used
      to fill the box by cutting whatever did not fit, and on a 1000x900 window
      what it cut was the west: The Hague, which seats the ICJ, the ICC, the PCA
      and the MH17 trial court, and Paris, which holds the largest award in the
@@ -121,8 +121,8 @@
 }
 /* The masthead floats over the drawing here, so it says how much of the
    drawing it has taken and the projection is framed inside what is left. It
-   covered Stockholm at every width between 900 and 1000px — a court that
-   could not be clicked at all — and moving it by a few pixels would only have
+   covered Stockholm at every width between 900 and 1000px – a court that
+   could not be clicked at all – and moving it by a few pixels would only have
    moved the collision, because the markers travel with the viewport's shape.
    206px is the panel's own height plus its 18px offset and a little air,
    measured in both locales; it costs nothing at the shapes this page is read
@@ -134,8 +134,8 @@
 /* The panel floats over the drawing, so the drawing has to be reachable
    through the parts of it that are not text. Measured in the «Україна»
    framing: at 1280 and at 1440, Vilnius's hit circle lands inside the
-   masthead's own padding — elementFromPoint returned the <header>, not the
-   heading or the lede — so a court that is drawn in plain sight answered
+   masthead's own padding – elementFromPoint returned the <header>, not the
+   heading or the lede – so a court that is drawn in plain sight answered
    nothing. The panel keeps its pointer where it has ink; its gutters hand the
    press to the map. Text stays selectable, because the children take the
    pointer back. */
@@ -205,8 +205,8 @@
    stacked beside a three-line column left two thirds of the block empty. */
 /* ---- the key, lying on the drawing ---- */
 /* The map's own page is the map: the drawing takes the screen, and everything
-   that reads it has to be on it. The key was a band below — first spread over
-   1400px with half the row empty, then a column beside the six site cards —
+   that reads it has to be on it. The key was a band below – first spread over
+   1400px with half the row empty, then a column beside the six site cards –
    and both were a key to something the reader had to scroll away from to use.
 
    It sits on the drawing now, bottom left, in a column, and it folds. The
@@ -223,7 +223,7 @@
     position: absolute;
     z-index: 4;
     left: 18px;
-    /* Anchored to the drawing's bottom edge, not to `.emap`'s — the key is a
+    /* Anchored to the drawing's bottom edge, not to `.emap`'s – the key is a
        sibling of the figure, not a child of it, so `bottom` here would measure
        from the foot of the whole block, past the six site cards and the seat
        index. The figure's height is a declared number; the key sits at it and
@@ -236,13 +236,13 @@
     /* Never taller than the drawing, less the masthead and air under it. The
        masthead reserves 206px from the top; on a short window the key grew up
        into that and the two panels met. They are also the same colour, which
-       is the other half of why it read as one object — see below. */
+       is the other half of why it read as one object – see below. */
     max-height: calc(100dvh - 71px - 272px);
     overflow-y: auto;
     scrollbar-width: thin;
     scrollbar-color: color-mix(in srgb, var(--brand-gold-lamp) 70%, transparent)
       var(--brand-night-rule);
-    /* The raised panel, solid — the tone the info card already uses, because
+    /* The raised panel, solid – the tone the info card already uses, because
        the two are the same kind of thing: instruments lying on the drawing.
        It was `--brand-night` at 88% with a blur, which is the masthead's own
        treatment, so where the two met they read as one continuous panel with a
@@ -260,8 +260,8 @@
     margin-bottom: 6px;
   }
   /* Smaller than the key is anywhere else, because nowhere else is it 282px
-     wide and lying on the map it explains. At --t-cap the longest line —
-     «Подія — про всю підсвічену територію» — took three rows and the column
+     wide and lying on the map it explains. At --t-cap the longest line –
+     «Подія – про всю підсвічену територію» – took three rows and the column
      read as prose; at 11.5 it takes two, and the glyph comes down with it so
      the mark and its name stay the same weight beside each other. */
   .mp-stage .emap-legend .emap-key {
@@ -311,7 +311,7 @@
      it. It did not: `height: calc(100dvh - 71px)` and `min-height: 460px` were
      declared outside this query and the `height: 100%` on the drawing followed
      them, so the `aspect-ratio` below was overridden by an explicit height and
-     never applied. Measured at 390 x 844, the drawing came out 390 x 829 — a
+     never applied. Measured at 390 x 844, the drawing came out 390 x 829 – a
      portrait slab twice as tall as it is wide, with the whole of Europe a band
      across the middle of it and open sea above and below. */
   .mp-stage .emap-figure {
@@ -322,7 +322,7 @@
     /* The projection is 1200 x 460 and the framing strip takes a fixed 60px
        off the top of it, which is a larger share of a narrow drawing than of a
        wide one: 185 projection units at 390px, 80 at 900. 645 is 460 plus the
-       first of those, so the phone — where the waste showed worst — comes out
+       first of those, so the phone – where the waste showed worst – comes out
        exactly fitted, and the widest screen this query covers carries 1.4x the
        projection's height instead of the 2x it had. */
     aspect-ratio: 1200 / 645;
@@ -341,7 +341,7 @@
   .mp-stage .emap-figure {
     --emap-safe-top: 60px;
     /* And nothing floats over the drawing from the right either, so the frame
-       gets that strip back too — see the card below. */
+       gets that strip back too – see the card below. */
     --emap-safe-right: 0px;
   }
   /* The card takes its own place under the drawing, which is the answer the
@@ -349,13 +349,13 @@
      floating card has shrinks with the window and the card does not. It only
      became true here when the stage stopped being viewport-height. Measured
      the moment it did: at 768 and at 900, in the Atlantic framing, a 300 x 328
-     card over a 413px-tall drawing covered all fifteen markers — every site
-     and every seat — and the only way to change the selection was the list
+     card over a 413px-tall drawing covered all fifteen markers – every site
+     and every seat – and the only way to change the selection was the list
      underneath. */
   .mp-stage .emap-card {
     /* `relative`, not `static`: the close button inside is absolutely placed,
-       so a static card hands it to the nearest positioned ancestor — the
-       figure — and the × floated over the top-right corner of the drawing,
+       so a static card hands it to the nearest positioned ancestor – the
+       figure – and the × floated over the top-right corner of the drawing,
        yards from the card it closes, at every width where the card stops
        floating. `inset: auto` clears the offsets the floating card sets. */
     position: relative;
@@ -369,12 +369,12 @@
 /* ---- the card in the widest framing ---- */
 /* The Atlantic framing fits a span two and a half times the projection's own
    into the same box, so Europe lands in the right-hand tenth of the picture
-   and Ukraine — the subject of every marker on it — is 12.5% of the frame's
+   and Ukraine – the subject of every marker on it – is 12.5% of the frame's
    width, hard against the side the card is anchored to. The card cannot move:
    the left half is North America with Montreal in it, which is the one thing
    this framing exists to show, and reserving a strip for the card instead
    needs 269px at 1280, which drops the drawing to 0.435 CSS pixels per unit
-   and takes the court targets to 19.5px — no court clickable in the framing
+   and takes the court targets to 19.5px – no court clickable in the framing
    that exists to show a court.
 
    What the card can do is stop growing. It is capped at the drawing's height
@@ -403,7 +403,7 @@
 }
 
 /* The label rule above the title. `.lbl` is defined in home.css, which this
-   page does not load, so the map page carries its own copy — scoped, and using
+   page does not load, so the map page carries its own copy – scoped, and using
    the gold the panel's dark ground needs rather than the paper red. */
 .mappage .mp-mast .lbl {
   display: flex;
@@ -429,19 +429,19 @@
 /* ---- the phone held sideways ---- */
 /* The rule above is asked of the width alone, and a phone in landscape is
    wide: at 812 x 375 it took the `max-width: 900px` branch and gave the
-   drawing `aspect-ratio: 1200/645`, which is 812 x 436 — a drawing taller than
+   drawing `aspect-ratio: 1200/645`, which is 812 x 436 – a drawing taller than
    the window it is in. The map had to be scrolled to be seen, and it could
    never be seen at the same time as the card it opens.
 
    Landscape is otherwise the best thing a phone has: measured at 812 x 375 the
    drawing renders 0.68 CSS pixels per projection unit, which puts a court
-   target at 24.9px — the seats answer, and the nine cities are named, neither
+   target at 24.9px – the seats answer, and the nine cities are named, neither
    of which is true in portrait. So it gets the window instead of a ratio, and
    the masthead folds down to the one line that says where you are. */
 @media (orientation: landscape) and (max-height: 560px) {
   /* Down to the fold and no further. `100dvh` was the first try and it was
      wrong by everything above the drawing: the figure starts 178px down the
-     page — the 77px top bar and the masthead below it — so a viewport-tall
+     page – the 77px top bar and the masthead below it – so a viewport-tall
      figure ran that far past the bottom and the map still had to be scrolled
      to be seen whole. 142 is the bar plus the folded masthead measured below,
      in the same spirit as the 71px the desktop rule already subtracts. The floor is there because a
@@ -455,7 +455,7 @@
     aspect-ratio: auto;
     height: 100%;
   }
-  /* Every pixel the masthead gives up, the drawing gets — and in this window
+  /* Every pixel the masthead gives up, the drawing gets – and in this window
      that is the whole argument. The figure is fitted into what is left, so
      `height` and legibility are the same number here: at 178px of chrome the
      drawing came out 197px tall and the fit went from width-bound to
@@ -499,12 +499,12 @@
     top: -42px;
     right: 0;
   }
-  /* So the title cannot run under it — and so it does not wrap doing it. Both
+  /* So the title cannot run under it – and so it does not wrap doing it. Both
      matter: the figure's height is the window minus the chrome above it, so a
      title that takes a second line takes it out of the map. */
   .mp-mast {
     /* 330px, and it is measured against the zoom control to its right
-       rather than chosen off a scale — see the note above. A step would
+       rather than chosen off a scale – see the note above. A step would
        let the title run under the control, which is the exact thing this
        is here to prevent. */
     /* design-lint-ignore space: the zoom control's width, measured */

@@ -1,5 +1,5 @@
 /* ============================================================
-   Judgment pull-quote — the band directly under the events map.
+   Judgment pull-quote – the band directly under the events map.
 
    Owned by components/nasvitlo/Quote.tsx and imported by it, the way
    header.css and events-map.css are owned by their components. The band used
@@ -12,12 +12,12 @@
       `padding: 10px 0 40px` as an inline style, so 40px of empty ground sat
       below the map's last hairline, and the quote then opened with 66px of its
       own padding: 106px of nothing. Worse, the two grounds are
-      indistinguishable — --brand-night against --brand-quote measures 1.010:1 —
+      indistinguishable – --brand-night against --brand-quote measures 1.010:1 –
       so the join read as an unintended empty strip rather than a boundary.
       That padding has since been dropped in MapSection.tsx, so the two bands
       now meet directly and this band only has to mark the join.
 
-   2. It puts a hairline of light on the join. Not a border — a lit seam: a
+   2. It puts a hairline of light on the join. Not a border – a lit seam: a
       gold rule that fades out at both ends, with the faint spill of light it
       would cast onto the band below. The concept is a lamp over a document;
       this is where the light gets in.
@@ -29,7 +29,7 @@
    ── The band was shouting. Measured at 1440px before this pass:
       a 72px ornamental «, then 34px of quoted text over four lines, then a
       20px case name, then 12.5px of uppercase mono carrying four facts, then
-      an 11px bold uppercase link 70 characters long — 574px of band, five type
+      an 11px bold uppercase link 70 characters long – 574px of band, five type
       sizes, two of them set in caps. Two of the five are gone (see Quote.tsx)
       and the rest came down, which leaves 331px of band at the same width:
 
@@ -39,13 +39,13 @@
         case name     20px → 16px  (--t-lead → --t-body)
         mono line     12.5px, unchanged in size but no longer uppercased
 
-      A pull-quote has to outrank body text — 16px Fira Sans across the site —
+      A pull-quote has to outrank body text – 16px Fira Sans across the site –
       and it still does at 25px on a serif, sitting a step under --t-h2 (29px
       at this width) so a quotation does not out-shout the headings around it.
 
    Colour comes only from --brand-* tokens (see docs/DESIGN.md). The band's
-   ground was --brand-quote (#1e0c0b) and is --brand-ember (#331311) now —
-   owner's decision, see the note on `.nsvq` below — so every figure here was
+   ground was --brand-quote (#1e0c0b) and is --brand-ember (#331311) now –
+   owner's decision, see the note on `.nsvq` below – so every figure here was
    taken again against the new ground. The floor is 4.5:1:
      cream       14.05:1   the quoted words
      gold-pale   12.57:1   hover
@@ -69,7 +69,7 @@
      /about: --brand-quote was #1e0c0b, warm in the numbers and black on the
      screen. --brand-ember (#331311) is the warm dark this palette already
      keeps for the decision page's masthead glow, and it is far enough from
-     the old ground — ΔRGB 34 — to be a different colour rather than a nudge.
+     the old ground – ΔRGB 34 – to be a different colour rather than a nudge.
 
      Re-measured on it, because a warmer ground is a lighter one and every
      colour in this file was chosen against the old:
@@ -103,7 +103,7 @@
 }
 /* The light it casts down onto the band. Kept under an eighth of the gold's
    strength: at 12% the ground beneath it still clears AA for every colour set
-   on it — the worst case is the mono line at 7.39:1 — and the effect should be
+   on it – the worst case is the mono line at 7.39:1 – and the effect should be
    felt rather than seen. The quote's first line now opens inside this spill,
    where the ornament used to; cream on it measures 12.66:1. */
 .nsvq-seam::after {
@@ -134,7 +134,7 @@
   /* Both ends on steps: 20px at the bottom, 22.5 at the top. It was
      19->25, a ramp of its own that agreed with nothing else on the site. */
   font-size: clamp(var(--t-lead), 1.9vw, var(--t-h3));
-  /* Generous for a serif at this size — a pull-quote is read slowly. */
+  /* Generous for a serif at this size – a pull-quote is read slowly. */
   line-height: 1.48;
   /* Was -0.012em. Optical tightening is a fix for large type; nine pixels
      smaller, the same tracking starts to close the counters in Charis SIL. */
@@ -152,7 +152,7 @@
   text-align: center;
   position: relative;
 }
-/* A short lit rule, centred, the same light as the seam — an attribution rule
+/* A short lit rule, centred, the same light as the seam – an attribution rule
    under a centred quote, not a border across the band. A full-width line here
    read as the top of a new section. 84px before: the rule is now separating
    two lines rather than four, and a shorter one carries that join. */
@@ -173,7 +173,7 @@
 }
 
 /* One link, one target: the case name is what you click, and it goes to the
-   case. The link used to wrap the whole caption — a column of three lines,
+   case. The link used to wrap the whole caption – a column of three lines,
    only one of which named a destination. Inline now, so the arrow sits on the
    name's baseline and the mono line below is what it is: text, not a control.
    `display` is stated because the flex column it replaces was set from here. */
@@ -191,10 +191,10 @@
    arrow beside it is the only affordance a case name needs to read as a way
    into the case. */
 .nsvq-case {
-  /* Charis's italics are their own loader call, at 400 only — see globals.css. */
+  /* Charis's italics are their own loader call, at 400 only – see globals.css. */
   font-family: var(--brand-font-display-italic), Georgia, serif;
   font-style: italic;
-  /* --t-lead (20px) before — 319px of italic across the band. Against a 25px
+  /* --t-lead (20px) before – 319px of italic across the band. Against a 25px
      quote it competes with the words it attributes; --t-body puts two steps of
      the ramp between them and brings the name to 255px. */
   font-size: var(--t-body);
@@ -204,7 +204,7 @@
   transition: color var(--dur) var(--ease), border-color var(--dur) var(--ease);
 }
 
-/* Court, stage and date — docket machinery, so mono, the way every other
+/* Court, stage and date – docket machinery, so mono, the way every other
    citation on the site is set. It was uppercased and tracked 0.06em, and with
    the General List number on the end it ran 69 characters and 569px at 1440px:
    a band of capitals 250px wider than the case name it sat under, and the
@@ -223,7 +223,7 @@
 }
 
 /* home.css carries `.page a:not(…):hover { color: var(--redd) }`, which is
-   (0,3,2) and would turn the citation red — red means a finding of breach on
+   (0,3,2) and would turn the citation red – red means a finding of breach on
    this site, not a hover state. These win on specificity, not on file order. */
 .page .nsvq a.nsvq-link:hover,
 .page .nsvq a.nsvq-link:focus-visible {
@@ -234,7 +234,7 @@
   color: var(--brand-gold-pale);
   border-bottom-color: color-mix(in srgb, var(--brand-gold-pale) 45%, transparent);
 }
-/* The site's focus ring is cherry, and cherry on this ground is 1.85:1 — the
+/* The site's focus ring is cherry, and cherry on this ground is 1.85:1 – the
    ring exists but cannot be seen. globals.css already switches to lamp gold on
    the other dark scenes; this band is one of them. */
 .page .nsvq a.nsvq-link:focus-visible {
@@ -245,7 +245,7 @@
 /* ---- widths ------------------------------------------------------------- */
 
 /* No gutter rule here. This band is a <figure>, and home.css's measure cap
-   used to read `.page .lmp > div:not(…)`, so it never matched — the quote ran
+   used to read `.page .lmp > div:not(…)`, so it never matched – the quote ran
    a flat 28px while its neighbours ran 130px at 1440px, a hundred pixels out
    of line. The selector has since been widened to match any element, so the
    cap now reaches this band like every other one and a second copy of the
@@ -263,13 +263,13 @@
 
 /* The third line under the quotation: the order the sentence is taken from,
    on the ICJ's own site. Set in the mono face beside `.nsvq-meta` rather than
-   in the italic of `.nsvq-case` — the case name is the destination the band
+   in the italic of `.nsvq-case` – the case name is the destination the band
    has always had, and this is a citation of a document, which is what this
    site sets in mono everywhere else. Gold, so it reads as a control on the
    dark ground; the link is set apart by its colour alone. */
 /* `.page .nsvq a.nsvq-doc`, not `.nsvq-doc`: home.css paints every content
-   link in `.page` cherry at (0,2,2) — `:not()` carries the weight of its
-   heaviest argument — and on this band's night ground that is 1.69:1, a link
+   link in `.page` cherry at (0,2,2) – `:not()` carries the weight of its
+   heaviest argument – and on this band's night ground that is 1.69:1, a link
    the reader cannot see. `.nsvq-case` escapes it only because it is a span
    inside the anchor setting its own colour. Three classes beat two. */
 .page .nsvq a.nsvq-doc {

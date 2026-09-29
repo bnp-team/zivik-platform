@@ -1,7 +1,7 @@
 import type { RegistryCase } from "./types";
 
 /**
- * The case registry — ingested from the source spreadsheet
+ * The case registry – ingested from the source spreadsheet
  * "Cases for the platform.xlsx". Official names are single strings (identical
  * in both locales); types, statuses and notes are localised. `lit` marks cases
  * that already have a written summary. This is the primary content the future
@@ -14,8 +14,8 @@ export const registryCases: RegistryCase[] = [
     name: "Application of the International Convention for the Suppression of the Financing of Terrorism and of the International Convention on the Elimination of All Forms of Racial Discrimination (Ukraine v. Russian Federation), Judgment, I.C.J. Reports 2024, 31 January 2024",
     nameShort: "Application of the International Convention for the Suppression of the Financing of Terrorism and of the International Convention on the Elimination of All Forms of Racial Discrimination (Ukraine v. Russian Federation)",
     /* The official name, the same one the decision page carries as its h1.
-       It was a descriptive shorthand — «Україна проти РФ — фінансування
-       тероризму і расова дискримінація» — so the library called this case
+       It was a descriptive shorthand – «Україна проти РФ – фінансування
+       тероризму і расова дискримінація» – so the library called this case
        one thing and its own page called it another, and a reader arriving
        from the library met a title they had not clicked on. Owner's words.
        The English side already carried the official name via `nameShort`. */
@@ -38,7 +38,7 @@ export const registryCases: RegistryCase[] = [
     institutionId: "icj",
     name: "Allegations of Genocide under the Convention on the Prevention and Punishment of the Crime of Genocide (Ukraine v. Russian Federation: 32 States intervening), Preliminary Objections, Judgment, I.C.J. Reports 2024, 2 February 2024",
     nameShort: "Allegations of Genocide under the Convention on the Prevention and Punishment of the Crime of Genocide (Ukraine v. Russian Federation: 32 States intervening)",
-    /* The official name, as on the decision page — the same alignment the
+    /* The official name, as on the decision page – the same alignment the
        ICSFT/CERD case got. The parties come off the end because the page
        sets them apart from the subject, and the library's own row carries
        them in its English line. */
@@ -47,7 +47,7 @@ export const registryCases: RegistryCase[] = [
     type: { uk: "Міжнародне публічне", en: "Public international law" },
     /* The ICJ issues no arrest warrants. What this row was pointing at is the
        Order on provisional measures of 16 March 2022 (judgment § 10), and in
-       Ukrainian «ордер» names an arrest warrant — a different act of a
+       Ukrainian «ордер» names an arrest warrant – a different act of a
        different court. Every summary on the site writes «наказ» for an ICJ
        order, and the status line does so now.
 
@@ -56,7 +56,7 @@ export const registryCases: RegistryCase[] = [
        2 February 2024, the document `decisionUrl` links and `summarySlug`
        explains. The neighbouring `order` key was the other candidate, but it
        renders «Процедурні накази» / "Procedural orders", which is wrong twice
-       over here — the 16 March 2022 Order is not procedural, and the label
+       over here – the 16 March 2022 Order is not procedural, and the label
        would bury the judgment. `stage: "merits"` carries the fact that nothing
        is concluded.
 
@@ -84,7 +84,7 @@ export const registryCases: RegistryCase[] = [
     type: { uk: "Міжнародне публічне", en: "Public international law" },
     stage: "preliminary",
     outcome: "procedural",
-    /* «Накази», not «ордери» — the same confusion as on icj-2 above: this is
+    /* «Накази», not «ордери» – the same confusion as on icj-2 above: this is
        an ICJ docket, and the acts on it are procedural orders. */
     status: { uk: "Попередній етап, рішення нема, лише процедурні накази", en: "Preliminary stage; procedural orders only" },
     year: 2025,
@@ -98,10 +98,10 @@ export const registryCases: RegistryCase[] = [
     id: "ecthr-4",
     institutionId: "ecthr",
     name: "Ukraine v Russia (re Crimea) [GC]",
-    /* No «— Велика палата». Review's edit names the Ukraine-and-Netherlands
+    /* No «– Велика палата». Review's edit names the Ukraine-and-Netherlands
        case; the same reasoning applies to its twin above, so both are changed
        and this note says so. The formation that heard a case is not part of
-       its name — it is a fact about the hearing, and the summary carries it. */
+       its name – it is a fact about the hearing, and the summary carries it. */
     nameUk: "Україна проти Росії (щодо Криму)",
     type: { uk: "Права людини", en: "Human rights" },
     stage: "concluded",
@@ -271,8 +271,8 @@ export const registryCases: RegistryCase[] = [
   {
     id: "itlos-15",
     institutionId: "itlos",
-    name: "Detention of Ukrainian Naval Vessels (ITLOS/PCA) — Case Concerning the Detention of Three Ukrainian Naval Vessels (Ukraine v. Russian Federation), Provisional Measures, Order of 25 May 2019, ITLOS Case No. 26; Dispute Concerning the Detention of Ukrainian Naval Vessels and Servicemen (Ukraine v. The Russian Federation), PCA Case No. 2019-28",
-    nameShort: "Detention of Ukrainian Naval Vessels and Servicemen (Ukraine v. Russian Federation) — ITLOS and PCA arbitration",
+    name: "Detention of Ukrainian Naval Vessels (ITLOS/PCA) – Case Concerning the Detention of Three Ukrainian Naval Vessels (Ukraine v. Russian Federation), Provisional Measures, Order of 25 May 2019, ITLOS Case No. 26; Dispute Concerning the Detention of Ukrainian Naval Vessels and Servicemen (Ukraine v. The Russian Federation), PCA Case No. 2019-28",
+    nameShort: "Detention of Ukrainian Naval Vessels and Servicemen (Ukraine v. Russian Federation) – ITLOS and PCA arbitration",
     nameUk: "Затримання трьох українських військових кораблів і моряків (ITLOS та арбітраж PCA)",
     type: { uk: "Морське право", en: "Law of the sea" },
     stage: "merits",
@@ -288,8 +288,8 @@ export const registryCases: RegistryCase[] = [
     id: "icao-16",
     institutionId: "icao",
     name: "Australia & Netherlands v Russia (ICAO, MH17) Australia and the Netherlands v. Russian Federation, ICAO Council Decision under Article 84 of the Chicago Convention, 12 May 2025 (formal decision document - 30 June 2025)",
-    nameShort: "Australia and the Netherlands v. Russian Federation — ICAO Council, MH17",
-    nameUk: "Австралія і Нідерланди проти РФ — Рада ICAO, справа MH17",
+    nameShort: "Australia and the Netherlands v. Russian Federation – ICAO Council, MH17",
+    nameUk: "Австралія і Нідерланди проти РФ – Рада ICAO, справа MH17",
     type: { uk: "Міжнародне публічне", en: "Public international law" },
     stage: "appeal",
     outcome: "judgment",
@@ -305,8 +305,8 @@ export const registryCases: RegistryCase[] = [
     id: "scc-17",
     institutionId: "scc",
     name: "National Joint Stock Company «Naftogaz of Ukraine» v. PJSC «Gazprom», SCC Arbitration No. V 2014/078/080 - Gas Sales Arbitration",
-    nameShort: "National Joint Stock Company «Naftogaz of Ukraine» v. PJSC «Gazprom» — Gas Sales Arbitration",
-    nameUk: "Нафтогаз України проти Газпрому — арбітраж щодо купівлі-продажу газу",
+    nameShort: "National Joint Stock Company «Naftogaz of Ukraine» v. PJSC «Gazprom» – Gas Sales Arbitration",
+    nameUk: "Нафтогаз України проти Газпрому – арбітраж щодо купівлі-продажу газу",
     type: { uk: "Комерційний арбітраж", en: "Commercial arbitration" },
     stage: "concluded",
     outcome: "procedural",
@@ -322,8 +322,8 @@ export const registryCases: RegistryCase[] = [
     id: "scc-18",
     institutionId: "scc",
     name: "National Joint Stock Company «Naftogaz of Ukraine» v. PJSC «Gazprom», SCC Arbitration No. V 2014/129 - Gas Transit Arbitration",
-    nameShort: "National Joint Stock Company «Naftogaz of Ukraine» v. PJSC «Gazprom» — Gas Transit Arbitration",
-    nameUk: "Нафтогаз України проти Газпрому — арбітраж щодо транзиту газу",
+    nameShort: "National Joint Stock Company «Naftogaz of Ukraine» v. PJSC «Gazprom» – Gas Transit Arbitration",
+    nameUk: "Нафтогаз України проти Газпрому – арбітраж щодо транзиту газу",
     type: { uk: "Комерційний арбітраж", en: "Commercial arbitration" },
     stage: "concluded",
     outcome: "procedural",
@@ -340,7 +340,7 @@ export const registryCases: RegistryCase[] = [
     institutionId: "icc-arb",
     name: "National Joint Stock Company «Naftogaz of Ukraine» v. PJSC «Gazprom» (III), ICC Case No. 27245/GL",
     nameShort: "National Joint Stock Company «Naftogaz of Ukraine» v. PJSC «Gazprom» (III)",
-    nameUk: "Нафтогаз України проти Газпрому — третій арбітраж",
+    nameUk: "Нафтогаз України проти Газпрому – третій арбітраж",
     type: { uk: "Комерційний арбітраж", en: "Commercial arbitration" },
     stage: "concluded",
     outcome: "award",
@@ -363,7 +363,7 @@ export const registryCases: RegistryCase[] = [
     status: { uk: "Виконання", en: "Enforcement" },
     year: 2016,
     /* The claim, not the award. The tribunal ordered USD 4,222,875,858.81 plus
-       interest and USD 23,889,036.26 in costs — read from the dispositif of
+       interest and USD 23,889,036.26 in costs – read from the dispositif of
        the Final Award itself, § 717(1)-(2). The five billion is the figure the
        claim was reported at, which is what this field is for; the award is a
        different number and belongs to a write-up. See the note on `amountUsd`
@@ -373,7 +373,7 @@ export const registryCases: RegistryCase[] = [
     /* 236, counted in the PDF. It said 218, which is neither the page count
        nor any figure the award prints. */
     pages: 236,
-    /* Final Award, 12 April 2023, 236 pp. — the award itself. */
+    /* Final Award, 12 April 2023, 236 pp. – the award itself. */
     decisionUrl: "https://www.italaw.com/sites/default/files/case-documents/180074_0.pdf",
     lit: false,
   },
@@ -420,7 +420,7 @@ export const registryCases: RegistryCase[] = [
     nameUk: "Ощадбанк проти РФ",
     type: { uk: "BIT арбітраж", en: "Investment (BIT) arbitration" },
     stage: "enforcement",
-    /* Both of these have a final award — 26 Nov 2018 and 1 Nov 2023 — and
+    /* Both of these have a final award – 26 Nov 2018 and 1 Nov 2023 – and
        carried no `outcome`, while the sibling arbitration pca-24 carries
        "award". On the field's own definition, what the forum issued, this is
        an award. */
@@ -519,7 +519,7 @@ export const registryCases: RegistryCase[] = [
     nameUk: "ДТЕК Крименерго проти РФ",
     type: { uk: "BIT арбітраж", en: "Investment (BIT) arbitration" },
     stage: "enforcement",
-    /* Both of these have a final award — 26 Nov 2018 and 1 Nov 2023 — and
+    /* Both of these have a final award – 26 Nov 2018 and 1 Nov 2023 – and
        carried no `outcome`, while the sibling arbitration pca-24 carries
        "award". On the field's own definition, what the forum issued, this is
        an award. */
@@ -545,7 +545,7 @@ export const registryCases: RegistryCase[] = [
     year: 2020,
     amountUsd: 580000000,
     /* The seat is not stated here any more. "PCA Paris" was on this row and
-       no source carries it — the PCA's own case list does not hold this
+       no source carries it – the PCA's own case list does not hold this
        arbitration at all, and neither UNCTAD nor italaw names a seat. */
     note: { uk: "PCA 2020-17 · заявлена", en: "PCA 2020-17 · claimed" },
     pages: null,
@@ -558,7 +558,7 @@ export const registryCases: RegistryCase[] = [
     id: "pca-30",
     institutionId: "pca",
     name: "NNEGC Energoatom v. The Russian Federation (II)",
-    nameUk: "Енергоатом проти РФ — друге провадження",
+    nameUk: "Енергоатом проти РФ – друге провадження",
     type: { uk: "BIT арбітраж", en: "Investment (BIT) arbitration" },
     stage: "upcoming",
     status: { uk: "До арбітражу", en: "Heading to arbitration" },
@@ -566,7 +566,7 @@ export const registryCases: RegistryCase[] = [
     amountUsd: 3000000000,
     note: { uk: "Заявлена", en: "Claimed" },
     pages: null,
-    /* No arbitration has been filed, so there is no forum and no forum document — this is the claimant's own notice. */
+    /* No arbitration has been filed, so there is no forum and no forum document – this is the claimant's own notice. */
     decisionUrl: "https://energoatom.com.ua/news/enerhoatom-initsijuvav-jurydychni-protsedury-proty-rosiyi-shchodo-stjahnennja-zbytkiv-zavdanykh-vijs-kovoju-ahresiyeju",
     decisionUrlKind: "party",
     lit: false,
@@ -626,7 +626,7 @@ export const registryCases: RegistryCase[] = [
     id: "nl-34",
     institutionId: "nl",
     name: "Russia v Naftogaz et al. (Hoge Raad)",
-    nameUk: "РФ проти Нафтогазу та інших — Верховний суд Нідерландів",
+    nameUk: "РФ проти Нафтогазу та інших – Верховний суд Нідерландів",
     type: { uk: "Нац. цивільне", en: "National civil" },
     stage: "concluded",
     outcome: "upheld",
@@ -642,7 +642,7 @@ export const registryCases: RegistryCase[] = [
     id: "nl-35",
     institutionId: "nl",
     name: "Russia v Belbek/Kolomoisky (Hoge Raad)",
-    nameUk: "РФ проти «Бельбека» і Коломойського — Верховний суд Нідерландів",
+    nameUk: "РФ проти «Бельбека» і Коломойського – Верховний суд Нідерландів",
     type: { uk: "Нац. цивільне", en: "National civil" },
     stage: "concluded",
     outcome: "upheld",
@@ -661,7 +661,7 @@ export const registryCases: RegistryCase[] = [
        (pca-22) but is not a party to this cassation: ECLI:NL:HR:2024:1807
        names "JSC CB PRIVATBANK, gevestigd te Kiev" and no one else. */
     name: "Russia v PrivatBank (Hoge Raad)",
-    nameUk: "РФ проти ПриватБанку — Верховний суд Нідерландів",
+    nameUk: "РФ проти ПриватБанку – Верховний суд Нідерландів",
     type: { uk: "Нац. цивільне", en: "National civil" },
     stage: "concluded",
     outcome: "upheld",
@@ -677,7 +677,7 @@ export const registryCases: RegistryCase[] = [
     id: "nl-37",
     institutionId: "nl",
     name: "Russia v Everest Estate (Hoge Raad)",
-    nameUk: "РФ проти «Еверест Естейт» — Верховний суд Нідерландів",
+    nameUk: "РФ проти «Еверест Естейт» – Верховний суд Нідерландів",
     type: { uk: "Нац. цивільне", en: "National civil" },
     stage: "remitted",
     status: { uk: "Повернуто до апеляції", en: "Remitted to appeal" },
@@ -734,7 +734,7 @@ export const registryCases: RegistryCase[] = [
        Ukrainian media citing the SBU. Lithuanian pre-trial confidentiality
        makes an official name unlikely to exist while the case is open. */
     name: "Lithuania v a serviceman of the 177th Marine Regiment (UJ)",
-    nameUk: "Литва проти військовослужбовця 177-го полку морської піхоти — універсальна юрисдикція",
+    nameUk: "Литва проти військовослужбовця 177-го полку морської піхоти – універсальна юрисдикція",
     type: { uk: "Нац. кримінальне", en: "National criminal" },
     stage: "upcoming",
     status: { uk: "До суду", en: "Heading to trial" },
@@ -742,7 +742,7 @@ export const registryCases: RegistryCase[] = [
     amountUsd: null,
     /* A transfer, not an extradition: a soldier captured in the field and
        handed from one state to another is not the same act, and the archive
-       should not blur it. The "first" is attributed rather than asserted —
+       should not blur it. The "first" is attributed rather than asserted –
        Ukraine's Prosecutor General called it the first time a detained Russian
        soldier had been handed to another state, quoted by LRT. */
     note: {
@@ -758,14 +758,14 @@ export const registryCases: RegistryCase[] = [
   {
     id: "eu-40",
     institutionId: "eu",
-    name: "EU / Belgium — frozen assets of the Russian Central Bank (Euroclear)",
-    nameUk: "ЄС і Бельгія — знерухомлені активи центрального банку РФ (Euroclear)",
+    name: "EU / Belgium – frozen assets of the Russian Central Bank (Euroclear)",
+    nameUk: "ЄС і Бельгія – знерухомлені активи центрального банку РФ (Euroclear)",
     type: { uk: "Виконавче рішення", en: "Enforcement measure" },
     stage: "frozen",
     status: { uk: "Заморожено безстроково", en: "Frozen indefinitely" },
     year: 2022,
     // Null, and the figure lives in `note` instead, because €210bn is not a
-    // dollar amount and this field is dollars — `CasePending` formats it with
+    // dollar amount and this field is dollars – `CasePending` formats it with
     // `Intl.NumberFormat(…, {currency: "USD"})`, so the euro figure printed as
     // «210 000 000 000 $» directly above the note's «Euroclear €210 млрд»:
     // one sum, two currencies, one screen. The immobilised Russian
@@ -774,14 +774,14 @@ export const registryCases: RegistryCase[] = [
     // invent a rate and a date the record does not give. Nor is this a "sum in
     // dispute", which is what the field's only render site calls it: it is a
     // stock of assets frozen by an enforcement measure, not a claim in a
-    // proceeding. Every other amount on this list really is USD — the awards
-    // and claims in the PCA, SCC and ICC arbitrations — so this row was the
+    // proceeding. Every other amount on this list really is USD – the awards
+    // and claims in the PCA, SCC and ICC arbitrations – so this row was the
     // only mismatch. Restoring the number here needs a currency-carrying
     // field, which means a change in `components/cases/CasePending.tsx`.
     amountUsd: null,
     note: { uk: "Euroclear €210 млрд", en: "Euroclear €210bn" },
     pages: null,
-    /* Council Regulation (EU) 2022/334 — the act that immobilised the assets. */
+    /* Council Regulation (EU) 2022/334 – the act that immobilised the assets. */
     decisionUrl: "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32022R0334",
     lit: false,
   },
@@ -790,7 +790,7 @@ export const registryCases: RegistryCase[] = [
 /**
  * The library's rows: every record that is a proceeding in its own right.
  *
- * `registryCases` is every record, including the acts folded into another —
+ * `registryCases` is every record, including the acts folded into another –
  * the six ICC warrants, which are searchable and printed on the situation's
  * row but are not rows themselves. Anything that lists, counts or routes to
  * proceedings reads this; anything that resolves a record by id, or checks the

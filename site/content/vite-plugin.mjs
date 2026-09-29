@@ -3,7 +3,7 @@
  * build only.
  *
  * `.emdash/snapshot.json` (written by scripts/cf/pull.mts) lists, for each
- * collection, the module and export whose value it replaces — e.g.
+ * collection, the module and export whose value it replaces – e.g.
  * `src/content/cases.ts` → `registryCases`. For each of those modules this
  * swaps the initializer of that one `export const` for the published value
  * and leaves everything else in the file alone: the derived exports
@@ -51,7 +51,7 @@ export function contentSnapshot({ snapshot, root }) {
       console.log(
         snap
           ? `  content: EmDash snapshot (${snap.source}, ${snap.pulledAt})`
-          : "  content: no EmDash snapshot — building from src/content",
+          : "  content: no EmDash snapshot – building from src/content",
       );
     },
 

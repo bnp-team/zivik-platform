@@ -19,7 +19,7 @@ import "./events-map.css";
  * Replaces an <iframe> onto a self-contained d3 page. That page fetched d3,
  * topojson-client and the world geometry from two CDNs on every homepage view,
  * carried its own copy of the webfonts, and had its labels hardcoded in
- * Ukrainian — so the English homepage showed a Ukrainian map and none of the
+ * Ukrainian – so the English homepage showed a Ukrainian map and none of the
  * text was visible to a search engine.
  *
  * Geometry is projected at build time (scripts/europe-map.mjs), so this is
@@ -27,7 +27,7 @@ import "./events-map.css";
  * page's own DOM, themed by the page's own tokens.
  *
  * Props arrive locale-resolved. This is a client component, so its props are
- * serialized into the payload — passing {uk, en} pairs would ship both
+ * serialized into the payload – passing {uk, en} pairs would ship both
  * languages to every reader.
  */
 export interface MapEventR {
@@ -36,8 +36,8 @@ export interface MapEventR {
   /**
    * How many items in the registry this site accounts for, as a number.
    *
-   * `count` says it in words and the words differ per site — проваджень,
-   * рішення, арбітражів, ордерів — so the card could not work out that it was
+   * `count` says it in words and the words differ per site – проваджень,
+   * рішення, арбітражів, ордерів – so the card could not work out that it was
    * showing three links under a heading that claimed eleven. This is the same
    * figure the marker's radius comes from.
    */
@@ -46,7 +46,7 @@ export interface MapEventR {
   title: string;
   note: string;
   /**
-   * The ground this marker speaks for, where a point is not the whole truth —
+   * The ground this marker speaks for, where a point is not the whole truth –
    * see `area` in src/content/map.ts. "country" is Ukraine's own outline;
    * anything else names a path in `geo.areas`.
    */
@@ -60,11 +60,11 @@ export interface MapEventR {
   cases: { slug: string; title: string; forum: string; stage?: string; amount?: string }[];
 }
 export interface MapCountryR {
-  /** The atlas's own name for the shape — a key of `forums` in the geometry. */
+  /** The atlas's own name for the shape – a key of `forums` in the geometry. */
   key: string;
   /** The country, in the reader's language. */
   label: string;
-  /** "in <this country>", authored — see `MapCourt.at` in content/map.ts. */
+  /** "in <this country>", authored – see `MapCourt.at` in content/map.ts. */
   at: string;
   /** Every institution seated in it, for the card's way into the registry. */
   courtIds: string[];
@@ -77,14 +77,14 @@ export interface MapCountryR {
 export interface MapCourtR {
   key: string;
   city: string;
-  /** "in <this city>", authored — see `MapCourt.at` in content/map.ts. */
+  /** "in <this city>", authored – see `MapCourt.at` in content/map.ts. */
   at: string;
-  /** The seats joined into one line — still what the list under the map on
+  /** The seats joined into one line – still what the list under the map on
    *  the full page prints. The card uses `seatList` instead. */
   seats: string;
   /**
-   * The same seats one by one, each carrying the institution it is — where it
-   * is one — so the card can make that court name a link into the registry.
+   * The same seats one by one, each carrying the institution it is – where it
+   * is one – so the card can make that court name a link into the registry.
    * `id` is absent for a seat that is not a registry institution: Paris holds
    * the PCA as the *venue* of the Oschadbank arbitration, and the PCA itself
    * sits in The Hague. Such a seat is named and not linked.
@@ -97,11 +97,11 @@ export interface MapCourtR {
   offMap?: boolean;
   /**
    * Where an off-map city really projects to. Outside the frame by
-   * definition — it is the bearing that matters, not the position.
+   * definition – it is the bearing that matters, not the position.
    */
   offAt?: { x: number; y: number };
   /**
-   * Short names — the abbreviations the citations use — shown under the city
+   * Short names – the abbreviations the citations use – shown under the city
    * once the court lights up. `courtBadges` in src/content/map.ts derives
    * them; they are required rather than optional so that a render site which
    * forgets them fails the type-check instead of quietly labelling nothing.
@@ -130,19 +130,19 @@ export interface MapGeometry {
   context: string[];
   ukraine: string;
   /**
-   * Ukraine's internal oblast boundaries, as one mesh of open polylines — the
+   * Ukraine's internal oblast boundaries, as one mesh of open polylines – the
    * edges two of the 27 admin-1 units share, and nothing else. See the note in
    * scripts/europe-map.mjs for why this is a mesh and not 27 outlines.
    */
   regions: string;
   /**
    * Named pieces of ground a marker can speak for. Ukraine entire is not in
-   * here — that is `ukraine` above, and drawing it twice would put two strokes
+   * here – that is `ukraine` above, and drawing it twice would put two strokes
    * on the same coast.
    */
   areas?: Record<string, string>;
   /**
-   * The states that host a forum, keyed by the atlas's own name for each — the
+   * The states that host a forum, keyed by the atlas's own name for each – the
    * six in `FORUM_STATES` in scripts/europe-map.mjs.
    *
    * They are also in `context`, as two of its 41 anonymous background paths;
@@ -159,17 +159,17 @@ export interface MapGeometry {
  *
  * It is the same file `scripts/europe-map.mjs` writes, and it used to arrive
  * from the two server components that render this one. That put it in the
- * document twice: once as the `d="…"` attributes React server-rendered — which
- * is the drawing, and has to be there — and once more inside the flight
+ * document twice: once as the `d="…"` attributes React server-rendered – which
+ * is the drawing, and has to be there – and once more inside the flight
  * payload, because everything a client component is handed is serialized for
  * hydration. Measured on the built documents, the second copy cost 18,574
- * gzipped bytes of /uk's 66,149 and 18,958 of /uk/map's 56,377 — and there is
+ * gzipped bytes of /uk's 66,149 and 18,958 of /uk/map's 56,377 – and there is
  * no deduplicating the two, because gzip's window is 32 kB and the copies are
  * a hundred kilobytes apart in the file.
  *
  * A prop was the wrong shape for it. Props are how the server tells this
- * component things it could not know — which locale, which strings, which
- * cases — and the coastline is none of those: it is the same 45,616 bytes on
+ * component things it could not know – which locale, which strings, which
+ * cases – and the coastline is none of those: it is the same 45,616 bytes on
  * both map surfaces in both languages, and it changes only when the generator
  * is re-run. As an import it is in the component's own chunk, which the
  * browser fetches once, caches, and reuses across all four routes, instead of
@@ -184,7 +184,7 @@ export interface MapGeometry {
  * Nothing about what is drawn or when changes: the paths are still in the
  * server-rendered HTML, so the map is in the first frame and hydration finds
  * the markup it expects. That is the whole reason this is an import and not a
- * second fetch — a fetched drawing would paint an empty frame first.
+ * second fetch – a fetched drawing would paint an empty frame first.
  */
 const geo = geometry as MapGeometry;
 
@@ -196,7 +196,7 @@ const geo = geometry as MapGeometry;
  * or a marker moved. Measured in the close framing at 1440px, where the drawing
  * renders 1420px wide and one unit of the projection is 2.78px:
  *
- *   MH17 and eastern Ukraine are 16.9 units apart — 47px — so one goes up and
+ *   MH17 and eastern Ukraine are 16.9 units apart – 47px – so one goes up and
  *   the other right. Crimea and the Kerch strait are 31.7 apart on a near-
  *   horizontal line, so they go opposite ways. Energy sits due west of
  *   Mariupol, 48.6 apart, and takes the west side; Mariupol drops below,
@@ -209,7 +209,7 @@ const geo = geometry as MapGeometry;
  */
 const LABEL_SIDE: Record<string, "left" | "right" | "above" | "below"> = {
   crimea: "left",
-  /* `kerch` has no event behind it today — «Затримання кораблів» is off the
+  /* `kerch` has no event behind it today – «Затримання кораблів» is off the
      map, see content/map.ts. The entry stays because the placement was worked
      out against Crimea's label and would have to be worked out again. */
   kerch: "right",
@@ -222,11 +222,11 @@ const LABEL_SIDE: Record<string, "left" | "right" | "above" | "below"> = {
 /**
  * A marker label, derived from the site's own date tag.
  *
- * NEEDS THE OWNER'S REVIEW — see the note on `when` in src/content/map.ts.
+ * NEEDS THE OWNER'S REVIEW – see the note on `when` in src/content/map.ts.
  * Every tag but one reads "<noun> · <date>", and that noun is the shortest
  * true name the archive already gives the site: Окупація / Occupation,
  * Затримання / Seizure, Схід / The east, Енергетика / Energy, MH17. The sixth
- * has no noun — its tag is bare "2022" — so that is what it says. Nothing here
+ * has no noun – its tag is bare "2022" – so that is what it says. Nothing here
  * is invented: a label a reader could mistake for a place name we assigned
  * would be worse than a date.
  *
@@ -242,7 +242,7 @@ const shortLabel = (when: string) => when.split("·")[0].trim();
  * 2.6px per unit that is 44px between the two markers, which is what the
  * placement above needs to keep two labels apart; below it they touch. The
  * threshold is on the rendered scale rather than on a framing or a breakpoint
- * because that is the thing legibility actually depends on — the wide framing
+ * because that is the thing legibility actually depends on – the wide framing
  * at 1440px gives 1.18px per unit and the close one 2.78, and a phone in the
  * close framing gives 0.76, so the same rule covers all three without naming
  * any of them.
@@ -253,7 +253,7 @@ const LABEL_MIN_SCALE = 2.6;
  * How much room two labels need between their markers, in CSS pixels.
  *
  * `LABEL_MIN_SCALE` above asks this question of the whole set at once, using
- * the tightest pair in it — MH17 and eastern Ukraine, 16.9 units — so one
+ * the tightest pair in it – MH17 and eastern Ukraine, 16.9 units – so one
  * crowded pair kept the other four unnamed. Measured on the built page, that
  * meant the map opened with its nine courts named and the six places the
  * archive is *about* drawn as unlabelled dots: 0.94 CSS pixels per unit at
@@ -263,7 +263,7 @@ const LABEL_MIN_SCALE = 2.6;
  * Asked per marker instead, against the room that marker actually has, the
  * four with a country to themselves are named at the framing the map opens
  * at and the crowded pair joins them when the reader comes closer. 44px is
- * the same figure the old threshold encodes — 16.9 units at 2.6.
+ * the same figure the old threshold encodes – 16.9 units at 2.6.
  */
 const LABEL_GAP = 44;
 
@@ -273,12 +273,12 @@ const LABEL_GAP = 44;
  * 24 CSS pixels is the floor, and the drawing no longer has one fixed scale to
  * meet it at: the frame follows the container's shape now, so the same r=11
  * that rendered 26.4px on a 1440px home band renders 16.8px on a 1000×650
- * window. So the radius is whatever 24px works out to — but no smaller than it
+ * window. So the radius is whatever 24px works out to – but no smaller than it
  * was, and no larger than the closest pair can bear. MH17 and eastern Ukraine
  * sit 16.9 units apart, and a circle wider than that would swallow its
  * neighbour's centre: the top one would always win, and a target you cannot
- * aim at is worse than a small one. The court seats are further apart — The
- * Hague and Brussels, the tightest, are 32 — so they can grow further.
+ * aim at is worse than a small one. The court seats are further apart – The
+ * Hague and Brussels, the tightest, are 32 – so they can grow further.
  *
  * `cap` is that room, and it is measured per marker rather than per family
  * now: see `gap` in the component. Those two figures are what it comes out at
@@ -292,7 +292,7 @@ const LABEL_GAP = 44;
  * projection units, which meant their size was whatever the framing happened
  * to give them: 12.6px on the map's own page when it filled the viewport by
  * cropping, 7.6px once it stopped cropping, and 3.2px on a phone. `cap` is the
- * floor of that trade — past it the label would be larger than the country it
+ * floor of that trade – past it the label would be larger than the country it
  * names, so it stops growing and shrinks with the drawing instead.
  */
 const labelSize = (want: number, cap: number, px: number) =>
@@ -339,7 +339,7 @@ const MIN_W = 120;
  * is the frame's edge, not a gap between two markers, and the easternmost
  * marker is not the easternmost thing the reader is looking at. MH17 sits at
  * x = 876.9 and Ukraine's coast runs to 900.4, so 64 would put the country
- * this map is about 40 units — 26 CSS pixels at 1440 — from the picture's
+ * this map is about 40 units – 26 CSS pixels at 1440 – from the picture's
  * edge. 150 leaves 126 units, 78 pixels, behind the coast.
  */
 const SPAN_EDGE = 150;
@@ -347,7 +347,7 @@ const SPAN_EDGE = 150;
  * And the air it leaves on the side an off-window seat came in from.
  *
  * A seat with no point in europe-map.json is off the projection's declared
- * window because it is on another continent — today Montreal, where the ICAO
+ * window because it is on another continent – today Montreal, where the ICAO
  * Council decided the MH17 case the ICJ is hearing on appeal. A marker's own
  * 64 units there buys the Gulf of St Lawrence and calls it the Atlantic:
  * measured on the built page at 1440, that framing came out
@@ -356,7 +356,7 @@ const SPAN_EDGE = 150;
  * promised America.
  *
  * 360 is the judgement, and these are the numbers behind it. It puts Montreal
- * 15.5% in — far enough from the edge to read as a city in a country rather
+ * 15.5% in – far enough from the edge to read as a city in a country rather
  * than a marker pinned to a border. It reaches x = -1296.9, about 96°W:
  * Toronto (-1030.9), Detroit (-1090.2) and Chicago (-1164.3) all project
  * inside the frame, so what stands behind Montreal is the Great Lakes and the
@@ -373,7 +373,7 @@ const SPAN_FAR = 360;
  * clear: this frames one relation, and what it has to clear is a marker's own
  * halo (up to 13 units) plus its label. 90 leaves the label room at every
  * scale the frame can come out at, and keeps the two ends of a short relation
- * — a site and The Hague — from filling the picture edge to edge.
+ * – a site and The Hague – from filling the picture edge to edge.
  */
 const FOCUS_EDGE = 90;
 
@@ -390,17 +390,17 @@ const DRAG_SLOP = 4;
 /**
  * The viewBox that puts `content` where the reader can actually reach it.
  *
- * Two bugs came out of one assumption — that the drawing may use every pixel
+ * Two bugs came out of one assumption – that the drawing may use every pixel
  * of its box.
  *
  *   The map's own page filled the viewport with `preserveAspectRatio: slice`,
  *   which crops whatever does not fit the container's shape. On a 1000×900
- *   window that cropped the west: The Hague — the ICJ, the ICC, the PCA and
- *   the MH17 trial court — and Paris, which holds the largest award in the
+ *   window that cropped the west: The Hague – the ICJ, the ICC, the PCA and
+ *   the MH17 trial court – and Paris, which holds the largest award in the
  *   collection, were both outside the frame with no way to reach them.
  *
- *   And the panels that float over the drawing — the masthead, the info card,
- *   the framing buttons — sat on top of markers. The card covered four of the
+ *   And the panels that float over the drawing – the masthead, the info card,
+ *   the framing buttons – sat on top of markers. The card covered four of the
  *   six sites until it moved; the masthead still covered Stockholm, which
  *   could not be clicked at any width between 900 and 1000px.
  *
@@ -408,7 +408,7 @@ const DRAG_SLOP = 4;
  * container's own aspect ratio, which means `meet` and `slice` agree and
  * nothing is ever cropped; and `content` is fitted into the box *minus* the
  * strips the panels have claimed, so a marker never lands under one. The
- * frame still covers the whole element — the projection is drawn far past the
+ * frame still covers the whole element – the projection is drawn far past the
  * 1200×460 window (the atlas runs -2658…3162 across), so what the panels sit
  * on is more of Europe, not a black bar.
  */
@@ -433,7 +433,7 @@ function fitView(
  *
  * The frame changes shape whenever the container does, so a stored rect goes
  * stale: it was fitted to a window that no longer exists. A ratio and a centre
- * survive the change — the view is derived from whatever the frame is now.
+ * survive the change – the view is derived from whatever the frame is now.
  */
 type Nav = { z: number; cx: number; cy: number } | null;
 
@@ -444,7 +444,7 @@ type Nav = { z: number; cx: number; cy: number } | null;
  * measured, a drag west from the opening framing followed by nine notches of
  * zoom put the reader on an empty black rectangle in the middle of the North
  * Atlantic, with no marker, no coast and nothing to say which way back was.
- * Clamping to the bound cannot catch that — the mid-Atlantic is inside it.
+ * Clamping to the bound cannot catch that – the mid-Atlantic is inside it.
  *
  * So the last word belongs to the markers: if the view holds none of them, it
  * slides the shortest distance that brings the nearest one to its edge.
@@ -454,7 +454,7 @@ type Nav = { z: number; cx: number; cy: number } | null;
  * To the edge, and not a margin inside it. A margin looks kinder and is not:
  * the Atlantic is 1227 units across, which at the opening framing is the width
  * of the whole view, so Paris and Montreal are never both in frame and are
- * only just ever either. An eighth of the frame in hand — tried, measured —
+ * only just ever either. An eighth of the frame in hand – tried, measured –
  * opened a band in the middle of the ocean that neither city could be held
  * from, and the reader who dragged west to look for Montreal was pushed back
  * to Paris every time. At zero the crossing is 0.6 units wide and a drag step
@@ -497,13 +497,13 @@ const settle = (
 ) => clamp(hold(clamp(v, outer), pts), outer);
 
 /**
- * `full` sets the unit the zoom ratio is measured in — 1 is the framing the
- * map opens at — and `outer` is how far out and how far sideways the reader
+ * `full` sets the unit the zoom ratio is measured in – 1 is the framing the
+ * map opens at – and `outer` is how far out and how far sideways the reader
  * may go. They used to be the same rect, which is why the map could not be
  * dragged at all until it had been zoomed in: at the opening framing the view
  * already filled its own bound, so every pan clamped straight back and the
  * `grab` cursor was describing something that could not happen. `outer` is the
- * whole projected span now — Montreal included — so a ratio above 1 is a real
+ * whole projected span now – Montreal included – so a ratio above 1 is a real
  * framing and a press on the ground always moves something.
  */
 function viewFrom(
@@ -579,7 +579,7 @@ export default function EventsMap({
    * The drawing gained lit states before it gained a way to press one: a
    * reader could see that six countries hear these cases and could only ask
    * about them by finding the city dot inside. Pressing a country now does
-   * what pressing a city does — its courts, as a list, each linking to its own
+   * what pressing a city does – its courts, as a list, each linking to its own
    * caseload. France carries two, which is why each entry brings its own
    * merged seat list rather than a court key.
    */
@@ -598,7 +598,7 @@ export default function EventsMap({
     /** Heading above the decision links inside a card. */
     reads: string;
     /**
-     * "Written up: 3 of 11" — the gap between what a site accounts for and
+     * "Written up: 3 of 11" – the gap between what a site accounts for and
      * what a reader can open. The count line said 11 and the list showed 3,
      * and nothing said whether the other eight existed.
      */
@@ -616,7 +616,7 @@ export default function EventsMap({
     pending: string;
     /**
      * What the figure on a decision is. The sign in the registry encodes which
-     * way the money ran — the gas sales arbitration is recorded as −2.02bn —
+     * way the money ran – the gas sales arbitration is recorded as −2.02bn –
      * and no tag can caption that honestly, so the map shows the magnitude and
      * says what it is: the sum in dispute. Same wording as the pending case
      * page, from the same reasoning.
@@ -625,7 +625,7 @@ export default function EventsMap({
     /** The key's own name, on the control that folds it away. */
     legendTitle: string;
     /**
-     * The name on the control that folds the six places away. Not «Список» —
+     * The name on the control that folds the six places away. Not «Список» –
      * it is the same six the drawing holds, said in words, and where the marks
      * are too small to aim at it is the only way to reach them.
      */
@@ -639,13 +639,13 @@ export default function EventsMap({
     legendForum: string;
     /**
      * And what a marker docked against the frame's edge means. Only rendered
-     * where a seat is actually off the projection's window — today Montreal,
+     * where a seat is actually off the projection's window – today Montreal,
      * and by data rather than by name.
      *
      * This comment stood here for a long time with no field under it: the key
      * was planned when the dock was built and never written, so the one glyph
-     * on the drawing a reader has no way to recognise — a marker pinned to the
-     * border with a chevron and a tail running off the picture — was the one
+     * on the drawing a reader has no way to recognise – a marker pinned to the
+     * border with a chevron and a tail running off the picture – was the one
      * the legend did not explain.
      */
     legendOffMap: string;
@@ -653,13 +653,13 @@ export default function EventsMap({
     legendRegions: string;
     /**
      * The ground a mark speaks for, where a point is not the whole truth about
-     * it. Only rendered where some site declares an `area` — by data rather
+     * it. Only rendered where some site declares an `area` – by data rather
      * than by name, like the docked-seat key above.
      */
     legendArea: string;
     /**
      * That the marks answer at all, and what answering does. The map's whole
-     * mechanic — pick one end of a relation and the other lights — was
+     * mechanic – pick one end of a relation and the other lights – was
      * nowhere on the page; a reader had to discover it by clicking something
      * they had no reason to think was a control.
      */
@@ -671,7 +671,7 @@ export default function EventsMap({
        marked places since it became a map of the States whose courts hear
        these proceedings, and the sentence is gone with the field. */
     /**
-     * "{n} {w} in the library" — the court's own caseload, with the noun left
+     * "{n} {w} in the library" – the court's own caseload, with the noun left
      * to `caseloadWord` because it agrees with the number. The template used
      * to carry the genitive plural itself and this component substituted the
      * figure with a bare `.replace`, so eight of the nine courts read
@@ -691,7 +691,7 @@ export default function EventsMap({
     zoomWide: string;
     zoomClose: string;
     /**
-     * The widest framing there is — everything the map has to show.
+     * The widest framing there is – everything the map has to show.
      *
      * It was «Атлантика», which named the ocean in the middle of it rather
      * than what it is for. The three read as a ladder now, widest to
@@ -704,7 +704,7 @@ export default function EventsMap({
      * opening framing if there is not.
      *
      * The three framings are absolutes, and the wheel, the drag and the
-     * stepper leave the reader between them — nothing pressed, and no way back
+     * stepper leave the reader between them – nothing pressed, and no way back
      * that does not throw away the card they have open.
      */
     zoomReset: string;
@@ -719,7 +719,7 @@ export default function EventsMap({
      * What the drawing says where it is a picture rather than a control.
      *
      * On a phone the marks are 9.9px across and the component correctly stops
-     * answering the pointer — but it said so nowhere, and kept a grab cursor
+     * answering the pointer – but it said so nowhere, and kept a grab cursor
      * and a zoom stepper that could not reach a usable scale. Now it says what
      * it is and offers the one thing that does work: the whole screen.
      */
@@ -730,7 +730,7 @@ export default function EventsMap({
   locale: string;
   /**
    * "band" is the home page: the drawing, a card when a dot is picked, and a
-   * key to the three colours. Nothing else — the seat list, the how-to-read
+   * key to the three colours. Nothing else – the seat list, the how-to-read
    * column and the row of six site cards belong on the map's own page, where
    * there is room to read them.
    */
@@ -738,14 +738,14 @@ export default function EventsMap({
 }) {
   /**
    * One selection, of either kind. Sites and courts are two ends of the same
-   * relation, so selecting one must clear the other — holding both would light
+   * relation, so selecting one must clear the other – holding both would light
    * two different sets of lines at once and mean nothing.
    */
   /**
    * Nothing, until the reader picks something.
    *
-   * The map used to open with one card already up — MH17, by an `open` flag on
-   * the content — so a reader arriving at the page found a panel lit over the
+   * The map used to open with one card already up – MH17, by an `open` flag on
+   * the content – so a reader arriving at the page found a panel lit over the
    * drawing describing a place they had not asked about, and the six marks all
    * quietened behind one relation they had not chosen. A default selection is
    * the map answering a question nobody put to it.
@@ -756,14 +756,14 @@ export default function EventsMap({
    * The whole screen, on a device that cannot use the drawing any other way.
    *
    * On a phone the marks render 9.9 CSS pixels across and the component
-   * correctly stops answering the pointer — but the answer to "the drawing is
+   * correctly stops answering the pointer – but the answer to "the drawing is
    * too small" was a zoom stepper that needed twelve presses to reach a usable
    * scale and left the reader in a corner of the Atlantic. Rotating is not the
    * answer either: most phones have autorotate locked, so a "turn your phone"
    * prompt is a dead end for the reader who most needs it.
    *
    * The screen is. Held full, a 390px phone gives the drawing 390 x 780
-   * instead of 390 x 202, which is 2.5 CSS pixels per projection unit — past
+   * instead of 390 x 202, which is 2.5 CSS pixels per projection unit – past
    * every threshold on this page: the marks answer, the sites are labelled and
    * the cities are named. It works in either orientation and asks nothing of
    * the device's settings.
@@ -788,24 +788,24 @@ export default function EventsMap({
   /**
    * Is the key open?
    *
-   * A legend is read once and then remembered — after that it is a column of
+   * A legend is read once and then remembered – after that it is a column of
    * things the reader already knows, sitting where the map could be. So it
    * folds, and the drawing takes the height back. Open by default: a reader
    * who has not read it yet cannot be expected to go looking for it.
    */
   const [legendUser, setLegendUser] = useState<boolean | null>(null);
   /* `null` is not closed: it is "whatever the surface can spare", and the
-     stylesheet answers it — open on a window wide enough to lay it beside the
+     stylesheet answers it – open on a window wide enough to lay it beside the
      drawing, folded on a phone, where an open key stands between the reader
      and everything under it. */
-  /* Вузьке вікно — та сама межа, що в events-map.css (`max-width: 900px`).
+  /* Вузьке вікно – та сама межа, що в events-map.css (`max-width: 900px`).
 
      Стилі й розмітка відповідали на `null` по-різному. CSS ховав ключ на
      телефоні, а кнопка вважала `null` відкритим: на 390 «Легенда» стояла з
      трикутником донизу і `aria-expanded="true"` над складеним блоком, а
-     перший дотик ставив `false` — тобто нічого не робив, і відкрити ключ
+     перший дотик ставив `false` – тобто нічого не робив, і відкрити ключ
      вдавалося лише з другого разу. Тепер кнопка питає ту саму ширину, що й
-     стилі. До гідратації `narrow` — `false`, як на сервері, тож розмітка
+     стилі. До гідратації `narrow` – `false`, як на сервері, тож розмітка
      збігається; перший кадр усе одно малює CSS, а JS лише доганяє атрибут. */
   const [narrow, setNarrow] = useState(false);
   useEffect(() => {
@@ -821,7 +821,7 @@ export default function EventsMap({
    * A legend key held down: show me this set of marks and quieten the rest.
    *
    * The legend drew the marks instead of naming them, which was the right
-   * idea and half the job — a key that shows you what a mark looks like still
+   * idea and half the job – a key that shows you what a mark looks like still
    * leaves you to find them yourself, on a drawing where five of fifteen are
    * inside one country. Pressing the key answers it.
    *
@@ -849,7 +849,7 @@ export default function EventsMap({
     const q = new URLSearchParams(window.location.search);
     q.delete("site");
     q.delete("court");
-    /* A lit country is linkable like any other selection — `?country=France`,
+    /* A lit country is linkable like any other selection – `?country=France`,
        keyed by the atlas name the geometry uses, so the parameter and the
        shape it opens cannot drift apart. */
     q.delete("country");
@@ -866,7 +866,7 @@ export default function EventsMap({
    *
    * Requested here and served by the effect below, because the frame is
    * computed from the element's measured box and that is not known this far up
-   * the component. Only ever set by an act of the reader's — the card the map
+   * the component. Only ever set by an act of the reader's – the card the map
    * opens with does not move the view.
    */
   const [focusReq, setFocusReq] = useState<{ kind: "site" | "court" | "country"; key: string } | null>(null);
@@ -878,7 +878,7 @@ export default function EventsMap({
     const country = q.get("country");
     // Same trade as CaseTimeline: one extra render buys a selection that
     // survives a reload and can be shared as a link. The query string is only
-    // legible in the browser — useSearchParams would pull this prerendered
+    // legible in the browser – useSearchParams would pull this prerendered
     // page into client rendering to learn it a render earlier.
     const from =
       site && events.some((e) => e.key === site)
@@ -892,15 +892,15 @@ export default function EventsMap({
     if (from) {
       setSel(from);
       // A link to ?site= or ?court= is the reader asking for that thing, so
-      // it gets a frame that holds it. Nothing else opens a card any more —
-      // the map opens with none — so this is the only way in that moves the
+      // it gets a frame that holds it. Nothing else opens a card any more –
+      // the map opens with none – so this is the only way in that moves the
       // view, and it moves it because a reader followed a link to one place.
       setFocusReq(from);
     }
     /* eslint-enable react-hooks/set-state-in-effect */
-    // A parameter that names nothing — a typo, a link to a site that has since
+    // A parameter that names nothing – a typo, a link to a site that has since
     // been renamed, or ?site= and ?court= both set, where only the first can
-    // win — used to be left standing in the address bar describing something
+    // win – used to be left standing in the address bar describing something
     // the page was not showing. ?site=atlantis drew MH17 and still said
     // atlantis, and that is the URL the reader would have copied. So the
     // address bar is rewritten to whatever is actually drawn, which for a
@@ -916,7 +916,7 @@ export default function EventsMap({
    *
    * Dismissing a card unmounts everything inside it, the close button
    * included. If the keyboard was in there, the browser drops focus on
-   * <body> — measured: pressing the card's × left activeElement === body, so
+   * <body> – measured: pressing the card's × left activeElement === body, so
    * the next Tab restarted at the top of the document. Remembering the opener
    * lets the card hand the keyboard back where it came from.
    */
@@ -943,7 +943,7 @@ export default function EventsMap({
   );
 
   /* A card is a popup, and a popup closes on Escape. Until now the only way
-     out was to Tab to the × — and the × dropped focus on <body>. The full
+     out was to Tab to the × – and the × dropped focus on <body>. The full
      screen is the outer of the two, so it is the second thing Escape reaches:
      one press puts the card away, the next gives the page back. */
   useEffect(() => {
@@ -959,7 +959,7 @@ export default function EventsMap({
   }, [sel, full, hi, select]);
 
   /* Held full, the drawing covers the document; a document that still scrolls
-     underneath is the classic overlay bug — the reader leaves the map and
+     underneath is the classic overlay bug – the reader leaves the map and
      finds the page has moved somewhere they never went. */
   useEffect(() => {
     if (!full) return;
@@ -983,7 +983,7 @@ export default function EventsMap({
    *
    * Wide is the argument the map makes: the distance between where the harm
    * happened and where it is being weighed. But Ukraine is 24% of that frame,
-   * and inside it MH17 and eastern Ukraine sit 20px apart on a 1440px screen —
+   * and inside it MH17 and eastern Ukraine sit 20px apart on a 1440px screen –
    * their haloes overlap and the hit targets nearly touch. Close reframes on
    * the sites at x2.35, which opens that gap to 47px. Nothing is reprojected;
    * only the viewBox changes.
@@ -992,7 +992,7 @@ export default function EventsMap({
    * The frame, as numbers rather than two strings. Two named framings were not
    * enough: between them the sites still crowd each other, and a reader who
    * wants one corner of the Donbas had no way to get there. Zoom and pan are
-   * arithmetic on the viewBox — no library, no reprojection.
+   * arithmetic on the viewBox – no library, no reprojection.
    *
    * The wheel is bound on both variants now, but not the same way, and not
    * through React's `onWheel`: that prop is registered passively, so
@@ -1024,26 +1024,26 @@ export default function EventsMap({
    * This used to be the projection's own 0…1200 × 0…460 window plus 64 units
    * round Montreal, and the result did not deserve the name it was given.
    * Measured on the built page at 1440: the frame came out
-   * `-1000.9 -555.4 2200.9 1267.0`, Montreal sat at x = -936.9 — 64 units, or
-   * 2.9% of the frame's width, inside the western edge — and what a reader saw
+   * `-1000.9 -555.4 2200.9 1267.0`, Montreal sat at x = -936.9 – 64 units, or
+   * 2.9% of the frame's width, inside the western edge – and what a reader saw
    * beside Europe was Greenland and open water. North America was in the
    * drawing (the atlas reaches x = -2658) and out of the picture.
    *
    * Two things were wrong with taking the window as the floor. It carries 323
-   * units of empty steppe east of the last marker — MH17 at x = 876.9, and
-   * Ukraine's own coast ends at 900.4 — which is a sixth of the frame spent on
+   * units of empty steppe east of the last marker – MH17 at x = 876.9, and
+   * Ukraine's own coast ends at 900.4 – which is a sixth of the frame spent on
    * nothing. And it treats the margin round an off-window seat as the same
    * kind of thing as the margin round a marker in Kyiv oblast, when it is not:
    * a seat is off the window because it is on another continent, and a frame
    * that clears it by 64 units shows the city without the continent.
    *
-   * So the span is the markers themselves — `SPAN_EDGE` round the ones inside
+   * So the span is the markers themselves – `SPAN_EDGE` round the ones inside
    * the window, `SPAN_FAR` on the side an off-window seat came in from. Still
    * derived rather than written down: a second off-window seat, in any
    * direction, widens this by itself.
    *
    * What it comes to today: x -1296.9 … 1026.9, y -140.4 … 565.2. Montreal
-   * lands 360 units — 15.5% of the width — inside the western edge, with the
+   * lands 360 units – 15.5% of the width – inside the western edge, with the
    * coast from Labrador to the Chesapeake, the Great Lakes and the ground out
    * to about 96°W behind it, and Ukraine's own coast keeps 126 units of air on
    * the other side instead of the 40 the marker margin alone would leave.
@@ -1082,7 +1082,7 @@ export default function EventsMap({
       if (c.offAt.y < BASE.y) y0 = Math.min(y0, c.offAt.y - SPAN_FAR);
       if (c.offAt.y > BASE.y + BASE.h) y1 = Math.max(y1, c.offAt.y + SPAN_FAR);
     }
-    // Nothing to frame at all — no markers in the geometry. Fall back to the
+    // Nothing to frame at all – no markers in the geometry. Fall back to the
     // declared window rather than returning an infinite rect.
     if (!Number.isFinite(x0)) return BASE;
     return { x: x0, y: y0, w: x1 - x0, h: y1 - y0 };
@@ -1091,7 +1091,7 @@ export default function EventsMap({
   const WIDE = useMemo(() => fitView(SPAN, box), [SPAN, box]);
   /**
    * Every place the drawing has something to look at. What `hold` keeps in
-   * frame — the true positions, not the docked ones, so the set does not
+   * frame – the true positions, not the docked ones, so the set does not
    * change under the reader as they pan.
    */
   const ANCHORS = useMemo(() => {
@@ -1111,21 +1111,21 @@ export default function EventsMap({
    * Is there a third framing at all?
    *
    * It exists for one thing: a seat the projection's window cannot hold. That
-   * was Montreal, and with the ICAO Council off the map there is none — so the
+   * was Montreal, and with the ICAO Council off the map there is none – so the
    * button goes with it, rather than staying on to offer a view of the same
    * Europe with more sea round it.
    *
    * The span test alone was not enough to notice. `SPAN` leaves 150 units of
    * air round every marker, and Helsinki and Stockholm sit near the top of a
    * 460-unit frame, so the span still overflowed vertically and the framing
-   * survived the removal — reframing to something a reader could not tell from
+   * survived the removal – reframing to something a reader could not tell from
    * the one they were already looking at. The geometry says whether a wider
    * view is *possible*; `offAt` says whether it is *for* anything.
    */
   const hasWide =
     courts.some((c) => c.offAt) && (SPAN.w > BASE.w + 1 || SPAN.h > BASE.h + 1);
   /**
-   * How far the reader may get, by any means — the smallest rect of the
+   * How far the reader may get, by any means – the smallest rect of the
    * element's own shape that holds both named framings. Grown from their
    * union rather than taken from the wider of the two: the Atlantic framing is
    * centred on the span from Montreal to Ukraine, so its eastern edge stops a
@@ -1152,7 +1152,7 @@ export default function EventsMap({
    *
    * This is the one thing the map exists to say, and until now no framing said
    * it. Measured at 1440: «Європа», the framing the map opens at, renders 1.2
-   * CSS pixels per projection unit — under the 2.6 the site labels need — so
+   * CSS pixels per projection unit – under the 2.6 the site labels need – so
    * the nine courts are named and the six places the archive is *about* are
    * unlabelled dots in one corner. «Україна» renders 2.82 and labels them, and
    * holds no court at all: the dashed lines simply leave the frame. A reader
@@ -1171,7 +1171,7 @@ export default function EventsMap({
    *   tenth of the width. The reader who wants that has a button for it.
    *
    *   And nothing moves when nothing needs to. If every point is already in
-   *   frame — which on the home band's opening view is almost every selection —
+   *   frame – which on the home band's opening view is almost every selection –
    *   the view is left exactly where the reader put it.
    */
   useEffect(() => {
@@ -1212,12 +1212,12 @@ export default function EventsMap({
     }
     /* Centred, and no closer than the map opens.
        This fitted the relation exactly at first, and fitting is too much: a
-       court with one site — Hamburg and the Kerch strait — is a narrow span,
+       court with one site – Hamburg and the Kerch strait – is a narrow span,
        and the map dived into it, so pressing a seat threw the reader from a
        picture of Europe into two cities filling the band. The scale a reader
        chose by arriving is the scale they keep; what a selection earns is the
        middle of the picture, not a different picture. So the frame is the
-       opening framing's own size, centred on the relation — and it widens only
+       opening framing's own size, centred on the relation – and it widens only
        where the relation genuinely does not fit inside that, which is what the
        framing buttons are for the rest of the time. */
     const w0 = Math.max(FULL.w, x1 - x0 + 2 * FOCUS_EDGE);
@@ -1257,7 +1257,7 @@ export default function EventsMap({
    * height, so simply giving the drawing the screen bought 0.31 CSS pixels per
    * unit and 600px of Scandinavia and open sea: taller, and no more legible.
    * The reader who pressed the button was looking at a card; the frame opens
-   * on that, and where there is no card, on Ukraine — which is the subject and
+   * on that, and where there is no card, on Ukraine – which is the subject and
    * is also the one framing a tall window can hold at a useful scale.
    */
   const wantFull = useRef(false);
@@ -1284,7 +1284,7 @@ export default function EventsMap({
    * every step of the plus button past it left "Україна" reading as pressed:
    * at full zoom, on one corner of one oblast, the control still announced the
    * whole-country framing as the current one. A control that answers a
-   * question about state has to answer it about the state that exists — zoom
+   * question about state has to answer it about the state that exists – zoom
    * or pan away from a preset and neither preset is what you are looking at.
    */
   const near = (a: { x: number; y: number; w: number }, b: { x: number; y: number; w: number }) =>
@@ -1321,16 +1321,16 @@ export default function EventsMap({
    * map's own page `outer` is the union of the European framing and the
    * Atlantic one, so the opening view is smaller than its bound and a press on
    * the ground always moves something. On the home band, which does not offer
-   * the Atlantic framing, `outer` *is* the opening framing — measured, a
+   * the Atlantic framing, `outer` *is* the opening framing – measured, a
    * 160px pull at 1440 left the viewBox at `-13.3 -51.1 1226.7 511.1`,
-   * unchanged — and the hand-shaped cursor was describing a gesture with no
+   * unchanged – and the hand-shaped cursor was describing a gesture with no
    * effect. It has somewhere to go the moment the reader zooms in, by the
    * stepper, by «Україна», by a double-click or by ⌘-wheel, so this is asked
    * of the current frame rather than of the surface.
    */
   const canPan = view.w < OUTER.w - 0.5 || view.h < OUTER.h - 0.5;
 
-  /** Pointer position in viewBox units — what both drag and double-click need. */
+  /** Pointer position in viewBox units – what both drag and double-click need. */
   const svgRef = useRef<SVGSVGElement | null>(null);
   /** Carries the reserved strips as padding so they resolve to pixels. */
   const safeRef = useRef<HTMLSpanElement | null>(null);
@@ -1406,7 +1406,7 @@ export default function EventsMap({
    * Ctrl or ⌘ zooms, and the map says so for a moment after the first bare
    * notch over it.
    *
-   * The map's own page used to be the exception — the drawing is the page
+   * The map's own page used to be the exception – the drawing is the page
    * there, so a notch meant zoom, and the page only moved once the zoom hit
    * its ends. Measured against a reader rather than against the drawing, that
    * is the classic trap: the map fills the viewport, so anyone on their way
@@ -1479,7 +1479,7 @@ export default function EventsMap({
    * zoom: a country outline is still a country outline at half size, but 11px
    * of Charis SIL at half size is 5.5px, which nobody reads. So they are sized
    * and offset in real pixels, converted back into projection units through
-   * this number — which means measuring the element, since the scale depends on
+   * this number – which means measuring the element, since the scale depends on
    * the container width as much as on the viewBox. Zero until the effect runs,
    * and zero suppresses the labels, so nothing is drawn at the wrong size
    * during hydration.
@@ -1497,7 +1497,7 @@ export default function EventsMap({
       // getComputedStyle hands back an unregistered custom property as the
       // tokens it was written with, so `max(0px, 436px - 35.2%)` would come
       // back as that string. As padding it comes back resolved, in pixels,
-      // against the figure's own width — which is what lets the reserve be a
+      // against the figure's own width – which is what lets the reserve be a
       // function of the width instead of one number for every screen.
       const cs = getComputedStyle(safeRef.current ?? el);
       const safe = (side: string) =>
@@ -1525,7 +1525,7 @@ export default function EventsMap({
     const ro = new ResizeObserver(measure);
     ro.observe(el);
     // A media query can change the reserved strips without changing the
-    // element's size — the masthead stops floating below 900px — and a
+    // element's size – the masthead stops floating below 900px – and a
     // ResizeObserver never fires for that.
     window.addEventListener("resize", measure);
     return () => {
@@ -1556,8 +1556,8 @@ export default function EventsMap({
    *
    * `touch-action: pan-y` was the worst of the three possible answers and it
    * was the one in force: a finger could drag the map east and west, a finger
-   * dragged north or south scrolled the page out from under it, and pinch —
-   * the first thing a hand tries on a map — was withheld from both the browser
+   * dragged north or south scrolled the page out from under it, and pinch –
+   * the first thing a hand tries on a map – was withheld from both the browser
    * and this component. One axis of pan is not a map; it is a map stealing
    * half of a scroll.
    *
@@ -1565,8 +1565,8 @@ export default function EventsMap({
    * that moment. In the page, on a phone, it is a picture: the page scrolls
    * over it in both directions and the list below is the interface, which is
    * what the component already decided when it made the marks inert. Held
-   * full, it is the only thing on the screen — there is no page left to steal
-   * a scroll from — so it takes every gesture: drag to pan, two fingers to
+   * full, it is the only thing on the screen – there is no page left to steal
+   * a scroll from – so it takes every gesture: drag to pan, two fingers to
    * zoom. A mouse is unaffected either way.
    */
   const gestures = !touch || full;
@@ -1575,7 +1575,7 @@ export default function EventsMap({
    * above, and the one `touch-action` has to be answered with.
    *
    * `(pointer: coarse)` asks what the *primary* pointer is, which on a laptop
-   * with a touchscreen is the mouse — so `gestures` is true there, correctly:
+   * with a touchscreen is the mouse – so `gestures` is true there, correctly:
    * a mouse drag should pan. But `touch-action: none` is not about the mouse.
    * Set on that laptop it would take the finger's page scroll away over the
    * drawing while giving nothing back, which is the trap this whole rule
@@ -1612,7 +1612,7 @@ export default function EventsMap({
    * are. `offMap` says a city has no point in europe-map.json; it does not say
    * the reader cannot see it. The Atlantic framing puts Montreal inside the
    * picture, and there it is an ordinary court marker with an ordinary
-   * connector running to it — no chevron, no tail, nothing claiming it is
+   * connector running to it – no chevron, no tail, nothing claiming it is
    * somewhere off to the west. The dock is what happens when the city really
    * is outside the view, which is still every other framing and will be
    * whatever other seat needs it next; the clamp below decides by whether it
@@ -1650,7 +1650,7 @@ export default function EventsMap({
    * How much room each marker has, in projection units: the distance to the
    * nearest other marker it is drawn beside.
    *
-   * This used to be two constants — 16.9 for the sites, 32 for the courts —
+   * This used to be two constants – 16.9 for the sites, 32 for the courts –
    * measured once and written into the two calls below as the largest radius
    * each family could bear before a circle swallowed its neighbour's centre.
    * They were the right numbers, and they are the numbers this still produces:
@@ -1681,13 +1681,13 @@ export default function EventsMap({
       // 95% of it, not all of it. At exactly the neighbour's distance a hit
       // circle reaches its neighbour's centre and which of the two answers a
       // click at that point is decided by the order they are painted in and by
-      // a rounding — measured, MH17's own centre returned eastern Ukraine's
+      // a rounding – measured, MH17's own centre returned eastern Ukraine's
       // circle. The old constants had this margin baked in: 16 against a
       // 16.9-unit pair is 95% of it.
       room[k] = Number.isFinite(m) ? 0.95 * m : 1e6;
     }
   }
-  /** The most crowded member of each family — what the family's floor is set by. */
+  /** The most crowded member of each family – what the family's floor is set by. */
   const siteRoom = Math.min(...events.map((e) => room[e.key]));
   const courtRoom = Math.min(...courts.map((c) => room[c.key]));
 
@@ -1697,7 +1697,7 @@ export default function EventsMap({
    * The radius is asked for in projection units and rendered at whatever the
    * container makes of them, and past a point the answer is a target nobody
    * can hit: measured on the map's own page in the wide framing it comes out
-   * 26.4px at 1440, 24.4 at 1000, 20.8 at 900, 17.2 at 800 and 11.5 at 641 —
+   * 26.4px at 1440, 24.4 at 1000, 20.8 at 900, 17.2 at 800 and 11.5 at 641 –
    * and the two closest markers, MH17 and eastern Ukraine, are 12.9px apart at
    * 1000 and 7.2px at 700, so below about 1000px there is no radius that would
    * let a reader pick one of the two rather than the other.
@@ -1706,9 +1706,9 @@ export default function EventsMap({
   /**
    * How far apart the two closest markers come out, in CSS pixels.
    *
-   * Targets that overlap are the accepted trade here — MH17 and eastern
+   * Targets that overlap are the accepted trade here – MH17 and eastern
    * Ukraine are 16.9 projection units apart and no radius that clears 24px
-   * also fits between them — and what makes it survivable is that a hit circle
+   * also fits between them – and what makes it survivable is that a hit circle
    * never covers its neighbour's *centre*, so each marker keeps a crescent of
    * its own. A mouse can aim at a crescent. A finger cannot, and that, not the
    * viewport width, is what the old `max-width: 640px` was really about.
@@ -1718,7 +1718,7 @@ export default function EventsMap({
    * Whether the drawing is a control surface at all, or a picture of one.
    *
    * This used to be `max-width: 640px`, on the reasoning that a phone cannot
-   * aim at the markers — true, but the width was never what made it true. The
+   * aim at the markers – true, but the width was never what made it true. The
    * scale is. At 800px in the wide framing the targets are 17.2px and two of
    * them are 9.1px apart, which is no more aimable than a phone; in the close
    * framing at the same 800px they are 27.8px and 21.4px apart, which is fine.
@@ -1734,7 +1734,7 @@ export default function EventsMap({
    * interface there exactly as it did before. A tablet in the same framing has
    * room for both and keeps the drawing.
    *
-   * It also starts out true, before anything has been measured — which is what
+   * It also starts out true, before anything has been measured – which is what
    * a reader with no JavaScript keeps. That reader cannot select anything, and
    * fifteen circles announcing themselves as buttons and answering nothing was
    * the map lying about what it could do.
@@ -1746,13 +1746,13 @@ export default function EventsMap({
    * It used to be asked once, of the sites, and answered for everything on the
    * drawing. That held while the two framings were both framings of Europe.
    * The Atlantic framing broke it: at 1440 it renders a site target at 20.9px
-   * — under the floor, correctly inert — and a court target at 24.8px, and the
+   * – under the floor, correctly inert – and a court target at 24.8px, and the
    * one thing that framing exists to show is a court. Answering the sites'
    * question for Montreal would have made the new button open a picture of a
    * city nobody could click.
    *
    * Nothing about the rule changes, only which numbers it is asked about. The
-   * radii already differed — 11…16 units for a site, 13…19 for a court —
+   * radii already differed – 11…16 units for a site, 13…19 for a court –
    * because the closest pair of each differs: MH17 and eastern Ukraine are
    * 16.9 units apart, The Hague and Brussels 32. Those are the two constants
    * below, and each family is now measured against its own.
@@ -1774,7 +1774,7 @@ export default function EventsMap({
    * Whether a city can be named at all at this size.
    *
    * `labelSize` asks for 11 CSS pixels and gives up at 14 projection units,
-   * because past that a place name is wider than the country it stands in —
+   * because past that a place name is wider than the country it stands in –
    * «СТРАСБУРГ» at 14 units already measures about the width of France. Where
    * the cap binds the label stops being 11px and starts shrinking with the
    * drawing, and nothing stopped it: measured on a 390px phone, the nine city
@@ -1790,7 +1790,7 @@ export default function EventsMap({
   const citied = cityF * scale >= 7.5;
 
   /**
-   * "28 проваджень у бібліотеці" — the same sentence in the card and in the
+   * "28 проваджень у бібліотеці" – the same sentence in the card and in the
    * seat list, so the noun agrees in one place rather than two.
    */
   const caseload = (n: number) =>
@@ -1805,8 +1805,8 @@ export default function EventsMap({
   /**
    * What the panel shows, whichever of the two was pressed.
    *
-   * A city and a country ask the same question of this map — which courts sit
-   * here, and how much of the archive do they hold — so they get one card
+   * A city and a country ask the same question of this map – which courts sit
+   * here, and how much of the archive do they hold – so they get one card
    * rather than two that would drift apart. The card's own machinery, the grip
    * and the close button and the drag, is written once and does not care which
    * kind opened it.
@@ -1829,7 +1829,7 @@ export default function EventsMap({
         }
       : null;
 
-  /** Sites heard at the selected court — what a court selection used to be
+  /** Sites heard at the selected court – what a court selection used to be
    *  *for*, back when the drawing had sites. A plain expression rather than a
    *  `useMemo`: with no events passed it filters an empty array, and the memo
    *  was costing the React Compiler a bail-out on this whole component. */
@@ -1842,7 +1842,7 @@ export default function EventsMap({
    *
    * A selection used to light its own marker and leave the other end alone: a
    * court's ring only warmed when the court itself was picked, so clicking a
-   * site told you nothing about who is hearing it — which is the single thing
+   * site told you nothing about who is hearing it – which is the single thing
    * this drawing exists to say. `on` is what the reader picked; `rel` is the
    * far end of every line running out of it, and both are lit.
    */
@@ -1857,7 +1857,7 @@ export default function EventsMap({
    * five framing controls, the six-site list, the nine seats) and no way to
    * skip. A grid of controls is a *composite* widget: it takes one stop, and
    * the arrows move within it. That is what a reader already expects from a
-   * map, a toolbar or a calendar, and it costs the map nothing — every mark is
+   * map, a toolbar or a calendar, and it costs the map nothing – every mark is
    * still reachable, in the same order the list below is in.
    *
    * Only the marks that actually answer are in the ring: where the drawing is
@@ -1872,7 +1872,7 @@ export default function EventsMap({
    * The two blocks under the drawing, folded.
    *
    * The map's own page is the map, and everything under it is furniture below
-   * the fold — but neither block is decoration, so neither is deleted.
+   * the fold – but neither block is decoration, so neither is deleted.
    *
    * The six places are the interface wherever the marks are too small to aim
    * at, so `null` here does not mean closed: it means "whatever the drawing
@@ -1880,17 +1880,17 @@ export default function EventsMap({
    * `coarse` answers it after the client has measured; a press by the reader
    * overrules both.
    *
-   * The nine seats are a directory, and the registry is a better one — 39
+   * The nine seats are a directory, and the registry is a better one – 39
    * rows, six filters, a search box, one click away in the top bar. What this
    * block has that the registry does not is nine caseloads side by side, which
    * is worth a line, not a screen. Folded.
    *
-   * Складені — на широкому вікні. На вузькому навпаки, і так само, як ключ,
-   * `null` тут означає «як вирішить ширина», а не «закрито». На 390 мапа —
+   * Складені – на широкому вікні. На вузькому навпаки, і так само, як ключ,
+   * `null` тут означає «як вирішить ширина», а не «закрито». На 390 мапа –
    * це смужка 341 піксель заввишки, де дев'ять міст злипаються в кластер, а
    * під нею був складений ключ і складений перелік судів: читач, що
    * догортав до кінця мапи, бачив два заголовки й жодного міста. На телефоні
-   * перелік і є мапою судів, тож він відкритий, а ключ — складений (див.
+   * перелік і є мапою судів, тож він відкритий, а ключ – складений (див.
    * `narrow` вище). Перший кадр вирішує CSS за шириною (`data-seats="auto"`,
    * events-map.css), тож блок не стрибає після гідратації; натискання
    * читача переважує обидва.
@@ -1899,7 +1899,7 @@ export default function EventsMap({
   const [seatsUser, setSeatsUser] = useState<boolean | null>(null);
   const seatsOpen = seatsUser ?? narrow;
   const [rov, setRov] = useState<string | null>(null);
-  /* The remembered mark, unless it has just gone inert under the reader —
+  /* The remembered mark, unless it has just gone inert under the reader –
      zooming out past the floor, or turning the phone. Then the ring's first. */
   const rovKey = rov && markerKeys.includes(rov) ? rov : markerKeys[0];
   const goMarker = (key: string) => {
@@ -1946,7 +1946,7 @@ export default function EventsMap({
    * What a screen reader is told when the selection changes.
    *
    * The live region used to wrap the cards themselves, `aria-atomic`, so
-   * picking The Hague read its entire card aloud — twenty-two registry
+   * picking The Hague read its entire card aloud – twenty-two registry
    * captions, about three thousand characters, in one announcement that could
    * not be interrupted. A live region is for saying that something happened.
    * The card says what; it is right there, it is reachable, and the focus goes
@@ -1983,7 +1983,7 @@ export default function EventsMap({
       /* Which framing is on the screen, for the one rule that has to know.
          The Atlantic framing is 2.3 times as wide as the projection and puts
          everything worth clicking in the right-hand tenth of it, so on the
-         home band — where the drawing is only 500 units tall — a floating card
+         home band – where the drawing is only 500 units tall – a floating card
          covers the lot. Measured at 1024, 1100 and 1280: all fifteen markers
          under the card, every site and every seat, on a page whose default
          state opens a card. See events-map.css. */
@@ -1995,8 +1995,8 @@ export default function EventsMap({
             the stylesheet likes, and have it come back as pixels. */}
         <span className="emap-safe" ref={safeRef} aria-hidden="true" />
         {/* Three named framings, because there are three questions: how far
-            the courts are, which site is which, and — since the ICAO Council
-            sits in Montreal — how far one of them really is. Everything
+            the courts are, which site is which, and – since the ICAO Council
+            sits in Montreal – how far one of them really is. Everything
             between them is the wheel, the drag and the two steppers. */}
         <div className="emap-zoom" role="group" aria-label={labels.zoomLabel}>
           {hasWide && (
@@ -2060,7 +2060,7 @@ export default function EventsMap({
           </button>
         </div>
         {/* The way back out. Beside the framing controls rather than in a
-            corner of its own: it is the same kind of thing — a control over
+            corner of its own: it is the same kind of thing – a control over
             what the drawing is showing and how much of it. */}
         {full && (
           <button
@@ -2089,15 +2089,15 @@ export default function EventsMap({
           data-pan={canPan ? "yes" : "no"}
           viewBox={viewBox}
           /* The frame is built to the container's aspect ratio, so meet and
-             slice are the same fit — and meet cannot crop during the one
+             slice are the same fit – and meet cannot crop during the one
              render before the element has been measured. */
           preserveAspectRatio="xMidYMid meet"
           /* `role="img"` claims the subtree is a picture, and a picture has no
              parts: an assistive technology is entitled to skip everything
-             inside it — which here is fifteen circles that carefully announce
+             inside it – which here is fifteen circles that carefully announce
              themselves as buttons with labels and pressed states. Where the
              marks answer the pointer this is a group of controls and says so;
-             where they do not — a phone, a drawing too small to aim at — it
+             where they do not – a phone, a drawing too small to aim at – it
              really is a picture, and the list below carries the content. */
           role={coarse && coarseCourts ? "img" : "group"}
           aria-label={labels.alt}
@@ -2108,7 +2108,7 @@ export default function EventsMap({
             if (ev.pointerType === "touch" && !gestures) return;
             touches.current.set(ev.pointerId, { x: ev.clientX, y: ev.clientY });
             /* Two fingers: a pinch, and no longer a drag or a click. The press
-               that started as one has to be abandoned rather than finished —
+               that started as one has to be abandoned rather than finished –
                otherwise lifting the second finger would leave a "click" on
                whatever the first one is resting on. */
             if (touches.current.size === 2) {
@@ -2124,8 +2124,8 @@ export default function EventsMap({
               return;
             }
             if (touches.current.size > 2) return;
-            // The markers drag too. They used to be excluded — "only the
-            // ground drags" — but a marker's hit circle is measured in
+            // The markers drag too. They used to be excluded – "only the
+            // ground drags" – but a marker's hit circle is measured in
             // projection units, so it is 26px wide at the opening framing and
             // 264px wide at full zoom, and at that point most of the picture
             // is marker: pressing anywhere near the Donbas and pulling simply
@@ -2150,7 +2150,7 @@ export default function EventsMap({
             /* The pinch. Anchored at the midpoint between the two fingers and
                re-anchored as that midpoint travels, so spreading over Crimea
                keeps Crimea between the fingers and the gesture pans as well as
-               scales — which is what a hand expects and what makes a second
+               scales – which is what a hand expects and what makes a second
                drag gesture unnecessary. */
             if (pinch.current && touches.current.size >= 2) {
               const [a, b] = [...touches.current.values()];
@@ -2167,7 +2167,7 @@ export default function EventsMap({
             if (!d || d.id !== ev.pointerId) return;
             // Nothing is held down any more, so this is not a drag: the up
             // went somewhere we never heard about it. Belt and braces beside
-            // onLostPointerCapture below — a released button that still pans
+            // onLostPointerCapture below – a released button that still pans
             // the map is the failure this guards, and neither guard was here
             // before. Chrome rewrites `buttons` from its own press state, so
             // this path could not be provoked in a headless test; it costs a
@@ -2182,7 +2182,7 @@ export default function EventsMap({
               panned.current = true;
               // Capture only now. Taken at the press it would retarget the
               // click that follows onto the <svg>, which is the whole element
-              // — and a marker would never be selectable by mouse again.
+              // – and a marker would never be selectable by mouse again.
               ev.currentTarget.setPointerCapture(ev.pointerId);
               setDragging(true);
             }
@@ -2238,7 +2238,7 @@ export default function EventsMap({
           {/* The oblast mesh is clipped to the outline it belongs inside. The
               boundaries come from Natural Earth at 10m and the outline from a
               110m atlas, so where an internal line runs out to meet the coast
-              the two disagree by a pixel or two — 21 of the mesh's 1063 points
+              the two disagree by a pixel or two – 21 of the mesh's 1063 points
               fall marginally outside. Clipping is cheaper and more honest than
               pretending two sources at different scales agree. */}
           <defs>
@@ -2253,7 +2253,7 @@ export default function EventsMap({
 
               This is what the map is for. A reader who takes nothing else from
               it should still leave knowing that the response to this war is
-              being heard in six countries besides Ukraine — and that is a fact
+              being heard in six countries besides Ukraine – and that is a fact
               about states, so it is drawn on states rather than inferred from
               a scatter of city dots the eye has to gather up itself.
 
@@ -2261,7 +2261,7 @@ export default function EventsMap({
               proceedings and the seats themselves both stay on top.
 
               Outside the aria-hidden group: these shapes are buttons, and a
-              focusable control inside aria-hidden is announced as nothing —
+              focusable control inside aria-hidden is announced as nothing –
               the keyboard lands on it and a screen reader says silence. The
               group closes around them and reopens after, so the painting
               order is unchanged. */}
@@ -2269,8 +2269,8 @@ export default function EventsMap({
         <g>
           {Object.entries(geo.forums).map(([name, d]) => {
             /* A shape with a country entry behind it answers when pressed; one
-               without is scenery. Today every lit shape has an entry — the
-               build fails otherwise — but the drawing asks rather than
+               without is scenery. Today every lit shape has an entry – the
+               build fails otherwise – but the drawing asks rather than
                assumes, so a shape lit before its entry exists is inert rather
                than a control that does nothing. */
             const country = countries.find((c) => c.key === name);
@@ -2307,7 +2307,7 @@ export default function EventsMap({
               the oblasts are the frame a Ukrainian reader already has, and a
               foreign one can at least see that Crimea is a piece of this
               country and not a neighbour of it. Quieter than the outer border
-              by a wide margin — that stroke is the shape that matters. */}
+              by a wide margin – that stroke is the shape that matters. */}
           {/* The ground a marker speaks for, where the marker alone would be a
               claim the record does not support: the ICC's situation is the
               whole country, not Mariupol, and the energy arbitrations are a
@@ -2321,7 +2321,7 @@ export default function EventsMap({
               /* Clipped to the country, like the oblast mesh and for the same
                  reason: an area cut from Natural Earth's 10m admin-1 units is
                  drawn against an outline from a 110m atlas, and where the two
-                 disagree — a pixel or two along the coast and the border — the
+                 disagree – a pixel or two along the coast and the border – the
                  fill would spill past the country it is lighting. */
               clipPath="url(#emap-ua-clip)"
             />
@@ -2491,7 +2491,7 @@ export default function EventsMap({
               >
               <circle className="emap-halo" cx={x} cy={y} r={e.size / 2} />
                 {/* The drawn dot is r=6, which renders 14.4px wide on a
-                    1440px screen — under the 24px minimum target size. The
+                    1440px screen – under the 24px minimum target size. The
                     interaction sits on its own circle so the drawing keeps
                     the scale it wants. */}
               <circle
@@ -2513,15 +2513,15 @@ export default function EventsMap({
                   onKeyDown={(ev) => onMarkerKey(ev, e.key, () => toggleSite(e.key))}
               />
                 <circle className="emap-dot" cx={x} cy={y} r={6} />
-                {/* The name, once the drawing is big enough to hold it — or,
+                {/* The name, once the drawing is big enough to hold it – or,
                     whatever the scale, when this is the one the reader picked.
 
                     `labelled` is a question about six labels at once: the
                     tightest pair, MH17 and eastern Ukraine, are 16.9 units
                     apart and their labels touch below 2.6 CSS pixels per unit.
                     One label has nothing to collide with. And the alternative
-                    was what the map did: in the framing it opens at — 1.2
-                    pixels per unit at 1440 — it named all nine courts and left
+                    was what the map did: in the framing it opens at – 1.2
+                    pixels per unit at 1440 – it named all nine courts and left
                     the six places the archive is *about* as unlabelled dots. */}
                 {(labelled ||
                   room[e.key] * scale >= LABEL_GAP ||
@@ -2558,7 +2558,7 @@ export default function EventsMap({
       </svg>
 
       {/* Clicking a dot changes a panel that can be 800px away. Without a live
-          region a screen-reader user hears nothing at all — and with the wrong
+          region a screen-reader user hears nothing at all – and with the wrong
           one they hear three thousand characters of registry citation. One
           sentence: what was picked, and how much of the record it stands for.
           The card carries the rest, where it can be read at leisure. */}
@@ -2574,7 +2574,7 @@ export default function EventsMap({
           {/* The grip. The card is anchored to a corner and the drawing is
               not, so a marker or a seat can end up underneath it and the only
               answers used to be closing it or changing the framing. It moves
-              now — by this, and not by the card itself, which is full of links
+              now – by this, and not by the card itself, which is full of links
               a drag would swallow. Only where the card floats: below 1000px it
               is in the flow under the drawing and covers nothing. */}
           <button
@@ -2657,7 +2657,7 @@ export default function EventsMap({
                   in one forum, so it answers with the arithmetic. Only where
                   the two numbers differ: "3 of 3" is noise. */}
               {/* Mariupol counts six warrants and links the situation they
-                  issue from, which is not one of the six — so the arithmetic
+                  issue from, which is not one of the six – so the arithmetic
                   read «1 of 6», claiming a warrant was written up when none
                   is. A marker that says its link sits outside its count gets
                   the relation stated instead. */}
@@ -2681,7 +2681,7 @@ export default function EventsMap({
                       {/* The map counted rows and said nothing about
                           consequences: it gave a number of proceedings and no
                           posture and no figure, while the registry beside it
-                          carries both on every row — and the largest award in
+                          carries both on every row – and the largest award in
                           the collection, $1.1bn in Oschadbank, appeared
                           nowhere on the map at all. */}
                       {(c.stage || c.amount) && (
@@ -2715,7 +2715,7 @@ export default function EventsMap({
           {/* The grip. The card is anchored to a corner and the drawing is
               not, so a marker or a seat can end up underneath it and the only
               answers used to be closing it or changing the framing. It moves
-              now — by this, and not by the card itself, which is full of links
+              now – by this, and not by the card itself, which is full of links
               a drag would swallow. Only where the card floats: below 1000px it
               is in the flow under the drawing and covers nothing. */}
           <button
@@ -2786,8 +2786,8 @@ export default function EventsMap({
             <div className="emap-when">{panel.title}</div>
             {/* The seats as a list, one link each.
 
-                This was a single run-on line — "ICJ — Міжнародний суд ООН ·
-                ICC — Міжнародний кримінальний суд · …" — under which sat the
+                This was a single run-on line – "ICJ – Міжнародний суд ООН ·
+                ICC – Міжнародний кримінальний суд · …" – under which sat the
                 court's whole caseload: every summarised decision with its
                 status chip, then four more from the registry, then a link to
                 the rest. The owner's note is to keep the court names and the
@@ -2830,7 +2830,7 @@ export default function EventsMap({
                 return (
                   <li key={seat.id ?? seat.name}>
                     {/* A seat with no institution of its own is a fact about
-                        where something sat, not a way into a caseload — so it
+                        where something sat, not a way into a caseload – so it
                         is named and not linked, rather than linked at
                         something else. */}
                     {seat.id ? (
@@ -2861,7 +2861,7 @@ export default function EventsMap({
               <p className="emap-caseload">
                 {(() => {
                   /* The figure is what the reader came for, so the figure is
-                     what is lit — which means the sentence has to come apart
+                     what is lit – which means the sentence has to come apart
                      at it rather than be substituted whole. Split on the
                      template's own «{n} {w}», not on the rendered number: a
                      card whose total is 3 would otherwise light the 3 in
@@ -2901,21 +2901,21 @@ export default function EventsMap({
 
       {/* Outside the figure, not inside it. The figure is the drawing's own
           box and on the map's own page it carries a declared height, so a
-          strip laid out in it overlapped the legend below — measured, the rail
+          strip laid out in it overlapped the legend below – measured, the rail
           and the legend both started at y = 706. The cards can live in there
           because they are absolutely placed; these are in flow. */}
-      {/* Where the drawing is a picture, it says so — and offers the one
+      {/* Where the drawing is a picture, it says so – and offers the one
           thing that turns it back into a map. It was silent about this: the
           marks went inert below the 24px floor, correctly, while the grab
           cursor and the zoom stepper stayed on, promising a control surface
           that answered nothing. Rendered only where both families are inert,
-          so a landscape phone — which can already reach the courts — is not
+          so a landscape phone – which can already reach the courts – is not
           told its map is a picture. */}
       {(touch || (coarse && coarseCourts)) && !full && (
         <div className="emap-overview">
           {/* The sentence only where the drawing really is a picture. A phone
               held sideways renders a court target at 24.9px and names its nine
-              cities — it is a small map, not a picture of one — so it is
+              cities – it is a small map, not a picture of one – so it is
               offered the screen without being told its map does not work. */}
           {coarse && coarseCourts && <p>{labels.overview}</p>}
           <button type="button" className="emap-gofull" onClick={() => setFull(true)}>
@@ -2925,7 +2925,7 @@ export default function EventsMap({
       )}
 
       {/* The six, as text, under the key that explains the drawing above
-          them. The legend used to sit below this list — which put the keys a
+          them. The legend used to sit below this list – which put the keys a
           screen away from the marks they name, so pressing one to see the five
           sites with a written decision showed the reader a legend and no map.
           A key belongs beside the thing it is a key to; the list is content and
@@ -2936,7 +2936,7 @@ export default function EventsMap({
         map's actual payload, and on a narrow screen it is the whole map.
       */}
       {/* The six, as text, under the key that explains the drawing above
-          them. The legend used to sit below this list — which put the keys a
+          them. The legend used to sit below this list – which put the keys a
           screen away from the marks they name, so pressing one to see the five
           sites with a written decision showed the reader a legend and no map.
           A key belongs beside the thing it is a key to; the list is content and
@@ -2954,11 +2954,11 @@ export default function EventsMap({
           the flow under the drawing, where a phone has always had it. */}
       {/* A legend that draws the marks instead of naming them. Every glyph
           below is the same shape the map uses, at the same size, so the reader
-          matches by sight rather than by reading a colour word — and the three
+          matches by sight rather than by reading a colour word – and the three
           that name a *set* of marks are controls, not captions. */}
       <div className="emap-legend" data-variant={variant}>
         {/* Only on the map's own page. On the home band the key is a single
-            wrapped row of six words under the drawing — there is nothing there
+            wrapped row of six words under the drawing – there is nothing there
             to fold, and a control to fold it would be larger than the thing. */}
         {variant === "full" && (
           <button
@@ -2971,7 +2971,7 @@ export default function EventsMap({
             {labels.legendTitle}
           </button>
         )}
-        {/* What the marks do, at the top, where an invitation belongs — it was
+        {/* What the marks do, at the top, where an invitation belongs – it was
             at the foot of the key, under eight things a reader has to get past
             before being told the marks answer at all. The map's whole mechanic
             was written down nowhere before this: a reader had to find it by
@@ -2980,7 +2980,7 @@ export default function EventsMap({
         {/* The whole group, not just its keys. Two of the three were already
             drawn from the data and self-hid when the sites went; the first was
             not, so the key kept a colour, a heading and a filter standing for
-            marks that are no longer on the drawing — and pressing it would
+            marks that are no longer on the drawing – and pressing it would
             have dimmed the map to show nothing. */}
         {events.length > 0 && (
         <div className="emap-leg-group">
@@ -3003,7 +3003,7 @@ export default function EventsMap({
             {/* «Ще досліджуємо», and only where there is one to point at.
                 It used to render unconditionally, and after «Затримання
                 кораблів» was taken off the map (see content/map.ts) it would
-                have been a key, a colour and a filter standing for nothing —
+                have been a key, a colour and a filter standing for nothing –
                 a reader pressing it would light up an empty map. Rendered
                 from the data, so putting an unwritten event back restores the
                 key with it. */}
@@ -3047,8 +3047,8 @@ export default function EventsMap({
         {/* On the home band this group renders too, but only its first key:
             without it the reader sees the site marks and no key to the rings
             the courts are drawn as, which are half the picture. Everything
-            else here — the dashed line, the docked seat, the lit ground, the
-            oblast mesh — explains a detail of a drawing the band is showing at
+            else here – the dashed line, the docked seat, the lit ground, the
+            oblast mesh – explains a detail of a drawing the band is showing at
             a glance, and a band is a glance. Three marks and one sentence; the
             rest is on the map's own page, which is one link away. */}
         <div className="emap-leg-group">
@@ -3092,7 +3092,7 @@ export default function EventsMap({
             {/* The one glyph on the drawing a reader has no way to recognise,
                 and the one the legend did not explain: a seat the frame cannot
                 hold, pinned to the border with a chevron and a tail running off
-                the picture. By data rather than by name — today that is
+                the picture. By data rather than by name – today that is
                 Montreal and the ICAO Council, and a second such seat would
                 bring its own key with it. */}
             {variant === "full" && courts.some((c) => c.offMap) && (
@@ -3106,16 +3106,16 @@ export default function EventsMap({
               </li>
             )}
             {/* No key for the marker sizes. They still encode how much of the
-                record a place accounts for — that is what `markerSize` is for,
-                and the build still checks it against each card's own count —
+                record a place accounts for – that is what `markerSize` is for,
+                and the build still checks it against each card's own count –
                 but the range is 18 to 26 projection units, which at the scale
                 this is read at is a 24px circle beside a 17px one. The eye does
                 not read that as "five times the caseload", and a key that names
                 a distinction the reader cannot see is a key that teaches them
                 to distrust the others. The number is on every card, in words. */}
             {/* The oblast mesh. It is a deliberate and useful part of the
-                drawing — it is what lets a reader see that Crimea is a piece of
-                this country and not a neighbour of it — and to anyone who does
+                drawing – it is what lets a reader see that Crimea is a piece of
+                this country and not a neighbour of it – and to anyone who does
                 not already know the country it was an unexplained grid. */}
             {variant === "full" && (
               <li className="emap-key">
@@ -3134,13 +3134,13 @@ export default function EventsMap({
           The legend's own «Місця подій» key already self-hid when the sites
           came off the map; this header did not, so the map page rendered a
           fold control reading «МІСЦЯ ПОДІЙ 0» over an empty list. A count of
-          zero is not information — it is a section admitting it has nothing
-          in it — and it was the first thing under the drawing on a phone. */}
+          zero is not information – it is a section admitting it has nothing
+          in it – and it was the first thing under the drawing on a phone. */}
       {variant === "full" && events.length > 0 && (
         <button
           type="button"
           className="emap-fold-h"
-          /* `auto` means open here — see the note in events-map.css — so the
+          /* `auto` means open here – see the note in events-map.css – so the
              control has to say open. It said `coarse`, which is false on a
              desktop, so the chevron pointed at a folded block while six cards
              sat under it. */
@@ -3172,7 +3172,7 @@ export default function EventsMap({
       {/* The seats, out of the legend and into a block of their own.
           A legend answers "how do I read this drawing". Nine cities with the
           full names of every institution seated in them answers "where do I go
-          next", which is a different question — and it was the longest thing on
+          next", which is a different question – and it was the longest thing on
           the page, pushing the two actual keys to the top of a block a reader
           read as one list. Same buttons, same comparison of nine caseloads side
           by side; each one now also opens the registry filtered on that seat's
@@ -3195,7 +3195,7 @@ export default function EventsMap({
                 <li key={c.key}>
                   {/* One row per seat, and the figure at the end of it.
                       The one thing this block holds that the registry does not
-                      is nine caseloads side by side — and until now they were
+                      is nine caseloads side by side – and until now they were
                       set under the text in a four-column grid, where no two of
                       them lined up and the comparison it exists for could not
                       be made. A row, a rule, and the number in the right-hand

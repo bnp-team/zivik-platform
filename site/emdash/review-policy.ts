@@ -2,18 +2,18 @@
  * Review before publish: editors write, an administrator publishes.
  *
  * Every save in the admin can end in «Опублікувати», and a publish is live in
- * two minutes — on a site whose readers are lawyers citing it. EmDash's own
+ * two minutes – on a site whose readers are lawyers citing it. EmDash's own
  * roles let an Editor publish anything; nothing between a draft and the
  * public page asked a second person to look. So publishing, unpublishing and
  * scheduling are held to a minimum role, and anyone below it gets a clear
  * refusal that says what to do instead: save the draft and ask for review.
  *
  * The threshold is the build variable PUBLISH_MIN_ROLE (EmDash role levels:
- * 20 Contributor, 30 Author, 40 Editor, 50 Admin); unset, it is 50 — only an
+ * 20 Contributor, 30 Author, 40 Editor, 50 Admin); unset, it is 50 – only an
  * administrator publishes. Set it to 40 to let Editors publish directly.
  *
  * Only people are checked. A publish the scheduler carries out was allowed
- * when it was scheduled — and scheduling is checked here too — and the
+ * when it was scheduled – and scheduling is checked here too – and the
  * system's and plugins' own actions are not an editor's decision.
  */
 import { definePlugin, type PluginContext } from "emdash";

@@ -24,7 +24,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
    * While the site is closed, hand out nothing.
    *
    * `app/robots.ts` already withholds the `Sitemap:` line and its comment says
-   * the site "stops handing out a map" — but not advertising a file is not the
+   * the site "stops handing out a map" – but not advertising a file is not the
    * same as not serving it. /sitemap.xml is a well-known path; anyone who
    * guesses it (and every crawler does) got the complete list of 24 URLs,
    * including the eight decision pages, straight out of a deployment that is
@@ -39,8 +39,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const homeLanguages = languagesFor((l) => `/${l}`);
 
-  /* Головна й бібліотека своєї дати не мають — вони зібрані з оглядів і
-     змінюються тоді, коли змінюється огляд. Тож їхня дата — найсвіжіша серед
+  /* Головна й бібліотека своєї дати не мають – вони зібрані з оглядів і
+     змінюються тоді, коли змінюється огляд. Тож їхня дата – найсвіжіша серед
      оглядів (`asOf`, інакше дата рішення): новий огляд або перевірений
      контекст зсуває її, і краулер бачить, що обидві сторінки варто
      перечитати. Без неї обидві стояли в карті взагалі без `lastModified`. */
@@ -56,8 +56,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }));
 
   /*
-   * The registry is the archive's front door — the full 33 proceedings with
-   * filters — and it was missing from the sitemap entirely. It changes
+   * The registry is the archive's front door – the full 33 proceedings with
+   * filters – and it was missing from the sitemap entirely. It changes
    * whenever a case is added or a summary lands, so it tracks the homepage's
    * cadence rather than a decision page's.
    */
@@ -96,7 +96,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     alternates: { languages: teamLanguages },
   }));
 
-  /* The map page is a second way into the same 33 proceedings — worth
+  /* The map page is a second way into the same 33 proceedings – worth
      indexing in its own right, and it changes whenever a site gains a
      summarised decision. */
   const mapLanguages = languagesFor((l) => `/${l}/map`);
@@ -108,7 +108,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }));
 
   /* The about page carries what the archive is, who runs it and how a
-     decision becomes a summary — the page a reader checks before trusting
+     decision becomes a summary – the page a reader checks before trusting
      anything else here, so it belongs in the map. */
   const aboutLanguages = languagesFor((l) => `/${l}/about`);
   const about: MetadataRoute.Sitemap = locales.map((locale) => ({
@@ -118,8 +118,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     alternates: { languages: aboutLanguages },
   }));
 
-  /* No /partners entry. The route is gone — owner's decision that the
-     partner row belongs on the home page and nowhere else — and a sitemap
+  /* No /partners entry. The route is gone – owner's decision that the
+     partner row belongs on the home page and nowhere else – and a sitemap
      that still advertised it would be handing crawlers a 404. */
 
   /* Privacy and terms are linked from every page's footer. They rarely
@@ -136,7 +136,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   });
 
   /* The blog: the index in each language that has a post, and each post in
-     the languages it was written in — hreflang only between the ones that
+     the languages it was written in – hreflang only between the ones that
      exist (see `postHasLocale`). Nothing at all before the first post. */
   const presentIn = (present: readonly (typeof locales)[number][], path: (l: string) => string) => {
     const languages: Record<string, string> = {};

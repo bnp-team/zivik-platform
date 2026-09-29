@@ -20,8 +20,8 @@ const T = {
   seat: { uk: "Місце розгляду", en: "Seat" },
   pages: { uk: "Обсяг рішення", en: "Length of the decision" },
   pagesN: { uk: "с.", en: "pp." },
-  /* The heading over the siblings. Deliberately says what the relation IS —
-     same forum — and claims nothing about the law. These proceedings are
+  /* The heading over the siblings. Deliberately says what the relation IS –
+     same forum – and claims nothing about the law. These proceedings are
      neighbours on a docket, not authority for one another. */
   siblings: { uk: "Інші провадження в цьому суді", en: "Other proceedings before this forum" },
   /* Shown only when the forum has no analysed sibling to offer. */
@@ -79,20 +79,20 @@ export function pendingCase(slug: string): RegistryCase | undefined {
 const money = moneyFull;
 
 /**
- * Опис сторінки справи без огляду — для пошукової видачі.
+ * Опис сторінки справи без огляду – для пошукової видачі.
  *
- * Був «Ще досліджуємо. Призупинено · Заявлена · 2024.» — 46 символів
+ * Був «Ще досліджуємо. Призупинено · Заявлена · 2024.» – 46 символів
  * (pca-31), 52 англійською (nl-33): ні назви справи, ні суду, лише службові
  * позначки, і пошуковик підставляв замість них що завгодно зі сторінки (аудит
  * SEO). Тепер опис складено з того самого запису реєстру, у тому самому
- * порядку, що й сторінка: назва, суд, стан · примітка · рік, і наприкінці —
+ * порядку, що й сторінка: назва, суд, стан · примітка · рік, і наприкінці –
  * що цей огляд ще пишеться. Нічого, чого немає в записі.
  *
- * Хвіст (стан, примітка, рік, «ще досліджуємо») — обов'язковий: це те, що
+ * Хвіст (стан, примітка, рік, «ще досліджуємо») – обов'язковий: це те, що
  * сторінка каже про себе, і те, що опис казав і раніше. Під 160 поступається
- * голова: спершу повна назва суду — його абревіатурі, тоді назва справи
- * обрізається на слові (а якщо від неї лишилося б менше за 60 символів —
- * з хвоста йде примітка). Найдовша назва в реєстрі — 218 символів, тож без
+ * голова: спершу повна назва суду – його абревіатурі, тоді назва справи
+ * обрізається на слові (а якщо від неї лишилося б менше за 60 символів –
+ * з хвоста йде примітка). Найдовша назва в реєстрі – 218 символів, тож без
  * цього порядку опис розірвало б посеред «ще досліджуємо».
  */
 function pendingDescription(
@@ -108,30 +108,30 @@ function pendingDescription(
   const name = caseName(entry, locale);
   const forums = inst ? [pick(inst.name, locale), pick(inst.abbr, locale)] : [entry.institutionId];
   for (const forum of forums) {
-    const d = `${name} — ${forum}. ${tailOf(true)}`;
+    const d = `${name} – ${forum}. ${tailOf(true)}`;
     if (d.length <= META_MAX) return d;
   }
   const forum = forums[forums.length - 1];
-  /* Назва — те, що людина шукала; примітка — довідка до неї. Коли довга
-     примітка (lt-39, itlos-15 — по 60–80 символів) лишила б від назви
+  /* Назва – те, що людина шукала; примітка – довідка до неї. Коли довга
+     примітка (lt-39, itlos-15 – по 60–80 символів) лишила б від назви
      «Lithuania v a…», поступається примітка, а не назва. */
   const NAME_MIN = 60;
   for (const withNote of [true, false]) {
     const tail = tailOf(withNote);
-    const room = META_MAX - ` — ${forum}. ${tail}`.length;
+    const room = META_MAX - ` – ${forum}. ${tail}`.length;
     if (room >= Math.min(name.length, NAME_MIN)) {
-      return `${cutAtWord(name, room)} — ${forum}. ${tail}`;
+      return `${cutAtWord(name, room)} – ${forum}. ${tail}`;
     }
   }
   /* Сюди не доходить жоден запис реєстру; межа однаково тримається. */
-  return cutAtWord(`${name} — ${forum}. ${tailOf(false)}`, META_MAX);
+  return cutAtWord(`${name} – ${forum}. ${tailOf(false)}`, META_MAX);
 }
 
 /**
  * Title and description for a proceeding with no summary yet.
  *
- * Same shape as the summary pages — `decisionMetadata` gives it the canonical,
- * the hreflang pair and a complete OG/Twitter card — but the description says
+ * Same shape as the summary pages – `decisionMetadata` gives it the canonical,
+ * the hreflang pair and a complete OG/Twitter card – but the description says
  * what this page actually is rather than promising a summary. No
  * `/og/cases/{id}.png` exists for these, so the card falls back to the site's.
  */
@@ -154,10 +154,10 @@ export function pendingMetadata({
     /* The heading's name, in the reader's language. A tab, a search result and
        a shared link all show this string, and the caption runs to forty words:
        «National Joint Stock Company «Naftogaz of Ukraine» v. PJSC «Gazprom»,
-       SCC Arbitration No. V 2014/129 - Gas Transit Arbitration — Арбітражний
+       SCC Arbitration No. V 2014/129 - Gas Transit Arbitration – Арбітражний
        інститут…» is 130 characters before the forum's name begins. The full
        caption is on the page, in the row that carries it. */
-    title: `${caseName(entry, locale)} — ${inst ? pick(inst.name, locale) : entry.institutionId}`,
+    title: `${caseName(entry, locale)} – ${inst ? pick(inst.name, locale) : entry.institutionId}`,
     description: pendingDescription(entry, inst, t.title, locale),
     ogAlt: dict.meta.ogAlt,
     siteName: dict.brand.wordmark,
@@ -165,7 +165,7 @@ export function pendingMetadata({
   /* Out of the index even after launch, but followed. A page that says the
      summary is still being written and lists the court's own documents is
      useful to a reader arriving from the registry and thin to a search engine
-     — sixty-two of them would be most of what Google saw. The links out of it
+     – sixty-two of them would be most of what Google saw. The links out of it
      still count. Until launch the site-wide noindex, nofollow stands. */
   return { ...metadata, robots: isIndexable ? { index: false, follow: true } : robotsMetadata };
 }
@@ -200,14 +200,14 @@ export default function CasePending({
 
   /* Thirty-one of the thirty-nine proceedings are in this state, and each was
      a leaf: a card, an apology and two links back to lists. What the registry
-     already knows is that none of them stands alone — the ten pending Crimea
+     already knows is that none of them stands alone – the ten pending Crimea
      BIT arbitrations sit beside Oschadbank and DTEK, which are written up, and
      the six pending ICC records are the individual warrants under a situation
      that is written up. Saying so turns a dead end into the cluster it belongs
      to, and the two relations below are the two the data actually supports.
 
      Same forum first. It is a fact about a docket, not about the law, and it
-     is stated as such — nothing here claims one proceeding is authority for
+     is stated as such – nothing here claims one proceeding is authority for
      another. */
   const siblings = registryProceedings.filter(
     (c) => c.institutionId === entry.institutionId && c.id !== entry.id,
@@ -229,22 +229,22 @@ export default function CasePending({
 
   /* And a proceeding that is alone in its forum AND alone in its field still
      has somewhere to go: the analysed decisions of forums of the same kind.
-     That is a weaker relation than the two above and it is named as one — an
-     international court's decision, an arbitral award — rather than dressed up
+     That is a weaker relation than the two above and it is named as one – an
+     international court's decision, an arbitral award – rather than dressed up
      as a connection between these particular cases. */
   const catOf = (c: RegistryCase) =>
     institutions.find((i) => i.id === c.institutionId)?.category;
   const category = inst?.category;
   /* The test is whether a written-up decision has been offered yet, not
      whether any neighbour has. Tied to `siblings.length` it left the two SCC
-     arbitrations pointing at each other and nowhere else — both are stubs, so
+     arbitrations pointing at each other and nowhere else – both are stubs, so
      the page led a reader from one apology to another. */
   const offeredAnalysed = siblings.some((c) => c.lit) || kindred.length > 0;
   const kin2 =
     !offeredAnalysed && category
       ? registryCases.filter((c) => c.lit && c.id !== entry.id && catOf(c) === category)
       : [];
-  /* `executive` has exactly one member — the EU decision — so a category match
+  /* `executive` has exactly one member – the EU decision – so a category match
      returns nothing for it. That record falls back to the library's analysed
      decisions, which is what its heading says. */
   const kin2Final =
@@ -256,7 +256,7 @@ export default function CasePending({
     `/${locale}/cases/${c.summarySlug ?? c.id}`;
   /* A heading takes the short name; the full caption is a fact of the record
      and is set out in the table below. The rule is shared with the home page's
-     list — see `caseName` in content/types.ts. */
+     list – see `caseName` in content/types.ts. */
   const named = (c: RegistryCase) => caseName(c, locale);
 
   const relations = (items: RegistryCase[], heading: string) => (
@@ -268,13 +268,13 @@ export default function CasePending({
             edge, and the names here are long enough to wrap: the year floated
             alone opposite the second line of a title, with a hand's width of
             empty rail between them. Ranged left in a narrow mono column it is
-            a ledger — the years line up, the names start on one axis, and the
+            a ledger – the years line up, the names start on one axis, and the
             row has no gap in the middle of it. */}
         {items.slice(0, SHOWN).map((c) => (
           <li key={c.id} data-lit={c.lit ? "yes" : "no"}>
             <Link href={caseHref(c)}>
               <span className="pend-rel-year">{c.year ?? ""}</span>{" "}
-              {/* The space is for the link's text, not its look — the grid
+              {/* The space is for the link's text, not its look – the grid
                   drops it. Without it the name read «2015Укрнафта проти РФ». */}
               <span className="pend-rel-name">
                 {/* `lang` belongs to the case name and not to the mark beside
@@ -350,8 +350,8 @@ export default function CasePending({
           )}
           {/* The caption in full, and only where the heading is not already
               it. Eleven of these captions carry something that is nowhere else
-              on the record — ten co-claimants, a second docket, the date of a
-              Council decision — so shortening the title cannot be allowed to
+              on the record – ten co-claimants, a second docket, the date of a
+              Council decision – so shortening the title cannot be allowed to
               take them off the page. */}
           {entry.nameShort && (
             <div>

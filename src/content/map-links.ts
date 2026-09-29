@@ -32,7 +32,7 @@ import type { CaseStageKey } from "./types";
  * The archive holds 33 proceedings, and before this the ten heard by the Dutch
  * courts, the ICAO Council, the ICC arbitration court, Lithuania and the EU
  * appeared nowhere. A court answers for its own caseload now, which is only
- * true while every institution has a seat — so the build checks it.
+ * true while every institution has a seat – so the build checks it.
  *
  * The list below is the escape hatch, and it is a list rather than a softened
  * check for a reason: the guard exists to catch the institution somebody
@@ -45,11 +45,11 @@ const OFF_MAP_INSTITUTIONS: Record<string, string> = {
      dock-at-the-edge treatment it used to get was what the Atlantic framing
      existed to undo. The owner's decision is that the map stays European. The
      proceeding is in the registry, where a reader looking for it will be, and
-     the appeal against the Council's decision went to the ICJ — which is on
+     the appeal against the Council's decision went to the ICJ – which is on
      the map. */
   icao: "Montreal is off the European frame; the proceeding stays in the registry",
   /* Euroclear, where the Russian central-bank assets are immobilised. It is
-     an enforcement measure and not a proceeding, and the EU is not a court —
+     an enforcement measure and not a proceeding, and the EU is not a court –
      so on a map about the states whose courts hear these cases it was a marker
      that could never have a lit country under it. The measure is in the
      registry; the map stays about courts. */
@@ -84,13 +84,13 @@ export interface MapCaseLink {
    * The map counted rows and said nothing about consequences: every card gave
    * a number of proceedings and none of them gave a figure or a posture, while
    * the registry beside it carries both on every row. The largest award in the
-   * collection — $1.1bn in Oschadbank — appeared nowhere on the map at all.
+   * collection – $1.1bn in Oschadbank – appeared nowhere on the map at all.
    *
    * `stage` is the registry's own key, resolved to a label by the render site,
    * which has the dictionary. `amount` is already formatted: the sign in the
    * source encodes which way the money ran, and that is not something a tag
    * can caption honestly, so this is the magnitude and the label calls it the
-   * sum in dispute — the same wording, from the same reasoning, as the pending
+   * sum in dispute – the same wording, from the same reasoning, as the pending
    * case page.
    */
   stage?: CaseStageKey;
@@ -104,11 +104,11 @@ export interface MapCaseLink {
  * page sets the amount as a field in a definition list with the width of the
  * page behind it; here it is a tag inside a 300px card, and «1 100 000 000
  * USD» is thirteen digits and a currency across a column that also has to hold
- * the name of the case. `compact` gives «1,1 млрд $» and "$1.1B" — the same
+ * the name of the case. `compact` gives «1,1 млрд $» and "$1.1B" – the same
  * number, at the precision a tag can carry.
  *
  * The magnitude, not the signed value: the sign in the source encodes which
- * way the money ran — the gas sales arbitration is recorded as −2.02bn — and
+ * way the money ran – the gas sales arbitration is recorded as −2.02bn – and
  * that is not something a tag can caption honestly, so the label calls it the
  * sum in dispute and leaves the direction to the case.
  */
@@ -146,8 +146,8 @@ export function caseLinksFor(eventKey: string, locale: Locale): MapCaseLink[] {
  * caseload. So the two are joined here, where both are already in scope, and
  * every surface takes the joined rows rather than counting again.
  *
- * A seat with no institution — Paris holds the PCA as the *venue* of the
- * Oschadbank arbitration, and the PCA itself sits in The Hague — gets no
+ * A seat with no institution – Paris holds the PCA as the *venue* of the
+ * Oschadbank arbitration, and the PCA itself sits in The Hague – gets no
  * count, for the same reason it gets no link: it is a fact about where
  * something sat, not a court with a caseload.
  */
@@ -169,7 +169,7 @@ export function courtCaseloadFor(courtKey: string, locale: Locale) {
     /**
      * The registry institutions this seat stands for, so a card can hand the
      * reader the rest of the caseload instead of printing it. `/registry`
-     * opens filtered on `?court=`, and takes several ids separated by commas —
+     * opens filtered on `?court=`, and takes several ids separated by commas –
      * The Hague alone seats four (ICJ, ICC, PCA, the Dutch courts).
      */
     courtIds: court?.institutionIds ?? [],
@@ -198,7 +198,7 @@ export function courtCaseloadFor(courtKey: string, locale: Locale) {
       .filter((c) => !(c.summarySlug && c.summarySlug in SUMMARIES))
       .map((c) => ({
         id: c.id,
-        // The citation, and — for a Ukrainian reader — the same case said in
+        // The citation, and – for a Ukrainian reader – the same case said in
         // Ukrainian. Never both in the English locale: there the caption is
         // already in the reader's language and a second line would repeat it.
         name: c.nameShort ?? c.name,
@@ -213,8 +213,8 @@ export function courtCaseloadFor(courtKey: string, locale: Locale) {
 /**
  * What the panel says when a reader presses a lit country.
  *
- * The same answer pressing a city gives — the courts that sit there, as a
- * list, and how much of the archive they hold — gathered for the country
+ * The same answer pressing a city gives – the courts that sit there, as a
+ * list, and how much of the archive they hold – gathered for the country
  * instead of the dot. France is why this exists as a merge rather than a
  * lookup: the ECtHR in Strasbourg and the ICC's Court of Arbitration in Paris
  * are two markers in one shape, and a reader who presses France is asking
@@ -228,8 +228,8 @@ export function countryPanelsFor(locale: Locale) {
   return MAP_COUNTRIES.map((co) => {
     const seated = co.courts.map((key) => {
       const court = MAP_COURTS.find((c) => c.key === key);
-      /* Unreachable — the guard in map.ts fails the build on an unknown court
-         — and thrown rather than filtered, because a country that quietly
+      /* Unreachable – the guard in map.ts fails the build on an unknown court
+         – and thrown rather than filtered, because a country that quietly
          dropped one of its two courts would show a panel that is simply short
          by a court, which is the kind of wrong that looks right. */
       if (!court) throw new Error(`country "${co.key}" names court "${key}", which is not on the map`);

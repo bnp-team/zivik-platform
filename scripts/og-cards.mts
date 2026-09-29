@@ -1,5 +1,5 @@
 /**
- * The share cards — public/og/cases/<slug>.png, one per decision summary —
+ * The share cards – public/og/cases/<slug>.png, one per decision summary –
  * drawn at build time from the content the build is about to render.
  *
  *   tsx scripts/og-cards.mts           snapshot if there is one, else the files
@@ -9,7 +9,7 @@
  *
  * ── Why a build step ───────────────────────────────────────────────────────
  * The cards were drawn by hand with a Python script (scripts/og-cards.py,
- * Pillow — removed with this one's arrival) whose case list was a literal in
+ * Pillow – removed with this one's arrival) whose case list was a literal in
  * the script. A summary created in
  * the EmDash admin got no card: its page pointed og:image at a file that did
  * not exist, and every link to it unfurled with a broken picture. Now the
@@ -20,7 +20,7 @@
  * ── How ────────────────────────────────────────────────────────────────────
  * sharp (libvips) rasterises an SVG with librsvg; librsvg lays the text out
  * with Pango, which finds faces through fontconfig. The brand faces come from
- * the @fontsource packages the site already depends on — but those ship WOFF
+ * the @fontsource packages the site already depends on – but those ship WOFF
  * and WOFF2 only, and the FreeType inside sharp's prebuilt libvips reads
  * neither (it silently falls back to DejaVu). WOFF 1 is only zlib-compressed
  * tables, so it is unpacked to plain TrueType here (`woffToSfnt`), written to
@@ -36,33 +36,33 @@
  *
  * The design is the Pillow one, ported: night ground with an ember
  * glow top-left, a hanging lamp top-right, gold eyebrow (institution · date),
- * the title in Charis SIL Bold — 84px in up to two lines, else 64px in up to
- * three — a muted kicker, and the footer rule with the wordmark. Colours are
+ * the title in Charis SIL Bold – 84px in up to two lines, else 64px in up to
+ * three – a muted kicker, and the footer rule with the wordmark. Colours are
  * the card's own literals, as they were in the Python script: a raster card
  * is not themed, and these are the values the existing cards were drawn with.
  *
  * ── What the card says ─────────────────────────────────────────────────────
  * `card` on the summary (summaries/types.ts; «Картка для соцмереж» in the
  * admin) holds the editor's wording. Where a part is empty it is derived:
- * title ← `seoTitle` (minus a « — court» tail) ← `title`; eyebrow ←
+ * title ← `seoTitle` (minus a « – court» tail) ← `title`; eyebrow ←
  * institution · Ukrainian judgment line; kicker ← the accented stat tile.
  * A new summary therefore gets a presentable card with no extra work, and a
  * good one when someone writes the three lines.
  *
  * ── Only what changed ──────────────────────────────────────────────────────
  * public/og/cases/manifest.json maps each slug with a card to a hash of what
- * the card was drawn from — the three lines, this script's source (the
+ * the card was drawn from – the three lines, this script's source (the
  * template) and the font packages' versions. A card is redrawn only when its
  * hash moved or its file is missing. The manifest is also what the site reads
  * (`caseOgImage` in src/lib/seo.ts): a page points og:image at its own card
- * only when the manifest lists it, and at the site card otherwise — so a
+ * only when the manifest lists it, and at the site card otherwise – so a
  * missing card can never become a broken image.
  *
  * ── Never fails the build ──────────────────────────────────────────────────
  * A share card is not worth a failed deploy. If the fonts cannot be prepared
  * or do not measure as Charis SIL (a guard below), or a card fails to draw,
  * this logs a warning, keeps the cards that already exist, leaves the missing
- * ones out of the manifest — their pages fall back to /og/nasvitlo.png — and
+ * ones out of the manifest – their pages fall back to /og/nasvitlo.png – and
  * exits 0.
  */
 import { createHash } from "node:crypto";
@@ -86,7 +86,7 @@ const SITE = args.has("--site");
 const W = 1200;
 const H = 630;
 
-/* The card's palette — the Pillow script's values, so a redrawn card matches
+/* The card's palette – the Pillow script's values, so a redrawn card matches
    the ones already shared. Not the site's --brand-* tokens: those follow the
    page's theme, a PNG does not. */
 const NIGHT = "#14120f";
@@ -212,7 +212,7 @@ function prepareFonts(): Record<string, number> {
  * The summaries the build will render. The Cloudflare build compiles the
  * EmDash snapshot over src/content inside Vite (site/content/vite-plugin.mjs);
  * outside Vite the same values are simply `collections.summaries` of that
- * snapshot — cf:pull already turned the rows back into DecisionSummary
+ * snapshot – cf:pull already turned the rows back into DecisionSummary
  * values with fromRow.
  */
 async function loadSummaries(): Promise<{ from: string; summaries: Record<string, DecisionSummary> }> {
@@ -250,8 +250,8 @@ interface CardText {
 function cardText(s: DecisionSummary): { text: CardText; eyebrowShort: string } {
   const institution = s.forum?.institution.uk ?? s.judgment.court.uk;
   const when = s.mastheadUk?.judgment;
-  /* seoTitle is written as «parties — court»; the court is the eyebrow. */
-  const title = s.card?.title ?? s.seoTitle?.uk.split(" — ")[0] ?? s.title?.uk ?? s.masthead.parties;
+  /* seoTitle is written as «parties – court»; the court is the eyebrow. */
+  const title = s.card?.title ?? s.seoTitle?.uk.split(" – ")[0] ?? s.title?.uk ?? s.masthead.parties;
   const em = s.stats.find((t) => t.em);
   const kicker =
     s.card?.kicker ??
@@ -339,7 +339,7 @@ function drawing(sharp: Sharp, ascent: Record<string, number>) {
         `<circle cx="${cx}" cy="${top + bulb.dy}" r="${bulb.r}" fill="${LAMP_BULB}"/>`,
     );
 
-  /** Night, ember, the lamp's cone, the lamp — flattened once and reused. */
+  /** Night, ember, the lamp's cone, the lamp – flattened once and reused. */
   async function ground(ember: Buffer, cone: Buffer, lampSvg: string) {
     return sharp({ create: { width: W, height: H, channels: 3, background: NIGHT } })
       .composite([{ input: ember }, { input: cone }, { input: Buffer.from(lampSvg) }])
@@ -368,7 +368,7 @@ function drawing(sharp: Sharp, ascent: Record<string, number>) {
 
   /**
    * Break the title into exactly `n` lines so the widest is as narrow as it
-   * can be, and among equally wide ones the most even — the Pillow script got
+   * can be, and among equally wide ones the most even – the Pillow script got
    * much the same by trying ever wider `textwrap` widths and taking the first
    * that fit, which is why the titles on the cards are balanced, not filled.
    */
@@ -543,7 +543,7 @@ async function main() {
   } catch (err) {
     /* Without the content there is nothing to decide; the manifest stays as
        it is, and so do the pages that read it. */
-    console.warn(`  og-cards: could not read the summaries — cards left as they are.\n  ${String(err)}`);
+    console.warn(`  og-cards: could not read the summaries – cards left as they are.\n  ${String(err)}`);
     return;
   }
   const { from, summaries } = loaded;
@@ -561,8 +561,8 @@ async function main() {
   });
   const todo = jobs.filter((j) => !j.fresh);
 
-  /* Cards that are up to date — or, if drawing fails below, that exist at
-     all — stay listed; a stale card still names the right case. */
+  /* Cards that are up to date – or, if drawing fails below, that exist at
+     all – stay listed; a stale card still names the right case. */
   const cards: Record<string, string> = {};
   for (const j of jobs) if (existsSync(j.file)) cards[j.slug] = j.fresh ? j.hash : (previous[j.slug] ?? "stale");
 
@@ -573,7 +573,7 @@ async function main() {
       const { default: sharp } = await import("sharp");
       const draw = drawing(sharp, ascent);
       /* Guard: Pango must really be setting Charis SIL. If fontconfig fell
-         back to another face the widths would differ — a card in the wrong
+         back to another face the widths would differ – a card in the wrong
          face is worse than the site card. 429px is «насвітло» at 100px in
          Charis SIL Bold; Fira Sans Bold sets it at 403px, DejaVu wider still. */
       const probe = await draw.width("насвітло", "Charis SIL", 700, 100);
@@ -586,7 +586,7 @@ async function main() {
           drawn++;
           console.log(`  og-cards: drew ${j.slug}`);
         } catch (err) {
-          console.warn(`  og-cards: ${j.slug} failed — ${String(err)}`);
+          console.warn(`  og-cards: ${j.slug} failed – ${String(err)}`);
         }
       }
       if (SITE) {

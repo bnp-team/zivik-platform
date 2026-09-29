@@ -3,12 +3,12 @@ import { isIndexable, siteUrl } from "@/lib/seo";
 
 export default function robots(): MetadataRoute.Robots {
   // Crawling stays allowed either way: the noindex has to be readable to be
-  // obeyed. While the site is private it simply stops handing out a map —
+  // obeyed. While the site is private it simply stops handing out a map –
   // `app/sitemap.ts` withholds the URLs to match, so the file this line would
   // point at is empty rather than merely unadvertised.
   //
   // No `Host:` line. It was a Yandex-only extension, dropped in 2018, never
-  // understood by Google or Bing, and it expected a bare hostname — the value
+  // understood by Google or Bing, and it expected a bare hostname – the value
   // emitted here was a full `scheme://host` URL, which even Yandex rejected.
   // The canonical link on every page is what actually declares the origin.
   //
@@ -18,7 +18,7 @@ export default function robots(): MetadataRoute.Robots {
   // here, and every response from it also carries `X-Robots-Tag: noindex`
   // (site/worker.ts) for the crawler that does not read this file.
   //
-  // AI crawlers — the policy the UCU Faculty of Law uses on law.ucu.edu.ua,
+  // AI crawlers – the policy the UCU Faculty of Law uses on law.ucu.edu.ua,
   // owner's choice (26 September 2026): the assistants' search and fetch
   // agents and the two model crawlers are let in by name, so that answers
   // about these decisions can cite this archive; Common Crawl's CCBot, a bulk

@@ -135,8 +135,8 @@ function Pair({
 }
 
 /**
- * One string per line. The text is kept as typed — a blank line while the
- * editor is still typing the next one — and the list handed back skips blanks.
+ * One string per line. The text is kept as typed – a blank line while the
+ * editor is still typing the next one – and the list handed back skips blanks.
  */
 function LinesInput({ value, onChange }: { value: string[]; onChange: (v: string[]) => void }) {
   const joined = value.join("\n");
@@ -201,7 +201,7 @@ function Editor({ shape, value, onChange }: { shape: Shape; value: Json; onChang
       const uk = typeof value === "string" ? value : isObj(value) ? String(value.uk ?? "") : "";
       const en = isObj(value) ? String(value.en ?? "") : "";
       return (
-        <Label text={shape.label} hint={shape.hint ?? "Якщо EN порожнє — на англійській сторінці те саме, що UA."}>
+        <Label text={shape.label} hint={shape.hint ?? "Якщо EN порожнє – на англійській сторінці те саме, що UA."}>
           <Pair
             uk={uk}
             en={en}
@@ -232,7 +232,7 @@ function Editor({ shape, value, onChange }: { shape: Shape; value: Json; onChang
       return (
         <Label text={shape.label}>
           <select value={typeof value === "string" ? value : ""} onChange={(e) => onChange(e.target.value || undefined)}>
-            {shape.optional ? <option value="">—</option> : null}
+            {shape.optional ? <option value="">–</option> : null}
             {shape.options.map((o) => (
               <option key={o.value} value={o.value}>
                 {o.label}
@@ -460,12 +460,12 @@ function JsonForm({ name, value, onChange, label, id }: WidgetProps & { name: st
               setRaw(true);
             }}
           />
-          {unreadable && !raw ? <div className="nsvj-err">Збережене значення не читається як JSON — виправте його тут.</div> : null}
+          {unreadable && !raw ? <div className="nsvj-err">Збережене значення не читається як JSON – виправте його тут.</div> : null}
           {error ? <div className="nsvj-err">{error}</div> : null}
         </>
       ) : parsed == null ? (
         <button type="button" className="nsvj-btn nsvj-add" onClick={() => emit(blank(shape))}>
-          + Заповнити «{label.replace(/^\d+ · [^—]+— /, "").replace(/ \(JSON\)$/, "")}»
+          + Заповнити «{label.replace(/^\d+ · [^–]+– /, "").replace(/ \(JSON\)$/, "")}»
         </button>
       ) : (
         <div className="nsvj-box">

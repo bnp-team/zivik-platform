@@ -6,7 +6,7 @@ import { defaultLocale, locales } from "@/i18n/config";
  * 404 for the whole site.
  *
  * Bilingual rather than locale-detecting, and deliberately so. Root
- * `not-found.tsx` gets no params, and it is prerendered once — so reading the
+ * `not-found.tsx` gets no params, and it is prerendered once – so reading the
  * path on the client would ship Ukrainian HTML to an English reader and swap
  * it after hydration. Showing both is correct for everyone at first paint,
  * needs no JavaScript, and costs four extra lines of text.
@@ -16,7 +16,7 @@ import { defaultLocale, locales } from "@/i18n/config";
  * matched anything.
  */
 /**
- * The root 404 — unmatched URLs that never reach a locale.
+ * The root 404 – unmatched URLs that never reach a locale.
  *
  * Without this it inherits the root layout's fallback title and description, so
  * the two 404s on this site announced themselves differently: the localized one
@@ -46,7 +46,7 @@ const link: React.CSSProperties = {
 const T = {
   uk: {
     heading: "Такої сторінки немає",
-    body: "Можливо, посилання застаріле або в адресі є помилка. У бібліотеці — повний перелік проваджень, які ми ведемо.",
+    body: "Можливо, посилання застаріле або в адресі є помилка. У бібліотеці – повний перелік проваджень, які ми ведемо.",
     registry: "Бібліотека рішень",
     home: "На головну",
   },
@@ -89,7 +89,7 @@ export default function NotFound() {
         const primary = locale === defaultLocale;
         /* One heading per page. The second language says the same thing
            smaller, so it is the first one's translation, not a second
-           title — a paragraph, marked with its own lang. */
+           title – a paragraph, marked with its own lang. */
         const Heading = primary ? "h1" : "p";
         return (
           <div

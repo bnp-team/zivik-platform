@@ -1,5 +1,5 @@
 /* ============================================================
-   Theatre legend — the places the case is about, with what happened there.
+   Theatre legend – the places the case is about, with what happened there.
 
    Owned and imported by components/cases/CaseMap.tsx, which renders this
    markup now that the legend and the drawing are one control. The base
@@ -9,7 +9,7 @@
 
    `.casepage .map-legend span` is (0,2,1) and sets a one-line flex row; the
    rules below are (0,3,0) and (0,3,1), so they win on specificity rather
-   than on file order — the load order of a component stylesheet is not
+   than on file order – the load order of a component stylesheet is not
    something this page controls. They are written without an element name so
    that they keep matching whatever the entry is made of: it has already been
    a span and is now a button.
@@ -25,7 +25,7 @@
    other end of the map's control, and this rule quietly stopped matching.
    What survived was `.lg-note { grid-column: 2 }` forcing a second column with
    no gaps in it at all, so the dot sat against the place and the sentence sat
-   against the line above — measured as `gap: normal` and a dot ending on the
+   against the line above – measured as `gap: normal` and a dot ending on the
    same pixel the text began. */
 .casepage .map-legend .lg-theatre {
   display: grid;
@@ -45,10 +45,10 @@
 }
 
 /* Prose, not a row. `.casepage .map-legend span` makes every span here a flex
-   container, and this one holds three things — the place, the dash and the tag
-   in bold — which at the band's full width sat side by side and read as one
+   container, and this one holds three things – the place, the dash and the tag
+   in bold – which at the band's full width sat side by side and read as one
    line. In a 300px block standing on the map they had nowhere to go and drew
-   on top of each other: «Донеччина та Луганщина —» and «Genocide Convention»
+   on top of each other: «Донеччина та Луганщина –» and «Genocide Convention»
    in the same 255px. As text they simply wrap. */
 .casepage .map-legend .lg-place {
   display: block;

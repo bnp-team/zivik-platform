@@ -5,16 +5,16 @@ import type { AboutLink } from "./types";
  * The about prose, with its citations turned into links.
  *
  * The paragraphs in `content/about.ts` are plain strings and are rendered in
- * two places — the home page's About band and /about — so a link written into
+ * two places – the home page's About band and /about – so a link written into
  * one of them by hand would exist on one page and not the other. The link
  * table travels with the prose instead, and both call sites render through
  * here.
  *
  * The match is on the literal phrase, first occurrence, once per paragraph:
- * Wikipedia's rule, for Wikipedia's reason — a phrase linked at every
+ * Wikipedia's rule, for Wikipedia's reason – a phrase linked at every
  * appearance turns prose into a field of underlines. A phrase the
  * prose does not contain is caught at module load in `content/about.ts`, not
- * here — by the time a paragraph reaches this function the only honest thing
+ * here – by the time a paragraph reaches this function the only honest thing
  * left to do with an unmatched phrase is leave the text alone.
  */
 export function linkAboutProse(

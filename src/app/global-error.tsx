@@ -3,7 +3,7 @@
 /**
  * Last-resort boundary: catches errors thrown by the root layout itself, where
  * a normal `error.tsx` cannot reach. It replaces the root layout when active,
- * so it has to bring its own <html> and <body> — and it gets no stylesheet,
+ * so it has to bring its own <html> and <body> – and it gets no stylesheet,
  * which is why everything here is inline and literal rather than tokenized.
  *
  * Bilingual on purpose: at this level nothing is left to tell us who the
@@ -51,7 +51,7 @@ export default function GlobalError({
         </h1>
 
         <p style={{ margin: 0, color: "#c9afa8", maxWidth: "54ch" }}>
-          Сторінку не вдалося показати. Спробуйте ще раз — якщо не допоможе,
+          Сторінку не вдалося показати. Спробуйте ще раз – якщо не допоможе,
           напишіть нам на louis.sohn.center@ucu.edu.ua.
           <br />
           <span style={{ color: "#8e736c" }}>

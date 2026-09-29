@@ -1,5 +1,5 @@
 /**
- * Browsers ask for /favicon.ico whatever the <link> says — and so does every
+ * Browsers ask for /favicon.ico whatever the <link> says – and so does every
  * bot, on every visit.
  *
  * This was a 301 to the hashed file, answered by the Worker: each request ran

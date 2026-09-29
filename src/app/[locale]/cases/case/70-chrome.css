@@ -20,12 +20,12 @@
 
 /* ---- page navigation: one sticky bar for every band --------------------- */
 /* The rail holds two things: the scrolling row of sections, and the way back
-   to the top. The button is not inside the row — see PageNav for what that
-   cost — so the row takes the space the button leaves. */
+   to the top. The button is not inside the row – see PageNav for what that
+   cost – so the row takes the space the button leaves. */
 /* ---- return to top ------------------------------------------------------
    A disc in the corner of the viewport. It was in the sticky bar, sticky
    against the right end of the scrolling row, which floated it across whatever
-   section chip was underneath — «ПОВ ↑ НАГОРУ ННЯ» where «Пов'язані рішення»
+   section chip was underneath – «ПОВ ↑ НАГОРУ ННЯ» where «Пов'язані рішення»
    should have been. Out of the bar entirely now.
 
    It has to read on both grounds, because it floats over a page that
@@ -62,7 +62,7 @@
   border-color: var(--brand-cream);
 }
 /* Hidden until there is something to come back from, and out of the tab order
-   with it — a focusable control a reader cannot see is worse than none. */
+   with it – a focusable control a reader cannot see is worse than none. */
 .casepage .totop[data-show="no"] {
   opacity: 0;
   pointer-events: none;
@@ -142,7 +142,7 @@
 
    These took the paper twins, --pred and --ink2, from the pass that moved the
    dispositif onto paper with the rest of the dashboard. The dispositif is a
-   dark panel again — its own island, not the band — so they go back to the
+   dark panel again – its own island, not the band – so they go back to the
    dark pair the rest of the matrix now uses: --red is --brand-breach at 5.61:1
    on --brand-night and --muted is 9.06:1. (What that earlier note recorded is
    still worth keeping: on --brand-paper-2 the dark tokens measured 3.02:1 and
@@ -163,20 +163,20 @@
 
 /* comfortable tap targets for the term chips */
 
-/* The `.qa` band's rules stood here — the accordion of common questions.
+/* The `.qa` band's rules stood here – the accordion of common questions.
    The band is gone (see the note in cases/[slug]/page.tsx), and with it
    seventy lines of argument about how to set eight disclosures at reading
    width. If the questions ever come back they come back as new work. */
 
 /* «Пов'язані рішення» is gone from every decision (see the note in
-   cases/[slug]/page.tsx), and with it the card grid that was set here —
+   cases/[slug]/page.tsx), and with it the card grid that was set here –
    the forum micro-cap, the rule that drew itself on hover, and the
    auto-fill argument about a lone card. The band comes back with its
    markup or not at all. */
 
 /* ---- provisional measures: its own section, its own ground ------------- */
-/* Alternates against .refs above it. Optional — most decisions carry no
-   interim order — which is exactly why every paper band also carries a
+/* Alternates against .refs above it. Optional – most decisions carry no
+   interim order – which is exactly why every paper band also carries a
    --brand-seam edge: the alternation loses its parity whenever an optional
    band is absent, and two --brand-paper-2 sections meeting at 1.06:1 have
    nothing between them at all. */
@@ -188,12 +188,12 @@
   padding: var(--space-14) 0 var(--space-16);
 }
 /* The interpretations used to flow as a two-column multicol here. They are a
-   ledger now and live with the rest of the reference band in 30-paper.css —
+   ledger now and live with the rest of the reference band in 30-paper.css –
    one class, one file. */
 
 /* ---- The page's shell: a column of contents beside the text --------------
    The decision page was a stack of full-bleed bands with its map floating
-   over them — a dark pill in the left margin above 1700px, a sideways-
+   over them – a dark pill in the left margin above 1700px, a sideways-
    scrolling bar of chips below. Now the masthead is the only full-bleed
    thing and everything under it stands in one grid: the contents on the
    left, the reading column on the right.
@@ -226,7 +226,7 @@
    the shell already holds the gutters and the measure, so the rail each
    section carries stops centring itself and stops adding a second gutter.
 
-   No width of its own either. It was capped at 820px — the design's figure —
+   No width of its own either. It was capped at 820px – the design's figure –
    inside a cell that is 910px at this page's measure, and the 90px left over
    sat empty down the whole right side. The design's 820 and its 1160 shell
    are one pair of numbers: at that shell the cell *is* 778 and the cap never
@@ -240,7 +240,7 @@
 }
 
 /* The contents column ------------------------------------------------------
-   Sticky, and scrolling on its own once the list outgrows the viewport —
+   Sticky, and scrolling on its own once the list outgrows the viewport –
    which it does on the ECtHR judgment, at twelve entries. */
 .casepage .toc-rail {
   display: none;

@@ -5,14 +5,14 @@ import type { Localized } from "./types";
  *
  * Roles are given in Ukrainian as the project uses them and in the English of
  * the grant structure the project is staffed under, which is where "Component
- * Lead" and "Research Assistant" come from — those are the titles that appear
+ * Lead" and "Research Assistant" come from – those are the titles that appear
  * in the paperwork, so they stay verbatim rather than being re-translated.
  */
 export interface TeamMember {
   name: Localized;
   role: Localized;
   /**
-   * Portrait, as a path under `/public/team/` — e.g. "/team/denkovych.jpg".
+   * Portrait, as a path under `/public/team/` – e.g. "/team/denkovych.jpg".
    *
    * Optional on purpose. Photographs arrive one at a time, and a row of
    * placeholder silhouettes next to two real faces looks worse than no faces
@@ -62,8 +62,8 @@ export const team: TeamMember[] = [
  * The roles as groups, for the «Хто над цим працює» band on /about.
  *
  * Keyed by `role.en`, which is the grant title and is the same string for
- * both holders of a post; the Ukrainian role is gendered — «Старший
- * дослідник» and «Старша дослідниця» are one job — so grouping on it would
+ * both holders of a post; the Ukrainian role is gendered – «Старший
+ * дослідник» and «Старша дослідниця» are one job – so grouping on it would
  * split every pair the grouping exists to join.
  *
  * The labels are plural where the group has more than one person and are the
@@ -100,7 +100,7 @@ export const teamGroups: { key: string; label: Localized }[] = [
  * The roster, in the order the band reads: each group's label, then its
  * people.
  *
- * Here rather than in the page because it is data shaping, not markup — and
+ * Here rather than in the page because it is data shaping, not markup – and
  * because `teamGroups` above has exactly one reader, so the table and the
  * walk over it belong in one file where they can be read together.
  *
