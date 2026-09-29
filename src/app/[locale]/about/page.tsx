@@ -3,6 +3,7 @@ import { RESOLUTION_URL } from "@/content/about";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Crumbs from "@/components/nasvitlo/Crumbs";
 import {
   alternateOpenGraphLocales,
   isLocale,
@@ -413,9 +414,7 @@ export default async function AboutPage({
             wants and was previously the fourth paragraph they met. */}
         <header className="abt-band abt-dark abt-mast">
           <div className="abt-in">
-            <Link href={`/${locale}`} className="abt-back">
-              {L(T.back)}
-            </Link>
+            <Crumbs locale={locale as Locale} linkClass="abt-back" here={L(T.title)} />
             <h1>{L(T.title)}</h1>
             <p className="abt-lede">{L(T.scope)}</p>
           </div>

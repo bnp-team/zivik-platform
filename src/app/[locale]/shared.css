@@ -434,3 +434,33 @@
     padding-block: var(--space-1);
   }
 }
+
+/* Breadcrumb trail above a page's title: «Головна / Ця сторінка». The link
+   keeps its surface's own class (colour, tap floor); the separator and the
+   current page take the link's face and the text colour of the surface. */
+.crumbs {
+  display: block;
+  /* Some mastheads shrink their children to fit; a trail must not fold. */
+  white-space: nowrap;
+}
+.crumbs-sep,
+.crumbs-here {
+  display: inline-block;
+  font: 700 var(--t-micro) var(--brand-font-body);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.crumbs-sep {
+  margin-inline: var(--space-2);
+  opacity: 0.5;
+}
+.crumbs-here {
+  opacity: 0.75;
+}
+/* The registry's masthead is a grid whose first row is the back link. */
+@media (min-width: 1100px) {
+  .registrypage .crumbs {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+}

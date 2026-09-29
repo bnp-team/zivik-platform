@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Crumbs from "@/components/nasvitlo/Crumbs";
 import {
   alternateOpenGraphLocales,
   isLocale,
@@ -560,9 +561,7 @@ export default async function RegistryPage({
 
       <main id="content" tabIndex={-1} className="reg-wrap">
         <header className="reg-mast">
-          <Link href={`/${locale}`} className="reg-back">
-            {pick(T.back, locale)}
-          </Link>
+          <Crumbs locale={locale as Locale} linkClass="reg-back" here={pick(T.title, locale)} />
           <h1>{pick(T.title, locale)}</h1>
           <p className="reg-lede">{pick(T.lede, locale)}</p>
           <div className="reg-meta">

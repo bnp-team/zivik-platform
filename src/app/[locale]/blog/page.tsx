@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Crumbs from "@/components/nasvitlo/Crumbs";
 import { isLocale, locales, localeOpenGraph, alternateOpenGraphLocales, type Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
 import { pick } from "@/content/types";
@@ -68,9 +69,7 @@ export default async function BlogIndex({
     <div className="page blogpage">
       <main id="content" tabIndex={-1} className="blog-wrap">
         <header className="blog-mast">
-          <Link href={`/${locale}`} className="blog-back">
-            {L(T.back)}
-          </Link>
+          <Crumbs locale={locale as Locale} linkClass="blog-back" here={L(T.title)} />
           <h1>{L(T.title)}</h1>
         </header>
 

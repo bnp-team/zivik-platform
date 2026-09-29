@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Crumbs from "@/components/nasvitlo/Crumbs";
 import { isLocale, locales } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
 import {
@@ -101,9 +102,7 @@ const stageWord = (k: string | undefined) =>
             page: this is the map's own page, so the map gets the viewport. */}
         <div className="mp-stage">
           <header className="mp-mast">
-            <Link href={`/${locale}`} className="mp-back">
-              {dict.mapSection.backHome}
-            </Link>
+            <Crumbs locale={locale} linkClass="mp-back" here={dict.nav.map} />
             {/* The same heading the home band carries, at the user's request:
                 one map, one title. The label rule above it comes with it – this
                 page had its own wording for the same object. */}

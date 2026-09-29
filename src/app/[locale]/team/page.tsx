@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Crumbs from "@/components/nasvitlo/Crumbs";
 import Image from "next/image";
 import { isLocale, locales, type Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
@@ -99,9 +100,7 @@ export default async function TeamPage({
 
       <main id="content" tabIndex={-1} className="team-wrap">
         <header className="team-mast">
-          <Link href={`/${locale}`} className="team-back">
-            {L(T.back)}
-          </Link>
+          <Crumbs locale={locale as Locale} linkClass="team-back" here={L(T.title)} />
           <h1>{L(T.title)}</h1>
         </header>
 

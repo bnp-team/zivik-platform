@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Crumbs from "@/components/nasvitlo/Crumbs";
 import {
   alternateOpenGraphLocales,
   isLocale,
@@ -85,9 +86,7 @@ export default async function PrivacyPage({
     <div className="page legalpage">
       <main id="content" tabIndex={-1} className="legal-wrap">
         <header className="legal-mast">
-          <Link href={`/${locale}`} className="legal-back">
-            {pick(T.back, locale)}
-          </Link>
+          <Crumbs locale={locale as Locale} linkClass="legal-back" here={pick(privacy.title, locale)} />
           <h1>{pick(privacy.title, locale)}</h1>
           <p className="legal-lede">{pick(privacy.lede, locale)}</p>
           <p className="legal-revised">
