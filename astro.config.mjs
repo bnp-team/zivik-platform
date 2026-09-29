@@ -18,6 +18,7 @@ import emdash from "emdash/astro";
 import { clientIslands } from "./site/islands/vite-plugin.mjs";
 import { contentSnapshot } from "./site/content/vite-plugin.mjs";
 import { adminLocales } from "./site/emdash/admin-locales.mjs";
+import { revisionKeep } from "./site/emdash/revision-keep.mjs";
 import { securityHeaders } from "./src/lib/security-headers.ts";
 import { appendFileSync, readFileSync } from "node:fs";
 
@@ -191,6 +192,8 @@ export default defineConfig({
       clientIslands({ root: here("./src"), serverOnly: ["components/nasvitlo/HeroMap.tsx"] }),
       contentSnapshot({ snapshot: here("./.emdash/snapshot.json"), root: here(".") }),
       adminLocales({ keep: ["en", "uk"] }),
+      /* History: 1000 saved versions per entry, not EmDash's 50. */
+      revisionKeep({ keep: 1000 }),
     ],
     resolve: {
       alias: [

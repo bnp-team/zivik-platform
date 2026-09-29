@@ -308,3 +308,47 @@ export function FieldPreview({ name, value: raw }: { name: string; value: Json }
     </div>
   );
 }
+
+/* ── The «Проблеми» column of the entry lists ─────────────────────────── */
+
+const filled = (v: Json) => (typeof v === "string" ? v.trim() !== "" : v !== null && v !== undefined);
+
+/**
+ * What is missing or half-done in an entry, in an editor's words. Reads the
+ * row as the list has it: `title_uk` next to `title_en`, JSON fields as text
+ * or as values. It only looks – nothing here blocks a save.
+ */
+export function problemsOf(collection: string, data: Obj): string[] {
+  const out: string[] = [];
+  /* A pair with one side written and the other empty: a translation forgotten. */
+  for (const key of Object.keys(data)) {
+    if (!key.endsWith("_uk")) continue;
+    const base = key.slice(0, -3);
+    if (!(`${base}_en` in data)) continue;
+    if (base.startsWith("base") || base === "text") continue;
+    const a = filled(data[`${base}_uk`]);
+    const b = filled(data[`${base}_en`]);
+    if (a && !b) out.push(`немає англійського тексту в полі «${base}»`);
+    if (b && !a) out.push(`немає українського тексту в полі «${base}»`);
+  }
+  if (collection === "summaries") {
+    const timeline = list(value(data.timeline)).filter(isObj);
+    if (timeline.length === 0) out.push("порожня хронологія");
+    const noEn = timeline.filter((r) => filled(r.label_uk ?? uk(r.label)) && !filled(r.label_en ?? (isObj(r.label) ? r.label.en : ""))).length;
+    if (noEn > 0) out.push(`у хронології ${noEn} подій без англійського тексту`);
+    if (!filled(data.blocks) && !filled(data.blocks_uk)) out.push("немає тексту огляду");
+    if (list(value(data.sources)).length === 0) out.push("немає джерел");
+  }
+  return out;
+}
+
+export function ProblemsCell({ collection, item }: { collection: string; item: { data?: Obj } }) {
+  const found = problemsOf(collection, item.data ?? {});
+  if (found.length === 0) return <span style={{ opacity: 0.4 }}>✓</span>;
+  return (
+    <span title={found.join("\n")} style={{ color: CHERRY, fontSize: 13, cursor: "help", whiteSpace: "nowrap" }}>
+      ⚠ {found.length}
+    </span>
+  );
+}
+

@@ -15,7 +15,7 @@
  */
 import { useEffect, useLayoutEffect, useMemo, useRef, useState, type ReactNode, type TextareaHTMLAttributes } from "react";
 import { SHAPES, blank, clean, isEmpty, type Shape } from "./shapes";
-import { FieldPreview, StagingPanel, SummaryOverview } from "./panels";
+import { FieldPreview, ProblemsCell, StagingPanel, SummaryOverview } from "./panels";
 
 type Json = unknown;
 type Obj = Record<string, Json>;
@@ -511,5 +511,18 @@ export const contentEditorPanels = [
     title: "Перегляд перед публікацією",
     component: StagingPanel,
     order: 20,
+  },
+];
+
+/** A column in the entry lists: ⚠ N when something is missing, with the list as a tooltip. */
+export const contentListColumns = [
+  {
+    id: "problems",
+    label: "Проблеми",
+    cell: ({ collection, item }: { collection: string; item: { data?: Record<string, unknown> } }) => (
+      <ProblemsCell collection={collection} item={item} />
+    ),
+    collections: ["summaries", "team", "partners", "cases", "about", "legal_documents", "posts", "map_events", "map_courts", "map_countries", "map_places", "institutions"],
+    order: 100,
   },
 ];

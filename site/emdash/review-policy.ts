@@ -12,21 +12,33 @@
  * 20 Contributor, 30 Author, 40 Editor, 50 Admin); unset, it is 50 – only an
  * administrator publishes. Set it to 40 to let Editors publish directly.
  *
- * Only people are checked. A publish the scheduler carries out was allowed
- * when it was scheduled – and scheduling is checked here too – and the
- * system's and plugins' own actions are not an editor's decision.
+ * An AI assistant working through EmDash's MCP endpoint never publishes, at
+ * any role and whatever the token owner is allowed to do: it writes drafts,
+ * a person reads them and publishes. That rule is here, on the server, not in
+ * the assistant's instructions.
+ *
+ * Only people and the assistant are checked. A publish the scheduler carries
+ * out was allowed when it was scheduled – and scheduling is checked here too –
+ * and the system's and plugins' own actions are not an editor's decision.
  */
 import { definePlugin, type PluginContext } from "emdash";
 
 declare const __NSV_PUBLISH_MIN_ROLE__: number;
 
 type Origin = { source: string };
-type PolicyEvent = { collection: string; origin: Origin; actor?: { role: number } };
+type PolicyEvent = { collection: string; origin: Origin; actor?: { role: number; source?: string } };
 
 const ROLE_NAMES: Record<number, string> = { 40: "редактор", 50: "адміністратор" };
 
 function decide(action: string) {
   return async (event: PolicyEvent, ctx: PluginContext) => {
+    if (event.origin.source === "mcp" || event.actor?.source === "mcp") {
+      ctx.log.info(`${action} refused (${event.collection}): the assistant does not publish`);
+      return {
+        cancel: true as const,
+        reason: "Асистент не публікує й не знімає з публікації: він пише лише чернетки. Прочитайте чернетку й опублікуйте її самі.",
+      };
+    }
     const human = ["api", "mcp", "visual-editor"].includes(event.origin.source);
     if (!human) return;
     const min = __NSV_PUBLISH_MIN_ROLE__;
