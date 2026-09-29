@@ -143,7 +143,7 @@ export default function Header({
         aria-label={localeNames.uk}
         aria-current={locale === "uk" ? "true" : undefined}
         style={{
-          color: locale === "uk" ? "var(--brand-cream)" : "var(--brand-faint-dark)",
+          color: locale === "uk" ? "var(--brand-gold-pale)" : "var(--brand-faint-dark)",
           fontWeight: locale === "uk" ? 700 : 600,
         }}
       >
@@ -297,12 +297,7 @@ export default function Header({
               key={item.label}
               href={item.href}
               aria-current={item.active ? "page" : undefined}
-              style={{
-                color: "var(--brand-cream)",
-                ...(item.active
-                  ? { textDecoration: "underline", textDecorationThickness: 1, textUnderlineOffset: 6 }
-                  : {}),
-              }}
+              style={{ color: item.active ? "var(--brand-gold-pale)" : "var(--brand-cream)" }}
             >
               {item.label}
             </Link>

@@ -201,7 +201,7 @@
      longer beat; anything under the cursor wants the shorter one. */
   --dur-slow: 240ms;
   /* on-dark scene palette (header, footer, hero over the dark backdrop) */
-  --brand-gold-pale: #f3e8e2;  /* active text on dark – the cream, no longer a pale yellow */
+  --brand-gold-pale: #f0dda8;  /* accent / active text on dark */
   --brand-gold-mark: #c79a3c;  /* "analysed / lit" indicator gold */
   --brand-gold-bright: #e3bc6a;/* bright end of gold gradient */
   --brand-muted-dark: #c9afa8; /* muted text on cherry / dark scenes */

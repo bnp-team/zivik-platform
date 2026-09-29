@@ -558,7 +558,7 @@
   padding-top:2px;
 }
 .reg-court .dot{width:7px;height:7px;border-radius:50%;flex:none;background:var(--rule)}
-.reg-drow.is-lit .reg-court .dot{background:var(--brand-gold-mark)}
+.reg-drow.is-lit .reg-court .dot{background:var(--brand-gold-mark);box-shadow:0 0 7px color-mix(in srgb,var(--brand-gold-mark) 70%,transparent)}
 .reg-main{min-width:0;display:block}
 /* The link lives in the case cell and its ::after covers the row, so the whole
    row is still one click target without an <a> wrapping table rows. */

@@ -153,6 +153,8 @@
      is what keeps six soft shapes from dissolving back into the grey. */
   fill: color-mix(in srgb, var(--brand-gold-lit) 30%, transparent);
   stroke: color-mix(in srgb, var(--brand-gold-lit) 62%, transparent);
+  filter: drop-shadow(0 0 3px color-mix(in srgb, var(--brand-gold-lit) 45%, transparent))
+    drop-shadow(0 0 9px color-mix(in srgb, var(--brand-gold-lit) 30%, transparent));
   /* Non-scaling and 0.8, matching .emap-ctx exactly – these are context
      countries that happen to be lit, and a heavier border would make them read
      as a separate layer of the drawing. See the note there for why a stroke
@@ -195,6 +197,8 @@
 .emap-forum-state[role="button"]:focus {
   stroke: var(--brand-gold-pale);
   stroke-width: 2;
+  filter: drop-shadow(0 0 5px color-mix(in srgb, var(--brand-gold-lit) 70%, transparent))
+    drop-shadow(0 0 16px color-mix(in srgb, var(--brand-gold-lit) 45%, transparent));
 }
 
 .emap-ua {
@@ -1003,6 +1007,8 @@
 
 /* A selected court is a lamp too. */
 .emap-court[data-on="yes"] .emap-court-dot {
+  filter: drop-shadow(0 0 5px var(--brand-gold-pale))
+    drop-shadow(0 0 11px var(--brand-gold-pale));
 }
 
 /* The reach line stops being a hairline and becomes the beam between the two.
@@ -1079,6 +1085,7 @@
 .emap-court[data-rel="yes"] .emap-court-dot {
   stroke: var(--brand-gold-pale);
   stroke-width: 2.4;
+  filter: drop-shadow(0 0 4px var(--brand-gold-pale));
 }
 .emap-court[data-rel="yes"] text {
   fill: var(--brand-gold-pale);
@@ -2165,6 +2172,7 @@ a.emap-seat-count:focus-visible {
 .emap[data-hi="court"] .emap-court-dot {
   stroke: var(--brand-gold-pale);
   stroke-width: 2.4;
+  filter: drop-shadow(0 0 4px var(--brand-gold-pale));
 }
 
 
