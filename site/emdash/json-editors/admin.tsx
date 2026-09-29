@@ -441,7 +441,7 @@ function JsonForm({ name, value, onChange, label, id }: WidgetProps & { name: st
               }
             }}
           >
-            ← До форми
+            До форми
           </button>
         ) : (
           <button type="button" className="nsvj-btn" onClick={openRaw} title="Для досвідчених: сирий JSON">

@@ -324,7 +324,7 @@
       skip.onclick = () => close(true);
       foot.append(skip);
     }
-    const nextBtn = el("button", "nsvg-next", last ? "Готово" : "Далі →");
+    const nextBtn = el("button", "nsvg-next", last ? "Готово" : "Далі");
     nextBtn.type = "button";
     nextBtn.onclick = () => go(1);
     foot.append(nextBtn);

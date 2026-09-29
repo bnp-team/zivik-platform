@@ -100,7 +100,7 @@ export default async function TeamPage({
       <main id="content" tabIndex={-1} className="team-wrap">
         <header className="team-mast">
           <Link href={`/${locale}`} className="team-back">
-            ← {L(T.back)}
+            {L(T.back)}
           </Link>
           <h1>{L(T.title)}</h1>
         </header>
@@ -156,9 +156,6 @@ export default async function TeamPage({
               decision, reverting the address-as-label both pages tried. */}
           <a className="nsv-cta" href={`mailto:${dict.footer.email}`}>
             {L(T.contact)}
-            <span className="nsv-cta-arrow" aria-hidden="true">
-              →
-            </span>
           </a>
         </section>
       </main>

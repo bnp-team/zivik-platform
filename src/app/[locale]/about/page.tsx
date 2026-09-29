@@ -414,7 +414,7 @@ export default async function AboutPage({
         <header className="abt-band abt-dark abt-mast">
           <div className="abt-in">
             <Link href={`/${locale}`} className="abt-back">
-              ← {L(T.back)}
+              {L(T.back)}
             </Link>
             <h1>{L(T.title)}</h1>
             <p className="abt-lede">{L(T.scope)}</p>
@@ -659,7 +659,7 @@ export default async function AboutPage({
             <div className="abt-h-row">
               <h2>{L(T.teamH)}</h2>
               <Link className="abt-h-link" href={`/${locale}/team`}>
-                {L(T.teamLink)} →
+                {L(T.teamLink)}
               </Link>
             </div>
             {/* За ролями, а не суцільним списком. Власниця: «погрупуй по
@@ -721,9 +721,6 @@ export default async function AboutPage({
             <p className="abt-action">
               <a className="nsv-cta" href={`mailto:${dict.footer.email}`}>
                 {L(T.contactH)}
-                <span className="nsv-cta-arrow" aria-hidden="true">
-                  →
-                </span>
               </a>
             </p>
           </div>

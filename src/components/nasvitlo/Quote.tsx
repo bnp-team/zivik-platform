@@ -118,7 +118,6 @@ export default function Quote({
       <figcaption className="nsvq-cite">
         <Link href={href} className="nsvq-link">
           <cite className="nsvq-case">{parties(locale)}</cite>
-          <span aria-hidden="true"> →</span>
         </Link>
         <span className="nsvq-meta">{dict.quote.source}</span>
         {/* `dict.quote.read` — «Читати рішення» / "Read the decision" — has a

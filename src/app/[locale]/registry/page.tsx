@@ -71,7 +71,7 @@ const T = {
   },
   // The wordmark is «НаСвітло» / "NaSvitlo" everywhere — see i18n/dictionaries/uk.ts.
   // Team and map both say "Home"/"На головну" — so does this now.
-  back: { uk: "← На головну", en: "← Home" },
+  back: { uk: "На головну", en: "Home" },
   search: {
     uk: "Сторона, суд, номер справи, рік, тема…",
     en: "Party, court, docket number, year, subject…",

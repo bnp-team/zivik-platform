@@ -21,7 +21,7 @@ import "../legal.css";
 
 /** Page chrome. The document itself lives in `src/content/legal.ts`. */
 const T = {
-  back: { uk: "← На головну", en: "← Home" },
+  back: { uk: "На головну", en: "Home" },
   revised: { uk: "Редакція від", en: "Revised" },
   also: { uk: "Як користуватися матеріалами Сайту й на яких умовах — про це", en: "How the Site’s materials may be used, and on what terms —" },
   terms: { uk: "Умови користування", en: "Terms of use" },
@@ -117,7 +117,7 @@ export default async function PrivacyPage({
                           className="legal-jump"
                           href={`/${locale}/${block.link.to}`}
                         >
-                          {pick(block.link.label, locale)} →
+                          {pick(block.link.label, locale)}
                         </Link>
                       </>
                     ) : null}

@@ -69,7 +69,7 @@ export default async function BlogIndex({
       <main id="content" tabIndex={-1} className="blog-wrap">
         <header className="blog-mast">
           <Link href={`/${locale}`} className="blog-back">
-            ← {L(T.back)}
+            {L(T.back)}
           </Link>
           <h1>{L(T.title)}</h1>
         </header>

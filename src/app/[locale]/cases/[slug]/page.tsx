@@ -1760,7 +1760,7 @@ export default async function CasePage({
         {/* The registry page, not the home page's preview of it: a reader
             leaving a decision wants the full 39 with the filters. */}
         <Link href={`/${locale}/registry`} className="backlink">
-          ← {pick(T.back, locale)}
+          {pick(T.back, locale)}
         </Link>
         <div className="eyebrow">
           <span>{pick(forum.institution, locale)}</span>

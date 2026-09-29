@@ -102,7 +102,7 @@ const stageWord = (k: string | undefined) =>
         <div className="mp-stage">
           <header className="mp-mast">
             <Link href={`/${locale}`} className="mp-back">
-              ← {dict.mapSection.backHome}
+              {dict.mapSection.backHome}
             </Link>
             {/* The same heading the home band carries, at the user's request:
                 one map, one title. The label rule above it comes with it — this

@@ -296,20 +296,12 @@
   background: var(--brand-red-dark);
   border-color: var(--brand-red-dark);
 }
-/* The arrow belongs to the control, not to the label: it moves on hover and is
-   hidden from assistive technology by the markup. */
 /* `.nsv-cta-addr` is gone. It set the contact pill in the mono face, at
    --t-cap and without the uppercase, so the button could carry the address
    itself instead of repeating its heading. Owner's decision that the button
    should say what pressing it does; with no label to set, the variant had
    nothing to style, and `npm run ghosts` would have named it on the next
    run. */
-.page a.nsv-cta.nsv-cta .nsv-cta-arrow {
-  transition: transform var(--dur) var(--ease);
-}
-.page a.nsv-cta.nsv-cta:hover .nsv-cta-arrow {
-  transform: translateX(3px);
-}
 
 /* Quiet tone — navigation, not contact. Same pill, the outlined idiom the
    home page's quiet outline button used to use, so a "see everything" link does not

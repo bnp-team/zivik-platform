@@ -134,7 +134,7 @@ export default async function BlogPost({ params }: { params: Params }) {
         <article className="post">
           <header className="post-mast">
             <Link href={`/${locale}/blog`} className="blog-back">
-              ← {L(T.toBlog)}
+              {L(T.toBlog)}
             </Link>
             <p className="blog-meta">
               <time dateTime={post.date}>{formatPostDate(post.date, locale)}</time>

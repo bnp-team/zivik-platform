@@ -77,9 +77,6 @@ export default function About({
         <p className="nsv-about-go">
           <Link className="nsv-cta" href={`/${locale}/about`}>
             {dict.about.more}
-            <span className="nsv-cta-arrow" aria-hidden="true">
-              →
-            </span>
           </Link>
         </p>
       </div>

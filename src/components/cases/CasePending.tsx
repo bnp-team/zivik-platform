@@ -296,7 +296,7 @@ export default function CasePending({
       </ul>
       {items.length > SHOWN && (
         <Link className="pend-rel-more" href={`/${locale}/registry?court=${entry.institutionId}`}>
-          {pick(T.allOfForum, locale)} ({items.length}) →
+          {pick(T.allOfForum, locale)} ({items.length})
         </Link>
       )}
     </section>
@@ -397,10 +397,10 @@ export default function CasePending({
             </a>
           )}
           <Link className="pend-back" href={`/${locale}/registry`}>
-            {t.toRegistry} →
+            {t.toRegistry}
           </Link>
           <Link className="pend-back" href={`/${locale}/map`}>
-            {t.toMap} →
+            {t.toMap}
           </Link>
         </div>
       </main>

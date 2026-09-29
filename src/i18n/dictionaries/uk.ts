@@ -212,7 +212,7 @@ const uk = {
        name. This string said «у реєстрі» against the rule at the top of this
        file, and it is the last thing a reader sees before landing on the
        page that calls itself «Бібліотека рішень». */
-    allInRegistry: "Дивитися в бібліотеці →",
+    allInRegistry: "Дивитися в бібліотеці",
     pending: "Огляд у підготовці",
     /* The registry's own wording for this field, not a new one: the sign in
        the source says which way the money ran, so what a tag can honestly

@@ -2889,7 +2889,7 @@ export default function EventsMap({
                   className="emap-seats-open"
                   href={`/${locale}/registry?court=${panel.courtIds.join(",")}`}
                 >
-                  {labels.seatsOpen} →
+                  {labels.seatsOpen}
                 </Link>
               )}
             </div>
