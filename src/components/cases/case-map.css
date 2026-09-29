@@ -71,8 +71,6 @@
   opacity: 0.42;
 }
 .casepage .mk-zone[data-state="on"] .zone {
-  filter: drop-shadow(0 0 5px var(--brand-gold-lamp))
-    drop-shadow(0 0 12px var(--brand-gold-lamp));
   /* The warm rim the events map puts on a selected place, so the mark reads as
      a source rather than as a disc that got brighter. */
   stroke: var(--brand-cream-warm);
@@ -82,7 +80,6 @@
 .casepage .mk-seat[data-state="on"] .mk-court {
   stroke: var(--brand-gold-pale);
   stroke-width: 2.4;
-  filter: drop-shadow(0 0 4px var(--brand-gold-pale));
 }
 .casepage .zone-area[data-state="on"] {
   fill: color-mix(in srgb, var(--brand-gold-lamp) 30%, transparent);

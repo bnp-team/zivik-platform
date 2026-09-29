@@ -25,8 +25,8 @@
      means "breach" on the decision pages, which a navigation button is not.
      The lit button borrows the lamp's own light instead. Same pill, same border,
      same type: only the colours change. */
-  .page a.btn-lit{background:var(--brand-gold-lit);border-color:var(--brand-gold-lit);color:var(--brand-night)}
-  .page a.btn-lit:hover{background:var(--brand-gold-bright);border-color:var(--brand-gold-bright)}
+  .page a.btn-lit{background:var(--brand-cream);border-color:var(--brand-cream);color:var(--brand-night)}
+  .page a.btn-lit:hover{background:var(--brand-paper);border-color:var(--brand-paper)}
   /* ---- lamp: light/dark toggle ---- */
   /* ---- lamplighter stage: start dark, reveal on light ---- */
   @keyframes bulbhint{0%,100%{box-shadow:0 0 0 0 rgba(230,182,92,0)}50%{box-shadow:0 0 24px 5px rgba(230,182,92,.42)}}

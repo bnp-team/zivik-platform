@@ -358,7 +358,7 @@
    chips below name the values themselves. */
 .reg-trig[data-on]{
   border-color:var(--gold);
-  background:color-mix(in srgb,var(--gold) 10%,var(--surface));
+  background:var(--brand-paper-2);
 }
 .reg-trig[data-on] .tv{font-weight:700}
 .reg-trig .tn{
@@ -413,7 +413,7 @@
 /* Keyboard-active and hovered are the same state – a tint plus a bar down the
    leading edge, which is a shape, not a colour. */
 .reg-opt[data-active]{
-  background:color-mix(in srgb,var(--gold) 12%,var(--surface));
+  background:var(--brand-paper-2);
   box-shadow:inset 3px 0 0 0 var(--gold);
 }
 /* Selection is a tick and a heavier word, so it survives without colour. */
@@ -439,11 +439,11 @@
   min-height:28px;padding:2px 4px 2px var(--space-3);
   border-radius:var(--r-pill);cursor:pointer;
   font:600 var(--t-cap) var(--brand-font-body);color:var(--ink);
-  background:color-mix(in srgb,var(--gold) 12%,var(--surface));
+  background:var(--brand-paper-2);
   border:1px solid var(--gold);
 }
 .reg-chip:hover{
-  background:color-mix(in srgb,var(--gold) 22%,var(--surface));
+  background:color-mix(in srgb,var(--brand-ink) 8%,var(--surface));
   border-color:var(--goldink);
 }
 .reg-chip .cd{
@@ -558,7 +558,7 @@
   padding-top:2px;
 }
 .reg-court .dot{width:7px;height:7px;border-radius:50%;flex:none;background:var(--rule)}
-.reg-drow.is-lit .reg-court .dot{background:var(--brand-gold-mark);box-shadow:0 0 7px color-mix(in srgb,var(--brand-gold-mark) 70%,transparent)}
+.reg-drow.is-lit .reg-court .dot{background:var(--brand-gold-mark)}
 .reg-main{min-width:0;display:block}
 /* The link lives in the case cell and its ::after covers the row, so the whole
    row is still one click target without an <a> wrapping table rows. */
@@ -698,8 +698,10 @@
 }
 
 .reg-main mark{
-  background:color-mix(in srgb,var(--gold) 26%,var(--surface));
-  color:var(--ink);border-radius:2px;padding:0 1px;
+  /* A match is bold and underlined in gold ink, not laid over in a yellow
+     highlighter. */
+  background:none;font-weight:700;
+  color:var(--ink);text-decoration:underline;text-decoration-color:var(--gold);text-decoration-thickness:2px;text-underline-offset:.18em;
 }
 
 .reg-tags{align-content:start;padding-top:1px;min-width:0}

@@ -226,7 +226,7 @@
 /* Outcome – filled in ink gold: what the forum actually issued is the record. */
 .tag-outcome {
   color: var(--brand-gold-ink);
-  background: color-mix(in srgb, var(--brand-gold) 10%, var(--brand-surface));
+  background: var(--brand-paper-2);
   border-color: var(--brand-gold);
 }
 
