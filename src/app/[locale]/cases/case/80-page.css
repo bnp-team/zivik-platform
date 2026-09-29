@@ -118,8 +118,8 @@
 /* ── Reading type ────────────────────────────────────────────────────────── */
 .casepage .body {
   font-size: var(--t-body);
-  line-height: 1.78;
-  color: var(--ink);
+  line-height: 1.62;
+  color: var(--ink2);
   margin: 0;
   text-wrap: pretty;
 }
@@ -294,9 +294,9 @@
 }
 .casepage .claim p,
 .casepage .rule p {
-  font-size: var(--t-sm);
-  line-height: 1.65;
-  color: var(--ink);
+  font-size: var(--t-body);
+  line-height: 1.62;
+  color: var(--ink2);
   margin: 0 0 var(--space-3);
   text-wrap: pretty;
 }

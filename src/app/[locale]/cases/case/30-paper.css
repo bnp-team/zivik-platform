@@ -173,8 +173,8 @@ The measure has been argued four times, so here is the method that settles
      apart by weight and colour rather than by being bigger. */
   font-family: var(--brand-font-body), sans-serif;
   font-size: var(--t-body);
-  line-height: 1.55;
-  color: var(--ink);
+  line-height: 1.62;
+  color: var(--ink2);
   margin: 0 0 var(--space-2);
 }
 /* A 2px black rule was the heaviest mark on the page – heavier than the

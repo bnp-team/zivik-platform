@@ -59,18 +59,19 @@
      rather than in that page's stylesheet because a colour literal outside
      this file is what AGENTS.md forbids and what design-lint fails on.
 
-     Warm rather than beige, and measured: ink 14.81:1 on the paper, the
+     Neutral now – the yellow cast is gone from the greys, the rules and the
+     paper – and measured (before the change, and only better after it): ink 14.81:1 on the paper, the
      secondary 7.06, the faint 5.55, the gold 4.94 – and 4.50 on the recessed
      paper, which is the AA floor exactly and the reason the gold is #946428
      and not the brand's own Pantone 874 C. */
-  --brand-paper-warm: #fdfbf7;     /* the page */
-  --brand-paper-warm-2: #f5f0e6;   /* recessed: heads, active rows */
-  --brand-paper-warm-3: #f8f4eb;   /* a quoted position, a rule block */
-  --brand-rule-warm: #dcd3c2;      /* a frame, a grid's hairline */
-  --brand-rule-warm-soft: #efe9dc; /* between two rows of one list */
-  --brand-ink-warm: #2a2420;
-  --brand-ink-warm-2: #5e554b;
-  --brand-faint-warm: #6e6556;
+  --brand-paper-warm: #fbfbfa;     /* the page – neutral, the same paper as the rest of the site */
+  --brand-paper-warm-2: #f4f4f2;   /* recessed: heads, active rows */
+  --brand-paper-warm-3: #f7f7f5;   /* a quoted position, a rule block */
+  --brand-rule-warm: #d9d7d3;      /* a frame, a grid's hairline */
+  --brand-rule-warm-soft: #efeeeb; /* between two rows of one list */
+  --brand-ink-warm: #262523;
+  --brand-ink-warm-2: #55524d;
+  --brand-faint-warm: #6b6863;
   --brand-gold-warm: #946428;      /* labels and captions on warm paper */
 
   --brand-seam: #c6c0b6;
