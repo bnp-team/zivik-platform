@@ -158,7 +158,7 @@
 /* 14px, not 15. Fifteen was a step the scale does not have – it sat between
    --t-sm and --t-body – and this is the floor the design contract sets for
    text a reader actually reads, so it goes to the token rather than below it. */
-.reg-lede{max-width:680px;font-size:var(--t-sm);line-height:1.6;color:var(--ink2);margin:0}
+.reg-lede{max-width:680px;font-size:var(--t-body);line-height:1.62;color:var(--ink2);margin:0}
 
 /* The state of the collection, under the figures that raise the question.
    Marked off with the gold rule the site uses wherever it speaks about itself

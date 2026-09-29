@@ -275,8 +275,8 @@ The measure has been argued four times, so here is the method that settles
        under the narrative they sit among – the most citable text on the
        page set smaller than the sentences leading up to it. */
     font-size: var(--t-body);
-  line-height: 1.6;
-  color: var(--ink);
+  line-height: 1.62;
+  color: var(--ink2);
   counter-increment: disp;
 }
 /* The run reads as one instrument: no rule under the last clause. */

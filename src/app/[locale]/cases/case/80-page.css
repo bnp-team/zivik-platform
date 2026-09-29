@@ -722,10 +722,10 @@
   border-left: 2px solid var(--brand-gold-mark);
 }
 .casepage .nb p {
-  font-family: var(--brand-font-display), serif;
+  font-family: var(--brand-font-body), sans-serif;
   font-size: var(--t-body);
-  line-height: 1.7;
-  color: var(--ink);
+  line-height: 1.62;
+  color: var(--ink2);
   margin: 0;
   text-wrap: pretty;
 }
