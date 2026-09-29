@@ -410,7 +410,7 @@ export const dtekKrymenergo: DecisionSummary = {
         /* By majority. § 371: "The necessary overall consequence is that the
            Tribunal, by majority, dismisses Respondent's Second Jurisdictional
            Exception", and dispositif item 2 reads "Dismisses by majority the
-           Second Jurisdictional Objection". Unanimous (§§ 368-369) is the
+           Second Jurisdictional Objection". Unanimous (§§ 368–369) is the
            interpretation of Article 12, not the dismissal. */
         votes: [{ for: 2, against: 1 }],
         reasoning: {

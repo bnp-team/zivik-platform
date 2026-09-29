@@ -446,7 +446,7 @@ export const icjGenocide: DecisionSummary = {
       },
     },
     {
-      date: { uk: "21 лип. — 15 груд. 2022", en: "21 Jul – 15 Dec 2022" },
+      date: { uk: "21 лип. – 15 груд. 2022", en: "21 Jul – 15 Dec 2022" },
       iso: "2022-07-21",
       kind: "filing",
       track: "intervention",

@@ -331,7 +331,7 @@ export const iccUkraine: DecisionSummary = {
         en: "Warrants for Shoigu and Gerasimov — the top of the chain of command",
       },
       note: {
-        uk: "Міністр оборони і начальник Генштабу — за ту саму кампанію проти енергосистеми (щонайменше 10.10.2022 — 09.03.2023).",
+        uk: "Міністр оборони і начальник Генштабу — за ту саму кампанію проти енергосистеми (щонайменше 10.10.2022 – 09.03.2023).",
         en: "The Defence Minister and the Chief of the General Staff, for the same campaign against the grid (at least 10 Oct 2022 – 9 Mar 2023).",
       },
     },
@@ -578,8 +578,8 @@ export const iccUkraine: DecisionSummary = {
         key: "grid",
         label: { uk: "Удари по енергосистемі", en: "Strikes on the power grid" },
         summary: {
-          uk: "Ракетна кампанія проти електроінфраструктури по всій країні, щонайменше 10.10.2022 — 09.03.2023. Суд дійшов до міністра оборони та начальника Генштабу.",
-          en: "The missile campaign against electric infrastructure nationwide, at least 10.10.2022 — 09.03.2023. The Court reached the Defence Minister and the Chief of the General Staff.",
+          uk: "Ракетна кампанія проти електроінфраструктури по всій країні, щонайменше 10.10.2022 – 09.03.2023. Суд дійшов до міністра оборони та начальника Генштабу.",
+          en: "The missile campaign against electric infrastructure nationwide, at least 10.10.2022 – 09.03.2023. The Court reached the Defence Minister and the Chief of the General Staff.",
         },
       },
     ],
@@ -740,7 +740,7 @@ export const iccUkraine: DecisionSummary = {
         iso: "2024-06-24",
         theme: { uk: "Удари по енергосистемі — командна вертикаль", en: "Strikes on the grid — the chain of command" },
         summary: {
-          uk: "Та сама кампанія (щонайменше 10.10.2022 — 09.03.2023) на рівні міністра оборони та начальника Генштабу.",
+          uk: "Та сама кампанія (щонайменше 10.10.2022 – 09.03.2023) на рівні міністра оборони та начальника Генштабу.",
           en: "The same campaign (at least 10 Oct 2022 – 9 Mar 2023) at the level of the Defence Minister and the Chief of the General Staff.",
         },
         url: "https://www.icc-cpi.int/news/situation-ukraine-icc-judges-issue-arrest-warrants-against-sergei-kuzhugetovich-shoigu-and",

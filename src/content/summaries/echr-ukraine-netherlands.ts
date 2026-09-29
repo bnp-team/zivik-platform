@@ -192,7 +192,7 @@ export const echrUkraineNetherlands: DecisionSummary = {
 
   timeline: [
     {
-      date: { uk: "лист. 2013 — лют. 2014", en: "Nov 2013 – Feb 2014" },
+      date: { uk: "лист. 2013 – лют. 2014", en: "Nov 2013 – Feb 2014" },
       iso: "2014-02-22",
       track: "background",
       kind: "context",
