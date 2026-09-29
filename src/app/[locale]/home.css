@@ -426,11 +426,12 @@
    повертається під текст. */
 .nsv-about-grid{display:grid;grid-template-columns:minmax(0, min(100%, var(--prose-max))) minmax(0, 1fr);align-items:start;gap:clamp(32px,4vw,64px)}
 .nsv-about-go{margin:0}
-/* A link to the next page, not a call to act: an underlined line in gold ink,
-   not the site's filled pill, which stays for the things a reader does
-   (write to us, support us). */
-.page .nsv-about-go a.nsv-cta.nsv-cta{min-height:44px;padding:var(--space-3) 0;border:0;border-radius:0;background:none;color:var(--brand-gold-ink);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.3em;transform:none}
-.page .nsv-about-go a.nsv-cta.nsv-cta:hover{background:none;border-color:transparent;color:var(--brand-ink);transform:none}
+/* Beside the prose, so it has to be a shape a reader can find there: an
+   outlined pill in ink, not the site's filled one (that stays for what a
+   reader does: write to us, support us), and not a bare underlined line, which
+   was lost in the empty column. */
+.page .nsv-about-go a.nsv-cta.nsv-cta{border:1px solid var(--brand-ink);background:none;color:var(--brand-ink);transform:none}
+.page .nsv-about-go a.nsv-cta.nsv-cta:hover{background:var(--brand-ink);border-color:var(--brand-ink);color:var(--brand-paper);transform:none}
 @media (max-width:1000px){
   .nsv-about-grid{grid-template-columns:minmax(0, 1fr);gap:var(--space-6)}
 }
