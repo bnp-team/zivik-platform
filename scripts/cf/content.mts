@@ -34,6 +34,24 @@ import {
 
 type Rec = Record<string, unknown>;
 
+/**
+ * The credentials of the running EmDash. A personal access token in
+ * EMDASH_TOKEN, or – in a cloud session whose environment keeps the token as
+ * an API credential the session never sees – nothing at all: the proxy adds
+ * it to requests for that host, so the header is left off
+ * (EMDASH_TOKEN_VIA_PROXY=1). A header of our own would stop the proxy.
+ */
+function emdashAuth(what: string): { base: string; headers: Record<string, string> } {
+  const base = process.env.EMDASH_URL?.replace(/\/$/, "");
+  const token = process.env.EMDASH_TOKEN;
+  const viaProxy = process.env.EMDASH_TOKEN_VIA_PROXY === "1";
+  if (!base || (!token && !viaProxy)) throw new Error(`${what} needs EMDASH_URL and EMDASH_TOKEN (or EMDASH_TOKEN_VIA_PROXY=1)`);
+  return {
+    base,
+    headers: { ...(token && !viaProxy ? { authorization: `Bearer ${token}` } : {}), "content-type": "application/json" },
+  };
+}
+
 export async function loadSource(spec: CollectionSpec): Promise<[string, Rec][]> {
   const mod = (await import(resolve(spec.source.file))) as Record<string, unknown>;
   const value = mod[spec.source.export];
@@ -176,13 +194,11 @@ async function seed(out: string) {
  * tokens) with content read, write and publish scopes.
  */
 async function push(write: boolean, only?: Set<string>, missingOnly = false) {
-  const base = process.env.EMDASH_URL?.replace(/\/$/, "");
-  const token = process.env.EMDASH_TOKEN;
-  if (!base || !token) throw new Error("push needs EMDASH_URL and EMDASH_TOKEN");
+  const { base, headers } = emdashAuth("push");
   const api = async (method: string, path: string, body?: unknown) => {
     const res = await fetch(`${base}/_emdash/api${path}`, {
       method,
-      headers: { authorization: `Bearer ${token}`, "content-type": "application/json" },
+      headers,
       body: body === undefined ? undefined : JSON.stringify(body),
     });
     const json = (await res.json().catch(() => ({}))) as { data?: { item?: { data: Rec; id: string } } };
@@ -260,9 +276,7 @@ type RemoteField = {
 };
 
 async function schema(write: boolean, prune: boolean) {
-  const base = process.env.EMDASH_URL?.replace(/\/$/, "");
-  const token = process.env.EMDASH_TOKEN;
-  if (!base || !token) throw new Error("schema needs EMDASH_URL and EMDASH_TOKEN");
+  const { base, headers } = emdashAuth("schema");
   const api = async (method: string, path: string, body?: unknown) => {
     /* A cold Worker or a busy D1 answers the odd 5xx; one or two retries
        keep a run of dozens of calls from stopping half-way. */
@@ -270,7 +284,7 @@ async function schema(write: boolean, prune: boolean) {
     for (let attempt = 0; attempt < 3; attempt++) {
       res = await fetch(`${base}/_emdash/api${path}`, {
         method,
-        headers: { authorization: `Bearer ${token}`, "content-type": "application/json" },
+        headers,
         body: body === undefined ? undefined : JSON.stringify(body),
       });
       if (res.status < 500) break;
@@ -327,6 +341,12 @@ async function schema(write: boolean, prune: boolean) {
       if (remote.label !== f.label) changes.push(`label «${f.label}»`);
       if (remote.sortOrder !== f.sortOrder) changes.push(`position ${remote.sortOrder} → ${f.sortOrder}`);
       if (wantMax !== haveMax) changes.push(`max length ${haveMax ?? "–"} → ${wantMax ?? "–"}`);
+      /* A select's choices: «Приховати розділи» gained six, and a field that
+         keeps the choices it was created with would never offer them. */
+      const wantOpts = (f.validation as { options?: unknown[] } | undefined)?.options;
+      const haveOpts = remote.validation?.options as unknown[] | undefined;
+      const optsChanged = Boolean(wantOpts) && JSON.stringify(wantOpts) !== JSON.stringify(haveOpts);
+      if (optsChanged) changes.push(`options ${haveOpts?.length ?? 0} → ${wantOpts!.length}`);
       const wantWidget = (f.widget as string | undefined) ?? "";
       if ((remote.widget ?? "") !== wantWidget) changes.push(`editor ${remote.widget || "–"} → ${wantWidget || "–"}`);
       if (!changes.length) continue;
@@ -339,6 +359,7 @@ async function schema(write: boolean, prune: boolean) {
       const validation = { ...(remote.validation ?? {}) };
       if (wantMax === undefined) delete validation.maxLength;
       else validation.maxLength = wantMax;
+      if (optsChanged) validation.options = wantOpts;
       await api("PUT", `/schema/collections/${spec.slug}/fields/${slug}`, {
         label: f.label,
         sortOrder: f.sortOrder,
