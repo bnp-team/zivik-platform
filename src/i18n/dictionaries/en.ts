@@ -58,7 +58,6 @@ const en: Dictionary = {
   about: {
     more: "More about the project",
   },
-  slogan: "We research · We explain · We bring to light",
   pending: {
     title: "Still being researched",
     body: "This proceeding is in the library, but its summary is not written yet – we are working on it. Below is what is already known, and a link to the court's own document where one is public.",

@@ -7,7 +7,6 @@ import "./home.css";
 import LampShell from "@/components/nasvitlo/LampShell";
 import Hero from "@/components/nasvitlo/Hero";
 import About from "@/components/nasvitlo/About";
-import Slogan from "@/components/nasvitlo/Slogan";
 import Quote from "@/components/nasvitlo/Quote";
 import Partners from "@/components/nasvitlo/Partners";
 
@@ -93,7 +92,6 @@ export default async function HomePage({
             Тут він був окремим блоком із від'ємним полем, яке підтягувало
             його назад під підошву смуги; блок, який існує, щоб компенсувати
             поле сусіда, – це шов, а не композиція. */}
-        <Slogan dict={dict} />
         {/* No map band here any more.
 
             The map is the background of the first screen now – the thing the

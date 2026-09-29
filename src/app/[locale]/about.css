@@ -986,35 +986,16 @@
   padding: var(--space-5);
   background: var(--surface);
   border: 1px solid var(--rule);
-  box-shadow: var(--shadow-sm);
   text-decoration: none;
-  transition:
-    transform var(--dur) var(--ease),
-    box-shadow var(--dur) var(--ease),
-    border-color var(--dur) var(--ease);
+  transition: border-color var(--dur) var(--ease);
 }
 .abt-fac:hover,
 .abt-fac:focus-visible {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
   border-color: var(--red);
 }
 .abt-fac:focus-visible {
   outline: 2px solid var(--red);
   outline-offset: 3px;
-}
-.abt-fac:active {
-  transform: translateY(0);
-  box-shadow: var(--shadow-sm);
-}
-@media (prefers-reduced-motion: reduce) {
-  .abt-fac,
-  .abt-fac:hover,
-  .abt-fac:focus-visible,
-  .abt-fac:active {
-    transform: none;
-    transition: box-shadow var(--dur) var(--ease), border-color var(--dur) var(--ease);
-  }
 }
 .abt-fac-mark {
   /* Висота, не ширина: локапи двох мов різних пропорцій (2020×797 і

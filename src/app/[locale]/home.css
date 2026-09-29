@@ -17,7 +17,7 @@
   .lbl span{font:700 var(--t-micro) var(--brand-font-body),sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--brand-gold-ink)}
   .dot{width:6px;height:6px;border-radius:50%;flex:none}
   .btn{display:inline-flex;align-items:center;gap:var(--space-2);font:700 var(--t-micro) var(--brand-font-body),sans-serif;letter-spacing:.07em;text-transform:uppercase;padding:var(--space-3) var(--space-5);border-radius:var(--r-pill);border:2px solid var(--red);cursor:pointer;text-decoration:none;transition:transform var(--dur) var(--ease),box-shadow var(--dur) var(--ease),background-color var(--dur) var(--ease),color var(--dur) var(--ease)}
-  .btn:hover{transform:translateY(-1px)}
+  
   /* `.btn-o` пішла: смуга «Про проєкт» узяла спільну пігулку сайту, і це
      було єдине місце, де прозорий червоний варіант вживався. */
   /* On the lamp scene the paper red is too dark to read, and a saturated red
@@ -362,19 +362,18 @@
 /* The open half. The same night the footer is, so the page closes in one
    colour, with the site's own figure for light at its top edge rather than a
    second accent colour. */
-/* A panel, so --r-md and soft elevation (DESIGN.md, shape table); its chips
-   and its button are pills. It was the one square card and the one set of
-   square buttons on a site whose other buttons are all pills. */
-.nsv-open{position:relative;overflow:hidden;padding:var(--space-12) var(--space-10);background:var(--brand-ink-black);color:var(--brand-cream);border-radius:var(--r-md);box-shadow:var(--shadow-md)}
-.nsv-open::before{content:"";position:absolute;inset:0 0 auto;height:var(--space-24);background:radial-gradient(60% 100% at 50% 0%,color-mix(in srgb,var(--brand-gold-lit) 16%,transparent),transparent 70%);pointer-events:none}
+/* A panel on the footer's own night, --r-md, and nothing else: no shadow to lift
+   it off the page and no glow at its top edge. It is a block of text with one
+   button, and the ground it sits on is already the lamp's. */
+.nsv-open{position:relative;overflow:hidden;padding:var(--space-12) var(--space-10);background:var(--brand-ink-black);color:var(--brand-cream);border-radius:var(--r-md)}
 .nsv-open > *{position:relative}
 .nsv-open-lbl{margin:0 0 var(--space-4);font:700 var(--t-micro) var(--brand-font-body),sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--brand-gold-lamp)}
 .nsv-open h3.nsv-open-h{margin:0 0 var(--space-5);font-family:var(--brand-font-display),serif;font-weight:400;font-size:var(--t-h2);line-height:1.2;color:var(--brand-cream)}
 .nsv-open-t{margin:0 0 var(--space-8);font-size:var(--t-body);line-height:1.55;color:var(--brand-muted-dark);max-width:48ch}
-/* Nouns, not controls: no hover, no pointer, nothing to press. What a
-   partnership could be – the one thing to press is the letter below. */
-.nsv-open-ways{display:flex;flex-wrap:wrap;gap:var(--space-3);margin:0 0 var(--space-8);padding:0;list-style:none}
-.nsv-open-ways li{padding:var(--space-3) var(--space-5);border-radius:var(--r-pill);border:1px solid color-mix(in srgb,var(--brand-cream) 34%,transparent);font-size:var(--t-sm);line-height:1.2;color:var(--brand-cream)}
+/* What a partnership could be, said once in a line. It was three outlined
+   pills, and pills are what a button looks like: nothing behind them was
+   pressable. */
+.nsv-open-ways{margin:0 0 var(--space-8);font-size:var(--t-body);line-height:1.55;color:var(--brand-cream)}
 /* --brand-cream-warm on --brand-cherry is 5.01:1; the button against the
    panel is 3.81:1, over the 3:1 floor a control has to clear as a shape. The
    paper red would be neither: it is 1.9:1 on this ground. */
@@ -383,13 +382,6 @@
 .nsv-open-cta:focus-visible{outline:2px solid var(--brand-gold-pale);outline-offset:3px}
 @media (max-width:600px){.nsv-open{padding:var(--space-10) var(--space-7)}}
 
-/* brand slogan divider – Charis SIL caps, wide tracking (UCU "гасла" style) */
-.nsv-slogan{display:flex;align-items:center;gap:var(--space-6);padding:var(--space-7) var(--space-7);background:var(--paper2);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
-.nsv-slogan .rule{flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--rule))}
-.nsv-slogan .rule.r2{background:linear-gradient(90deg,var(--rule),transparent)}
-/* The motto in gold ink, not the cherry: it is the archive speaking about
-   itself, which is structure, and red is kept for findings. */
-.nsv-slogan .motto{font-family:var(--brand-font-display),Georgia,serif;font-size:clamp(var(--t-sm),2.3vw,var(--t-lead));letter-spacing:.16em;text-transform:uppercase;color:var(--brand-gold-ink);text-align:center}
 
 /* The map band carries no side padding of its own any more, so the negative
    margins that used to punch through it now overshoot the viewport by exactly
@@ -434,6 +426,11 @@
    повертається під текст. */
 .nsv-about-grid{display:grid;grid-template-columns:minmax(0, min(100%, var(--prose-max))) minmax(0, 1fr);align-items:start;gap:clamp(32px,4vw,64px)}
 .nsv-about-go{margin:0}
+/* A link to the next page, not a call to act: an underlined line in gold ink,
+   not the site's filled pill, which stays for the things a reader does
+   (write to us, support us). */
+.page .nsv-about-go a.nsv-cta.nsv-cta{min-height:44px;padding:var(--space-3) 0;border:0;border-radius:0;background:none;color:var(--brand-gold-ink);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.3em;transform:none}
+.page .nsv-about-go a.nsv-cta.nsv-cta:hover{background:none;border-color:transparent;color:var(--brand-ink);transform:none}
 @media (max-width:1000px){
   .nsv-about-grid{grid-template-columns:minmax(0, 1fr);gap:var(--space-6)}
 }

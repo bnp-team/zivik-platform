@@ -108,11 +108,9 @@ export default function Partners({
           <p className="nsv-open-lbl">{p.openLabel}</p>
           <h3 className="nsv-open-h">{p.openHeading}</h3>
           <p className="nsv-open-t">{p.openText}</p>
-          <ul className="nsv-open-ways">
-            {p.openWays.map((way) => (
-              <li key={way}>{way}</li>
-            ))}
-          </ul>
+          <p className="nsv-open-ways">
+            {p.openWays.map((way, i) => (i === 0 ? way : way.charAt(0).toLowerCase() + way.slice(1))).join(", ")}.
+          </p>
           <a
             className="nsv-open-cta"
             href={`mailto:${dict.footer.email}?subject=${encodeURIComponent(p.openLabel)}`}

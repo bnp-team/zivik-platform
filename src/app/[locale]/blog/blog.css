@@ -201,16 +201,13 @@
   padding: var(--space-4) var(--space-5);
   border-radius: var(--r-md);
   background: var(--surface);
-  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--rule);
   color: var(--ink);
-  transition:
-    transform var(--dur) var(--ease),
-    box-shadow var(--dur) var(--ease);
+  transition: border-color var(--dur) var(--ease);
 }
 .blog-wrap .post-related a:hover {
   color: var(--ink);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
+  border-color: var(--brand-gold-ink);
 }
 .post-related-court {
   font: 400 var(--t-cap) / 1.5 var(--brand-font-mono), monospace;

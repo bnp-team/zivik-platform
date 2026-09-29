@@ -860,17 +860,11 @@
      наведення виглядає, ніби поїхала верстка». Край малює рамку, тінь
      лишається тому, що картка підіймається. */
   border: 1px solid var(--prule);
-  box-shadow: var(--shadow-sm);
   cursor: pointer;
-  transition:
-    box-shadow var(--dur) var(--ease),
-    border-color var(--dur) var(--ease),
-    transform var(--dur) var(--ease);
+  transition: border-color var(--dur) var(--ease);
 }
 .casepage .obj-card:hover {
-  box-shadow: var(--shadow-md);
-  border-color: var(--rule);
-  transform: translateY(-2px);
+  border-color: var(--pgold);
 }
 /* The outcome and the counter share the card's first line.
 
