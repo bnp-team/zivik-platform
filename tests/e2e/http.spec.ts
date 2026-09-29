@@ -125,11 +125,15 @@ test("admin sign-in: not indexed, carries the editor's guide", async ({ request 
   expect(res.status()).toBe(200);
   expect(header(res, "x-robots-tag")).toContain("noindex");
   expect(header(res, "server-timing"), "no Server-Timing map of the runtime").toBe("");
-  expect(await res.text()).toContain('src="/admin-guide.js"');
+  const html = await res.text();
+  expect(html).toContain('src="/admin-guide.js"');
+  expect(html).toContain('src="/admin-tweaks.js"');
 
-  const guide = await get(request, "/admin-guide.js");
-  expect(guide.status()).toBe(200);
-  expect(header(guide, "content-type")).toMatch(/javascript/);
+  for (const file of ["/admin-guide.js", "/admin-tweaks.js"]) {
+    const script = await get(request, file);
+    expect(script.status(), file).toBe(200);
+    expect(header(script, "content-type"), file).toMatch(/javascript/);
+  }
 });
 
 test("admin search API without a session is a 404", async ({ request }) => {

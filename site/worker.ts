@@ -141,7 +141,9 @@ export default {
       return new HTMLRewriter()
         .on("head", {
           element(head) {
-            head.append('<script src="/admin-guide.js" defer></script>', { html: true });
+            head.append('<script src="/admin-guide.js" defer></script><script src="/admin-tweaks.js" defer></script>', {
+              html: true,
+            });
           },
         })
         .transform(out);

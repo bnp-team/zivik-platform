@@ -105,6 +105,9 @@ const headersFile = {
         "/admin-guide.js",
         "  Cache-Control: no-cache",
         "",
+        "/admin-tweaks.js",
+        "  Cache-Control: no-cache",
+        "",
       ];
       appendFileSync(new URL("_headers", dir), lines.join("\n"));
     },

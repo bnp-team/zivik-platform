@@ -15,6 +15,7 @@
  */
 import { useEffect, useLayoutEffect, useMemo, useRef, useState, type ReactNode, type TextareaHTMLAttributes } from "react";
 import { SHAPES, blank, clean, isEmpty, type Shape } from "./shapes";
+import { FieldPreview, StagingPanel, SummaryOverview } from "./panels";
 
 type Json = unknown;
 type Obj = Record<string, Json>;
@@ -470,6 +471,7 @@ function JsonForm({ name, value, onChange, label, id }: WidgetProps & { name: st
       ) : (
         <div className="nsvj-box">
           <Editor shape={shape} value={parsed} onChange={emit} />
+          <FieldPreview name={name} value={parsed} />
           <button
             type="button"
             className="nsvj-btn nsvj-danger"
@@ -491,3 +493,23 @@ function widget(name: string) {
 }
 
 export const fields = Object.fromEntries(Object.keys(SHAPES).map((name) => [name, widget(name)]));
+
+/**
+ * Panels in the editor's right-hand column – trusted-plugin extension of
+ * EmDash's admin: the saved entry is handed to each (`collection`, `entry`).
+ */
+export const contentEditorPanels = [
+  {
+    id: "overview",
+    title: "Що покаже сторінка",
+    component: SummaryOverview,
+    collections: ["summaries"],
+    order: 10,
+  },
+  {
+    id: "staging",
+    title: "Перегляд перед публікацією",
+    component: StagingPanel,
+    order: 20,
+  },
+];
