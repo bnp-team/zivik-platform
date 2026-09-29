@@ -18,6 +18,9 @@
       "bucket_name": "nasvitlo-media",
     },
   ],
+  // No plain-text variables in code: the secrets (RESEND_API_KEY, DEPLOY_HOOK_URL,
+  // STAGING_DEPLOY_HOOK_URL, EMAIL_FROM) live in the dashboard, under Runtime.
+  "vars": {},
   "observability": { "enabled": true },
   // EmDash's maintenance tasks (scheduled publishing, cleanup).
   "triggers": {
