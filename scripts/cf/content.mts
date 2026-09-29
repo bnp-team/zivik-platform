@@ -188,12 +188,13 @@ async function seed(out: string) {
  *   … npm run cf:content -- push --only ui_texts,legal_documents,map_places --missing [--yes]
  *
  * `--only` limits the run to those collections; `--missing` creates the entries
- * EmDash does not have and never updates one it has.
+ * EmDash does not have and never updates one it has; `--draft` leaves what it
+ * creates unpublished, so it starts no rebuild (see the note in `push`).
  *
  * The token is a personal access token from the admin (Settings → API
  * tokens) with content read, write and publish scopes.
  */
-async function push(write: boolean, only?: Set<string>, missingOnly = false) {
+async function push(write: boolean, only?: Set<string>, missingOnly = false, asDraft = false) {
   const { base, headers } = emdashAuth("push");
   const api = async (method: string, path: string, body?: unknown) => {
     const res = await fetch(`${base}/_emdash/api${path}`, {
@@ -206,6 +207,13 @@ async function push(write: boolean, only?: Set<string>, missingOnly = false) {
   };
 
   let changed = 0;
+  /* With --draft the entries are created and left unpublished: a publish is
+     a rebuild of the site, and a few hundred of them at once is a few hundred
+     builds. A draft costs none, and for a list an editor edits row by row –
+     «Тексти сайту» – it is enough: only a row somebody changed and published
+     reaches the site. Several requests at a time, because a few hundred one
+     after another is a long wait. */
+  const work: (() => Promise<void>)[] = [];
   for (const spec of COLLECTIONS) {
     if (only && !only.has(spec.slug)) continue;
     const entries = await loadSource(spec);
@@ -215,29 +223,40 @@ async function push(write: boolean, only?: Set<string>, missingOnly = false) {
         ...(spec.shape === "array" ? { [POSITION]: (i + 1) * 10 } : {}),
         ...(spec.listLabel ? { [LIST_LABEL]: spec.listLabel(value, key) } : {}),
       };
-      const got = await api("GET", `/content/${spec.slug}/${encodeURIComponent(key)}`);
-      if (missingOnly && got.item) continue;
-      const same =
-        got.item &&
-        isDeepStrictEqual(plain(fromRow(spec, got.item.data)), plain(value)) &&
-        (spec.shape !== "array" || Number(got.item.data[POSITION]) === data[POSITION]);
-      if (same) continue;
-      changed++;
-      console.log(`  ${got.item ? "update" : "create"} ${spec.slug}/${key}`);
-      if (!write) continue;
-      const saved = got.item
-        ? await api("PUT", `/content/${spec.slug}/${got.item.id}`, { data })
-        : await api("POST", `/content/${spec.slug}`, { slug: key, data });
-      if (!saved.item) throw new Error(`push: saving ${spec.slug}/${key} failed (${saved.status})`);
-      const pub = await api("POST", `/content/${spec.slug}/${saved.item.id}/publish`);
-      if (pub.status >= 300) throw new Error(`push: publishing ${spec.slug}/${key} failed (${pub.status})`);
+      const task = async () => {
+        const got = await api("GET", `/content/${spec.slug}/${encodeURIComponent(key)}`);
+        if (missingOnly && got.item) return;
+        const same =
+          got.item &&
+          isDeepStrictEqual(plain(fromRow(spec, got.item.data)), plain(value)) &&
+          (spec.shape !== "array" || Number(got.item.data[POSITION]) === data[POSITION]);
+        if (same) return;
+        changed++;
+        console.log(`  ${got.item ? "update" : "create"} ${spec.slug}/${key}`);
+        if (!write) return;
+        const saved = got.item
+          ? await api("PUT", `/content/${spec.slug}/${got.item.id}`, { data })
+          : await api("POST", `/content/${spec.slug}`, { slug: key, data });
+        if (!saved.item) throw new Error(`push: saving ${spec.slug}/${key} failed (${saved.status})`);
+        if (asDraft) return;
+        const pub = await api("POST", `/content/${spec.slug}/${saved.item.id}/publish`);
+        if (pub.status >= 300) throw new Error(`push: publishing ${spec.slug}/${key} failed (${pub.status})`);
+      };
+      work.push(task);
     }
   }
+  const lanes = asDraft ? 6 : 1;
+  let next = 0;
+  await Promise.all(
+    Array.from({ length: lanes }, async () => {
+      while (next < work.length) await work[next++]();
+    }),
+  );
   console.log(
     changed === 0
       ? "cf:content push: EmDash already matches src/content."
       : write
-        ? `cf:content push: wrote and published ${changed} entr${changed === 1 ? "y" : "ies"}.`
+        ? `cf:content push: wrote ${asDraft ? "as drafts" : "and published"} ${changed} entr${changed === 1 ? "y" : "ies"}.`
         : `cf:content push: ${changed} entr${changed === 1 ? "y differs" : "ies differ"} – run with --yes to write.`,
   );
 }
@@ -410,7 +429,7 @@ if (cmd === "check") {
     const known = new Set(COLLECTIONS.map((c) => c.slug));
     for (const slug of only) if (!known.has(slug)) throw new Error(`push --only: no collection "${slug}"`);
   }
-  await push(rest.includes("--yes"), only, rest.includes("--missing"));
+  await push(rest.includes("--yes"), only, rest.includes("--missing"), rest.includes("--draft"));
 } else if (cmd === "schema") {
   await schema(rest.includes("--yes"), rest.includes("--prune"));
 } else {
