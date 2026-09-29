@@ -163,10 +163,19 @@ async function seed(out: string) {
  *
  *   EMDASH_URL=https://… EMDASH_TOKEN=… npm run cf:content -- push [--yes]
  *
+ * To bring only a NEW collection in – «Тексти сайту», the legal pages, the
+ * map's cities – without touching anything an editor has written anywhere,
+ * name it and ask for the missing entries only:
+ *
+ *   … npm run cf:content -- push --only ui_texts,legal_documents,map_places --missing [--yes]
+ *
+ * `--only` limits the run to those collections; `--missing` creates the entries
+ * EmDash does not have and never updates one it has.
+ *
  * The token is a personal access token from the admin (Settings → API
  * tokens) with content read, write and publish scopes.
  */
-async function push(write: boolean) {
+async function push(write: boolean, only?: Set<string>, missingOnly = false) {
   const base = process.env.EMDASH_URL?.replace(/\/$/, "");
   const token = process.env.EMDASH_TOKEN;
   if (!base || !token) throw new Error("push needs EMDASH_URL and EMDASH_TOKEN");
@@ -182,6 +191,7 @@ async function push(write: boolean) {
 
   let changed = 0;
   for (const spec of COLLECTIONS) {
+    if (only && !only.has(spec.slug)) continue;
     const entries = await loadSource(spec);
     for (const [i, [key, value]] of entries.entries()) {
       const data: Rec = {
@@ -190,6 +200,7 @@ async function push(write: boolean) {
         ...(spec.listLabel ? { [LIST_LABEL]: spec.listLabel(value, key) } : {}),
       };
       const got = await api("GET", `/content/${spec.slug}/${encodeURIComponent(key)}`);
+      if (missingOnly && got.item) continue;
       const same =
         got.item &&
         isDeepStrictEqual(plain(fromRow(spec, got.item.data)), plain(value)) &&
@@ -370,7 +381,15 @@ if (cmd === "check") {
 } else if (cmd === "seed") {
   await seed(resolve(rest[0] ?? ".emdash/seed.json"));
 } else if (cmd === "push") {
-  await push(rest.includes("--yes"));
+  const onlyArg = rest.find((a) => a.startsWith("--only="))?.slice(7) ?? rest[rest.indexOf("--only") + 1];
+  const only = rest.some((a) => a === "--only" || a.startsWith("--only=")) && onlyArg
+    ? new Set(onlyArg.split(",").map((x) => x.trim()).filter(Boolean))
+    : undefined;
+  if (only) {
+    const known = new Set(COLLECTIONS.map((c) => c.slug));
+    for (const slug of only) if (!known.has(slug)) throw new Error(`push --only: no collection "${slug}"`);
+  }
+  await push(rest.includes("--yes"), only, rest.includes("--missing"));
 } else if (cmd === "schema") {
   await schema(rest.includes("--yes"), rest.includes("--prune"));
 } else {

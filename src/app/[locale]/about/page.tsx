@@ -24,6 +24,7 @@ import {
   jsonLdHtml,
 } from "@/lib/seo";
 import "../about.css";
+import { txt } from "@/lib/ui-texts";
 
 /**
  * "About us" – the page the primary navigation points at.
@@ -37,14 +38,14 @@ import "../about.css";
  * or funding is asserted, because nothing in the record supports it.
  */
 const T = {
-  back: { uk: "На головну", en: "Home" },
+  back: txt("about.back", { uk: "На головну", en: "Home" }),
   /* «Про проєкт», not «Про нас».
      Owner's edit: the tab and the page are renamed, because what the page is
      about is the project – the people are one section of it now rather than
      the whole subject. `about.title` in the content layer carries the same
      words for the home page's band, which is why the first section below
      lost its own <h2>: the H1 had become a repeat of it. */
-  title: { uk: "Про проєкт", en: "About the project" },
+  title: txt("about.title", { uk: "Про проєкт", en: "About the project" }),
   /* No standfirst under the H1. There used to be one, and it said the library
      holds decisions «міжнародних судів і трибуналів, що постали з українських
      ініціатив» – two claims the owner corrected in the same breath: the
@@ -74,12 +75,12 @@ const T = {
      Their hue is `--brand-forum`, which on this site names an institution
      and never an outcome (DESIGN.md §Colour). Gold here would have read as
      relief granted and red as a finding of breach. */
-  scope: {
+  scope: txt("about.scope", {
     uk: "Онлайн-бібліотека міжнародної судової практики та практики іноземних судів у справах, які порушили Україна та іноземні держави, щоб притягнути Росію до відповідальності за порушення, вчинені під час війни проти України.",
     en: "An online library of international case-law and of foreign national courts, in the proceedings brought by Ukraine and by foreign States to hold Russia accountable for violations committed during the war against Ukraine.",
-  },
+  }),
 
-  metaDesc: {
+  metaDesc: txt("about.metaDesc", {
     /* It used to promise the editorial method and the state of the library.
        Both sections have since come off this page – the method for being a
        procedure the project has not settled, the figures for living on the
@@ -87,7 +88,7 @@ const T = {
        arriving from a search result would not find. */
     uk: "Хто веде бібліотеку «НаСвітло», що це за проєкт і хто над ним працює.",
     en: "Who runs the NaSvitlo library, what the project is, and who works on it.",
-  },
+  }),
 
   /* ── «Чого тут немає» – removed with its strings ──────────────────────────
      Four statements about what the archive does not do, three of which drew a
@@ -113,7 +114,7 @@ const T = {
      зробив би з неї тло.
 
      Англійська – переклад, зроблений тут: документ її не має. */
-  whyH: { uk: "Навіщо ця бібліотека", en: "Why this library" },
+  whyH: txt("about.whyH", { uk: "Навіщо ця бібліотека", en: "Why this library" }),
   why: {
     uk: [
       "Війна Росії проти України поставила перед правом надзвичайне за масштабом завдання – забезпечити відповідальність за численні порушення міжнародного права, захистити права постраждалих та створити правові передумови для відновлення справедливості. Відповіддю стало використання широкого кола міжнародних і національних правових механізмів, і в результаті формується значний та постійно зростаючий масив судової практики.",
@@ -128,14 +129,14 @@ const T = {
   },
   /* Дата, з якої все почалося, як подія – з макета власниці. Резолюція
      названа й у прозі нижче; тут вона позначка на часі, а не речення. */
-  resDate: { uk: "27 березня 2014", en: "27 March 2014" },
-  resText: {
+  resDate: txt("about.resDate", { uk: "27 березня 2014", en: "27 March 2014" }),
+  resText: txt("about.resText", {
     uk: "Генеральна Асамблея ООН схвалює резолюцію «Територіальна цілісність України»",
     en: "The UN General Assembly adopts the resolution ‘Territorial integrity of Ukraine’",
-  },
-  resLink: { uk: "A/RES/68/262", en: "A/RES/68/262" },
-  forumsH: { uk: "Інстанції в бібліотеці", en: "The forums in the library" },
-  forumsNat: { uk: "Іноземні національні суди", en: "Foreign national courts" },
+  }),
+  resLink: txt("about.resLink", { uk: "A/RES/68/262", en: "A/RES/68/262" }),
+  forumsH: txt("about.forumsH", { uk: "Інстанції в бібліотеці", en: "The forums in the library" }),
+  forumsNat: txt("about.forumsNat", { uk: "Іноземні національні суди", en: "Foreign national courts" }),
   /* Заголовок із документа, а не про власника.
 
      Він казав «Хто веде проєкт», а під ним стояло «Проєкт веде
@@ -143,7 +144,7 @@ const T = {
      не було: документ ніде не каже, хто проєкт веде. Він каже інше, і
      каже це першим же реченням цього розділу: створення «НаСвітла» є
      частиною ширшої місії. Звідти й назва. */
-  whoH: { uk: "Частина ширшої місії", en: "Part of a wider mission" },
+  whoH: txt("about.whoH", { uk: "Частина ширшої місії", en: "Part of a wider mission" }),
   /* Обидва абзаци – з «Про платформу», слово в слово.
 
      Тут стояло власне речення сайту: «Проєкт веде Дослідницький центр імені
@@ -169,10 +170,10 @@ const T = {
       " – to uphold the value of human dignity, the rule of law and human rights, and to strengthen the part the academic community plays in answering the social and legal challenges of the war.",
     ],
   },
-  who2: {
+  who2: txt("about.who2", {
     uk: "Через дослідження, освіту та відкритий доступ до правового знання ми прагнемо сприяти осмисленню того, як право може служити інструментом захисту людини, встановлення відповідальності та відновлення справедливості.",
     en: "Through research, education and open access to legal knowledge we seek to help make sense of how the law can serve as an instrument for protecting the person, establishing accountability and restoring justice.",
-  },
+  }),
 
   /* Підпис до знака факультету – назва, а не адреса.
 
@@ -181,12 +182,12 @@ const T = {
      байдуже, чий це сайт. Власниця: «це не на сайті УКУ, а на сайті
      факультету права; тоді давай просто напишемо Центр Луї Зона». Куди
      веде посилання, каже стрілка, а знак поруч каже, чий це сайт. */
-  centreLink: {
+  centreLink: txt("about.centreLink", {
     uk: "Центр Луї Зона",
     en: "The Louis Sohn Centre",
-  },
-  teamH: { uk: "Хто над цим працює", en: "Who works on this" },
-  teamLink: { uk: "Сторінка команди", en: "The team page" },
+  }),
+  teamH: txt("about.teamH", { uk: "Хто над цим працює", en: "Who works on this" }),
+  teamLink: txt("about.teamLink", { uk: "Сторінка команди", en: "The team page" }),
 
   /* The Centre in its own words. Taken from its page on the faculty site
      (lawmigration.ucu.org.ua/doslidnyczkyj-czentr-luyi-zona), condensed but
@@ -194,15 +195,15 @@ const T = {
      translation of that Ukrainian, not a separate text. Nothing here is
      inferred – until now this page said nothing about the Centre at all,
      because the repository recorded nothing to say. */
-  centre: {
+  centre: txt("about.centre", {
     uk: "Дослідницький центр Луї Зона Факультету права УКУ – експертна платформа з дослідження, осмислення та подолання правових викликів, спричинених війною та повоєнним відновленням України. Центр зʼявився з переконання, що право не може мовчати, коли йдеться про порушення справедливості та гідності людини.",
     en: "The Louis Sohn Research Centre at the UCU Faculty of Law is an expert platform for researching, making sense of and answering the legal challenges caused by the war and by Ukraine’s post-war recovery. The Centre grew out of a conviction that the law cannot stay silent where justice and human dignity are violated.",
-  },
-  centre2: {
+  }),
+  centre2: txt("about.centre2", {
     uk: "Центр поєднує науковий аналіз із практичними правовими рішеннями: тут проводять дослідження, ведуть публічний діалог і сприяють професійному розвитку правників, готових шукати відповіді на найскладніші виклики свого часу. Ця бібліотека – одна з таких відповідей.",
     en: "The Centre joins scholarly analysis to practical legal work: it conducts research, holds public debate, and supports the professional development of lawyers willing to take on the hardest questions of their time. This library is one of those answers.",
-  },
-  missionH: { uk: "Місія Центру", en: "The Centre’s mission" },
+  }),
+  missionH: txt("about.missionH", { uk: "Місія Центру", en: "The Centre’s mission" }),
   /* Quoted material. «російської агресії» stands here against the site's own
      rule – see the note at the top of i18n/dictionaries/uk.ts – because this
      is the Centre's statement of its own mission in its own words, not the
@@ -222,12 +223,12 @@ const T = {
     ],
   },
   /* A direct quotation, so it is attributed and not trimmed mid-thought. */
-  voice: {
+  voice: txt("about.voice", {
     uk: "Університет має своєю місією суспільне служіння. Факультет права має це служіння не лише у вихованні правників нової генерації, але й у тому, аби долучатися до процесів трансформації суспільства. Дослідницький центр є тим експертним майданчиком, тим осередком, де будуть формуватися та осмислюватися правові відповіді на виклики, які повʼязані з війною.",
     en: "The university’s mission is service to society. For the Faculty of Law that service lies not only in bringing up a new generation of lawyers, but in taking part in the transformation of society itself. The Research Centre is the expert forum, the place where legal answers to the challenges of the war will be formed and thought through.",
-  },
-  voiceBy: { uk: "Ольга Денькович", en: "Olha Denkovych" },
-  voiceRole: { uk: "керівниця Центру Луї Зона", en: "Head of the Louis Sohn Centre" },
+  }),
+  voiceBy: txt("about.voiceBy", { uk: "Ольга Денькович", en: "Olha Denkovych" }),
+  voiceRole: txt("about.voiceRole", { uk: "керівниця Центру Луї Зона", en: "Head of the Louis Sohn Centre" }),
 
   /* ── «Як рішення потрапляє в бібліотеку» – removed, owner's decision ──────
      A five-step account of the editorial method used to stand here. It is
@@ -260,11 +261,11 @@ const T = {
      rather than duplicated; the numbers live on /registry, which is where
      «Бібліотека рішень» goes from every surface. */
 
-  contactH: { uk: "Написати нам", en: "Write to us" },
-  contact: {
+  contactH: txt("about.contactH", { uk: "Написати нам", en: "Write to us" }),
+  contact: txt("about.contact", {
     uk: "Помітили помилку в огляді або знаєте про провадження, якого тут немає – напишіть.",
     en: "If you have spotted an error in a summary, or know of a proceeding that is missing, write to us.",
-  },
+  }),
   /* No `as const` here, unlike the team page. Two of these entries are arrays;
      frozen literal types would make the English member unassignable to the
      Ukrainian one and `pick` would stop type-checking. */

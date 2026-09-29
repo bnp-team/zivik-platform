@@ -502,7 +502,19 @@ const SUMMARY_PROPS: Prop[] = [
     path: "hideSections",
     label: "Приховати розділи",
     type: "multiSelect",
-    options: ["overview", "rulings", "measures", "machinery", "scale"],
+    options: [
+      "overview",
+      "rulings",
+      "measures",
+      "machinery",
+      "scale",
+      "afterlife",
+      "attribution",
+      "objections",
+      "warrants",
+      "amounts",
+      "glance",
+    ],
   },
 
   /* Nested sections: JSON, one field each. */
@@ -810,6 +822,123 @@ export const COLLECTIONS: CollectionSpec[] = [
         type: "text",
         lines: true,
         help: "Наприклад: icj-genocide",
+      },
+    ],
+  },
+
+  /* Тексти сайту – кожен підпис, заголовок і речення інтерфейсу, що не є
+     текстом самого рішення; див. src/lib/ui-texts.ts. Рядки беруться з
+     каталогу, який пише `npm run ui-texts`. */
+  {
+    slug: "ui_texts",
+    label: "Тексти сайту",
+    labelSingular: "Текст сайту",
+    shape: "array",
+    source: { file: "src/content/ui-texts.ts", export: "uiTexts" },
+    /* Slug of an entry is the id with the dots turned into dashes; `check`
+       fails if two ids collapse into one. */
+    key: (v) =>
+      String(v.id)
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-|-$/g, ""),
+    titleField: "text_uk",
+    group: GROUP_SITE,
+    urlPattern: "/uk",
+    optional: true,
+    listColumns: ["place", "text_uk", "text_en", "base_uk"],
+    props: [
+      {
+        path: "id",
+        slug: "key",
+        label: "Код тексту (не змінювати)",
+        type: "string",
+        required: true,
+      },
+      { path: "group", slug: "place", label: "Де на сайті", type: "string", required: true },
+      {
+        path: "text",
+        label: "Текст",
+        type: "text",
+        localized: true,
+        required: true,
+        help: "Змініть лише те, що хочете змінити. Слова у фігурних дужках ({n}, {w}, {at}…) не чіпайте: сайт підставляє на їхнє місце число чи назву.",
+      },
+      {
+        path: "base",
+        label: "Початково (з коду, не змінювати)",
+        type: "text",
+        localized: true,
+        required: true,
+        help: "Що було на сайті до редагування. За цим видно, чи текст змінено.",
+      },
+    ],
+  },
+
+  /* Юридичні сторінки – «Умови» і «Політика конфіденційності»; див.
+     src/content/legal-docs.ts. Адреса, телефон і числа в тексті стоять у
+     фігурних дужках – {email}, {phone}, {total}, {summarised} – і їх
+     підставляє код. */
+  {
+    slug: "legal_documents",
+    label: "Юридичні сторінки",
+    labelSingular: "Юридична сторінка",
+    shape: "array",
+    source: { file: "src/content/legal-docs.ts", export: "legalDocs" },
+    key: (v) => String(v.slug),
+    titleField: "title_uk",
+    group: GROUP_SITE,
+    urlPattern: "/uk/{slug}",
+    optional: true,
+    props: [
+      { path: "slug", slug: "key", label: "Сторінка (privacy чи terms – не змінювати)", type: "string", required: true },
+      { path: "title", label: "Заголовок", type: "string", localized: true, required: true },
+      { path: "lede", label: "Вступ під заголовком", type: "text", localized: true, required: true },
+      {
+        path: "revised",
+        label: "Дата редакції (РРРР-ММ-ДД)",
+        type: "string",
+        help: "Змінюйте, коли міняєте текст. Порожньо – сайт покаже дату зі збірки.",
+      },
+      {
+        path: "sections",
+        label: "Розділи",
+        type: "json",
+        required: true,
+        widget: "nsv-json-editors:legalSections",
+        help: "Адреса, телефон і числа пишіть у фігурних дужках: {email}, {phone}, {total}, {summarised}.",
+      },
+    ],
+  },
+
+  /* Мапа: міста-орієнтири – Київ, Львів. Крапка й назва, без клікабельності;
+     див. src/content/map-places.ts. */
+  {
+    slug: "map_places",
+    label: "Міста на мапі",
+    labelSingular: "Місто на мапі",
+    shape: "array",
+    source: { file: "src/content/map-places.ts", export: "mapPlaces" },
+    key: (v) => String(v.key),
+    titleField: "city_uk",
+    group: GROUP_MAP,
+    urlPattern: "/uk/map#{slug}",
+    optional: true,
+    listColumns: ["city_uk", "city_en", "lon", "lat"],
+    props: [
+      { path: "key", label: "Ідентифікатор (латиницею, напр. kharkiv)", type: "string", required: true },
+      { path: "city", label: "Назва", type: "string", localized: true, required: true },
+      {
+        path: "lon",
+        label: "Довгота (градуси на схід, напр. 36.23)",
+        type: "number",
+        required: true,
+      },
+      {
+        path: "lat",
+        label: "Широта (градуси на північ, напр. 49.99)",
+        type: "number",
+        required: true,
       },
     ],
   },

@@ -787,6 +787,15 @@ export interface DecisionSummary extends VerbatimSummary {
     | "measures"
     | "machinery"
     | "scale"
+    /* One block at a time, where the band above is too coarse: «Що було
+       далі», the chain of responsibility, the objections, the warrants, the
+       sums, the case card. */
+    | "afterlife"
+    | "attribution"
+    | "objections"
+    | "warrants"
+    | "amounts"
+    | "glance"
   >;
   /**
    * What to call the forum's own voice, where «Суд» is wrong.

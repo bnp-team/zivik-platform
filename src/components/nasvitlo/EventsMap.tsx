@@ -591,7 +591,7 @@ export default function EventsMap({
    * seats and not proceedings, so they take no part in framing, keyboard
    * order or the cards.
    */
-  places?: { key: string; city: string }[];
+  places?: { key: string; city: string; x: number; y: number }[];
   labels: {
     alt: string;
     close: string;
@@ -2339,20 +2339,16 @@ export default function EventsMap({
               A small ring and a name, in the quiet ink of the labels: they
               say where in the country the proceedings are, and claim
               nothing about them. */}
-          {places.map((pl) => {
-            const p = geo.markers[pl.key];
-            if (!p) return null;
-            return (
-              <g key={pl.key} className="emap-place">
-                <circle cx={p[0]} cy={p[1]} r={3.2} />
-                {citied && (
-                  <text x={p[0] + 8} y={p[1] + 0.4 * cityF} fontSize={cityF}>
-                    {pl.city}
-                  </text>
-                )}
-              </g>
-            );
-          })}
+          {places.map((pl) => (
+            <g key={pl.key} className="emap-place">
+              <circle cx={pl.x} cy={pl.y} r={3.2} />
+              {citied && (
+                <text x={pl.x + 8} y={pl.y + 0.4 * cityF} fontSize={cityF}>
+                  {pl.city}
+                </text>
+              )}
+            </g>
+          ))}
 
           {/* Reach lines: from each site to the courts hearing it. Drawn
               before the markers so they pass under, not over. */}

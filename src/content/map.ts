@@ -249,16 +249,6 @@ export function markerSize(weight: number): number {
 
 
 
-/**
- * Ukrainian cities named on the map for orientation. Not courts and not
- * proceedings: a dot and a name, nothing to press. The points are in
- * europe-map.json's `markers`, under the same key.
- */
-export const MAP_PLACES: { key: string; city: Localized }[] = [
-  { key: "kyiv", city: { uk: "Київ", en: "Kyiv" } },
-  { key: "lviv", city: { uk: "Львів", en: "Lviv" } },
-];
-
 export const MAP_COURTS: MapCourt[] = [
   {
     key: "hague",

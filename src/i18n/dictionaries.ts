@@ -1,5 +1,6 @@
 import type { Locale } from "./config";
 import type { Dictionary } from "./dictionaries/uk";
+import { withEdits } from "@/lib/ui-texts";
 
 /**
  * Lazily loads the UI dictionary for a locale. Dictionaries are code-split, so
@@ -11,7 +12,9 @@ const loaders: Record<Locale, () => Promise<Dictionary>> = {
 };
 
 export async function getDictionary(locale: Locale): Promise<Dictionary> {
-  return loaders[locale]();
+  /* The defaults are the code's; what the admin edited in «Тексти сайту» is
+     laid over them – see `src/lib/ui-texts.ts`. */
+  return withEdits(await loaders[locale](), locale);
 }
 
 export type { Dictionary };

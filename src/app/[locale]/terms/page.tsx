@@ -17,15 +17,16 @@ import {
   pathAlternates,
   siteUrl,
 } from "@/lib/seo";
-import { terms, legalRevised, legalRevisedIso } from "@/content/legal";
+import { terms, revisionOf } from "@/content/legal";
 import "../legal.css";
+import { txt } from "@/lib/ui-texts";
 
 /** Page chrome. The document itself lives in `src/content/legal.ts`. */
 const T = {
-  back: { uk: "На головну", en: "Home" },
-  revised: { uk: "Редакція від", en: "Revised" },
-  also: { uk: "Які персональні дані ми отримуємо й що з ними робимо – про це", en: "What personal data reaches us and what we do with it –" },
-  privacy: { uk: "Політика конфіденційності", en: "Privacy policy" },
+  back: txt("terms.back", { uk: "На головну", en: "Home" }),
+  revised: txt("terms.revised", { uk: "Редакція від", en: "Revised" }),
+  also: txt("terms.also", { uk: "Які персональні дані ми отримуємо й що з ними робимо – про це", en: "What personal data reaches us and what we do with it –" }),
+  privacy: txt("terms.privacy", { uk: "Політика конфіденційності", en: "Privacy policy" }),
 } as const;
 
 export function generateStaticParams() {
@@ -91,7 +92,7 @@ export default async function TermsPage({
           <p className="legal-lede">{pick(terms.lede, locale)}</p>
           <p className="legal-revised">
             {pick(T.revised, locale)}{" "}
-            <time dateTime={legalRevisedIso}>{pick(legalRevised, locale)}</time>
+            <time dateTime={revisionOf(terms).iso}>{pick(revisionOf(terms).human, locale)}</time>
           </p>
         </header>
 

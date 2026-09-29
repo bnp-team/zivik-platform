@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import Link from "next/link";
 import Crumbs from "@/components/nasvitlo/Crumbs";
 import {
   alternateOpenGraphLocales,
@@ -33,10 +32,11 @@ import RegistryTable, {
 } from "@/components/nasvitlo/RegistryTable";
 import { CONTENT_INDEX_PATH, SECTIONS } from "@/content/search-index";
 import "./registry.css";
+import { txt } from "@/lib/ui-texts";
 
 /** Localized page chrome (the case data itself is localized from content). */
 const T = {
-  title: { uk: "Бібліотека рішень", en: "Library of decisions" },
+  title: txt("library.title", { uk: "Бібліотека рішень", en: "Library of decisions" }),
   /* The standfirst on the page. It runs to 222 characters in Ukrainian and 279
      in English because it does a job on the page – it tells the reader that a
      row's date is the year the proceeding opened, not the year of the
@@ -53,33 +53,33 @@ const T = {
      completeness false, and this page is the one a reader would cite it from.
      What the sentence can say without risk is what the library holds and what
      each row carries. */
-  lede: {
+  lede: txt("library.lede", {
     /* «Росії», не «РФ»: це перше, що читач зустрічає на сторінці, і решта
        сайту пише державу словом. І «тип рішення», а не «тип» – колонка
        зветься так, відколи власниця її перейменувала, а лід лишався
        поясненням до попередньої таблиці. */
     uk: "Провадження проти Росії у міжнародних судах, трибуналах та арбітражах. Кожен рядок має рік відкриття провадження, а де рішення вже ухвалене – його точну дату. Дві окремі колонки кажуть, на якому етапі провадження – стан розгляду – і що саме суд ухвалив – тип рішення.",
     en: "Proceedings against Russia across international courts, tribunals and arbitrations. Each row carries the year the proceeding was opened and, where a decision has been handed down, its exact date. Two separate columns carry the stage of the proceedings and the type of decision the court issued.",
-  },
+  }),
   /* The meta description: about 133 / 147 characters, both inside the ~160 a
      search result shows. Says what the page holds and what can be done with
      it. The figure is `{n}` rather than a literal – it was typed as 39 and
      went stale the moment the six ICC warrants stopped being rows, which is
      the whole argument for `registryTotal` in content/legal.ts. */
-  metaDesc: {
+  metaDesc: txt("library.metaDesc", {
     uk: "{n} проваджень проти Росії в міжнародних судах, трибуналах і арбітражах – з фільтрами за судом, станом розгляду і типом рішення.",
     en: "{n} proceedings against Russia before international courts, tribunals and arbitrations, filterable by court, by stage of proceedings and by type of decision.",
-  },
+  }),
   // The wordmark is «НаСвітло» / "NaSvitlo" everywhere – see i18n/dictionaries/uk.ts.
   // Team and map both say "Home"/"На головну" – so does this now.
-  back: { uk: "На головну", en: "Home" },
-  search: {
+  back: txt("library.back", { uk: "На головну", en: "Home" }),
+  search: txt("library.search", {
     uk: "Сторона, суд, номер справи, рік, тема…",
     en: "Party, court, docket number, year, subject…",
-  },
-  searchLabel: { uk: "Пошук у бібліотеці", en: "Search the library" },
-  courts: { uk: "Суди", en: "Courts" },
-  courtsAll: { uk: "Усі суди", en: "All courts" },
+  }),
+  searchLabel: txt("library.searchLabel", { uk: "Пошук у бібліотеці", en: "Search the library" }),
+  courts: txt("library.courts", { uk: "Суди", en: "Courts" }),
+  courtsAll: txt("library.courtsAll", { uk: "Усі суди", en: "All courts" }),
   /* The filter over a column is named for the column. «Етап» and «Ухвалено»
      named neither the data nor the heading above it; the library calls these
      two dimensions «стан розгляду» and «тип» everywhere now – the column
@@ -88,13 +88,13 @@ const T = {
      it: the column stands beside «Стан розгляду» in a table of decisions,
      so «рішення» was the one word on the row that told the reader nothing
      they had not been told by the page they were on. */
-  stages: { uk: "Стан розгляду", en: "Stage" },
-  stagesAll: { uk: "Будь-який стан", en: "Any stage" },
+  stages: txt("library.stages", { uk: "Стан розгляду", en: "Stage" }),
+  stagesAll: txt("library.stagesAll", { uk: "Будь-який стан", en: "Any stage" }),
   /* «Тип» саме по собі нічого не називало – поруч стояли «Стан розгляду»
      і «Галузь», і три з них читалися як три таксономії без предмета.
      Власниця: «не тип а тип рішення». Так само зветься і колонка. */
-  outcomes: { uk: "Тип рішення", en: "Decision type" },
-  outcomesAll: { uk: "Будь-який тип рішення", en: "Any decision type" },
+  outcomes: txt("library.outcomes", { uk: "Тип рішення", en: "Decision type" }),
+  outcomesAll: txt("library.outcomesAll", { uk: "Будь-який тип рішення", en: "Any decision type" }),
   /* ── «Галузь» прибрано як критерій ──────────────────────────────────────
      Власниця: «галузь як критурій пошуку прибрати». Випав увесь фасет –
      список, стан у рядку адреси, чип, предикат і обидва рядки. Сама
@@ -108,36 +108,36 @@ const T = {
      величина `lit`, але названа з боку читача: або огляд готовий, або ми
      його пишемо. Посилання на документ суду нікуди не поділося – воно на
      самому рядку, просто перестало бути критерієм. */
-  materials: { uk: "Стан опрацювання", en: "Editorial state" },
-  materialsAll: { uk: "Будь-який стан", en: "Any state" },
+  materials: txt("library.materials", { uk: "Стан опрацювання", en: "Editorial state" }),
+  materialsAll: txt("library.materialsAll", { uk: "Будь-який стан", en: "Any state" }),
   /* The control that folds the five filters away on a phone. See the note in
      RegistryTable for why it exists and why the sort control is not inside
      it. */
-  filters: { uk: "Фільтри", en: "Filters" },
-  matLit: { uk: "Є огляд", en: "Summary ready" },
-  matWip: { uk: "В процесі опрацювання", en: "Being worked on" },
+  filters: txt("library.filters", { uk: "Фільтри", en: "Filters" }),
+  matLit: txt("library.matLit", { uk: "Є огляд", en: "Summary ready" }),
+  matWip: txt("library.matWip", { uk: "В процесі опрацювання", en: "Being worked on" }),
   /* The link itself, in the wording `dict.pending.official` already uses on
      the page a row without a summary leads to – the reader meets the same
      three words in the list and at the destination. */
-  doc: { uk: "Документ суду", en: "The court's document" },
-  sort: { uk: "Порядок", en: "Sort" },
+  doc: txt("library.doc", { uk: "Документ суду", en: "The court's document" }),
+  sort: txt("library.sort", { uk: "Порядок", en: "Sort" }),
   sortOpt: {
-    decidedDesc: { uk: "За датою рішення", en: "By decision date" },
-    readable: { uk: "Спершу опрацьовані", en: "Ready to read first" },
+    decidedDesc: txt("library.sortOpt.decidedDesc", { uk: "За датою рішення", en: "By decision date" }),
+    readable: txt("library.sortOpt.readable", { uk: "Спершу опрацьовані", en: "Ready to read first" }),
     /* Thirteen rows carry a sum and the largest is five billion; until now
        the figure was in the record and on no surface that lists these cases. */
-    court: { uk: "За судом", en: "By court" },
+    court: txt("library.sortOpt.court", { uk: "За судом", en: "By court" }),
   },
-  colCourt: { uk: "Суд", en: "Court" },
-  colCase: { uk: "Справа", en: "Case" },
+  colCourt: txt("library.colCourt", { uk: "Суд", en: "Court" }),
+  colCase: txt("library.colCase", { uk: "Справа", en: "Case" }),
   /* «Теги» named the widget, not the facts. Two columns now, each named for
      what it holds, and each sortable on its own axis. */
-  colStage: { uk: "Стан розгляду", en: "Stage" },
-  colOutcome: { uk: "Тип рішення", en: "Decision type" },
-  colDate: { uk: "Рік", en: "Year" },
-  sortAsc: { uk: "за зростанням", en: "sorted ascending" },
-  sortDesc: { uk: "за спаданням", en: "sorted descending" },
-  sortNone: { uk: "не сортовано", en: "not sorted" },
+  colStage: txt("library.colStage", { uk: "Стан розгляду", en: "Stage" }),
+  colOutcome: txt("library.colOutcome", { uk: "Тип рішення", en: "Decision type" }),
+  colDate: txt("library.colDate", { uk: "Рік", en: "Year" }),
+  sortAsc: txt("library.sortAsc", { uk: "за зростанням", en: "sorted ascending" }),
+  sortDesc: txt("library.sortDesc", { uk: "за спаданням", en: "sorted descending" }),
+  sortNone: txt("library.sortNone", { uk: "не сортовано", en: "not sorted" }),
   /* Ukrainian counts in three forms, and the teens all take the "many" one,
      which is why 11 and 21 disagree: 1 справа, 2 справи, 5 справ, 11 справ,
      21 справа, 22 справи. */
@@ -145,7 +145,7 @@ const T = {
     uk: { one: "справа", few: "справи", many: "справ" },
     en: { one: "case", few: "cases", many: "cases" },
   },
-  ofTotal: { uk: "з {total}", en: "of {total}" },
+  ofTotal: txt("library.ofTotal", { uk: "з {total}", en: "of {total}" }),
   /* The acts folded into a proceeding's row. Today that is the ICC's six
      arrest warrants in ICC-01/22: the library counts them – the row says
      «6 ордерів» – and shows them here rather than as six rows of their own.
@@ -160,26 +160,26 @@ const T = {
   /* Review: «додати вказівку з зірочкою, що це 6, про які публічно відомо».
      The Court does not publish every warrant it issues – some stay under
      seal – so the figure is what is on the public record, not a total. */
-  actsNote: {
+  actsNote: txt("library.actsNote", {
     uk: "про які відомо публічно",
     en: "those on the public record",
-  },
-  combine: {
+  }),
+  combine: txt("library.combine", {
     uk: "Кілька значень в одному фільтрі – будь-яке з них; різні фільтри діють разом.",
     en: "Several values in one filter mean any of them; different filters apply together.",
-  },
-  reset: { uk: "Скинути", en: "Reset" },
+  }),
+  reset: txt("library.reset", { uk: "Скинути", en: "Reset" }),
   /* Per-filter clearing and the blanket reset are two different acts and are
      kept apart: a chip drops one value, «Скинути» drops every filter, the
      search box and the ordering with them. */
-  activeFilters: { uk: "Активні фільтри", en: "Active filters" },
-  clearFilter: { uk: "Прибрати фільтр", en: "Remove filter" },
-  clearSearch: { uk: "Очистити пошук", en: "Clear search" },
-  emptyHead: { uk: "Нічого не знайдено", en: "Nothing found" },
-  emptyBody: {
+  activeFilters: txt("library.activeFilters", { uk: "Активні фільтри", en: "Active filters" }),
+  clearFilter: txt("library.clearFilter", { uk: "Прибрати фільтр", en: "Remove filter" }),
+  clearSearch: txt("library.clearSearch", { uk: "Очистити пошук", en: "Clear search" }),
+  emptyHead: txt("library.emptyHead", { uk: "Нічого не знайдено", en: "Nothing found" }),
+  emptyBody: txt("library.emptyBody", {
     uk: "Спробуйте змінити фільтри або пошуковий запит.",
     en: "Try adjusting the filters or the search query.",
-  },
+  }),
   /* The two states the search can be in while it is only half itself.
 
      The index over the eight write-ups is a file now (`/search-index.json`),
@@ -190,18 +190,18 @@ const T = {
      the exact failure the index was built to end, so the count line says
      which half is running rather than letting the reader conclude the archive
      holds nothing. */
-  searchLoading: {
+  searchLoading: txt("library.searchLoading", {
     uk: "Пошук поки що лише в рядках – покажчик конспектів ще завантажується.",
     en: "Searching the rows only for now – the write-up index is still loading.",
-  },
-  searchNoIndex: {
+  }),
+  searchNoIndex: txt("library.searchNoIndex", {
     uk: "Покажчик конспектів не завантажився – пошук лише в рядках.",
     en: "The write-up index did not load – this is searching the rows only.",
-  },
-  matched: { uk: "збіг:", en: "matched:" },
+  }),
+  matched: txt("library.matched", { uk: "збіг:", en: "matched:" }),
   /* Distinct from `matched`, which names a hidden field of the *row*. This one
      names a part of the write-up behind the row, and each part is a link. */
-  matchedIn: { uk: "в огляді:", en: "in the write-up:" },
+  matchedIn: txt("library.matchedIn", { uk: "в огляді:", en: "in the write-up:" }),
   /* The decision page's own bands, in its own words – these labels have to be
      the ones a reader sees on arriving at the anchor, or the link lies about
      where it goes. Copied from `T` and `pageSections` in
@@ -217,34 +217,34 @@ const T = {
     /* «Картка справи»: секція, на яку веде цей чип, тепер зветься так –
        реквізити справи, а під ними речення про неї. «Якщо коротко» більше
        не заголовок нічого. */
-    overview: { uk: "Картка справи", en: "Case at a glance" },
-    chronology: { uk: "Хронологія", en: "Timeline" },
-    machinery: { uk: "Розбір рішення", en: "Anatomy" },
-    rulings: { uk: "Тлумачення", en: "Key rulings" },
-    measures: { uk: "Тимчасові заходи", en: "Provisional measures" },
+    overview: txt("library.section.overview", { uk: "Картка справи", en: "Case at a glance" }),
+    chronology: txt("library.section.chronology", { uk: "Хронологія", en: "Timeline" }),
+    machinery: txt("library.section.machinery", { uk: "Розбір рішення", en: "Anatomy" }),
+    rulings: txt("library.section.rulings", { uk: "Тлумачення", en: "Key rulings" }),
+    measures: txt("library.section.measures", { uk: "Тимчасові заходи", en: "Provisional measures" }),
     /* `questions` and `related` both stood here. Each band is gone from the
        decision page, and a hit pointing at #questions or #related would land
        on nothing. Neighbouring decisions are this page's own job: the docket
        filters by court, ground and date. */
-    fulltext: { uk: "Повний огляд", en: "Full summary" },
+    fulltext: txt("library.section.fulltext", { uk: "Повний огляд", en: "Full summary" }),
   },
   group: {
-    court: { uk: "суд", en: "court" },
-    status: { uk: "статус", en: "status" },
-    type: { uk: "галузь", en: "field" },
-    date: { uk: "дата", en: "date" },
-    visible: { uk: "назва", en: "name" },
+    court: txt("library.group.court", { uk: "суд", en: "court" }),
+    status: txt("library.group.status", { uk: "статус", en: "status" }),
+    type: txt("library.group.type", { uk: "галузь", en: "field" }),
+    date: txt("library.group.date", { uk: "дата", en: "date" }),
+    visible: txt("library.group.visible", { uk: "назва", en: "name" }),
   },
-  decidedOn: { uk: "рішення", en: "decided" },
-  noDate: { uk: "–", en: "–" },
-  mProceedings: { uk: "проваджень", en: "proceedings" },
+  decidedOn: txt("library.decidedOn", { uk: "рішення", en: "decided" }),
+  noDate: txt("library.noDate", { uk: "–", en: "–" }),
+  mProceedings: txt("library.mProceedings", { uk: "проваджень", en: "proceedings" }),
   /* Twelve bodies, and one of them – EU / Belgium enforcement measures – is
      not a court: `content/institutions.ts` files it as `executive`. "Courts"
      counted them wrongly and "instances" is a false friend for «інстанція»
      (a court instance is a level of jurisdiction, not an item). "Institutions"
      is the noun `content/institutions.ts` and `content/stats.ts` already use. */
-  mInstitutions: { uk: "інстанцій", en: "institutions" },
-  mAnalysed: { uk: "опрацьовано", en: "analysed" },
+  mInstitutions: txt("library.mInstitutions", { uk: "інстанцій", en: "institutions" }),
+  mAnalysed: txt("library.mAnalysed", { uk: "опрацьовано", en: "analysed" }),
   /* The state of the collection, said in words under the figures.
 
      Review's instruction: «на сторінці бібліотека додати вказівку конкретну
@@ -314,10 +314,10 @@ const T = {
      Whatever the verb, it has to point the right way: it names the rows we
      have lit, not – as the sentence had it before this pass – a badge on
      the rows that lack a summary. Nothing marks those. */
-  state: {
+  state: txt("library.state", {
     uk: "Частину проваджень ми вже опрацювали й підсвітили, над іншими ще працюємо.",
     en: "We have already worked through some of these proceedings and lit them up; we are still working on the others.",
-  },
+  }),
 } as const;
 
 /**

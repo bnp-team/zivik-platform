@@ -46,6 +46,7 @@ import "../case/50-responsive.css";
 import "../case/60-warrants.css";
 import "../case/70-chrome.css";
 import "../case/80-page.css";
+import { txt } from "@/lib/ui-texts";
 
 
 /** Localized chrome labels (the summary body stays in its source language). */
@@ -54,122 +55,122 @@ const T = {
      неї. Секція двічі мінялася назвою – «Огляд», потім «Якщо коротко», –
      і обидва рази називала абзац. Тепер вона називає картку, з якої
      починається, а абзац читається після неї. */
-  glanceH: { uk: "Картка справи", en: "Case at a glance" },
-  timeline: { uk: "Хронологія", en: "Timeline" },
+  glanceH: txt("case.glanceH", { uk: "Картка справи", en: "Case at a glance" }),
+  timeline: txt("case.timeline", { uk: "Хронологія", en: "Timeline" }),
   /* «Географія справи», not «Два театри». Owner's rename: the count of
      theatres is not what the band is about, and on a page that shows one
      campaign across five regions «два» was the least of what the drawing
      said. Three decisions override this with their own wording («Де це
      сталося»); they keep it. */
-  tracks: { uk: "Географія справи", en: "Case geography" },
-  found: { uk: "Що встановив Суд", en: "What the Court found" },
+  tracks: txt("case.tracks", { uk: "Географія справи", en: "Case geography" }),
+  found: txt("case.found", { uk: "Що встановив Суд", en: "What the Court found" }),
   /* Обидва відповіді кажуть, що суд установив, а не чого немає.
 
      Було «Порушено» і «Немає». Друге читалося як порожнє місце в таблиці –
      ніби суд нічого не сказав, – тоді як він сказав протилежне до першого
      і сказав це так само прямо. Власниця: «Немає -> встановлено відсутність
      порушення; Порушено - встановлено порушення». */
-  violation: { uk: "Встановлено порушення", en: "Violation established" },
-  noViolation: {
+  violation: txt("case.violation", { uk: "Встановлено порушення", en: "Violation established" }),
+  noViolation: txt("case.noViolation", {
     uk: "Встановлено відсутність порушення",
     en: "No violation established",
-  },
+  }),
   /* The scorecard's noun has to agree with the number printed in front of it,
      and the number depends on what kind of dispositif this is. Three
      Ukrainian forms; English reads the same three keys. */
-  ofTotal: { uk: "з", en: "of" },
-  sources: { uk: "Джерела та коментарі", en: "Sources and commentary" },
-  back: { uk: "До бібліотеки", en: "Back to the library" },
-  readJudgment: { uk: "Читати рішення", en: "Read the judgment" },
-  caseFile: { uk: "Справа на сайті Суду", en: "Case file at the Court" },
-  keyRulings: { uk: "Ключові тлумачення", en: "Key rulings on the law" },
-  provMeasures: { uk: "Тимчасові заходи", en: "Provisional measures" },
+  ofTotal: txt("case.ofTotal", { uk: "з", en: "of" }),
+  sources: txt("case.sources", { uk: "Джерела та коментарі", en: "Sources and commentary" }),
+  back: txt("case.back", { uk: "До бібліотеки", en: "Back to the library" }),
+  readJudgment: txt("case.readJudgment", { uk: "Читати рішення", en: "Read the judgment" }),
+  caseFile: txt("case.caseFile", { uk: "Справа на сайті Суду", en: "Case file at the Court" }),
+  keyRulings: txt("case.keyRulings", { uk: "Ключові тлумачення", en: "Key rulings on the law" }),
+  provMeasures: txt("case.provMeasures", { uk: "Тимчасові заходи", en: "Provisional measures" }),
   /* `provSub` used to live here, hardcoded to "Наказ від 19 квітня 2017" /
      "Order of 19 April 2017" – right for icj-cerd-icsft and for nothing else.
      It is now `DecisionSummary.provisionalMeasuresOrder`, and index.ts refuses
      to build a summary that has the instrument without naming its Order. */
-  orderBreached: { uk: "Наказ порушено", en: "Order breached" },
-  orderComplied: { uk: "Дотримано", en: "Complied" },
-  onThisPage: { uk: "На цій сторінці", en: "On this page" },
+  orderBreached: txt("case.orderBreached", { uk: "Наказ порушено", en: "Order breached" }),
+  orderComplied: txt("case.orderComplied", { uk: "Дотримано", en: "Complied" }),
+  onThisPage: txt("case.onThisPage", { uk: "На цій сторінці", en: "On this page" }),
   /* The two sides of a finding, as column captions. «Твердила» and not
      «стверджує»: the argument was made, the Court has since answered it. */
-  claimed: { uk: "Сторона твердила", en: "The party argued" },
-  courtPosition: { uk: "Позиція Суду", en: "The Court's position" },
+  claimed: txt("case.claimed", { uk: "Сторона твердила", en: "The party argued" }),
+  courtPosition: txt("case.courtPosition", { uk: "Позиція Суду", en: "The Court's position" }),
   /* The measure a limb of an order required, set beside the argument and
      the answer as the third thing in the exchange. */
-  ordered: { uk: "Наказано", en: "Ordered" },
-  progress: { uk: "Прогрес читання", en: "Reading progress" },
+  ordered: txt("case.ordered", { uk: "Наказано", en: "Ordered" }),
+  progress: txt("case.progress", { uk: "Прогрес читання", en: "Reading progress" }),
 
   /* The theatre map's text alternative. It was the literal string "Map of
      Europe" – English on a Ukrainian page, so a Ukrainian voice spoke it
      phonetically, and it said nothing about what the drawing shows. The
      legend under the map already carries the seat and the places as text;
      this says what kind of drawing they belong to. */
-  mapAlt: {
+  mapAlt: txt("case.mapAlt", {
     uk: "Мапа Європи: місце розгляду справи та території, яких вона стосується – перелічені під мапою",
     en: "Map of Europe: the seat of the proceedings and the territories concerned – listed below the map",
-  },
+  }),
 
   // Outcomes beyond the court-style violation / no-violation pair.
-  granted: { uk: "Задоволено", en: "Upheld" },
-  rejected: { uk: "Відхилено", en: "Rejected" },
-  notDecided: { uk: "Не розглядалося", en: "Not decided" },
-  convicted: { uk: "Засуджено", en: "Convicted" },
-  acquitted: { uk: "Виправдано", en: "Acquitted" },
+  granted: txt("case.granted", { uk: "Задоволено", en: "Upheld" }),
+  rejected: txt("case.rejected", { uk: "Відхилено", en: "Rejected" }),
+  notDecided: txt("case.notDecided", { uk: "Не розглядалося", en: "Not decided" }),
+  convicted: txt("case.convicted", { uk: "Засуджено", en: "Convicted" }),
+  acquitted: txt("case.acquitted", { uk: "Виправдано", en: "Acquitted" }),
 
   // Instruments an arbitral award earns.
-  allEvents: { uk: "Усе", en: "All" },
+  allEvents: txt("case.allEvents", { uk: "Усе", en: "All" }),
   /* The name of the filter row itself. It used to be labelled with
      `allEvents`, so the group announced itself as «Усе» – the name of the
      first control inside it, not of the set. */
-  trackFilter: { uk: "Фільтр за напрямом", en: "Filter by track" },
-  openDetail: { uk: "Показати деталі", en: "Show detail" },
+  trackFilter: txt("case.trackFilter", { uk: "Фільтр за напрямом", en: "Filter by track" }),
+  openDetail: txt("case.openDetail", { uk: "Показати деталі", en: "Show detail" }),
   /* That the marks on the theatre map answer. Only rendered where the case has
      more than one theatre – with a single one there is nothing to tell apart,
      and the sentence would be an instruction for its own sake. */
-  mapPick: {
+  mapPick: txt("case.mapPick", {
     uk: "Натисніть позначку або рядок – засвітиться те саме місце.",
     en: "Press a mark or a line – the same place lights up.",
-  },
+  }),
   /* The year rail. It was `aria-hidden` decoration and read as decoration: a
      row of dots placed by year, so ten events in 2022 stacked into one mark
      and the reader saw four dots for twenty events. Placed by date and
      pressable, it is the index of the chronology under it. */
-  railLabel: { uk: "Перейти до події за датою", en: "Jump to an event by date" },
-  shareOf: { uk: "від суми", en: "of the total" },
+  railLabel: txt("case.railLabel", { uk: "Перейти до події за датою", en: "Jump to an event by date" }),
+  shareOf: txt("case.shareOf", { uk: "від суми", en: "of the total" }),
   /* Not `shareOf`: that one belongs to sums of money and reads «від суми».
      This names a counted whole – «9,5% з 19 546+». */
-  ofWhole: { uk: "з", en: "of" },
-  attributionH: { uk: "Чия поведінка – це поведінка держави", en: "Whose conduct counts as the State's" },
-  objectionLbl: { uk: "Заперечення", en: "Objection" },
-  rulingLbl: { uk: "Рішення суду", en: "Ruling" },
-  objRejected: { uk: "Відхилено", en: "Rejected" },
-  objUpheld: { uk: "Прийнято", en: "Upheld" },
-  standing: { uk: "Рішення чинне", en: "Award stands" },
-  notStanding: { uk: "Рішення скасовано", en: "Award annulled" },
+  ofWhole: txt("case.ofWhole", { uk: "з", en: "of" }),
+  attributionH: txt("case.attributionH", { uk: "Чия поведінка – це поведінка держави", en: "Whose conduct counts as the State's" }),
+  objectionLbl: txt("case.objectionLbl", { uk: "Заперечення", en: "Objection" }),
+  rulingLbl: txt("case.rulingLbl", { uk: "Рішення суду", en: "Ruling" }),
+  objRejected: txt("case.objRejected", { uk: "Відхилено", en: "Rejected" }),
+  objUpheld: txt("case.objUpheld", { uk: "Прийнято", en: "Upheld" }),
+  standing: txt("case.standing", { uk: "Рішення чинне", en: "Award stands" }),
+  notStanding: txt("case.notStanding", { uk: "Рішення скасовано", en: "Award annulled" }),
   /* «Місце розгляду», not «Місце арбітражу». This is the default heading for
      the map band on any case that names one theatre and authors no heading of
      its own – and it was rendering on ICJ CERD/ICSFT, which is not an
      arbitration. The two locales did not agree either: the English has always
      read the neutral "Seat". */
-  seatLabel: { uk: "Місце розгляду", en: "Seat" },
+  seatLabel: txt("case.seatLabel", { uk: "Місце розгляду", en: "Seat" }),
 
   // Warrant wall.
-  chargesLbl: { uk: "Звинувачення", en: "Charges" },
-  modesLbl: { uk: "Форма відповідальності", en: "Mode of responsibility" },
-  announcementLbl: { uk: "Повідомлення Суду", en: "The Court's announcement" },
-  warCrimeLbl: { uk: "Воєнний злочин", en: "War crime" },
-  cahLbl: { uk: "Злочин проти людяності", en: "Crime against humanity" },
-  asOf: { uk: "станом на", en: "as of" },
+  chargesLbl: txt("case.chargesLbl", { uk: "Звинувачення", en: "Charges" }),
+  modesLbl: txt("case.modesLbl", { uk: "Форма відповідальності", en: "Mode of responsibility" }),
+  announcementLbl: txt("case.announcementLbl", { uk: "Повідомлення Суду", en: "The Court's announcement" }),
+  warCrimeLbl: txt("case.warCrimeLbl", { uk: "Воєнний злочин", en: "War crime" }),
+  cahLbl: txt("case.cahLbl", { uk: "Злочин проти людяності", en: "Crime against humanity" }),
+  asOf: txt("case.asOf", { uk: "станом на", en: "as of" }),
 
   // Page-level navigation and the reader's-guide band.
-  navAria: { uk: "Розділи сторінки", en: "Page sections" },
+  navAria: txt("case.navAria", { uk: "Розділи сторінки", en: "Page sections" }),
   /* `navWarrants` («Ордери»), `navAnatomy` («Розбір рішення») and
      `navRulings` («Тлумачення») stood here: four rail words for bands headed
      something else on the page. The rail reads each band's own heading now –
      see `theatresLabel` and `machineryLabel`. */
-  toTop: { uk: "Нагору", en: "Top" },
-  ofLargest: { uk: "від найбільшої суми тут", en: "of the largest sum here" },
+  toTop: txt("case.toTop", { uk: "Нагору", en: "Top" }),
+  ofLargest: txt("case.ofLargest", { uk: "від найбільшої суми тут", en: "of the largest sum here" }),
   /* `floored` stood here – a sentence on any bar the minimum width had to
      widen. It was written when a small bar was a stub alone on the ground and
      nothing else on the row said how small the sum was. Both of those are
@@ -178,17 +179,17 @@ const T = {
      left was nine words of apology, in the brightest colour in the block,
      under a figure that was already legible. */
   /* Only printed when a dot field runs past what it can draw. */
-  dotCap: {
+  dotCap: txt("case.dotCap", {
     uk: "На полі показано перші {n} позначок.",
     en: "The field draws the first {n} marks.",
-  },
+  }),
   /* «Самері» was a transliteration of "summary" standing as a section name
      on a Ukrainian page. Review: «розділ "САМЕРІ" … замінила б на "ПОВНИЙ
      ОГЛЯД"». */
-  navFulltext: { uk: "Повний огляд", en: "Full summary" },
-  officialH: { uk: "Офіційні документи Суду", en: "Official court documents" },
-  commentaryH: { uk: "Дослідження та коментарі", en: "Research and commentary" },
-  updated: { uk: "оновлено", en: "updated" },
+  navFulltext: txt("case.navFulltext", { uk: "Повний огляд", en: "Full summary" }),
+  officialH: txt("case.officialH", { uk: "Офіційні документи Суду", en: "Official court documents" }),
+  commentaryH: txt("case.commentaryH", { uk: "Дослідження та коментарі", en: "Research and commentary" }),
+  updated: txt("case.updated", { uk: "оновлено", en: "updated" }),
 } as const;
 
 /**
@@ -214,21 +215,21 @@ const OUTCOME_LABEL: Record<Outcome, Localized> = {
 };
 
 const TYPE_LABEL: Record<string, { uk: string; en: string }> = {
-  "blog post": { uk: "допис у блозі", en: "blog post" },
-  "journal article": { uk: "стаття в журналі", en: "journal article" },
+  "blog post": txt("case.typeLabel.blog post", { uk: "допис у блозі", en: "blog post" }),
+  "journal article": txt("case.typeLabel.journal article", { uk: "стаття в журналі", en: "journal article" }),
   /* Was «аналітика» alone, which under the masthead's new source caption read
      as a claim that a Ukrainska Pravda news report was analysis. The English
      side already carried both halves. */
-  "news/insight": { uk: "новини / аналітика", en: "news / insight" },
-  "preprint/repository": { uk: "препринт / репозиторій", en: "preprint / repository" },
-  "official/ICC": { uk: "офіційний документ МКС", en: "ICC official document" },
-  "official/award": { uk: "текст рішення", en: "award text" },
+  "news/insight": txt("case.typeLabel.news/insight", { uk: "новини / аналітика", en: "news / insight" }),
+  "preprint/repository": txt("case.typeLabel.preprint/repository", { uk: "препринт / репозиторій", en: "preprint / repository" }),
+  "official/ICC": txt("case.typeLabel.official/ICC", { uk: "офіційний документ МКС", en: "ICC official document" }),
+  "official/award": txt("case.typeLabel.official/award", { uk: "текст рішення", en: "award text" }),
   /* A national court's own judgment – dtek-krymenergo cites the Hague Court
      of Appeal's. Without an entry here the fallback printed the raw key,
      "official/court", into the kind chip beside the citation. */
-  "official/court": { uk: "рішення суду", en: "court judgment" },
-  "official/treaty": { uk: "текст договору", en: "treaty text" },
-  "official/filing": { uk: "процесуальний документ", en: "court filing" },
+  "official/court": txt("case.typeLabel.official/court", { uk: "рішення суду", en: "court judgment" }),
+  "official/treaty": txt("case.typeLabel.official/treaty", { uk: "текст договору", en: "treaty text" }),
+  "official/filing": txt("case.typeLabel.official/filing", { uk: "процесуальний документ", en: "court filing" }),
 };
 
 /**
@@ -1212,8 +1213,20 @@ export default async function CasePage({
      sides, so a page whose tracks are articles or defendants simply gets no
      link rather than a guessed one. */
 
-  const { theatres = [], provisionalMeasures = [], timelineTracks = [], glance = [] } = summary;
-  const { takings, attribution, amounts, objections, afterlife, warrants } = summary;
+  /* Sections an editor switched off in the admin's «Приховати розділи». The
+     one-by-one blocks are dropped here, at the source, so everything that
+     reads them – the band, its chip in the rail, the alternation of grounds –
+     agrees that they are not there. The bands (`overview`, `rulings`,
+     `measures`, `machinery`) are switched off further down, by `shows`. */
+  const off = new Set<string>(summary.hideSections ?? []);
+  const { theatres = [], provisionalMeasures = [], timelineTracks = [] } = summary;
+  const glance = off.has("glance") ? [] : (summary.glance ?? []);
+  const takings = off.has("scale") ? undefined : summary.takings;
+  const attribution = off.has("attribution") ? undefined : summary.attribution;
+  const amounts = off.has("amounts") ? undefined : summary.amounts;
+  const objections = off.has("objections") ? undefined : summary.objections;
+  const afterlife = off.has("afterlife") ? undefined : summary.afterlife;
+  const warrants = off.has("warrants") ? undefined : summary.warrants;
   /* What the forum decided, and what happened to it afterwards. Two runs,
      two scales: drawn together, the €87 million attached in France read as a
      fraction of a dollar award it is not denominated in, and the caption had
@@ -1317,7 +1330,7 @@ export default async function CasePage({
   const L = (x: { uk: string; en: string }) => pick(x, locale);
 
   // Bands of the page, in reading order – the sticky nav names each one.
-  const hasMachinery = Boolean(summary.warrants || attribution || objections || afterlife);
+  const hasMachinery = Boolean(warrants || attribution || objections || afterlife);
   /* Which ground each band stands on, computed rather than fixed.
    *
    * The alternation used to be written into each band's own rule, which is
@@ -1569,7 +1582,7 @@ export default async function CasePage({
     /* Смуга цифр на рішенні без ордерів – після огляду, де вона тепер і
        стоїть. Доти рядок був другим у рейці, а сама смуга поїхала вниз, і
        читач, який тиснув «Що було втрачено», їхав через усю сторінку. */
-    ...(takings && !summary.warrants
+    ...(takings && !warrants
       ? [{ id: "scale", label: pick(takings.heading, locale) }]
       : []),
     /* This list is the page's order, and the sticky bar is drawn from it – so
@@ -1590,17 +1603,17 @@ export default async function CasePage({
        attribution band, which renders *after* the figures. Listed the other
        way round on Oschadbank, the rail sent a reader past the band they had
        just asked for. */
-    ...(hasMachinery && summary.warrants
+    ...(hasMachinery && warrants
       ? [{ id: "machinery", label: machineryLabel }]
       : []),
-    ...(takings && summary.warrants
+    ...(takings && warrants
       ? [{ id: "scale", label: pick(takings.heading, locale) }]
       : []),
     /* Two blocks in one band on Oschadbank – whose conduct, then the
        objections – so the second gets a child entry rather than the band
        taking a collective name neither heading uses. It already carries
        `#objections`; the rail just never pointed at it. */
-    ...((attribution || objections) && !summary.warrants
+    ...((attribution || objections) && !warrants
       ? [
           {
             id: "machinery",
@@ -2260,7 +2273,7 @@ export default async function CasePage({
           іншим. Доти вона стояла між хронологією і оглядом, тобто між
           двома речами, які власниця поставила поспіль. Варіант з ордерами
           лишається там, де був, – одразу за ними. */}
-      {!summary.warrants && scaleBand}
+      {!warrants && scaleBand}
 
       {/* 2b – Reference: doctrine and the interim order, on paper */}
       {shows("rulings") && interpretations.length > 0 && (
@@ -2387,7 +2400,7 @@ export default async function CasePage({
         </section>
       )}
 
-      {summary.warrants && scaleBand}
+      {warrants && scaleBand}
 
       {/* 2c – Machinery of the award: whose conduct, and the objections.
           What followed the award is a band of its own below – those are three

@@ -1,4 +1,5 @@
 import type { Locale } from "@/i18n/config";
+import { txt } from "@/lib/ui-texts";
 
 /**
  * Рядки й дата, спільні для списку дописів і сторінки допису.
@@ -7,16 +8,16 @@ import type { Locale } from "@/i18n/config";
  * лише те, що знає маршрутизатор (default, generateMetadata …).
  */
 export const BLOG_T = {
-  title: { uk: "Блог", en: "Blog" },
-  metaDesc: {
+  title: txt("blog.title", { uk: "Блог", en: "Blog" }),
+  metaDesc: txt("blog.metaDesc", {
     uk: "Дописи редакції «НаСвітло»: нові рішення, пояснення до оглядів і події Дослідницького центру Луї Зона.",
     en: "Notes from the nasvitlo editors: new decisions, context for the summaries, and events at the Louis Sohn Research Centre.",
-  },
-  back: { uk: "На головну", en: "Home" },
-  toBlog: { uk: "Усі дописи", en: "All posts" },
-  related: { uk: "Огляди, про які йдеться", en: "Summaries discussed" },
-  tags: { uk: "Теми", en: "Topics" },
-  read: { uk: "Читати", en: "Read" },
+  }),
+  back: txt("blog.back", { uk: "На головну", en: "Home" }),
+  toBlog: txt("blog.toBlog", { uk: "Усі дописи", en: "All posts" }),
+  related: txt("blog.related", { uk: "Огляди, про які йдеться", en: "Summaries discussed" }),
+  tags: txt("blog.tags", { uk: "Теми", en: "Topics" }),
+  read: txt("blog.read", { uk: "Читати", en: "Read" }),
 } as const;
 
 /** «uk-UA», не «uk»: голий «en» форматує по-американськи (див. content/legal.ts). */

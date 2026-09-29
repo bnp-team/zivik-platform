@@ -3,6 +3,7 @@
  * plain script can run it against every record in src/content.
  */
 import { COLLECTIONS, fromRow, slugOf, type Prop } from "../content/collections";
+import { MAP_HEIGHT, MAP_WIDTH, projectPoint } from "../../src/lib/map-projection";
 
 /**
  * The kind each JSON field has held since the seed – read off the content
@@ -11,6 +12,7 @@ import { COLLECTIONS, fromRow, slugOf, type Prop } from "../content/collections"
  */
 const KIND: Record<string, "list" | "object"> = {
   "about.links": "object",
+  "legal_documents.sections": "list",
   "map_events.courts": "list",
   "map_events.cases": "list",
   "map_courts.institutionIds": "list",
@@ -53,6 +55,8 @@ export function problems(collection: string, content: Record<string, unknown>): 
     }
   }
   if (collection === "posts") out.push(...postProblems(content));
+  if (collection === "ui_texts") out.push(...uiTextProblems(content));
+  if (collection === "map_places") out.push(...mapPlaceProblems(content));
   if (out.length) return out;
   /* Everything else the build reads – repeaters, numbers, selects – through
      the build's own decoder, so the two cannot disagree. */
@@ -83,4 +87,50 @@ function postProblems(content: Record<string, unknown>): string[] {
     out.push("«Дата»: у форматі РРРР-ММ-ДД – напр. 2026-09-26");
   }
   return out;
+}
+
+/**
+ * A text with `{n}` or `{at}` in it is a sentence the page fills in – the
+ * number of proceedings, the city in the locative. Lose the word and the page
+ * prints the braces or, worse, a sentence with a hole. The same words have to
+ * be there as in the code's own wording.
+ */
+function uiTextProblems(content: Record<string, unknown>): string[] {
+  const out: string[] = [];
+  const words = (t: unknown) => [...String(t ?? "").matchAll(/\{(\w+)\}/g)].map((m) => m[1]).sort().join(",");
+  for (const lang of ["uk", "en"] as const) {
+    const text = content[`text_${lang}`];
+    const base = content[`base_${lang}`];
+    if (typeof text !== "string" || text.trim() === "") {
+      out.push(`«Текст (${lang === "uk" ? "UA" : "EN"})»: порожній – такий текст сайт проігнорує й покаже початковий`);
+      continue;
+    }
+    if (words(text) !== words(base)) {
+      const want = words(base);
+      out.push(
+        want
+          ? `«Текст (${lang === "uk" ? "UA" : "EN"})»: має містити слова у фігурних дужках так само, як початковий: ${want.split(",").map((w) => `{${w}}`).join(" ")}`
+          : `«Текст (${lang === "uk" ? "UA" : "EN"})»: тут немає слів у фігурних дужках – не додавайте {…}`,
+      );
+    }
+  }
+  return out;
+}
+
+/**
+ * A city with coordinates the drawing cannot hold would save fine and simply
+ * never appear. Say so on save instead.
+ */
+function mapPlaceProblems(content: Record<string, unknown>): string[] {
+  const lon = Number(content.lon);
+  const lat = Number(content.lat);
+  if (!Number.isFinite(lon) || !Number.isFinite(lat)) return [];
+  if (lon < -180 || lon > 180 || lat < -80 || lat > 80) {
+    return ["Довгота має бути від −180 до 180, широта – від −80 до 80. Перевірте, чи не переплутано їх місцями."];
+  }
+  const [x, y] = projectPoint(lon, lat);
+  if (x < 0 || x > MAP_WIDTH || y < 0 || y > MAP_HEIGHT) {
+    return ["Це місце лежить за межами мапи Європи – його не буде видно. Мапа охоплює приблизно від Ірландії до Волги."];
+  }
+  return [];
 }

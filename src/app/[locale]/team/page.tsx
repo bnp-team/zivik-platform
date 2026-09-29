@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import Link from "next/link";
 import Crumbs from "@/components/nasvitlo/Crumbs";
 import Image from "next/image";
 import { isLocale, locales, type Locale } from "@/i18n/config";
@@ -15,10 +14,11 @@ import {
 import { localeOpenGraph, alternateOpenGraphLocales } from "@/i18n/config";
 import { team } from "@/content/team";
 import "./team.css";
+import { txt } from "@/lib/ui-texts";
 
 const T = {
-  back: { uk: "На головну", en: "Home" },
-  title: { uk: "Команда", en: "Team" },
+  back: txt("team.back", { uk: "На головну", en: "Home" }),
+  title: txt("team.title", { uk: "Команда", en: "Team" }),
   /* No lede. It said who runs the project – which the footer says on this
      page and on every other one, under the wordmark. A page that opens by
      repeating its own footer has spent its first line on nothing.
@@ -26,19 +26,19 @@ const T = {
      The description a search result and a link preview need is separate, and
      is written for that job: it says what this page lists rather than who the
      library belongs to. */
-  metaDesc: {
+  metaDesc: txt("team.metaDesc", {
     uk: "Дослідники, редактори й технічна команда бібліотеки рішень «насвітло».",
     en: "The researchers, editors and technical team behind the nasvitlo library of decisions.",
-  },
-  contact: { uk: "Написати нам", en: "Write to us" },
-  contactH: { uk: "Написати нам", en: "Write to us" },
+  }),
+  contact: txt("team.contact", { uk: "Написати нам", en: "Write to us" }),
+  contactH: txt("team.contactH", { uk: "Написати нам", en: "Write to us" }),
   /* Says what writing is *for*. The same invitation /about already makes, in
      the same words, so the two pages do not offer a reader two different
      reasons to use one address. */
-  contactText: {
+  contactText: txt("team.contactText", {
     uk: "Помітили помилку в огляді або знаєте про провадження, якого тут немає – напишіть.",
     en: "If you have spotted an error in a summary, or know of a proceeding that is missing, write to us.",
-  },
+  }),
 } as const;
 
 export function generateStaticParams() {

@@ -9,6 +9,7 @@ import { caseName, pick } from "@/content/types";
 import type { RegistryCase } from "@/content/types";
 import { institutions } from "@/content/institutions";
 import { registryCases, registryProceedings } from "@/content/cases";
+import { txt } from "@/lib/ui-texts";
 
 /**
  * Extra chrome labels this surface needs that the shared dictionary does not
@@ -16,16 +17,16 @@ import { registryCases, registryProceedings } from "@/content/cases";
  * field (`amountUsd`) that had no label anywhere because nothing rendered it.
  */
 const T = {
-  amount: { uk: "Сума у спорі", en: "Amount in dispute" },
-  seat: { uk: "Місце розгляду", en: "Seat" },
-  pages: { uk: "Обсяг рішення", en: "Length of the decision" },
-  pagesN: { uk: "с.", en: "pp." },
+  amount: txt("pend.amount", { uk: "Сума у спорі", en: "Amount in dispute" }),
+  seat: txt("pend.seat", { uk: "Місце розгляду", en: "Seat" }),
+  pages: txt("pend.pages", { uk: "Обсяг рішення", en: "Length of the decision" }),
+  pagesN: txt("pend.pagesN", { uk: "с.", en: "pp." }),
   /* The heading over the siblings. Deliberately says what the relation IS –
      same forum – and claims nothing about the law. These proceedings are
      neighbours on a docket, not authority for one another. */
-  siblings: { uk: "Інші провадження в цьому суді", en: "Other proceedings before this forum" },
+  siblings: txt("pend.siblings", { uk: "Інші провадження в цьому суді", en: "Other proceedings before this forum" }),
   /* Shown only when the forum has no analysed sibling to offer. */
-  kindred: { uk: "Розібрані рішення тієї ж категорії", en: "Analysed decisions of the same kind" },
+  kindred: txt("pend.kindred", { uk: "Розібрані рішення тієї ж категорії", en: "Analysed decisions of the same kind" }),
   /* The last resort, for a proceeding that is the only one of its forum and
      the only one of its field. Three records are: the ITLOS case, the ICC
      commercial arbitration and the EU enforcement decision. */
@@ -36,9 +37,9 @@ const T = {
   /* The row that carries the caption as the forum files it. «Повна назва»
      rather than «Цитування»: it is the name of the case, not a citation
      format. */
-  caption: { uk: "Повна назва", en: "Full caption" },
-  hasSummary: { uk: "є розбір", en: "analysed" },
-  allOfForum: { uk: "Усі провадження цього суду", en: "All proceedings before this forum" },
+  caption: txt("pend.caption", { uk: "Повна назва", en: "Full caption" }),
+  hasSummary: txt("pend.hasSummary", { uk: "є розбір", en: "analysed" }),
+  allOfForum: txt("pend.allOfForum", { uk: "Усі провадження цього суду", en: "All proceedings before this forum" }),
   /* What the link actually opens. `dict.pending.official` stays the label for
      a decision or a forum's own case page; these name the rest, because a
      button that promises a judgment and opens a press release has spent the

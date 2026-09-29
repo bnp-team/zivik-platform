@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import Link from "next/link";
 import Crumbs from "@/components/nasvitlo/Crumbs";
 import { isLocale, locales } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
@@ -13,7 +12,9 @@ import {
 } from "@/lib/seo";
 import { localeOpenGraph, alternateOpenGraphLocales } from "@/i18n/config";
 import { pick } from "@/content/types";
-import { MAP_COURTS, MAP_PLACES, courtMarks, seatsLine } from "@/content/map";
+import { MAP_COURTS, courtMarks, seatsLine } from "@/content/map";
+import { mapPlaces } from "@/content/map-places";
+import { projectPoint } from "@/lib/map-projection";
 import { countryPanelsFor, courtCaseloadFor, seatRows } from "@/content/map-links";
 import EventsMap from "@/components/nasvitlo/EventsMap";
 import "./map-page.css";
@@ -119,7 +120,10 @@ const stageWord = (k: string | undefined) =>
                travelled in this page's flight payload as well as in the markup
                it renders. See the note above `geo` in EventsMap.tsx. */
             countries={countryPanelsFor(locale)}
-            places={MAP_PLACES.map((p) => ({ key: p.key, city: pick(p.city, locale) }))}
+            places={mapPlaces.map((p) => {
+              const [x, y] = projectPoint(p.lon, p.lat);
+              return { key: p.key, city: pick(p.city, locale), x, y };
+            })}
             courts={MAP_COURTS.map((c) => ({
               key: c.key,
               city: pick(c.city, locale),

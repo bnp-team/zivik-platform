@@ -430,6 +430,75 @@ Object.assign(SHAPES, {
       y: num("Напрям по вертикалі (y)"),
     },
   },
+  /* Юридичні сторінки → «Розділи» (LegalSection in src/content/legal-docs.ts). */
+  legalSections: {
+    kind: "list",
+    label: "Розділи",
+    noun: "розділ",
+    title: ["heading"],
+    item: {
+      kind: "object",
+      fields: {
+        id: text("Код розділу", { hint: "Латиницею, без пробілів: для посилань на розділ. Уже наявні не змінюйте." }),
+        heading: loc("Заголовок розділу"),
+        auto: {
+          kind: "select",
+          label: "Текст пише код",
+          optional: true,
+          options: [{ value: "cookies", label: "Так – розділ про cookie й аналітику (текст залежить від збірки)" }],
+        },
+        blocks: {
+          kind: "list",
+          label: "Абзаци й списки",
+          noun: "абзац чи список",
+          format: (v: { kind?: string; text?: { uk?: string }; items?: { uk?: string[] } }) =>
+            v.kind === "ul" ? `Список: ${v.items?.uk?.[0] ?? ""}` : (v.text?.uk ?? ""),
+          item: {
+            kind: "object",
+            fields: {
+              kind: {
+                kind: "select",
+                label: "Що це",
+                options: [
+                  { value: "p", label: "Абзац" },
+                  { value: "ul", label: "Маркований список" },
+                ],
+              },
+              text: loc("Текст абзацу", { multiline: true, optional: true }),
+              link: {
+                kind: "object",
+                label: "Посилання в кінці абзацу",
+                optional: true,
+                fields: {
+                  label: loc("Підпис посилання"),
+                  to: text("Куди", { hint: "Сторінка сайту без мови: privacy, terms, registry…" }),
+                },
+              },
+              noAnalytics: loc("Текст, якщо на сайті вимкнено аналітику", { multiline: true, optional: true }),
+              items: {
+                kind: "object",
+                label: "Пункти списку (по одному в рядку)",
+                optional: true,
+                fields: {
+                  uk: { kind: "lines", label: "UA" },
+                  en: { kind: "lines", label: "EN" },
+                },
+              },
+              itemsNoAnalytics: {
+                kind: "object",
+                label: "Пункти, якщо на сайті вимкнено аналітику",
+                optional: true,
+                fields: {
+                  uk: { kind: "lines", label: "UA" },
+                  en: { kind: "lines", label: "EN" },
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+  },
 } satisfies Record<string, Shape>);
 
 /* ── Values ───────────────────────────────────────────────────────────── */
