@@ -38,7 +38,6 @@ import { txt } from "@/lib/ui-texts";
  * or funding is asserted, because nothing in the record supports it.
  */
 const T = {
-  back: txt("about.back", { uk: "На головну", en: "Home" }),
   /* «Про проєкт», not «Про нас».
      Owner's edit: the tab and the page are renamed, because what the page is
      about is the project – the people are one section of it now rather than

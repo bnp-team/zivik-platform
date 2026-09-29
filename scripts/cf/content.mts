@@ -225,6 +225,10 @@ async function push(write: boolean, only?: Set<string>, missingOnly = false, asD
       };
       const task = async () => {
         const got = await api("GET", `/content/${spec.slug}/${encodeURIComponent(key)}`);
+        /* Only a 404 means «not there». An auth failure, a rate limit or a
+           dropped connection is not, and treating it as one would try to
+           create an entry that exists. */
+        if (!got.item && got.status !== 404) throw new Error(`push: reading ${spec.slug}/${key} failed (${got.status})`);
         if (missingOnly && got.item) return;
         const same =
           got.item &&

@@ -17,7 +17,6 @@ import "./team.css";
 import { txt } from "@/lib/ui-texts";
 
 const T = {
-  back: txt("team.back", { uk: "На головну", en: "Home" }),
   title: txt("team.title", { uk: "Команда", en: "Team" }),
   /* No lede. It said who runs the project – which the footer says on this
      page and on every other one, under the wordmark. A page that opens by

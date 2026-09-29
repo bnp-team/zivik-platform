@@ -63,7 +63,6 @@ const T = {
      said. Three decisions override this with their own wording («Де це
      сталося»); they keep it. */
   tracks: txt("case.tracks", { uk: "Географія справи", en: "Case geography" }),
-  found: txt("case.found", { uk: "Що встановив Суд", en: "What the Court found" }),
   /* Обидва відповіді кажуть, що суд установив, а не чого немає.
 
      Було «Порушено» і «Немає». Друге читалося як порожнє місце в таблиці –
@@ -78,7 +77,6 @@ const T = {
   /* The scorecard's noun has to agree with the number printed in front of it,
      and the number depends on what kind of dispositif this is. Three
      Ukrainian forms; English reads the same three keys. */
-  ofTotal: txt("case.ofTotal", { uk: "з", en: "of" }),
   sources: txt("case.sources", { uk: "Джерела та коментарі", en: "Sources and commentary" }),
   back: txt("case.back", { uk: "До бібліотеки", en: "Back to the library" }),
   readJudgment: txt("case.readJudgment", { uk: "Читати рішення", en: "Read the judgment" }),
@@ -99,7 +97,6 @@ const T = {
   /* The measure a limb of an order required, set beside the argument and
      the answer as the third thing in the exchange. */
   ordered: txt("case.ordered", { uk: "Наказано", en: "Ordered" }),
-  progress: txt("case.progress", { uk: "Прогрес читання", en: "Reading progress" }),
 
   /* The theatre map's text alternative. It was the literal string "Map of
      Europe" – English on a Ukrainian page, so a Ukrainian voice spoke it

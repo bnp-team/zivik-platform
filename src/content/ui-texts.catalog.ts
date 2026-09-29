@@ -1611,18 +1611,6 @@ export const uiTextCatalog: UiText[] = [
     }
   },
   {
-    "id": "about.back",
-    "group": "Про проєкт: сторінка",
-    "text": {
-      "uk": "На головну",
-      "en": "Home"
-    },
-    "base": {
-      "uk": "На головну",
-      "en": "Home"
-    }
-  },
-  {
     "id": "about.title",
     "group": "Про проєкт: сторінка",
     "text": {
@@ -1911,18 +1899,6 @@ export const uiTextCatalog: UiText[] = [
     }
   },
   {
-    "id": "blog.back",
-    "group": "Блог",
-    "text": {
-      "uk": "На головну",
-      "en": "Home"
-    },
-    "base": {
-      "uk": "На головну",
-      "en": "Home"
-    }
-  },
-  {
     "id": "blog.toBlog",
     "group": "Блог",
     "text": {
@@ -1956,18 +1932,6 @@ export const uiTextCatalog: UiText[] = [
     "base": {
       "uk": "Теми",
       "en": "Topics"
-    }
-  },
-  {
-    "id": "blog.read",
-    "group": "Блог",
-    "text": {
-      "uk": "Читати",
-      "en": "Read"
-    },
-    "base": {
-      "uk": "Читати",
-      "en": "Read"
     }
   },
   {
@@ -2007,18 +1971,6 @@ export const uiTextCatalog: UiText[] = [
     }
   },
   {
-    "id": "case.found",
-    "group": "Сторінка рішення: підписи",
-    "text": {
-      "uk": "Що встановив Суд",
-      "en": "What the Court found"
-    },
-    "base": {
-      "uk": "Що встановив Суд",
-      "en": "What the Court found"
-    }
-  },
-  {
     "id": "case.violation",
     "group": "Сторінка рішення: підписи",
     "text": {
@@ -2040,18 +1992,6 @@ export const uiTextCatalog: UiText[] = [
     "base": {
       "uk": "Встановлено відсутність порушення",
       "en": "No violation established"
-    }
-  },
-  {
-    "id": "case.ofTotal",
-    "group": "Сторінка рішення: підписи",
-    "text": {
-      "uk": "з",
-      "en": "of"
-    },
-    "base": {
-      "uk": "з",
-      "en": "of"
     }
   },
   {
@@ -2196,18 +2136,6 @@ export const uiTextCatalog: UiText[] = [
     "base": {
       "uk": "Наказано",
       "en": "Ordered"
-    }
-  },
-  {
-    "id": "case.progress",
-    "group": "Сторінка рішення: підписи",
-    "text": {
-      "uk": "Прогрес читання",
-      "en": "Reading progress"
-    },
-    "base": {
-      "uk": "Прогрес читання",
-      "en": "Reading progress"
     }
   },
   {
@@ -2739,18 +2667,6 @@ export const uiTextCatalog: UiText[] = [
     }
   },
   {
-    "id": "privacy.back",
-    "group": "Політика приватності: підписи",
-    "text": {
-      "uk": "На головну",
-      "en": "Home"
-    },
-    "base": {
-      "uk": "На головну",
-      "en": "Home"
-    }
-  },
-  {
     "id": "privacy.revised",
     "group": "Політика приватності: підписи",
     "text": {
@@ -2820,18 +2736,6 @@ export const uiTextCatalog: UiText[] = [
     "base": {
       "uk": "{n} проваджень проти Росії в міжнародних судах, трибуналах і арбітражах – з фільтрами за судом, станом розгляду і типом рішення.",
       "en": "{n} proceedings against Russia before international courts, tribunals and arbitrations, filterable by court, by stage of proceedings and by type of decision."
-    }
-  },
-  {
-    "id": "library.back",
-    "group": "Бібліотека рішень: сторінка",
-    "text": {
-      "uk": "На головну",
-      "en": "Home"
-    },
-    "base": {
-      "uk": "На головну",
-      "en": "Home"
     }
   },
   {
@@ -3507,18 +3411,6 @@ export const uiTextCatalog: UiText[] = [
     }
   },
   {
-    "id": "team.back",
-    "group": "Команда: сторінка",
-    "text": {
-      "uk": "На головну",
-      "en": "Home"
-    },
-    "base": {
-      "uk": "На головну",
-      "en": "Home"
-    }
-  },
-  {
     "id": "team.title",
     "group": "Команда: сторінка",
     "text": {
@@ -3579,18 +3471,6 @@ export const uiTextCatalog: UiText[] = [
     }
   },
   {
-    "id": "terms.back",
-    "group": "Умови користування: підписи",
-    "text": {
-      "uk": "На головну",
-      "en": "Home"
-    },
-    "base": {
-      "uk": "На головну",
-      "en": "Home"
-    }
-  },
-  {
     "id": "terms.revised",
     "group": "Умови користування: підписи",
     "text": {
@@ -3636,18 +3516,6 @@ export const uiTextCatalog: UiText[] = [
     "base": {
       "uk": "Сума у спорі",
       "en": "Amount in dispute"
-    }
-  },
-  {
-    "id": "pend.seat",
-    "group": "Сторінка «Ще досліджуємо»: підписи",
-    "text": {
-      "uk": "Місце розгляду",
-      "en": "Seat"
-    },
-    "base": {
-      "uk": "Місце розгляду",
-      "en": "Seat"
     }
   },
   {

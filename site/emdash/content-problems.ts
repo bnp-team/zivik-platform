@@ -57,6 +57,7 @@ export function problems(collection: string, content: Record<string, unknown>): 
   if (collection === "posts") out.push(...postProblems(content));
   if (collection === "ui_texts") out.push(...uiTextProblems(content));
   if (collection === "map_places") out.push(...mapPlaceProblems(content));
+  if (collection === "legal_documents") out.push(...legalProblems(content));
   if (out.length) return out;
   /* Everything else the build reads – repeaters, numbers, selects – through
      the build's own decoder, so the two cannot disagree. */
@@ -133,4 +134,50 @@ function mapPlaceProblems(content: Record<string, unknown>): string[] {
     return ["Це місце лежить за межами мапи Європи – його не буде видно. Мапа охоплює приблизно від Ірландії до Волги."];
   }
   return [];
+}
+
+/**
+ * The legal pages are drawn from `sections` block by block. The editor offers
+ * every part of a block as optional, so a list saved without its items or a
+ * section saved without paragraphs would be accepted here and then stop the
+ * build for everyone on the next publish. Say so on save instead.
+ */
+function legalProblems(content: Record<string, unknown>): string[] {
+  const raw = content.sections;
+  let sections: unknown = raw;
+  if (typeof raw === "string") {
+    try {
+      sections = JSON.parse(raw);
+    } catch {
+      return []; /* the JSON check above has already said so */
+    }
+  }
+  if (!Array.isArray(sections)) return [];
+  const out: string[] = [];
+  const filled = (v: unknown) => typeof v === "string" && v.trim() !== "";
+  const pair = (v: unknown, key: "uk" | "en") => (v as Record<string, unknown> | null | undefined)?.[key];
+  sections.forEach((s: unknown, i) => {
+    const at = `Розділ ${i + 1}`;
+    const sec = s as Record<string, unknown> | null;
+    if (!sec || typeof sec !== "object") return void out.push(`${at}: не розділ`);
+    if (!filled(sec.id)) out.push(`${at}: не вказано код розділу`);
+    if (!filled(pair(sec.heading, "uk")) || !filled(pair(sec.heading, "en"))) out.push(`${at}: заголовок має бути і українською, і англійською`);
+    if (sec.auto === "cookies") return;
+    if (!Array.isArray(sec.blocks) || sec.blocks.length === 0) return void out.push(`${at}: у розділі немає жодного абзацу чи списку`);
+    sec.blocks.forEach((b: unknown, j) => {
+      const blk = b as Record<string, unknown> | null;
+      const where = `${at}, блок ${j + 1}`;
+      if (blk?.kind === "p") {
+        if (!filled(pair(blk.text, "uk")) || !filled(pair(blk.text, "en"))) out.push(`${where}: у абзаці немає тексту (UA і EN)`);
+      } else if (blk?.kind === "ul") {
+        const items = blk.items as Record<string, unknown> | undefined;
+        if (!Array.isArray(items?.uk) || !Array.isArray(items?.en) || items.uk.length === 0 || items.uk.length !== items.en.length) {
+          out.push(`${where}: у списку мають бути пункти і в UA, і в EN, однакова кількість`);
+        }
+      } else {
+        out.push(`${where}: оберіть «Абзац» чи «Маркований список»`);
+      }
+    });
+  });
+  return out;
 }

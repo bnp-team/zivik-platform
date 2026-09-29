@@ -13,11 +13,9 @@ export const BLOG_T = {
     uk: "Дописи редакції «НаСвітло»: нові рішення, пояснення до оглядів і події Дослідницького центру Луї Зона.",
     en: "Notes from the nasvitlo editors: new decisions, context for the summaries, and events at the Louis Sohn Research Centre.",
   }),
-  back: txt("blog.back", { uk: "На головну", en: "Home" }),
   toBlog: txt("blog.toBlog", { uk: "Усі дописи", en: "All posts" }),
   related: txt("blog.related", { uk: "Огляди, про які йдеться", en: "Summaries discussed" }),
   tags: txt("blog.tags", { uk: "Теми", en: "Topics" }),
-  read: txt("blog.read", { uk: "Читати", en: "Read" }),
 } as const;
 
 /** «uk-UA», не «uk»: голий «en» форматує по-американськи (див. content/legal.ts). */

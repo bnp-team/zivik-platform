@@ -18,7 +18,6 @@ import { txt } from "@/lib/ui-texts";
  */
 const T = {
   amount: txt("pend.amount", { uk: "Сума у спорі", en: "Amount in dispute" }),
-  seat: txt("pend.seat", { uk: "Місце розгляду", en: "Seat" }),
   pages: txt("pend.pages", { uk: "Обсяг рішення", en: "Length of the decision" }),
   pagesN: txt("pend.pagesN", { uk: "с.", en: "pp." }),
   /* The heading over the siblings. Deliberately says what the relation IS –

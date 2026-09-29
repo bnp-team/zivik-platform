@@ -23,7 +23,6 @@ import { txt } from "@/lib/ui-texts";
 
 /** Page chrome. The document itself lives in `src/content/legal.ts`. */
 const T = {
-  back: txt("terms.back", { uk: "На головну", en: "Home" }),
   revised: txt("terms.revised", { uk: "Редакція від", en: "Revised" }),
   also: txt("terms.also", { uk: "Які персональні дані ми отримуємо й що з ними робимо – про це", en: "What personal data reaches us and what we do with it –" }),
   privacy: txt("terms.privacy", { uk: "Політика конфіденційності", en: "Privacy policy" }),

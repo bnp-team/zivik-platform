@@ -17,7 +17,7 @@ import type { Locale } from "@/i18n/config";
 
 type Pair = { uk: string; en: string };
 
-const byId = new Map(uiTexts.map((e) => [e.id, e]));
+const byId = new Map(uiTexts.filter((e) => typeof e.id === "string").map((e) => [e.id, e]));
 
 /** The text for one language: the editor's if they changed it, else the code's. */
 export function pickText(e: UiText | undefined, locale: Locale, fallback: string): string {
@@ -45,7 +45,7 @@ export function txt(id: string, fallback: Pair): Pair {
 export function withEdits<T>(dict: T, locale: Locale, rows: readonly UiText[] = uiTexts): T {
   const out = structuredClone(dict) as unknown;
   for (const e of rows) {
-    if (!e.id.startsWith("dict.")) continue;
+    if (typeof e.id !== "string" || !e.id.startsWith("dict.")) continue;
     const parts = e.id.slice(5).split(".");
     let node = out as Record<string, unknown>;
     for (const p of parts.slice(0, -1)) {

@@ -16,7 +16,13 @@ export interface MapPlace {
   lat: number;
 }
 
-export const mapPlaces: MapPlace[] = [
+const defaults: MapPlace[] = [
   { key: "kyiv", city: { uk: "Київ", en: "Kyiv" }, lon: 30.52, lat: 50.45 },
   { key: "lviv", city: { uk: "Львів", en: "Lviv" }, lon: 24.03, lat: 49.84 },
 ];
+
+/** The cities as the code has them – what the map shows while the database has none. */
+export const mapPlacesDefault: MapPlace[] = defaults;
+
+/** The content of the collection – the published rows replace this initializer. */
+export const mapPlaces: MapPlace[] = defaults;

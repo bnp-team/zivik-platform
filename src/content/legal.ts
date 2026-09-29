@@ -187,8 +187,10 @@ function resolveDoc(slug: LegalDocument["slug"]): LegalDocument {
   const filled = fillIn(doc);
   return {
     ...filled,
-    sections: filled.sections.map((s) =>
-      s.auto === "cookies" ? { ...s, blocks: cookiesBlocks } : { ...s, blocks: s.blocks.map(forThisBuild) },
+    sections: (Array.isArray(filled.sections) ? filled.sections : []).map((s) =>
+      s.auto === "cookies"
+        ? { ...s, blocks: cookiesBlocks }
+        : { ...s, blocks: (Array.isArray(s.blocks) ? s.blocks : []).filter(isDrawable).map(forThisBuild) },
     ),
   };
 }
@@ -199,6 +201,13 @@ function resolveDoc(slug: LegalDocument["slug"]): LegalDocument {
  * Policy. Each has its alternative beside it in the data; a build without
  * analytics takes it, so the policy is true of the site the reader opened.
  */
+/** A block the page can draw. The admin refuses the rest on save; a row that got through some other way must not stop the build. */
+function isDrawable(block: LegalBlock): boolean {
+  if (block?.kind === "p") return typeof block.text?.uk === "string" && typeof block.text?.en === "string";
+  if (block?.kind === "ul") return Array.isArray(block.items?.uk) && Array.isArray(block.items?.en);
+  return false;
+}
+
 function forThisBuild(block: LegalBlock): LegalBlock {
   if (analyticsEnabled) return block;
   if (block.kind === "p" && block.noAnalytics) return { kind: "p", text: block.noAnalytics, link: block.link };
@@ -217,7 +226,7 @@ const VALUES: Record<string, string> = {
 /** Every string in the document, with {email}, {phone}… put where they stand. */
 function fillIn<T>(value: T): T {
   if (typeof value === "string") {
-    return value.replace(/\{(\w+)\}/g, (whole, name: string) => VALUES[name] ?? whole) as T;
+    return value.replace(/\{(\w+)\}/g, (whole, name: string) => (Object.hasOwn(VALUES, name) ? VALUES[name] : whole)) as T;
   }
   if (Array.isArray(value)) return value.map(fillIn) as T;
   if (value && typeof value === "object") {
