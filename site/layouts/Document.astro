@@ -8,6 +8,8 @@ import type { Metadata } from "next";
 import type { Locale } from "@/i18n/config";
 import { localeHtmlLang } from "@/i18n/config";
 import favicon from "@/app/favicon.ico?url";
+import iconSvg from "@/app/icon.svg?url";
+import appleIcon from "@/app/apple-icon.png?url";
 /* The faces the first screen is set in, preloaded. Without this the browser
    found them only after parsing the page CSS – 15–18 font files, 264–315 kB,
    queued behind the stylesheet. Only regular body (Fira 400) and display
@@ -74,6 +76,8 @@ const hydrates = [...html.matchAll(/<nsv-island data-k="([^"#]*)#/g)].some(
       )
     }
     <link rel="icon" href={favicon} sizes="any" />
+    <link rel="icon" href={iconSvg} type="image/svg+xml" />
+    <link rel="apple-touch-icon" href={appleIcon} sizes="180x180" />
     {preloadFonts.map((href) => <link rel="preload" href={href} as="font" type="font/woff2" crossorigin />)}
   </head>
   <body class="min-h-full">
