@@ -135,6 +135,20 @@ PULLED.forEach((spec, i) => {
    paths take the place of the upload in the values (scripts/cf/media.mts). */
 await resolveUploads(collections);
 
+/* The site sets its sentence dash short (–), and an editor typing in the admin
+   or pasting from Word will give it the long one. Normalised here, in what the
+   build reads, rather than in the database: nothing an editor wrote is changed
+   there, and the next entry is right without anyone having to remember. */
+function shortDash(v: unknown): unknown {
+  if (typeof v === "string") return v.replaceAll("\u2014", "\u2013");
+  if (Array.isArray(v)) return v.map(shortDash);
+  if (v && typeof v === "object") {
+    return Object.fromEntries(Object.entries(v).map(([k, x]) => [k, shortDash(x)]));
+  }
+  return v;
+}
+Object.assign(collections, shortDash(collections));
+
 if (total === 0) {
   rmSync(OUT, { force: true });
   console.warn(`  cf:pull: nothing is published in ${DB} yet – building from src/content.`);
