@@ -11,7 +11,8 @@
  * rather than the full-size original through the Worker.
  *
  * Sizes, measured against where each picture is drawn:
- *   portrait – 560×560, the team grid shows 280px squares (2×);
+ *   portrait – the whole photograph, at most 640×800 (never cropped here: the
+ *              team page frames it 4:5 and the editor picks the focus);
  *   logo     – at most 1040×296, the partner plate draws 520×148 (2×),
  *              PNG so a transparent mark stays transparent;
  *   cover    – 1600×900, the post's cover spans the 820px column (2×), 16:9.
@@ -49,7 +50,7 @@ async function render(bytes: Buffer, profile: Upload["profile"]): Promise<{ data
   switch (profile) {
     case "portrait":
       return {
-        data: await img.resize(560, 560, { fit: "cover", position: "attention" }).jpeg({ quality: 80, mozjpeg: true }).toBuffer(),
+        data: await img.resize(640, 800, { fit: "inside", withoutEnlargement: true }).jpeg({ quality: 82, mozjpeg: true }).toBuffer(),
         ext: "jpg",
       };
     case "cover":

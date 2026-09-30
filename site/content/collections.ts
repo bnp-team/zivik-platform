@@ -657,6 +657,13 @@ export const COLLECTIONS: CollectionSpec[] = [
         upload: { into: "photo", profile: "portrait" },
       },
       { path: "photo", label: "Фото – шлях у /public/team (якщо не завантажено)", type: "string" },
+      {
+        path: "focusY",
+        slug: "focus_y",
+        label: "Кадрування: де центр по вертикалі, %",
+        type: "integer",
+        help: "0 – показати верх фото, 100 – низ. Для портрета «голова й плечі» підійде 10–25 (порожньо = 20). Якщо голову обрізає зверху – зменште число; якщо видно забагато низу – збільште.",
+      },
     ],
   },
   {

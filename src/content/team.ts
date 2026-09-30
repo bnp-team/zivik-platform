@@ -20,6 +20,12 @@ export interface TeamMember {
    * and the list stays even. Square source, 400×400 or larger.
    */
   photo?: string;
+  /**
+   * Where the frame is centred on the photograph, top to bottom, in percent:
+   * 0 shows the top edge, 100 the bottom. The page frames a portrait 4:5;
+   * a head-and-shoulders shot wants 10–25 (the default is 20).
+   */
+  focusY?: number;
 }
 
 export const team: TeamMember[] = [

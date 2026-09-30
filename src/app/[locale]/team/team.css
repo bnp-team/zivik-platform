@@ -99,11 +99,11 @@
   flex-direction: column;
   gap: 4px;
 }
-/* The frame owns the square so a cell keeps its shape whether it holds a
+/* The frame owns the 4:5 so a cell keeps its shape whether it holds a
    photograph or a set of initials. */
 .team-frame {
   position: relative;
-  aspect-ratio: 1;
+  aspect-ratio: 4 / 5;
   margin-bottom: var(--space-3);
   overflow: hidden;
   background: var(--paper2);

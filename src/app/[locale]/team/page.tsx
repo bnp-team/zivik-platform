@@ -105,7 +105,7 @@ export default async function TeamPage({
 
         {/* A grid, not a line-per-person list: the portraits are half-body
             photographs, so they need room to be legible. Everyone gets the
-            same square cell whether or not their photograph has arrived. */}
+            same 4:5 cell whether or not their photograph has arrived. */}
         <ul className="team-grid">
           {team.map((m) => {
             const name = L(m.name);
@@ -117,8 +117,9 @@ export default async function TeamPage({
                       className="team-photo"
                       src={m.photo}
                       alt=""
-                      width={900}
-                      height={900}
+                      width={640}
+                      height={800}
+                      style={{ objectPosition: `50% ${Math.min(100, Math.max(0, m.focusY ?? 20))}%` }}
                       sizes="(max-width: 560px) 90vw, (max-width: 900px) 44vw, 280px"
                     />
                   ) : (
