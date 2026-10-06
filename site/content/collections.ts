@@ -77,6 +77,15 @@ export interface Prop {
   allowFalse?: boolean;
   /** For `repeater`: the properties of one item. */
   items?: Prop[];
+  /**
+   * For `json`: a second list kept in the same field, row by row with this
+   * one – the review text, English and Ukrainian, so the admin can draw each
+   * paragraph as one row with both languages side by side and «add» or «move»
+   * acts on both at once. Keys in `shared` hold one value for both languages;
+   * every other key is stored as `{ en, uk }`, and one that is `false` in both
+   * (a heading kept out of the contents) as `<key>Off: true`. See `pairRows`.
+   */
+  pair?: { path: string; shared: readonly string[] };
   /** An empty string is a value here, not an absence (e.g. a source with no named author). */
   blankOk?: boolean;
   /** Admin help text. */
@@ -194,25 +203,13 @@ const OUTCOMES = ["judgment", "award", "verdict", "liability", "upheld", "warran
  * theatres) stay JSON, one field per section: a repeater cannot hold another
  * repeater. */
 
-const BLOCK_KINDS = [
-  "lead", "h2", "h3", "h4", "p", "dispositif", "findings",
-  "position", "claim", "note", "subject", "link",
-] as const;
-const VERDICT_OUTCOMES = [
-  "violation", "no-violation", "granted", "rejected", "not-decided", "convicted", "acquitted",
-] as const;
 
-const blockItems: Prop[] = [
-  { path: "kind", label: "Тип", type: "select", options: BLOCK_KINDS, required: true },
-  { path: "text", label: "Текст", type: "text", required: true },
-  { path: "nav", label: "Назва в змісті", type: "string", allowFalse: true },
-  { path: "measure", label: "Захід (dispositif)", type: "string" },
-  { path: "outcome", label: "Результат", type: "select", options: VERDICT_OUTCOMES },
-  { path: "heads", label: "Заголовки частин (по рядку)", type: "text", lines: true },
-  { path: "outcomes", label: "Результати частин (по рядку)", type: "text", lines: true },
-  { path: "instrument", label: "Інструмент", type: "string" },
-  { path: "place", label: "Місце", type: "string" },
-];
+/**
+ * The parts of a review paragraph that are one value for both languages; the
+ * rest – the text, its name in the contents, a measure, a place – differ
+ * (src/content/summaries/types.ts, `SummaryBlock`).
+ */
+const BLOCK_SHARED = ["kind", "outcome", "outcomes", "instrument"] as const;
 
 /**
  * The summary's admin form, top to bottom in the order of the decision page
@@ -288,8 +285,7 @@ const SUMMARY_FORM: FormSection[] = [
   {
     title: "Текст огляду",
     fields: [
-      ["blocks", "Англійський оригінал"],
-      ["blocksUk", "Українською"],
+      ["blocks", "Абзаци (UA | EN)"],
       ["positionLabel", "Підпис над позицією суду («Позиція Суду»)"],
     ],
   },
@@ -392,18 +388,13 @@ const SUMMARY_PROPS: Prop[] = [
 
   {
     path: "blocks",
-    label: "Текст огляду (англійський оригінал)",
-    type: "repeater",
+    slug: "text_blocks",
+    label: "Текст огляду (UA | EN)",
+    type: "json",
     required: true,
-    items: blockItems,
-    help: "Абзац за абзацом, у порядку на сторінці.",
-  },
-  {
-    path: "blocksUk",
-    label: "Текст огляду (українською)",
-    type: "repeater",
-    items: blockItems,
-    help: "Має йти паралельно до англійського: той самий порядок і типи абзаців.",
+    pair: { path: "blocksUk", shared: BLOCK_SHARED },
+    widget: "nsv-json-editors:summaryText",
+    help: "Абзац за абзацом, у порядку на сторінці; кожен рядок – той самий абзац двома мовами.",
   },
 
   {
@@ -1012,10 +1003,52 @@ function decode(p: Prop, v: unknown): unknown {
   }
 }
 
+/** Two parallel lists → one list of rows, each holding both (see `Prop.pair`). */
+function pairRows(shared: readonly string[], en: Obj[] = [], uk: Obj[] = []): Obj[] {
+  return Array.from({ length: Math.max(en.length, uk.length) }, (_, i) => {
+    const a = en[i];
+    const b = uk[i];
+    const row: Obj = {};
+    for (const k of new Set([...Object.keys(a ?? {}), ...Object.keys(b ?? {})])) {
+      if (shared.includes(k)) row[k] = a?.[k] ?? b?.[k];
+      else if (a?.[k] === false && b?.[k] === false) row[`${k}Off`] = true;
+      else row[k] = { ...(a && k in a ? { en: a[k] } : {}), ...(b && k in b ? { uk: b[k] } : {}) };
+    }
+    return row;
+  });
+}
+
+/** One list of rows → the two lists again; a language with no text in a row has no block there. */
+function unpairRows(shared: readonly string[], rows: Obj[]): { en: Obj[]; uk: Obj[] } {
+  const side = (row: Obj, lang: "en" | "uk"): Obj | undefined => {
+    /* A row with this language's text left empty has no block in it: an
+       English page with a blank paragraph is worse than one paragraph fewer. */
+    const text = (row.text as Obj | undefined)?.[lang];
+    if (typeof text !== "string" || !text.trim()) return undefined;
+    const out: Obj = {};
+    for (const [k, v] of Object.entries(row)) {
+      if (shared.includes(k)) out[k] = v;
+      else if (k.endsWith("Off") && v === true) out[k.slice(0, -3)] = false;
+      else if (v && typeof v === "object" && lang in (v as Obj)) out[k] = (v as Obj)[lang];
+    }
+    return out;
+  };
+  return {
+    en: rows.map((r) => side(r, "en")).filter((b): b is Obj => !!b),
+    uk: rows.map((r) => side(r, "uk")).filter((b): b is Obj => !!b),
+  };
+}
+
 function encodeProps(props: Prop[], value: Obj): Row {
   const row: Row = {};
   for (const p of props) {
     const slug = slugOf(p);
+    if (p.pair) {
+      const en = getIn(value, p.path) as Obj[] | undefined;
+      const uk = getIn(value, p.pair.path) as Obj[] | undefined;
+      row[slug] = en || uk ? pairRows(p.pair.shared, en, uk) : null;
+      continue;
+    }
     if (p.path === "") {
       row[slug] = value;
       continue;
@@ -1041,6 +1074,13 @@ function decodeProps(props: Prop[], row: Row): Obj {
   for (const p of props) {
     const slug = slugOf(p);
     if (p.path === "") return decode(p, row[slug]) as Obj;
+    if (p.pair) {
+      const rows = decode(p, row[slug]) as Obj[] | undefined;
+      const { en, uk } = unpairRows(p.pair.shared, rows ?? []);
+      if (rows || p.required) setIn(out, p.path, en);
+      if (uk.length) setIn(out, p.pair.path, uk);
+      continue;
+    }
     let v: unknown;
     if (p.localized || p.either) {
       const a = decode(p, row[`${slug}_uk`]);

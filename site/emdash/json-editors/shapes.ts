@@ -21,7 +21,18 @@ export type Shape =
   | { kind: "select"; label: string; options: { value: string; label: string }[]; optional?: boolean }
   /** `string[]`, one per line. */
   | { kind: "lines"; label: string; optional?: boolean; hint?: string }
-  | { kind: "object"; label?: string; fields: Record<string, Shape>; optional?: boolean }
+  | {
+      kind: "object";
+      label?: string;
+      fields: Record<string, Shape>;
+      optional?: boolean;
+      /**
+       * Fields shown only when a sibling has one of these values – the review
+       * text's «Назва в змісті» only on an h3. A field that already holds a
+       * value is shown whatever the sibling says, so nothing is hidden away.
+       */
+      when?: Record<string, { key: string; in: string[] }>;
+    }
   | {
       kind: "list";
       label: string;
@@ -31,6 +42,8 @@ export type Shape =
       title?: string[];
       /** «Додати …» */
       noun?: string;
+      /** «+» on every row adds a new one right below it, not only at the end. */
+      insert?: boolean;
       /** A collapsed row's line when keys are not enough. */
       format?: (v: never) => string;
     };
@@ -179,7 +192,71 @@ const person: Shape = {
   },
 };
 
+/** `SummaryBlockKind` in src/content/summaries/types.ts, in the editor's words. */
+const BLOCK_KINDS = [
+  { value: "p", label: "p – звичайний абзац" },
+  { value: "lead", label: "lead – вступний абзац" },
+  { value: "h2", label: "h2 – нумерований розділ" },
+  { value: "h3", label: "h3 – підзаголовок" },
+  { value: "h4", label: "h4 – пункт (a)/(b)/(c)" },
+  { value: "dispositif", label: "dispositif – пункт резолютивної частини" },
+  { value: "findings", label: "findings – таблиця висновків" },
+  { value: "position", label: "position – висновок суду з пункту вище" },
+  { value: "claim", label: "claim – аргумент сторони" },
+  { value: "note", label: "note – пояснення від нас, не слова суду" },
+  { value: "subject", label: "subject – предмет спору" },
+  { value: "link", label: "link – посилання на джерело" },
+];
+
+const VERDICT_OUTCOMES = [
+  { value: "violation", label: "Порушення" },
+  { value: "no-violation", label: "Без порушення" },
+  { value: "granted", label: "Задоволено" },
+  { value: "rejected", label: "Відхилено" },
+  { value: "not-decided", label: "Не вирішено" },
+  { value: "convicted", label: "Засуджено" },
+  { value: "acquitted", label: "Виправдано" },
+];
+
+const KIND_SHORT = Object.fromEntries(BLOCK_KINDS.map((k) => [k.value, k.value]));
+
 export const SHAPES: Record<string, Shape> = {
+  /**
+   * The review text: one row per paragraph, both languages side by side
+   * (`pair` in site/content/collections.ts stores it so). The type and the
+   * verdict are one for both languages; everything else is a UA | EN pair.
+   */
+  summaryText: {
+    kind: "list",
+    label: "Абзаци",
+    noun: "абзац",
+    insert: true,
+    format: (v: { kind?: string; text?: { uk?: string; en?: string } }) =>
+      `${KIND_SHORT[v.kind ?? ""] ?? "?"} · ${v.text?.uk || v.text?.en || ""}`,
+    item: {
+      kind: "object",
+      fields: {
+        kind: { kind: "select", label: "Тип", options: BLOCK_KINDS },
+        text: loc("Текст", { multiline: true, hint: "Український і англійський – той самий абзац." }),
+        nav: loc("Назва в змісті", { optional: true, hint: "Коротша назва в бічному змісті. Порожньо – як заголовок." }),
+        navOff: { kind: "bool", label: "Назва в змісті: не показувати", optional: true },
+        measure: loc("Захід", { optional: true, hint: "Який тимчасовий захід цей пункт перевіряє." }),
+        outcome: { kind: "select", label: "Результат", options: VERDICT_OUTCOMES, optional: true },
+        outcomes: { kind: "lines", label: "Результати частин (по рядку)", optional: true },
+        instrument: text("Інструмент", { optional: true, hint: "Напр. ICSFT або CERD." }),
+        place: loc("Місце", { optional: true }),
+      },
+      when: {
+        nav: { key: "kind", in: ["h3"] },
+        navOff: { key: "kind", in: ["h3"] },
+        measure: { key: "kind", in: ["h4"] },
+        outcome: { key: "kind", in: ["h4"] },
+        outcomes: { key: "kind", in: ["findings"] },
+        instrument: { key: "kind", in: ["subject"] },
+        place: { key: "kind", in: ["subject"] },
+      },
+    },
+  },
   theatres: {
     kind: "list",
     label: "Театри подій",

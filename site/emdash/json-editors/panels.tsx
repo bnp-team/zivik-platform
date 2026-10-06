@@ -336,7 +336,11 @@ export function problemsOf(collection: string, data: Obj): string[] {
     if (timeline.length === 0) out.push("порожня хронологія");
     const noEn = timeline.filter((r) => filled(r.label_uk ?? uk(r.label)) && !filled(r.label_en ?? (isObj(r.label) ? r.label.en : ""))).length;
     if (noEn > 0) out.push(`у хронології ${noEn} подій без англійського тексту`);
-    if (!filled(data.blocks) && !filled(data.blocks_uk)) out.push("немає тексту огляду");
+    const paras = list(value(data.text_blocks)).filter(isObj);
+    if (paras.length === 0) out.push("немає тексту огляду");
+    const half = (lang: "uk" | "en") => paras.filter((r) => isObj(r.text) && !filled(r.text[lang])).length;
+    if (half("en") > 0) out.push(`у тексті огляду ${half("en")} абзаців без англійського`);
+    if (half("uk") > 0) out.push(`у тексті огляду ${half("uk")} абзаців без українського`);
     if (list(value(data.sources)).length === 0) out.push("немає джерел");
   }
   return out;

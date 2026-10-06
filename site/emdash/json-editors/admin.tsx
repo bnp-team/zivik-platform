@@ -53,7 +53,8 @@ const CSS = `
 .nsvj-item>summary{display:flex;align-items:center;gap:8px;padding:8px 10px;cursor:pointer;list-style:none}
 .nsvj-item>summary::-webkit-details-marker{display:none}
 .nsvj-item>summary .nsvj-n{opacity:.55;font-variant-numeric:tabular-nums;min-width:1.6em}
-.nsvj-item>summary .nsvj-sum{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.nsvj-item{min-width:0}
+.nsvj-item>summary .nsvj-sum{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .nsvj-item[open]>summary{border-bottom:1px solid color-mix(in srgb,currentColor 12%,transparent)}
 .nsvj-item>.nsvj-body{padding:12px}
 .nsvj-check{display:flex;gap:8px;align-items:center}
@@ -268,6 +269,8 @@ function ObjectEditor({
   const body = (
     <>
       {Object.entries(shape.fields).map(([k, s]) => {
+        const when = shape.when?.[k];
+        if (when && isEmpty(s, v[k]) && !when.in.includes(String(v[when.key] ?? ""))) return null;
         /* An optional group left empty is one button, not a column of empty
            boxes: «Інша оцінка» on a metric that has none. */
         if (s.kind === "object" && s.optional && isEmpty(s, v[k])) {
@@ -348,6 +351,21 @@ function ListEditor({
           <summary>
             <span className="nsvj-n">{i + 1}.</span>
             <span className="nsvj-sum">{summaryOf(shape.item, item, shape.title, shape.format) || "(порожньо)"}</span>
+            {shape.insert ? (
+              <button
+                type="button"
+                className="nsvj-btn"
+                aria-label={`Додати ${shape.noun ?? "рядок"} нижче`}
+                title={`Додати ${shape.noun ?? "рядок"} нижче`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  onChange([...list.slice(0, i + 1), blank(shape.item), ...list.slice(i + 1)]);
+                  setOpen(new Set([i + 1]));
+                }}
+              >
+                + нижче
+              </button>
+            ) : null}
             <button type="button" className="nsvj-btn" disabled={i === 0} aria-label="Вище" onClick={(e) => (e.preventDefault(), move(i, -1))}>
               ↑
             </button>
