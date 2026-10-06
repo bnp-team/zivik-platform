@@ -56,7 +56,11 @@ export interface Prop {
   /** The value may be an explicit `null` (as opposed to absent). */
   nullable?: boolean;
   options?: readonly string[];
-  /** For `text`: an array of paragraphs, stored as text separated by blank lines. */
+  /**
+   * For `text`: an array of paragraphs. Stored with a blank line between
+   * them; read back one paragraph per line, so a single Enter in the admin
+   * starts a new paragraph, as does text pasted from Docs or Word.
+   */
   paragraphs?: boolean;
   /** For `text`: an array of short strings, one per line. */
   lines?: boolean;
@@ -680,12 +684,12 @@ export const COLLECTIONS: CollectionSpec[] = [
       { path: "title", label: "Заголовок", type: "string", localized: true, required: true },
       {
         path: "paragraphs",
-        label: "Абзаци",
+        label: "Абзаци (кожен з нового рядка)",
         type: "text",
         localized: true,
         paragraphs: true,
         required: true,
-        help: "Абзаци розділяються порожнім рядком.",
+        help: "Кожен рядок – окремий абзац.",
       },
       {
         path: "links",
@@ -804,12 +808,12 @@ export const COLLECTIONS: CollectionSpec[] = [
       },
       {
         path: "body",
-        label: "Текст",
+        label: "Текст (кожен абзац з нового рядка)",
         type: "text",
         localized: true,
         paragraphs: true,
         required: true,
-        help: "Абзаци розділяйте порожнім рядком.",
+        help: "Кожен рядок – окремий абзац.",
       },
       { path: "date", label: "Дата (РРРР-ММ-ДД)", type: "string", required: true },
       { path: "author", label: "Автор", type: "string", localized: true },
@@ -1002,7 +1006,7 @@ function decode(p: Prop, v: unknown): unknown {
     case "number":
       return typeof v === "number" ? v : Number(v);
     default:
-      if (p.paragraphs) return String(v).split(/\n\s*\n/);
+      if (p.paragraphs) return String(v).split(/\r?\n/).filter((line) => line.trim());
       if (p.lines) return String(v).split("\n");
       return v;
   }
