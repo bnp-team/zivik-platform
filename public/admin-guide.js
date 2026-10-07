@@ -11,11 +11,18 @@
  *   - «editor» – форма запису: розділи, Зберегти, Опублікувати, Live View,
  *     історія версій.
  * Кожен показується сам один раз (пам'ять браузера), далі – з кнопки «Гід»
- * у правому нижньому куті. «Один раз» рахується з показу, а не з
- * «Пропустити»: тур, кинутий на півдорозі (перехід на іншу сторінку,
- * оновлення вкладки), сам більше не відкривається – редакторка бачила його
- * щоразу, коли заходила в адмінку. Елемент, якого на сторінці немає (напр.
- * «Користувачі» в не-адміністратора), крок пропускає.
+ * у правому нижньому куті. Браузер пам'ятає не тур, а кроки (поле `id`):
+ * коли в тур додається новий крок, гід сам покаже лише його, з позначкою
+ * «Нове». Тож новий крок – новий `id`; переписаний текст старого кроку
+ * вдруге не показується, а перейменований `id` покажеться як новий.
+ * «Один раз» рахується з показу, а не з «Пропустити»: тур, кинутий на
+ * півдорозі (перехід на іншу сторінку, оновлення вкладки), сам більше не
+ * відкривається – редакторка бачила його щоразу, коли заходила в адмінку.
+ * Елемент, якого на сторінці немає (напр. «Користувачі» в
+ * не-адміністратора), крок пропускає.
+ *
+ * Пам'ять – окремо для кожного браузера й адреси: на новому комп'ютері чи
+ * після переїзду на іншу адресу гід покажеться ще раз.
  *
  * Елементи шукаються за адресою посилання і за підписом кнопки – англійським,
  * як в адмінці зараз, і українським на випадок перекладу. Якщо оновлення
@@ -30,21 +37,34 @@
   window.__nsvGuide = true;
 
   const BASE = "/_emdash/admin";
-  const VERSION = "v1";
   const SKIP = /\/(login|setup|signup|invite|device|auth|magic)/;
+  const SEEN = "nsv-guide:seen";
+  /* Which steps this browser has already been shown, by step id. A tour
+     shows itself only with the steps not in here: the whole tour the first
+     time, later just a step added since («Нове в адмінці»). */
   const store = {
-    get: (k) => {
+    seen() {
       try {
-        return localStorage.getItem(`nsv-guide-${VERSION}:${k}`);
+        const raw = localStorage.getItem(SEEN);
+        if (raw) return new Set(JSON.parse(raw));
+        /* Before step ids, «seen» was one flag per tour (v1). Such a tour
+           counts as fully seen: every step that exists today was in it. */
+        const set = new Set();
+        for (const name of Object.keys(TOURS)) {
+          if (localStorage.getItem(`nsv-guide-v1:${name}`)) TOURS[name].forEach((s) => set.add(s.id));
+        }
+        return set;
       } catch {
-        return "1";
+        return null; // no storage: never show by itself, only from «Гід»
       }
     },
-    set: (k) => {
+    mark(steps) {
       try {
-        localStorage.setItem(`nsv-guide-${VERSION}:${k}`, "1");
+        const set = store.seen() || new Set();
+        steps.forEach((s) => set.add(s.id));
+        localStorage.setItem(SEEN, JSON.stringify([...set]));
       } catch {
-        /* private mode: the tour just shows again */
+        /* private mode: nothing to remember */
       }
     },
   };
@@ -87,12 +107,14 @@
   const TOURS = {
     intro: [
       {
+        id: "welcome",
         title: "Вітаємо в адмінці НаСвітло",
         body:
           "За хвилину покажемо, де що лежить і як зміна потрапляє на сайт. " +
           "Гід можна закрити будь-коли й відкрити знову кнопкою «Гід» унизу праворуч.",
       },
       {
+        id: "library",
         target: [{ href: "/content/summaries" }, { text: "Бібліотека" }],
         title: "Бібліотека",
         body:
@@ -100,27 +122,32 @@
           "в бібліотеці; «Інституції» – суди й трибунали. Найчастіше ви працюватимете тут.",
       },
       {
+        id: "site",
         target: [{ text: "Сайт" }, { href: "/content/team" }],
         title: "Сторінки сайту",
         body: "«Команда», «Партнери» і «Про проєкт» – тексти відповідних сторінок і блоків на головній.",
       },
       {
+        id: "map",
         target: [{ text: "Мапа" }, { href: "/content/map_events" }],
         title: "Мапа",
         body: "Події, міста судів і країни на мапі /uk/map: що підсвічується і куди ведуть лінії.",
       },
       {
+        id: "blog",
         target: [{ text: "Блог" }, { href: "/content/posts" }],
         title: "Блог",
         body:
           "Дописи редакції. Розділ «Блог» з'являється на сайті сам – щойно опубліковано перший допис.",
       },
       {
+        id: "view-site",
         target: [{ text: ["View Site", "Переглянути сайт"] }],
         title: "Відкрити сайт",
         body: "Сайт у новій вкладці – щоб звірити, як виглядає опубліковане.",
       },
       {
+        id: "users",
         target: [{ href: "/users" }, { text: ["Users", "Користувачі"] }],
         title: "Користувачі",
         body:
@@ -128,6 +155,7 @@
           "редактор зберігає чернетку й просить перевірити.",
       },
       {
+        id: "publish-flow",
         title: "Як зміна потрапляє на сайт",
         body:
           "<b>Save (Зберегти)</b> – чернетка: на сайті нічого не змінюється.<br>" +
@@ -137,10 +165,12 @@
     ],
     editor: [
       {
+        id: "editor-welcome",
         title: "Редагування запису",
         body: "Коротко про форму запису: де шукати поля і що роблять кнопки праворуч.",
       },
       {
+        id: "sections",
         target: [{ match: /^\d+ · /, in: "label, span, legend, p, h3" }],
         title: "Поля за розділами сторінки",
         body:
@@ -148,11 +178,13 @@
           "«2 · Шапка – Суд». (UA) і (EN) – та сама річ двома мовами.",
       },
       {
+        id: "save",
         target: [{ text: ["Save", "Saved", "Зберегти", "Збережено"] }],
         title: "Зберегти",
         body: "Зберігає чернетку. На сайті нічого не змінюється, доки запис не опубліковано.",
       },
       {
+        id: "publish",
         target: [{ text: ["Publish changes", "Publish", "Опублікувати"], starts: true, in: "button" }],
         title: "Опублікувати",
         body:
@@ -160,16 +192,19 @@
           "називається «Publish changes». Публікує адміністратор.",
       },
       {
+        id: "live-view",
         target: [{ text: ["Live View", "Переглянути наживо"] }],
         title: "Live View",
         body: "Відкриває сторінку цього запису на сайті. Після публікації зачекайте ~2 хвилини й оновіть.",
       },
       {
+        id: "revisions",
         target: [{ text: ["Revisions", "Версії", "Ревізії"] }],
         title: "Історія версій",
         body: "Усі збережені версії запису: можна порівняти й повернути попередню, якщо щось пішло не так.",
       },
       {
+        id: "editor-done",
         title: "Готово",
         body:
           "Якщо зберегти не вдається, адмінка напише, яке поле виправити. " +
@@ -208,8 +243,7 @@
     return e;
   }
 
-  function close(done) {
-    if (state && done) store.set(state.name);
+  function close() {
     state = null;
     root?.remove();
     root = null;
@@ -222,7 +256,7 @@
     if (!state) return;
     if (e.key === "Escape") {
       e.preventDefault();
-      close(true);
+      close();
     } else if (e.key === "ArrowRight") {
       e.preventDefault();
       go(1);
@@ -291,7 +325,7 @@
   function go(dir) {
     const next = resolve(state.i + dir, dir);
     if (!next) {
-      if (dir > 0) close(true);
+      if (dir > 0) close();
       return;
     }
     show(next.i, next.target);
@@ -308,14 +342,14 @@
     const x = el("button", "nsvg-x", "×");
     x.type = "button";
     x.setAttribute("aria-label", "Закрити гід");
-    x.onclick = () => close(true);
+    x.onclick = () => close();
     const h = el("h2", null);
     h.id = "nsvg-title";
     h.textContent = s.title;
     const p = el("p", null, s.body);
     const foot = el("div", "nsvg-foot");
     const total = state.steps.length;
-    foot.append(el("span", "nsvg-count", `${i + 1} з ${total}`));
+    foot.append(el("span", "nsvg-count", `${state.news ? "Нове · " : ""}${i + 1} з ${total}`));
     if (!first) {
       const back = el("button", null, "Назад");
       back.type = "button";
@@ -324,7 +358,7 @@
     } else {
       const skip = el("button", null, "Пропустити");
       skip.type = "button";
-      skip.onclick = () => close(true);
+      skip.onclick = () => close();
       foot.append(skip);
     }
     const nextBtn = el("button", "nsvg-next", last ? "Готово" : "Далі");
@@ -337,9 +371,9 @@
     nextBtn.focus({ preventScroll: true });
   }
 
-  function start(name) {
-    close(false);
-    state = { name, steps: TOURS[name], i: 0, target: null };
+  function start(name, steps = TOURS[name], news = false) {
+    close();
+    state = { name, steps, news, i: 0, target: null };
     root = el("div", "nsvg-root");
     const card = el("div", "nsvg-card");
     card.setAttribute("role", "dialog");
@@ -351,6 +385,8 @@
     addEventListener("resize", place);
     addEventListener("scroll", place, true);
     const first = resolve(0, 1);
+    if (!first) return close();
+    store.mark(steps);
     show(first.i, first.target);
   }
 
@@ -376,18 +412,22 @@
     fab();
     if (path === lastPath || state) return;
     const name = tourFor(path);
-    if (store.get(name)) {
+    const seen = store.seen();
+    const fresh = seen ? TOURS[name].filter((s) => !seen.has(s.id)) : [];
+    if (!fresh.length) {
       lastPath = path;
       return;
     }
     /* Wait for the app to draw its menu or form before pointing at it. */
     const ready = name === "editor" ? find(TOURS.editor[2].target) : find([{ href: "/content/summaries" }]);
-    if (ready || ++waiting > 20) {
-      lastPath = path;
-      waiting = 0;
-      store.set(name);
-      start(name);
-    }
+    if (!ready && ++waiting <= 20) return;
+    lastPath = path;
+    waiting = 0;
+    if (fresh.length === TOURS[name].length) return start(name);
+    /* Only what was added since: a step whose element is not on this page
+       (e.g. «Користувачі» for an editor) waits for a page that has it. */
+    const news = fresh.filter((s) => !s.target || find(s.target));
+    if (news.length) start(name, news, true);
   }
 
   const style = el("style");
