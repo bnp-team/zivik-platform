@@ -135,5 +135,9 @@ scripts/cf/move-account.sh nasvitlo
   D1 · Edit) — для нічного бекапу.
 - Web Analytics: створити сайт у botsDev і замінити
   `NEXT_PUBLIC_CF_ANALYTICS_TOKEN` (зараз дані йдуть у старий акаунт).
+- Старий акаунт закрито 7 жовтня: `workers.dev` і preview-адреси Worker-ів
+  `nasvitlo` і `nasvitlo-staging` вимкнено (аудит безпеки: стара адмінка
+  тримала копію всіх акаунтів і чернеток). Для відкату – увімкнути знову
+  в Settings → Domains.
 - Стару базу й Worker у старому акаунті не
   видаляти щонайменше місяць.
