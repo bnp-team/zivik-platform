@@ -61,7 +61,7 @@ Cloudflare, що й база. Від втрати акаунта чи помил
 
 ### 2. Секрети в GitHub
 
-Репозиторій `vm-cpu/zivik-platform` → **Settings** → **Secrets and
+Репозиторій `bnp-team/zivik-platform` → **Settings** → **Secrets and
 variables** → **Actions** → **New repository secret**, двічі:
 
 | Name | Secret |

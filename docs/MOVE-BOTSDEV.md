@@ -52,7 +52,7 @@ Records → **Import**. Перевірити записи пошти Resend (`se
 `account_id` botsDev і `database_id` бази `nasvitlo-trial`.
 
 **4. Збірки в botsDev** (Workers & Pages → Create → Import a repository →
-`vm-cpu/zivik-platform`), як у docs/CLOUDFLARE.md «Перший запуск»:
+`bnp-team/zivik-platform`), як у docs/CLOUDFLARE.md «Перший запуск»:
 - Worker `nasvitlo`: build `npm run cf:build`, deploy `npx wrangler deploy`,
   гілка **`move-botsdev`**, змінні збірки `NEXT_PUBLIC_SITE_URL=https://nasvitlo.ucu.edu.ua`
   і ті самі, що в старому акаунті (крім адреси); токен збірки з *D1 · Edit*.

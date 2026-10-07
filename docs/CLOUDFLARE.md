@@ -130,7 +130,7 @@ JSON — але кожен окремим полем: повторювач EmDas
    Якщо в адмінці з'являться помилки 1102 / «exceeded CPU», потрібен Workers
    Paid ($5/міс).
 2. **Підключити репозиторій** (Workers & Pages → Create → Import a repository →
-   `vm-cpu/zivik-platform`):
+   `bnp-team/zivik-platform`):
    - Build command: `npm run cf:build`
    - Deploy command: `npx wrangler deploy`
    - Production branch: поки гілка цього PR; після злиття — `main`.

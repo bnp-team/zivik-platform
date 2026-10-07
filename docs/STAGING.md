@@ -16,7 +16,7 @@
 
 ## Налаштування (один раз, у Cloudflare)
 
-1. **Workers & Pages → Create → Import a repository** → `vm-cpu/zivik-platform`.
+1. **Workers & Pages → Create → Import a repository** → `bnp-team/zivik-platform`.
    - Назва Worker: `nasvitlo-staging`.
    - Branch: та сама, з якої збирається прод.
    - Build command: `npm run cf:build:staging`.
