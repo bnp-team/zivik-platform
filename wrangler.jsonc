@@ -1,15 +1,15 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "nasvitlo",
-  "account_id": "55d2d3b8fd8d4d615a297eb49f5622c9",
+  "account_id": "5f1d89c39916440b30eed21bc37c1efd",
   "main": "./site/worker.ts",
   "compatibility_date": "2026-09-01",
   "compatibility_flags": ["nodejs_compat"],
   "d1_databases": [
     {
       "binding": "DB",
-      "database_name": "nasvitlo",
-      "database_id": "bbde7a56-829d-49b3-b898-eede9a347fa3",
+      "database_name": "nasvitlo-trial",
+      "database_id": "949a3a99-a3b9-40f2-b355-4d2e87fde5c4",
     },
   ],
   "r2_buckets": [
