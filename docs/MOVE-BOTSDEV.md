@@ -10,7 +10,12 @@
 заради пошти (записи Resend `send`, `rsend`, `resend._domainkey`). Листи з
 `admin@nasvitlo.org` працюють незалежно від того, де живе сайт.
 
-## Стан на 7 жовтня 2026
+## Стан на 7 жовтня 2026 — переїхали
+
+`nasvitlo.ucu.edu.ua` працює з botsDev від 7 жовтня. Продакшн-база —
+`nasvitlo-trial` (`949a3a99…`): перед перемиканням її звірено зі старою
+базою, правок після копії не було, тож дані не переносили вдруге. Назва
+лишилась «trial», але це робоча база — **не видаляти**.
 
 | | Що | Стан |
 |---|---|---|
@@ -22,9 +27,10 @@
 | ✅ | Хуки `emdash-publish` (nasvitlo) і `drafts` (staging), секрети `DEPLOY_HOOK_URL`, `STAGING_DEPLOY_HOOK_URL`, `RESEND_API_KEY` | |
 | ✅ | Cloudflare for SaaS на `bnp.works`: fallback origin `saas-origin.bnp.works`, custom hostname `nasvitlo.ucu.edu.ua`, маршрут `nasvitlo.ucu.edu.ua/*` → `nasvitlo` | чекає записів від ІТ |
 | ✅ | Старий акаунт: збірки перепідключено до `bnp-team/zivik-platform` (`main`) | хук виправлено; перевірити однією публікацією з адмінки |
-| ⏳ | ІТ УКУ додають три записи (нижче) | лист надіслано |
+| ✅ | ІТ УКУ додали три записи (нижче) | адреса й сертифікат Active |
 | ✅ | Cloudflare Access для `nasvitlo-staging`: політика `nasvitlo editors` (Allow, Emails), усі адреси Worker-а | вхід кодом на пошту; список адрес — Zero Trust → Access controls → Policies |
-| ⏳ | Перемикання (крок 3) | після відповіді ІТ |
+| ✅ | Перемикання: `main` → botsDev, збірки й хуки на `main`, `EMDASH_URL` прибрано з `nasvitlo`, збірки старого акаунта від'єднано | |
+| ⏳ | Редактори входять у нову адмінку («Sign in with email link») і додають passkey | |
 
 ## Записи для ІТ УКУ
 
@@ -66,7 +72,7 @@ Certificate status мають стати **Active**).
 | Змінна | `nasvitlo` (botsDev) | `nasvitlo-staging` | старий `nasvitlo` |
 |---|---|---|---|
 | `NEXT_PUBLIC_SITE_URL` | `https://nasvitlo.ucu.edu.ua` | `https://nasvitlo-staging.botpartners.workers.dev` | `https://nasvitlo.vm-55d.workers.dev` |
-| `EMDASH_URL` | `https://nasvitlo.botpartners.workers.dev` (до перемикання: звідси збірка бере фото з R2) | те саме | — |
+| `EMDASH_URL` | — | `https://nasvitlo.botpartners.workers.dev` | — |
 | `NEXT_PUBLIC_CF_ANALYTICS_TOKEN` | маячок старого акаунта | — | так само |
 | `EMAIL_FROM` | `НаСвітло <admin@nasvitlo.org>` | — | так само |
 | `EMAIL_PROVIDER` | `resend` | — | так само |
@@ -112,5 +118,5 @@ scripts/cf/move-account.sh nasvitlo
   D1 · Edit) — для нічного бекапу.
 - Web Analytics: створити сайт у botsDev і замінити
   `NEXT_PUBLIC_CF_ANALYTICS_TOKEN` (зараз дані йдуть у старий акаунт).
-- Видалити `nasvitlo-trial`. Стару базу й Worker у старому акаунті не
+- Стару базу й Worker у старому акаунті не
   видаляти щонайменше місяць.
