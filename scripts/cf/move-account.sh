@@ -57,11 +57,24 @@ PY
 else
   echo "export failed – see the log above"; exit 1
 fi
-cp dump.sql "$ROOT/.emdash/move-$DST_DB.sql" 2>/dev/null || { mkdir -p "$ROOT/.emdash"; cp dump.sql "$ROOT/.emdash/move-$DST_DB.sql"; }
+# D1 rejects any statement over 100 KB, and review entries and their
+# revisions are bigger: cut them into an INSERT plus appending UPDATEs.
+python3 "$ROOT/scripts/cf/split-long-inserts.py" dump.sql dump.sql
+mkdir -p "$ROOT/.emdash"
+cp dump.sql "$ROOT/.emdash/move-$DST_DB.sql"
 echo "   mode: $mode, dump kept at .emdash/move-$DST_DB.sql"
 
 echo "== 2/5 create $DST_DB in the target account"
-dst d1 create "$DST_DB" --location=eeur | tee create.log
+# A database left empty by a failed earlier run is reused; one with tables
+# is not touched.
+if dst d1 create "$DST_DB" --location=eeur > create.log 2>&1; then
+  cat create.log
+else
+  dst d1 info "$DST_DB" --json > create.log
+  tables="$(dst d1 execute "$DST_DB" --remote --json --command "SELECT COUNT(*) n FROM sqlite_master WHERE type='table' AND name NOT LIKE '_cf_%' AND name NOT LIKE 'sqlite_%'" | node -e 'let s="";process.stdin.on("data",d=>s+=d).on("end",()=>console.log(JSON.parse(s)[0].results[0].n))')"
+  [ "$tables" = "0" ] || { echo "$DST_DB already exists and has $tables tables – not touching it"; exit 1; }
+  echo "   $DST_DB exists and is empty – reusing it"
+fi
 DST_ID="$(grep -oE '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}' create.log | head -1)"
 [ -n "$DST_ID" ] || { echo "could not read the new database id"; exit 1; }
 

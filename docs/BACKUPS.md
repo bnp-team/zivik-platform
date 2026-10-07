@@ -122,9 +122,12 @@ npx wrangler d1 time-travel restore nasvitlo --timestamp=2026-09-20T12:00:00Z
    ```sh
    npx wrangler d1 create nasvitlo-restore-2026-09-26 --location=eeur
    ```
-3. **Залити дамп у нову базу:**
+3. **Залити дамп у нову базу.** Спершу розрізати задовгі команди: D1 не
+   приймає команду понад 100 КБ, а рядки оглядів і їхніх ревізій більші, і
+   без цього імпорт падає з `D1_RESET_DO`:
 
    ```sh
+   python3 scripts/cf/split-long-inserts.py nasvitlo-d1-….sql nasvitlo-d1-….sql
    npx wrangler d1 execute nasvitlo-restore-2026-09-26 --remote --file=nasvitlo-d1-….sql
    ```
 4. **Перевірити** — порахувати записи й порівняти з очікуваним (і зі старою
