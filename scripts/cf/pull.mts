@@ -25,7 +25,10 @@ import { dirname, resolve } from "node:path";
 import { resolveUploads } from "./media.mjs";
 import { COLLECTIONS, POSITION, fromRow, type Row } from "../../site/content/collections";
 
-const DB = "nasvitlo";
+/* The binding, not the name: wrangler resolves it through wrangler.jsonc, so
+   the build reads whichever database the config names – the account move
+   (docs/MOVE-BOTSDEV.md) builds from `nasvitlo-trial` before `nasvitlo`. */
+const DB = "DB";
 const OUT = resolve(".emdash/snapshot.json");
 const local = process.argv.includes("--local");
 /* Staging: what editors are working on, not what readers see. A saved draft
