@@ -37,12 +37,22 @@ function mediaBase(): string {
   return base.replace(/\/$/, "");
 }
 
+/**
+ * Only a file from the site's own media library is fetched. A `src` pasted
+ * from elsewhere is not: the build would fetch whatever address an editor
+ * typed, from the build machine, before anyone reviewed it (staging builds
+ * drafts). Such a picture falls back to the path field, with a warning.
+ */
 function sourceUrl(v: Obj): string | null {
   const meta = (v.meta ?? {}) as Obj;
   const key = typeof meta.storageKey === "string" ? meta.storageKey : null;
-  if (key) return `${mediaBase()}/_emdash/api/media/file/${key.split("/").map(encodeURIComponent).join("/")}`;
-  if (typeof v.src === "string" && /^https?:\/\//.test(v.src)) return v.src;
-  return null;
+  const own = `${mediaBase()}/_emdash/api/media/file/`;
+  if (key && !key.split("/").some((part) => part === ".." || part === "." || part === "")) {
+    return own + key.split("/").map(encodeURIComponent).join("/");
+  }
+  if (typeof v.src !== "string") return null;
+  const src = v.src.startsWith("/_emdash/api/media/file/") ? mediaBase() + v.src : v.src;
+  return src.startsWith(own) && !src.includes("..") ? src : null;
 }
 
 async function render(bytes: Buffer, profile: Upload["profile"]): Promise<{ data: Buffer; ext: string }> {
@@ -72,13 +82,13 @@ const done = new Map<string, string>();
 async function materialize(v: Obj, upload: Upload, where: string): Promise<string | null> {
   const url = sourceUrl(v);
   if (!url) {
-    console.warn(`  media: ${where} – the upload has no storage key or URL; using the path field.`);
+    console.warn(`  media: ${where} – not a file from the media library; using the path field.`);
     return null;
   }
   const memo = `${upload.profile}:${url}`;
   if (done.has(memo)) return done.get(memo)!;
   try {
-    const res = await fetch(url);
+    const res = await fetch(url, { signal: AbortSignal.timeout(30_000) });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const bytes = Buffer.from(await res.arrayBuffer());
     const { data, ext } = await render(bytes, upload.profile);

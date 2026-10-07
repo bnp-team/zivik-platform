@@ -4,6 +4,7 @@ import { COLLECTIONS } from "./content/collections";
 import { requestRebuild } from "./emdash/deploy-hook";
 
 declare const __NSV_SNAPSHOT_PULLED_AT__: string | null;
+declare const __NSV_STAGING__: boolean;
 
 export { PluginBridge };
 
@@ -151,6 +152,8 @@ export default {
     return out;
   },
   async scheduled(controller, env, ctx) {
+    /* Scheduled publishing and cleanup belong to production alone. */
+    if (__NSV_STAGING__) return;
     await emdashScheduled(controller, env, ctx);
     ctx.waitUntil(retryMissedPublish(env as unknown as { DB: D1Database }));
   },

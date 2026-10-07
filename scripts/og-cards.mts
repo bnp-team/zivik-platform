@@ -67,7 +67,7 @@
  */
 import { createHash } from "node:crypto";
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
-import { dirname, join, resolve } from "node:path";
+import { dirname, join, resolve, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 import { inflateSync } from "node:zlib";
 import type { DecisionSummary } from "../src/content/summaries/types";
@@ -552,7 +552,10 @@ async function main() {
     .update(FACES.map((f) => `${f.pkg}@${pkgVersion(f.pkg)}`).join())
     .digest("hex");
 
-  const jobs = Object.entries(summaries).map(([slug, s]) => {
+  /* The slug is a file name here: one that would leave public/og/cases
+     (cf:pull already refuses those) gets no card. */
+  const inside = (slug: string) => resolve(OUT_DIR, `${slug}.png`).startsWith(resolve(OUT_DIR) + sep);
+  const jobs = Object.entries(summaries).filter(([slug]) => inside(slug)).map(([slug, s]) => {
     const { text, eyebrowShort } = cardText(s);
     const hash = createHash("sha256").update(template).update(JSON.stringify(text)).digest("hex").slice(0, 16);
     const file = join(OUT_DIR, `${slug}.png`);

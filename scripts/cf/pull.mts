@@ -111,10 +111,24 @@ if (drafts && PULLED.some((c) => c.shape === "array")) {
   });
 }
 
+/* Collections whose slug becomes a page address and a file name
+   (/uk/cases/<slug>, public/og/cases/<slug>.png). EmDash takes any string as
+   a slug and the admin's save check never sees it, so an address like
+   «../x» or «A b» would reach the build as it is. Such an entry is left out
+   of the site with a warning instead of being written somewhere else. */
+const ADDRESSED = new Set(["summaries", "posts"]);
+const SLUG = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
+
 const collections: Record<string, unknown> = {};
 let total = 0;
 PULLED.forEach((spec, i) => {
-  const rows = results[i] ?? [];
+  const rows = (results[i] ?? []).filter((r) => {
+    if (!ADDRESSED.has(spec.slug) || SLUG.test(String(r.slug))) return true;
+    console.warn(
+      `::warning::cf:pull: ${spec.slug} «${String(r.slug)}» left out – an address may hold only lowercase latin letters, digits and hyphens`,
+    );
+    return false;
+  });
   total += rows.length;
   const values = rows.map((r) => [String(r.slug), fromRow(spec, r)] as const);
   switch (spec.shape) {

@@ -56,6 +56,10 @@ const define = Object.fromEntries(
   }
   define.__NSV_SNAPSHOT_PULLED_AT__ = JSON.stringify(pulledAt);
 }
+/* The staging build (package.json cf:build:staging). Staging is a second
+   Worker on the same D1: its cron would run EmDash's scheduled publishing
+   and cleanup a second time, against production data. */
+define.__NSV_STAGING__ = JSON.stringify(process.env.NSV_STAGING === "1");
 /* Who may publish from the admin (site/emdash/review-policy.ts): an EmDash
    role level, 50 (administrator) unless the build says otherwise. */
 define.__NSV_PUBLISH_MIN_ROLE__ = JSON.stringify(

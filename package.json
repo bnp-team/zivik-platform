@@ -20,7 +20,7 @@
     "cf:pull": "tsx scripts/cf/pull.mts",
     "og": "tsx scripts/og-cards.mts",
     "cf:build": "npm run cf:content -- check && npm run ui-texts -- --check && npm run cf:content -- seed && npm run cf:pull && npm run og && astro build",
-    "cf:build:staging": "npm run cf:content -- check && npm run ui-texts -- --check && npm run cf:content -- seed && npm run cf:pull -- --drafts && npm run og && astro build",
+    "cf:build:staging": "npm run cf:content -- check && npm run ui-texts -- --check && npm run cf:content -- seed && npm run cf:pull -- --drafts && npm run og && NSV_STAGING=1 astro build",
     "cf:build:local": "npm run cf:content -- check && npm run ui-texts -- --check && npm run cf:content -- seed && npm run cf:pull -- --local && npm run og && astro build",
     "cf:preview": "astro preview",
     "cf:deploy": "npm run cf:build && wrangler deploy",
