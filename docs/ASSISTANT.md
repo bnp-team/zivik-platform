@@ -20,8 +20,7 @@ EmDash має MCP-endpoint `/_emdash/api/mcp`: через нього ШІ-аси
 2. Від його імені створіть персональний токен (Settings → API tokens) лише
    зі scope `content:read` і `content:write`. Без `admin`.
 3. Токен вводьте лише в налаштуваннях клієнта асистента, ніколи в чат.
-4. Адреса сервера: `https://nasvitlo.vm-55d.workers.dev/_emdash/api/mcp`
-   (після запуску домену — `https://nasvitlo.org/_emdash/api/mcp`).
+4. Адреса сервера: `https://nasvitlo.ucu.edu.ua/_emdash/api/mcp`
 5. Після роботи токен відкличте або задайте йому короткий термін.
 
 Усе, що зробив асистент, видно в «Ревізіях» запису; відкат — розділ 8

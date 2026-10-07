@@ -24,7 +24,7 @@
 
 ```sh
 npm run test:e2e         # збирає сайт із файлів (npx astro build) і перевіряє збірку
-npm run test:e2e:live    # перевіряє живий сайт https://nasvitlo.vm-55d.workers.dev
+npm run test:e2e:live    # перевіряє живий сайт https://nasvitlo.ucu.edu.ua
 ```
 
 Інша адреса – змінною `BASE_URL`:

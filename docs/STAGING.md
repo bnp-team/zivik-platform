@@ -23,7 +23,7 @@
    - Deploy command: `npx wrangler deploy --name nasvitlo-staging`.
    - API token: той самий «nasvitlo build token» (йому потрібен доступ до D1).
 2. У новому Worker → **Settings → Build → Variables**: `NEXT_PUBLIC_SITE_URL` =
-   адреса staging (наприклад `https://nasvitlo-staging.vm-55d.workers.dev`).
+   адреса staging (наприклад `https://nasvitlo-staging.botpartners.workers.dev`).
    `SITE_INDEXABLE` **не** додавати.
 3. **Settings → Build → Deploy Hooks → Add**: назва `drafts`, гілка — та сама.
    Скопіюйте адресу хука.

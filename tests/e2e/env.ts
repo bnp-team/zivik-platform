@@ -10,7 +10,7 @@
 export const LOCAL_PORT = Number(process.env.E2E_PORT ?? 4319);
 
 /** The deployed site `npm run test:e2e:live` checks when no BASE_URL is given. */
-export const DEFAULT_LIVE_URL = "https://nasvitlo.vm-55d.workers.dev";
+export const DEFAULT_LIVE_URL = "https://nasvitlo.ucu.edu.ua";
 
 /* `npm run test:e2e:live` picks the live site through the script's own name
    (npm sets `npm_lifecycle_event` on every platform) rather than through

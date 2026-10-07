@@ -33,7 +33,7 @@ const OUT_DIR = resolve("public/media");
 
 /** Where the running site answers for media – the same Worker the admin is on. */
 function mediaBase(): string {
-  const base = process.env.EMDASH_URL ?? process.env.NEXT_PUBLIC_SITE_URL ?? "https://nasvitlo.vm-55d.workers.dev";
+  const base = process.env.EMDASH_URL ?? process.env.NEXT_PUBLIC_SITE_URL ?? "https://nasvitlo.ucu.edu.ua";
   return base.replace(/\/$/, "");
 }
 

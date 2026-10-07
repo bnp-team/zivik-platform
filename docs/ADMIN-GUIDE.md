@@ -9,8 +9,8 @@
 
 | Що | Адреса |
 |---|---|
-| Сайт | https://nasvitlo.vm-55d.workers.dev |
-| Адмінка | https://nasvitlo.vm-55d.workers.dev/_emdash/admin/login |
+| Сайт | https://nasvitlo.ucu.edu.ua |
+| Адмінка | https://nasvitlo.ucu.edu.ua/_emdash/admin/login |
 
 Сайт поки **закритий від пошукових систем** (`noindex`), доки розробник не
 ввімкне `SITE_INDEXABLE=true`. Тож правки вже видно всім, у кого є
@@ -134,7 +134,7 @@ Passkey — це ключ входу без пароля. Він зберіга�
 **Перегляд чернетки — на staging, не в самій адмінці.** Основний сайт
 складається з готових сторінок, зібраних з *опублікованого*, тож чернетки на
 ньому немає. Але є закрита копія сайту — **staging**
-(https://nasvitlo-staging.vm-55d.workers.dev), зібрана **з чернетками**:
+(https://nasvitlo-staging.botpartners.workers.dev), зібрана **з чернетками**:
 
 1. Натисніть **«Зберегти»** (не «Опублікувати»).
 2. Через **~2 хвилини** відкрийте staging і знайдіть свою сторінку. Там правка

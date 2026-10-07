@@ -164,7 +164,7 @@ export function SummaryOverview({ entry }: { collection: string; entry: { data?:
 
 /* ── The same page on staging ─────────────────────────────────────────── */
 
-const STAGING = "https://nasvitlo-staging.vm-55d.workers.dev";
+const STAGING = "https://nasvitlo-staging.botpartners.workers.dev";
 
 /** Where a collection's entry shows up on the site, per language. */
 function pathFor(collection: string, slug: string | undefined, lang: "uk" | "en"): string {
