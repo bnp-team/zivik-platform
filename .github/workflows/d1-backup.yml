@@ -6,8 +6,15 @@
 # в артефакт GitHub Actions і лежить там 90 днів, незалежно від Cloudflare.
 #
 # Нічого не зламає, поки власник не додав секрети: без них job пише notice і
-# завершується зеленим. Щойно в Settings → Secrets з'являться
-# CLOUDFLARE_API_TOKEN і CLOUDFLARE_ACCOUNT_ID — наступна ніч уже з копією.
+# завершується зеленим. Копія робиться лише тоді, коли в Settings → Secrets є
+# всі три: CLOUDFLARE_API_TOKEN, CLOUDFLARE_ACCOUNT_ID і BACKUP_PASSPHRASE.
+#
+# Дамп шифрується (gpg, AES-256) паролем із BACKUP_PASSPHRASE, перш ніж стати
+# артефактом. Репозиторій публічний, а артефакти публічного репозиторію може
+# завантажити будь-хто з акаунтом GitHub; у дампі – чернетки, користувачі,
+# passkey і секрети з таблиці options. Без пароля копії немає зовсім:
+# незашифрований дамп сюди більше не потрапляє. Розшифрувати:
+#   gpg --decrypt nasvitlo-d1-….sql.gz.gpg | gunzip > backup.sql
 name: d1-backup
 on:
   schedule:
@@ -41,9 +48,10 @@ jobs:
         env:
           CF_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CF_ACCOUNT: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          PASS: ${{ secrets.BACKUP_PASSPHRASE }}
         run: |
-          if [ -z "$CF_TOKEN" ] || [ -z "$CF_ACCOUNT" ]; then
-            echo "::notice title=D1 backup skipped::CLOUDFLARE_API_TOKEN / CLOUDFLARE_ACCOUNT_ID не задано в Settings → Secrets and variables → Actions. Див. docs/BACKUPS.md."
+          if [ -z "$CF_TOKEN" ] || [ -z "$CF_ACCOUNT" ] || [ -z "$PASS" ]; then
+            echo "::notice title=D1 backup skipped::CLOUDFLARE_API_TOKEN / CLOUDFLARE_ACCOUNT_ID / BACKUP_PASSPHRASE не задано в Settings → Secrets and variables → Actions. Див. docs/BACKUPS.md."
             echo "enabled=false" >> "$GITHUB_OUTPUT"
           else
             echo "enabled=true" >> "$GITHUB_OUTPUT"
@@ -123,13 +131,17 @@ jobs:
           test -s backup.sql
           echo "MODE=$mode" >> "$GITHUB_ENV"
 
-      - name: Compress
+      - name: Compress and encrypt
         if: steps.gate.outputs.enabled == 'true'
+        env:
+          PASS: ${{ secrets.BACKUP_PASSPHRASE }}
         run: |
           set -euo pipefail
           stamp=$(date -u +%Y-%m-%dT%H%MZ)
-          file="nasvitlo-d1-${stamp}.sql.gz"
-          gzip -9 -c backup.sql > "$file"
+          file="nasvitlo-d1-${stamp}.sql.gz.gpg"
+          gzip -9 -c backup.sql | gpg --batch --yes --symmetric --cipher-algo AES256 \
+            --pinentry-mode loopback --passphrase-fd 3 -o "$file" 3<<<"$PASS"
+          test -s "$file"
           sha=$(sha256sum "$file" | cut -d' ' -f1)
           echo "FILE=$file" >> "$GITHUB_ENV"
           {
@@ -140,9 +152,10 @@ jobs:
             echo "| Файл | \`$file\` |"
             echo "| Режим | \`$MODE\` |"
             echo "| SQL | $(wc -c < backup.sql) байт, $(grep -c '^INSERT' backup.sql || true) INSERT |"
-            echo "| gzip | $(wc -c < "$file") байт |"
+            echo "| gzip + gpg | $(wc -c < "$file") байт |"
             echo "| SHA-256 | \`$sha\` |"
           } >> "$GITHUB_STEP_SUMMARY"
+          rm -f backup.sql
 
       - if: steps.gate.outputs.enabled == 'true'
         uses: actions/upload-artifact@v4
@@ -151,5 +164,5 @@ jobs:
           path: ${{ env.FILE }}
           retention-days: 90
           if-no-files-found: error
-          # Уже gzip — повторне стискання лише гріє раннер.
+          # Уже gzip і зашифровано — повторне стискання лише гріє раннер.
           compression-level: 0

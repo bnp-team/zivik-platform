@@ -68,6 +68,11 @@ variables** → **Actions** → **New repository secret**, двічі:
 |---|---|
 | `CLOUDFLARE_API_TOKEN` | токен із кроку 1 |
 | `CLOUDFLARE_ACCOUNT_ID` | `5f1d89c39916440b30eed21bc37c1efd` (botsDev) |
+| `BACKUP_PASSPHRASE` | довгий випадковий пароль (напр. `openssl rand -base64 32`); збережіть його в менеджері паролів – без нього копію не розшифрувати |
+
+Без `BACKUP_PASSPHRASE` бекап не робиться зовсім: репозиторій публічний, і
+незашифрований дамп з артефакту міг би завантажити будь-хто з акаунтом GitHub.
+Розшифрувати копію: `gpg --decrypt nasvitlo-d1-….sql.gz.gpg | gunzip > backup.sql`.
 
 ### 3. Перевірити
 
