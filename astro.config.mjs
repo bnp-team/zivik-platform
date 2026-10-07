@@ -186,6 +186,15 @@ export default defineConfig({
           format: "native",
           capabilities: ["content:write"],
         },
+        /* Saving a scheduled entry and trashing a published one – the two
+           ways around the publish threshold (site/emdash/live-guard.ts). */
+        {
+          id: "nsv-live-guard",
+          version: "1.0.0",
+          entrypoint: here("./site/emdash/live-guard.ts"),
+          format: "native",
+          capabilities: ["content:write"],
+        },
       ],
     }),
   ],

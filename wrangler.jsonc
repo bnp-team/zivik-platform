@@ -5,6 +5,11 @@
   "main": "./site/worker.ts",
   "compatibility_date": "2026-09-01",
   "compatibility_flags": ["nodejs_compat"],
+  // No preview URLs: a version uploaded from any branch would run with this
+  // Worker's production D1, R2 and secrets on <version>-nasvitlo.*.workers.dev,
+  // outside review and outside Access. workers.dev itself stays on – staging
+  // reads media from nasvitlo.botpartners.workers.dev (docs/MOVE-BOTSDEV.md).
+  "preview_urls": false,
   "d1_databases": [
     {
       "binding": "DB",
