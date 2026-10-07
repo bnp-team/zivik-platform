@@ -79,6 +79,11 @@ Certificate status мають стати **Active**).
 | `PUBLISH_MIN_ROLE` | `40` | — | так само |
 | `RESEND_API_KEY` (secret) | — (секрет Worker-а) | — | secret збірки |
 
+`EMAIL_FROM` потрібен **двічі**: як змінна збірки і як секрет Worker-а
+(Settings → Variables and secrets, тип Secret). Збірка лише вмикає
+пошту, а лист надсилає Worker, і бере відправника з власних налаштувань.
+Без секрету «Sign in with email link» мовчки не надсилає листа.
+
 ## Кроки
 
 **1. Пробне перенесення даних** — зроблено (`nasvitlo-trial`). Повторити,
