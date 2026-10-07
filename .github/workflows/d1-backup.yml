@@ -1,4 +1,4 @@
-# Нічна копія D1 `nasvitlo` — поза Cloudflare. Див. docs/BACKUPS.md.
+# Нічна копія продакшн-бази D1 (`nasvitlo-trial` у botsDev) — поза Cloudflare. Див. docs/BACKUPS.md.
 #
 # Time Travel у D1 відкочує базу на будь-яку хвилину за останні 30 днів, але
 # живе в тому самому акаунті: видалена база, зламаний акаунт чи помилка, яку
@@ -72,10 +72,13 @@ jobs:
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          # Назва бази в botsDev (з 7 жовтня 2026). «trial» лише в назві —
+          # це продакшн; див. docs/MOVE-BOTSDEV.md.
+          DB: nasvitlo-trial
         run: |
           set -euo pipefail
           # Повний дамп — основний шлях.
-          if npx wrangler d1 export nasvitlo --remote --output backup.sql --skip-confirmation 2>&1 | tee export.log; then
+          if npx wrangler d1 export "$DB" --remote --output backup.sql --skip-confirmation 2>&1 | tee export.log; then
             mode=full
           elif grep -qi "virtual" export.log; then
             # D1 не експортує віртуальні таблиці. EmDash тримає пошуковий
@@ -86,13 +89,13 @@ jobs:
             # відсутню FTS-таблицю (FTSManager.verifyAndRepairAll) — див.
             # docs/BACKUPS.md, «Відновлення».
             echo "::warning::Повний експорт упав на віртуальних таблицях — експортую без пошукового індексу FTS."
-            npx wrangler d1 execute nasvitlo --remote --json \
+            npx wrangler d1 execute "$DB" --remote --json \
               --command "SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE '_emdash_fts_%' AND name NOT LIKE 'sqlite_%' AND name NOT LIKE '_cf_%' ORDER BY name" \
               > tables.json
             mapfile -t tables < <(node -e 'const r=JSON.parse(require("fs").readFileSync("tables.json","utf8"));for(const t of r[0].results)console.log(t.name)')
             args=()
             for t in "${tables[@]}"; do args+=(--table "$t"); done
-            npx wrangler d1 export nasvitlo --remote --output backup.sql --skip-confirmation "${args[@]}"
+            npx wrangler d1 export "$DB" --remote --output backup.sql --skip-confirmation "${args[@]}"
             # Тригери, що пишуть у FTS-таблицю, прибираємо з дампу: інакше
             # перший же INSERT у таблицю контенту під час відновлення впаде
             # на відсутній `_emdash_fts_*`. EmDash створить їх заново разом
@@ -108,7 +111,7 @@ jobs:
             # 2026-10-07) – дописуємо їх зі схеми, по команді в рядку;
             # scripts/cf/split-long-inserts.py при відновленні ставить їх
             # після даних.
-            npx wrangler d1 execute nasvitlo --remote --json \
+            npx wrangler d1 execute "$DB" --remote --json \
               --command "SELECT sql FROM sqlite_master WHERE type IN ('index','trigger') AND sql IS NOT NULL AND sql NOT LIKE '%_emdash_fts_%' ORDER BY type, name" \
               > schema.json
             node -e 'for (const r of JSON.parse(require("fs").readFileSync("schema.json","utf8"))[0].results) console.log(r.sql.replace(/\s*\n\s*/g, " ") + ";")' >> backup.sql

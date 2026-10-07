@@ -1,6 +1,6 @@
 # Резервні копії
 
-Коротко: **щоночі GitHub Actions знімає SQL-дамп бази D1 `nasvitlo` і
+Коротко: **щоночі GitHub Actions знімає SQL-дамп бази D1 `nasvitlo-trial` (botsDev) і
 зберігає його 90 днів як артефакт — поза Cloudflare.** Поки власник не додав
 два секрети, workflow просто пише «пропущено» і завершується зеленим.
 
@@ -10,7 +10,7 @@
 
 | Що | Де живе | Чим захищене |
 |---|---|---|
-| **Контент адмінки EmDash** — огляди, справи, тексти сторінок, чернетки, ревізії, користувачі адмінки, налаштування | D1 `nasvitlo` (id `bbde7a56-829d-49b3-b898-eede9a347fa3`) | нічний дамп (цей документ) + D1 Time Travel (30 днів) |
+| **Контент адмінки EmDash** — огляди, справи, тексти сторінок, чернетки, ревізії, користувачі адмінки, налаштування | D1 `nasvitlo-trial` у botsDev (id `949a3a99-a3b9-40f2-b355-4d2e87fde5c4`) | нічний дамп (цей документ) + D1 Time Travel (30 днів) |
 | **Код і контент у файлах** (`src/content/*.ts`, стилі, компоненти) | репозиторій GitHub | історія git |
 | **Фото команди й логотипи** | файли в `public/` (`/team/*`, `/logos/*`) | історія git |
 | **Медіатека EmDash** | R2 `nasvitlo-media` | *сьогодні не використовується* — див. нижче |
@@ -46,7 +46,7 @@ Cloudflare, що й база. Від втрати акаунта чи помил
 2. **Token name:** `nasvitlo d1 backup (GitHub Actions)`.
 3. **Permissions:** один рядок — **Account** · **D1** · **Edit**.
    Нічого більше: ні Workers, ні інших сервісів.
-4. **Account Resources:** *Include* → `Vm@bot-partners.com's Account`.
+4. **Account Resources:** *Include* → `botsDev`.
 5. (За бажання) **Client IP Address Filtering** не ставити — IP раннерів
    GitHub змінюються. **TTL** можна лишити порожнім або поставити рік і
    записати собі нагадування.
@@ -67,7 +67,7 @@ variables** → **Actions** → **New repository secret**, двічі:
 | Name | Secret |
 |---|---|
 | `CLOUDFLARE_API_TOKEN` | токен із кроку 1 |
-| `CLOUDFLARE_ACCOUNT_ID` | `55d2d3b8fd8d4d615a297eb49f5622c9` |
+| `CLOUDFLARE_ACCOUNT_ID` | `5f1d89c39916440b30eed21bc37c1efd` (botsDev) |
 
 ### 3. Перевірити
 
