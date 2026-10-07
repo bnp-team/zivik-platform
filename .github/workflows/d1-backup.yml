@@ -104,6 +104,14 @@ jobs:
           open("backup.sql", "w", encoding="utf-8").write(sql)
           print(f"stripped {n} FTS trigger(s)")
           PY
+            # Поіменний експорт не містить індексів і тригерів (370 і 53 на
+            # 2026-10-07) – дописуємо їх зі схеми, по команді в рядку;
+            # scripts/cf/split-long-inserts.py при відновленні ставить їх
+            # після даних.
+            npx wrangler d1 execute nasvitlo --remote --json \
+              --command "SELECT sql FROM sqlite_master WHERE type IN ('index','trigger') AND sql IS NOT NULL AND sql NOT LIKE '%_emdash_fts_%' ORDER BY type, name" \
+              > schema.json
+            node -e 'for (const r of JSON.parse(require("fs").readFileSync("schema.json","utf8"))[0].results) console.log(r.sql.replace(/\s*\n\s*/g, " ") + ";")' >> backup.sql
             mode=tables-without-fts
           else
             echo "::error::wrangler d1 export не вдався — див. лог вище (найчастіше: у токена немає доступу до D1)."

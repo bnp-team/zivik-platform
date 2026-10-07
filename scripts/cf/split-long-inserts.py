@@ -12,7 +12,13 @@ two bytes a character. An oversized
 becomes an INSERT with the long text values cut to their first piece, followed
 by `UPDATE "t" SET "a" = "a" || '<piece>' WHERE "id" = 'x';` for the rest. The
 table ends up byte-for-byte the same – checked by loading both dumps into
-SQLite and comparing every table (scripts/cf/move-account.sh does).
+SQLite and comparing every table.
+
+It also puts every CREATE TABLE before the first INSERT, and indexes last. A
+dump made table by table (the FTS fallback in move-account.sh and the nightly
+backup) comes out in alphabetical order, so `media` is filled before
+`media_folders` exists – and D1, which enforces foreign keys, stops at the
+first row with «no such table: main.media_folders».
 
     split-long-inserts.py in.sql out.sql
 """
@@ -85,16 +91,21 @@ def split(stmt):
 
 
 def main(src, dst):
-    lines = open(src, encoding="utf-8").read().split("\n")
-    out, n = [], 0
-    for line in lines:
+    lines = [l for l in open(src, encoding="utf-8").read().split("\n") if l.strip()]
+    pragma = [l for l in lines if l.startswith("PRAGMA")]
+    tables = [l for l in lines if l.startswith("CREATE TABLE")]
+    late = [l for l in lines if re.match(r"CREATE (UNIQUE )?INDEX|CREATE TRIGGER|CREATE VIEW", l)]
+    rows = [l for l in lines if l not in pragma and l not in tables and l not in late]
+    out, n = pragma + tables, 0
+    for line in rows:
         if len(line.encode()) > LIMIT:
             out += split(line)
             n += 1
         else:
             out.append(line)
-    open(dst, "w", encoding="utf-8").write("\n".join(out))
-    print(f"split {n} oversized statement(s)")
+    out += late
+    open(dst, "w", encoding="utf-8").write("\n".join(out) + "\n")
+    print(f"split {n} oversized statement(s); {len(tables)} tables first, {len(late)} indexes/triggers last")
 
 
 if __name__ == "__main__":

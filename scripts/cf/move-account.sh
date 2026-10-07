@@ -53,6 +53,13 @@ sql, n = re.subn(r'CREATE TRIGGER[^;]*?"_emdash_fts_[^"]*"[\s\S]*?\bEND;\s*', ""
 open("dump.sql", "w", encoding="utf-8").write(sql)
 print(f"stripped {n} FTS trigger(s)")
 PY
+  # A table-by-table export has no indexes and no triggers (370 and 53 on
+  # 2026-10-07). Take them from the source schema, one statement a line;
+  # split-long-inserts.py puts them after the data.
+  src d1 execute "$SRC_DB" --remote --json --command \
+    "SELECT sql FROM sqlite_master WHERE type IN ('index','trigger') AND sql IS NOT NULL AND sql NOT LIKE '%_emdash_fts_%' ORDER BY type, name" \
+    > schema.json
+  node -e 'for (const r of JSON.parse(require("fs").readFileSync("schema.json","utf8"))[0].results) console.log(r.sql.replace(/\s*\n\s*/g, " ") + ";")' >> dump.sql
   mode=tables-without-fts
 else
   echo "export failed – see the log above"; exit 1
