@@ -23,7 +23,7 @@
 | ✅ | Cloudflare for SaaS на `bnp.works`: fallback origin `saas-origin.bnp.works`, custom hostname `nasvitlo.ucu.edu.ua`, маршрут `nasvitlo.ucu.edu.ua/*` → `nasvitlo` | чекає записів від ІТ |
 | ✅ | Старий акаунт: збірки перепідключено до `bnp-team/zivik-platform` (`main`) | хук виправлено; перевірити однією публікацією з адмінки |
 | ⏳ | ІТ УКУ додають три записи (нижче) | лист надіслано |
-| ⏳ | Cloudflare Access для `nasvitlo-staging` | |
+| ✅ | Cloudflare Access для `nasvitlo-staging`: політика `nasvitlo editors` (Allow, Emails), усі адреси Worker-а | вхід кодом на пошту; список адрес — Zero Trust → Access controls → Policies |
 | ⏳ | Перемикання (крок 3) | після відповіді ІТ |
 
 ## Записи для ІТ УКУ
