@@ -67,6 +67,13 @@ Certificate status мають стати **Active**).
 - Секрет `DEPLOY_HOOK_URL` приймає і повну адресу хука, і сам його id
   (`site/emdash/deploy-hook.ts`): з поля в дашборді копіюється саме id.
 
+### Налаштування збірок у botsDev
+
+У `nasvitlo` і `nasvitlo-staging`: **Build cache** увімкнено, **Build watch
+paths → Exclude** — `docs/**`, `*.md`. Коміт лише в документацію не
+запускає збірку і не ставить у чергу публікацію редактора. Від публікації
+до сайту — близько 2–3 хвилин.
+
 ### Змінні збірки
 
 | Змінна | `nasvitlo` (botsDev) | `nasvitlo-staging` | старий `nasvitlo` |
