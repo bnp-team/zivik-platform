@@ -16,9 +16,15 @@ type Log = { info(message: string): void; error(message: string): void };
  * The hook URL as pasted into `wrangler secret put` or the dashboard, cleaned
  * of what a paste tends to carry along: surrounding whitespace and newlines,
  * and quotes around the whole value.
+ *
+ * A bare hook id is accepted too. Copying from the dashboard's Deploy Hooks
+ * field can yield just the id (twice on 2026-10-07 the secret came out at 36
+ * characters), and the URL around it is always the same.
  */
+const HOOK_ID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 function hookUrl(raw: string): URL | string {
   const cleaned = raw.trim().replace(/^(["'])(.*)\1$/s, "$2").trim();
+  if (HOOK_ID.test(cleaned)) return new URL(`https://api.cloudflare.com/client/v4/workers/builds/deploy_hooks/${cleaned}`);
   try {
     const url = new URL(cleaned);
     if (url.protocol !== "https:") return `expected an https:// URL, got ${url.protocol}`;
