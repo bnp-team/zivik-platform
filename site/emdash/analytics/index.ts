@@ -176,7 +176,7 @@ async function summary(ctx: PluginContext & { request: Request }) {
   const days = [7, 30, 90].includes(Number(new URL(ctx.request.url).searchParams.get("days")))
     ? Number(new URL(ctx.request.url).searchParams.get("days"))
     : 30;
-  const cacheKey = new Request(`${SITE}/__nsv-analytics/summary?days=${days}`);
+  const cacheKey = new Request(`${SITE}/__nsv-analytics/v2/summary?days=${days}`);
   const cache = (globalThis as unknown as { caches?: { default?: Cache } }).caches?.default;
   const hit = await cache?.match(cacheKey).catch(() => undefined);
   if (hit) return hit.json();
@@ -196,7 +196,8 @@ async function summary(ctx: PluginContext & { request: Request }) {
     titles(ctx),
   ]);
   const result = { days, generatedAt: new Date().toISOString(), titles: names, cloudflare: cf, posthog: ph };
-  if (cf.ok || ph.ok) {
+  /* Лише повна відповідь: помилку (новий ключ, збій API) не тримати годину. */
+  if (cf.ok && ph.ok) {
     await cache
       ?.put(cacheKey, new Response(JSON.stringify(result), { headers: { "cache-control": `max-age=${CACHE_SECONDS}` } }))
       .catch(() => undefined);
