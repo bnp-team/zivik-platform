@@ -197,6 +197,17 @@ export default defineConfig({
           format: "native",
           capabilities: ["content:write"],
         },
+        /* «Аналітика» в меню адмінки: Cloudflare Web Analytics і хітмапи
+           PostHog для менеджерів (site/emdash/analytics). */
+        {
+          id: "nsv-analytics",
+          version: "1.0.0",
+          entrypoint: here("./site/emdash/analytics/index.ts"),
+          adminEntry: here("./site/emdash/analytics/admin.tsx"),
+          adminPages: [{ path: "/", label: "Аналітика", icon: "chart-bar" }],
+          format: "native",
+          capabilities: ["content:read"],
+        },
       ],
     }),
   ],
