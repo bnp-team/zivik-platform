@@ -87,14 +87,20 @@ async function retryMissedPublish(env: { DB: D1Database }) {
       "SELECT name FROM sqlite_master WHERE type = 'table' AND name LIKE 'ec_%'",
     ).all<{ name: string }>();
     const present = new Set(results.map((r) => r.name));
-    const live = COLLECTIONS.filter((c) => present.has(`ec_${c.slug}`))
-      .map((c) => `SELECT live_revision_id AS id FROM "ec_${c.slug}" WHERE status = 'published' AND deleted_at IS NULL`)
-      .join(" UNION ALL ");
-    if (!live) return;
-    const row = await env.DB.prepare(
-      `SELECT MAX(created_at) AS t FROM revisions WHERE id IN (${live})`,
-    ).first<{ t: string | null }>();
-    latest = row?.t ?? null;
+    /* One query per collection in a batch: a single UNION ALL over all of
+       them is more compound terms than D1 allows ("too many terms in
+       compound SELECT"), and the cron failed on it every five minutes. */
+    const queries = COLLECTIONS.filter((c) => present.has(`ec_${c.slug}`)).map((c) =>
+      env.DB.prepare(
+        `SELECT MAX(r.created_at) AS t FROM revisions r JOIN "ec_${c.slug}" e ON e.live_revision_id = r.id ` +
+          "WHERE e.status = 'published' AND e.deleted_at IS NULL",
+      ),
+    );
+    if (!queries.length) return;
+    const times = (await env.DB.batch<{ t: string | null }>(queries))
+      .map((r) => r.results[0]?.t)
+      .filter((t): t is string => typeof t === "string");
+    latest = times.length ? times.reduce((a, b) => (a > b ? a : b)) : null;
   } catch (error) {
     console.error(`[rebuild-retry] could not read D1: ${error instanceof Error ? error.message : error}`);
     return;
