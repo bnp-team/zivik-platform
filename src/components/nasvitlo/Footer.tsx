@@ -1,4 +1,4 @@
-import { CENTRE_URL } from "@/content/centre";
+import { SUPPORT_URL } from "@/content/centre";
 import Link from "next/link";
 import "./footer.css";
 import type { Locale } from "@/i18n/config";
@@ -198,7 +198,7 @@ export default function Footer({
               places now, on one string. */}
           <a
             className="nsv-support nsv-support-foot"
-            href={CENTRE_URL}
+            href={SUPPORT_URL}
             target="_blank"
             rel="noopener noreferrer"
           >

@@ -1,4 +1,4 @@
-import { CENTRE_URL } from "@/content/centre";
+import { SUPPORT_URL } from "@/content/centre";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import {
@@ -183,7 +183,7 @@ export default async function LocaleLayout({
             dict={headerDict(dict)}
             showBlog={blogEnabled(safe)}
             missingPaths={blogMissingPaths()}
-            supportHref={CENTRE_URL}
+            supportHref={SUPPORT_URL}
             supportLabel={dict.footer.support}
           />
           {children}

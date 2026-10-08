@@ -16,3 +16,11 @@
  * cannot be checked from here and is taken on her word.
  */
 export const CENTRE_URL = "https://law.ucu.edu.ua/doslidnyczkyj-czentr-luyi-zona";
+
+/**
+ * Where «Підтримати нас» goes – the top bar, the drawer and the footer. The
+ * same donation page the Faculty of Law's own «Підтримайте нас» opens
+ * (law.ucu.edu.ua, checked 8 October 2026): UCU's giving site, earmarked for
+ * the Faculty. The Centre's card and prose keep CENTRE_URL above.
+ */
+export const SUPPORT_URL = "https://supporting.ucu.edu.ua/donate/?order=276";

@@ -8,7 +8,7 @@
 import type { ReactNode } from "react";
 import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/dictionaries";
-import { CENTRE_URL } from "@/content/centre";
+import { SUPPORT_URL } from "@/content/centre";
 import { blogEnabled, blogMissingPaths } from "@/content/blog";
 import Header from "@/components/nasvitlo/Header";
 import { headerDict } from "@/components/nasvitlo/header-dict";
@@ -34,7 +34,7 @@ export default function Chrome({
             dict={headerDict(dict)}
             showBlog={blogEnabled(locale)}
             missingPaths={blogMissingPaths()}
-            supportHref={CENTRE_URL}
+            supportHref={SUPPORT_URL}
             supportLabel={dict.footer.support}
           />
         {node}
