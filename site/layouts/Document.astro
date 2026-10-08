@@ -23,7 +23,7 @@ import charisCyrillic from "@fontsource/charis-sil/files/charis-sil-cyrillic-400
 // Imported for its stylesheets: the page itself arrives rendered.
 import "../lib/Chrome";
 import { metadataTags } from "../lib/metadata";
-import { CF_BEACON_SRC, cfBeaconConfig } from "@/lib/analytics";
+import { CF_BEACON_SRC, cfBeaconConfig, posthogKey } from "@/lib/analytics";
 import "@/app/globals.css";
 import "@/app/[locale]/shared.css";
 import "../styles/fonts.css";
@@ -105,6 +105,8 @@ const hydrates = [...html.matchAll(/<nsv-island data-k="([^"#]*)#/g)].some(
         <script is:inline defer src={CF_BEACON_SRC} data-cf-beacon={cfBeaconConfig} />
       )
     }
+    {/* Хітмапи PostHog – лише зі збірки з NEXT_PUBLIC_POSTHOG_KEY (lib/analytics.ts). */}
+    {posthogKey && <script is:inline defer src="/heatmaps.js" data-key={posthogKey} />}
     {
       hydrates ? (
         <script>

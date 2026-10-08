@@ -39,6 +39,8 @@ const buildEnv = [
      (`verificationMetadata` у src/lib/seo.ts). Без значення — нічого з цього в HTML
      немає. Див. docs/LAUNCH.md. */
   "NEXT_PUBLIC_CF_ANALYTICS_TOKEN",
+  /* Хітмапи PostHog (src/lib/analytics.ts). */
+  "NEXT_PUBLIC_POSTHOG_KEY",
   "GOOGLE_SITE_VERIFICATION",
 ];
 const define = Object.fromEntries(

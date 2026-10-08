@@ -11,6 +11,10 @@ import {
   analyticsEnabled,
   CF_BEACON_ORIGIN,
   CF_REPORT_ORIGIN,
+  heatmapsEnabled,
+  POSTHOG_API_ORIGIN,
+  POSTHOG_APP_ORIGIN,
+  POSTHOG_ASSETS_ORIGIN,
 } from "./analytics";
 
 /**
@@ -87,22 +91,26 @@ const previewSources = vercelPreview
  * повертає її з `headers()`, astro.config.mjs пише в `_headers`), тож
  * увімкнення аналітики – це нова збірка, як і для самого маячка.
  */
+const heatmapSources = heatmapsEnabled
+  ? { script: ` ${POSTHOG_ASSETS_ORIGIN}`, connect: ` ${POSTHOG_API_ORIGIN} ${POSTHOG_ASSETS_ORIGIN}`, frame: ` ${POSTHOG_APP_ORIGIN}` }
+  : { script: "", connect: "", frame: "" };
+
 const analyticsSources = analyticsEnabled
   ? { script: ` ${CF_BEACON_ORIGIN}`, connect: ` ${CF_REPORT_ORIGIN}` }
   : { script: "", connect: "" };
 
 export const csp = [
   "default-src 'self'",
-  `script-src 'self' 'unsafe-inline'${analyticsSources.script}${previewSources.script}`,
+  `script-src 'self' 'unsafe-inline'${analyticsSources.script}${heatmapSources.script}${previewSources.script}`,
   "style-src 'self' 'unsafe-inline'",
   `img-src 'self' data:${previewSources.img}`,
   "font-src 'self'",
-  `connect-src 'self'${analyticsSources.connect}${previewSources.connect}`,
+  `connect-src 'self'${analyticsSources.connect}${heatmapSources.connect}${previewSources.connect}`,
   "manifest-src 'self'",
   "media-src 'self'",
   "worker-src 'self' blob:",
   `frame-src ${vercelPreview ? `'self'${previewSources.frame}` : "'none'"}`,
-  "frame-ancestors 'self'",
+  `frame-ancestors 'self'${heatmapSources.frame}`,
   "base-uri 'self'",
   "form-action 'self'",
   "object-src 'none'",

@@ -48,3 +48,26 @@ export const CF_REPORT_ORIGIN = "https://cloudflareinsights.com";
 export const cfBeaconConfig = cfAnalyticsToken
   ? JSON.stringify({ token: cfAnalyticsToken })
   : undefined;
+
+/**
+ * Хітмапи – PostHog (сервер у ЄС), вимкнено, доки збірка не має ключа
+ * NEXT_PUBLIC_POSTHOG_KEY (`phc_…`, публічний, як і токен вище).
+ *
+ * Налаштовано так, щоб обіцянка політики «без cookie і без банера» лишалася
+ * правдою: `persistence: "memory"` – PostHog нічого не пише ні в cookie, ні
+ * в localStorage, кожне відкриття сторінки для нього новий анонімний
+ * відвідувач. Записи сесій вимкнено; збираються кліки, прокрутка й
+ * перегляди сторінок – те, з чого будуються хітмапи. Скрипт ініціалізації
+ * лежить у `public/heatmaps.js`, ключ він бере з `data-key`, тож у HTML
+ * немає вбудованого коду.
+ */
+export const posthogKey: string | undefined = process.env.NEXT_PUBLIC_POSTHOG_KEY?.trim() || undefined;
+
+export const heatmapsEnabled = posthogKey !== undefined;
+
+/** Звідки береться бібліотека PostHog (CSP `script-src`). */
+export const POSTHOG_ASSETS_ORIGIN = "https://eu-assets.i.posthog.com";
+/** Куди вона надсилає події (CSP `connect-src`). */
+export const POSTHOG_API_ORIGIN = "https://eu.i.posthog.com";
+/** Застосунок PostHog: його інструмент хітмап відкриває сайт у рамці (CSP `frame-ancestors`). */
+export const POSTHOG_APP_ORIGIN = "https://eu.posthog.com";
