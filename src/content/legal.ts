@@ -4,7 +4,7 @@ import { locales, type Locale } from "@/i18n/config";
 import { registryProceedings, registryCases } from "./cases";
 import { SUMMARIES } from "./summaries";
 import { siteUrl } from "@/lib/seo";
-import { analyticsEnabled } from "@/lib/analytics";
+import { analyticsEnabled, heatmapsEnabled } from "@/lib/analytics";
 
 /**
  * Legal pages – the Privacy Policy and the Terms of Use, bilingual.
@@ -94,9 +94,14 @@ export const legalHost = new URL(siteUrl).host;
  */
 const revisedWithoutAnalytics = "2026-08-25";
 const revisedWithAnalytics = "2026-09-26";
-export const legalRevisedIso = analyticsEnabled
-  ? revisedWithAnalytics
-  : revisedWithoutAnalytics;
+/* Хітмапи PostHog (NEXT_PUBLIC_POSTHOG_KEY) – абзац нижче й пункт у
+   «Передаванні даних»; редакція від дня, коли їх написано. */
+const revisedWithHeatmaps = "2026-10-08";
+export const legalRevisedIso = heatmapsEnabled
+  ? revisedWithHeatmaps
+  : analyticsEnabled
+    ? revisedWithAnalytics
+    : revisedWithoutAnalytics;
 
 /** Locale tags for date formatting (the site's `uk`/`en` are not enough: a
  *  bare "en" formats as American and would print "August 25, 2026"). */
@@ -133,6 +138,41 @@ export const legalRevised: Localized = Object.fromEntries(
  * дата-центрі й не зберігає; у звітах дані доступні за попередні шість
  * місяців. Якщо Cloudflare змінить ці умови – змінити й текст.
  */
+/**
+ * Хітмапи PostHog – лише в збірці з NEXT_PUBLIC_POSTHOG_KEY. Що стверджує
+ * текст – з налаштувань у `public/heatmaps.js` і в проєкті PostHog:
+ * `persistence: "memory"` (нічого в cookie чи сховищах браузера), записи
+ * сесій вимкнено, «Discard client IP data» увімкнено, хостинг – EU Cloud.
+ * Змінивши будь-що з цього, змінити й текст.
+ */
+const heatmapBlocks: LegalBlock[] = heatmapsEnabled
+  ? [
+      {
+        kind: "p",
+        text: {
+          uk: "Щоб бачити, якими частинами сторінок користуються – куди натискають і до якого місця прокручують, – ми також використовуємо PostHog (PostHog Inc.; дані зберігаються на серверах у Європейському Союзі). Його скрипт так само нічого не зберігає у вашому браузері: кожне відкриття сторінки для нього – новий анонімний візит, без cookie й без ідентифікатора, який пов'язав би ваші візити між собою.",
+          en: "To see which parts of a page are used – where people click and how far they scroll – we also use PostHog (PostHog Inc.; data is stored on servers in the European Union). Its script likewise stores nothing in your browser: each page view is a new anonymous visit, with no cookie and no identifier that would link your visits together.",
+        },
+      },
+      {
+        kind: "p",
+        text: {
+          uk: "PostHog отримує адресу сторінки й сторінки, з якої ви перейшли, місця натискань і глибину прокрутки, тип браузера й пристрою та країну. IP-адресу він використовує лише для визначення країни й не зберігає. Записів сеансів – відео того, що відбувається на екрані, – ми не ведемо, а вміст полів введення не збирається. Мета й підстава ті самі – законний інтерес Факультету робити бібліотеку зручною; блокувальник вмісту так само вимикає і цей скрипт.",
+          en: "PostHog receives the page address and the referring page, click positions and scroll depth, the browser and device type, and the country. It uses the IP address only to determine the country and does not store it. We record no session replays – no video of what happens on the screen – and the content of input fields is not collected. The purpose and ground are the same: the Faculty’s legitimate interest in making the library easy to use; a content blocker disables this script too.",
+        },
+      },
+    ]
+  : [];
+
+/** PostHog among the technical service providers in «Передавання даних». */
+const heatmapSharing: LegalBlock = {
+  kind: "p",
+  text: {
+    uk: "Серед постачальників технічних послуг – також PostHog Inc. (сервіс хітмап, сервери в Європейському Союзі), у межах, потрібних, щоб рахувати натискання й прокрутку на сторінках.",
+    en: "The technical service providers also include PostHog Inc. (a heatmap service with servers in the European Union), to the extent needed to count clicks and scrolling on pages.",
+  },
+};
+
 const cookiesBlocks: LegalBlock[] = analyticsEnabled
   ? [
       {
@@ -189,8 +229,14 @@ function resolveDoc(slug: LegalDocument["slug"]): LegalDocument {
     ...filled,
     sections: (Array.isArray(filled.sections) ? filled.sections : []).map((s) =>
       s.auto === "cookies"
-        ? { ...s, blocks: cookiesBlocks }
-        : { ...s, blocks: (Array.isArray(s.blocks) ? s.blocks : []).filter(isDrawable).map(forThisBuild) },
+        ? { ...s, blocks: [...cookiesBlocks, ...heatmapBlocks] }
+        : {
+            ...s,
+            blocks: [
+              ...(Array.isArray(s.blocks) ? s.blocks : []).filter(isDrawable).map(forThisBuild),
+              ...(heatmapsEnabled && s.id === "sharing" ? [heatmapSharing] : []),
+            ],
+          },
     ),
   };
 }

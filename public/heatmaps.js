@@ -16,6 +16,7 @@
       api_host: "https://eu.i.posthog.com",
       ui_host: "https://eu.posthog.com",
       persistence: "memory",
+      person_profiles: "identified_only",
       disable_session_recording: true,
       disable_surveys: true,
       autocapture: true,
