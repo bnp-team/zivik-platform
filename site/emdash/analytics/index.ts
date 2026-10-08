@@ -137,6 +137,57 @@ async function posthog(vars: Vars, days: number) {
   };
 }
 
+/* ── Хітмапа однієї сторінки ── */
+
+/**
+ * Точки кліків і глибина прокрутки для сторінки `path` на комп'ютерах або
+ * телефонах. PostHog зберігає клік як x, y і ширину вікна, поділені на
+ * scale_factor (16): x – від лівого краю вікна, y – від верху сторінки.
+ * Тому x віддаємо часткою ширини (0…1), y – у пікселях сторінки; ширину
+ * вікна – медіанну, щоб сторінку в адмінці показати саме такої ширини.
+ */
+const DEVICES = { desktop: "viewport_width * scale_factor >= 1024", mobile: "viewport_width * scale_factor < 820" } as const;
+
+async function heatmap(vars: Vars, path: string, device: keyof typeof DEVICES, days: number) {
+  const key = vars.POSTHOG_PERSONAL_API_KEY?.trim();
+  if (!key) return { ok: false as const, reason: "Не підключено: немає секрету POSTHOG_PERSONAL_API_KEY." };
+  const url = `${SITE}${path}`;
+  const since = `timestamp >= now() - toIntervalDay(${days})`;
+  const page = `(current_url = '${url}' OR current_url LIKE '${url}#%' OR current_url LIKE '${url}?%')`;
+  const where = `type = 'click' AND ${since} AND ${page} AND ${DEVICES[device]} AND NOT pointer_target_fixed`;
+  const viewport =
+    device === "desktop" ? "toFloat(properties.$viewport_width) >= 1024" : "toFloat(properties.$viewport_width) < 820";
+  const [points, meta, scroll] = await Promise.all([
+    hogql(
+      key,
+      `SELECT round(x / viewport_width, 3) AS rx, round(y * scale_factor / 8) * 8 AS py, count() AS n
+       FROM heatmaps WHERE ${where} GROUP BY rx, py ORDER BY n DESC LIMIT 3000`,
+    ),
+    hogql(key, `SELECT count() AS n, median(viewport_width * scale_factor) AS w FROM heatmaps WHERE ${where}`),
+    hogql(
+      key,
+      `SELECT toFloat(properties.$prev_pageview_max_content) AS seen,
+              toFloat(properties.$prev_pageview_max_content) / greatest(toFloat(properties.$prev_pageview_max_content_percentage), 0.01) AS height
+       FROM events
+       WHERE event = '$pageleave' AND ${since} AND properties.$prev_pageview_pathname = '${path}'
+         AND ${viewport}
+         AND properties.$prev_pageview_max_content IS NOT NULL
+       LIMIT 2000`,
+    ),
+  ]);
+  return {
+    ok: true as const,
+    data: {
+      url,
+      clicks: Number(meta[0]?.[0] ?? 0),
+      width: Math.round(Number(meta[0]?.[1] ?? 0)) || (device === "desktop" ? 1440 : 390),
+      points: points.map(([rx, py, n]) => [Number(rx), Number(py), Number(n)] as const),
+      /* Скільки пікселів сторінки побачив кожен перегляд, і її висота. */
+      scroll: scroll.map(([seen, height]) => [Number(seen), Number(height)] as const),
+    },
+  };
+}
+
 /* ── Назви сторінок замість адрес ── */
 
 const FIXED: Record<string, string> = {
@@ -207,6 +258,21 @@ async function summary(ctx: PluginContext & { request: Request }) {
   return result;
 }
 
+async function heatmapRoute(ctx: PluginContext & { request: Request }) {
+  const q = new URL(ctx.request.url).searchParams;
+  const path = q.get("path") ?? "";
+  /* Лише адреси сторінок сайту: шлях іде в запит до PostHog. */
+  if (!/^\/(uk|en)(\/[a-z0-9-]+)*$/.test(path)) return { ok: false, reason: "Невідома сторінка." };
+  const device = q.get("device") === "mobile" ? "mobile" : "desktop";
+  const days = [7, 30, 90].includes(Number(q.get("days"))) ? Number(q.get("days")) : 30;
+  try {
+    return await heatmap(env as unknown as Vars, path, device, days);
+  } catch (error) {
+    ctx.log.error(`analytics heatmap: ${why(error)}`);
+    return { ok: false, reason: why(error) };
+  }
+}
+
 export function createPlugin() {
   return definePlugin({
     id: "nsv-analytics",
@@ -216,6 +282,10 @@ export function createPlugin() {
       summary: {
         permission: "content:read",
         handler: async (ctx) => summary(ctx),
+      },
+      heatmap: {
+        permission: "content:read",
+        handler: async (ctx) => heatmapRoute(ctx),
       },
     },
   });
