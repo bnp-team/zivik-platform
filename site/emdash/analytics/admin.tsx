@@ -53,6 +53,20 @@ const CSS = `
 
 const fmt = (n: number) => new Intl.NumberFormat("uk-UA").format(Math.round(n));
 const DEVICE: Record<string, string> = { desktop: "Комп'ютер", mobile: "Телефон", tablet: "Планшет" };
+const REGION = (() => {
+  try {
+    return new Intl.DisplayNames(["uk"], { type: "region" });
+  } catch {
+    return null;
+  }
+})();
+const country = (code: string) => {
+  try {
+    return (/^[A-Z]{2}$/.test(code) && REGION?.of(code)) || code;
+  } catch {
+    return code;
+  }
+};
 
 function Rows({ rows, names, unit = "" }: { rows: Row[]; names?: Record<string, string>; unit?: string }) {
   if (!rows.length) return <p className="nsva-note">Поки немає даних.</p>;
@@ -200,7 +214,7 @@ function AnalyticsPage() {
             </section>
             <section className="nsva-card">
               <h2>Країни</h2>
-              <Rows rows={cf.data.countries} />
+              <Rows rows={cf.data.countries.map((r) => ({ ...r, label: country(r.label) }))} />
             </section>
             <section className="nsva-card">
               <h2>Пристрої</h2>

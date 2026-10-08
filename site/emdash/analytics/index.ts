@@ -82,8 +82,10 @@ async function cloudflare(vars: Vars, days: number) {
     data: {
       current: total(cur),
       previous: total(prev),
-      pages: rows(cur.pages, "requestPath"),
-      referers: rows(cur.referers, "refererHost", "visits"),
+      /* Без адмінки, і без переходів зі сторінки на сторінку сайту – ті
+         не «звідки прийшли». */
+      pages: rows(cur.pages, "requestPath").filter((r) => !r.label.startsWith("/_emdash")),
+      referers: rows(cur.referers, "refererHost", "visits").filter((r) => r.label !== new URL(SITE).host),
       countries: rows(cur.countries, "countryName", "visits"),
       devices: rows(cur.devices, "deviceType", "visits"),
       days: rows(cur.days, "date", "visits"),
@@ -176,7 +178,7 @@ async function summary(ctx: PluginContext & { request: Request }) {
   const days = [7, 30, 90].includes(Number(new URL(ctx.request.url).searchParams.get("days")))
     ? Number(new URL(ctx.request.url).searchParams.get("days"))
     : 30;
-  const cacheKey = new Request(`${SITE}/__nsv-analytics/v2/summary?days=${days}`);
+  const cacheKey = new Request(`${SITE}/__nsv-analytics/v3/summary?days=${days}`);
   const cache = (globalThis as unknown as { caches?: { default?: Cache } }).caches?.default;
   const hit = await cache?.match(cacheKey).catch(() => undefined);
   if (hit) return hit.json();
