@@ -18,20 +18,19 @@ export default function robots(): MetadataRoute.Robots {
   // here, and every response from it also carries `X-Robots-Tag: noindex`
   // (site/worker.ts) for the crawler that does not read this file.
   //
-  // AI crawlers – the policy the UCU Faculty of Law uses on law.ucu.edu.ua,
-  // owner's choice (26 September 2026): the assistants' search and fetch
-  // agents and the two model crawlers are let in by name, so that answers
-  // about these decisions can cite this archive; Common Crawl's CCBot, a bulk
-  // corpus anyone may train on without asking, is shut out. A named group
-  // replaces the `*` group for that bot rather than adding to it, so each one
-  // repeats the admin rule.
+  // AI crawlers are kept out for now – owner's choice, 13 October 2026,
+  // reversing the law.ucu.edu.ua policy adopted on 26 September (assistants'
+  // search, fetch and model crawlers let in so answers could cite the
+  // archive). It also matches the bnp.works zone, which prepends Cloudflare's
+  // managed block for the same bots; the two files no longer contradict each
+  // other. To let them back in, give each one `allow: "/", disallow: ADMIN`
+  // instead. Common Crawl's CCBot stays out either way.
   const ADMIN = "/_emdash/";
-  const aiAllowed = ["GPTBot", "OAI-SearchBot", "ChatGPT-User", "ClaudeBot", "Claude-SearchBot", "Claude-User", "PerplexityBot"];
+  const aiBlocked = ["GPTBot", "OAI-SearchBot", "ChatGPT-User", "ClaudeBot", "Claude-SearchBot", "Claude-User", "PerplexityBot", "CCBot"];
   return {
     rules: [
       { userAgent: "*", allow: "/", disallow: ADMIN },
-      ...aiAllowed.map((userAgent) => ({ userAgent, allow: "/", disallow: ADMIN })),
-      { userAgent: "CCBot", disallow: "/" },
+      ...aiBlocked.map((userAgent) => ({ userAgent, disallow: "/" })),
     ],
     ...(isIndexable ? { sitemap: `${siteUrl}/sitemap.xml` } : {}),
   };
