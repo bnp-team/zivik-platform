@@ -32,6 +32,11 @@ export { PluginBridge };
  *     first-time editor (public/admin-guide.js). EmDash's admin is a built
  *     app we do not fork; the tour sits on top of it. Its CSP allows scripts
  *     from 'self', and the file is a static asset.
+ *   - A POST to `/_emdash/api/auth/*` is capped at 10 a minute per address
+ *     (AUTH_LIMIT in wrangler.jsonc), then 429. Sign-in sends a magic-link
+ *     email: unlimited, a stranger could spend the Resend quota and lock the
+ *     editors out, or walk through invite and passkey endpoints at leisure.
+ *     The zone's one rate-limit rule belongs to the shared bnp.works demos.
  *   - `X-Robots-Tag: noindex` on the admin, and no `Server-Timing` anywhere.
  *     The login page had neither a robots tag nor a header, so a crawler that
  *     ignores robots.txt could list it; and EmDash's Server-Timing told any
@@ -171,6 +176,17 @@ export default {
         { success: true, data: { product: "emdash" } },
         { headers: { "cache-control": "no-store", "strict-transport-security": HSTS } },
       );
+    }
+    if (request.method === "POST" && routed.startsWith("/_emdash/api/auth/")) {
+      const limiter = (env as unknown as { AUTH_LIMIT?: RateLimit }).AUTH_LIMIT;
+      const ip = request.headers.get("cf-connecting-ip") ?? "unknown";
+      const { success } = (await limiter?.limit({ key: `${new URL(request.url).host}|${ip}` })) ?? { success: true };
+      if (!success) {
+        return Response.json(
+          { error: { code: "RATE_LIMITED", message: "Забагато спроб. Спробуйте за хвилину." } },
+          { status: 429, headers: { "retry-after": "60", "cache-control": "no-store", "strict-transport-security": HSTS } },
+        );
+      }
     }
     let response = await handler.fetch!(request, env, ctx);
     if (response.status === 101) return response;

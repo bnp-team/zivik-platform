@@ -26,6 +26,14 @@
   // No plain-text variables in code: the secrets (RESEND_API_KEY, DEPLOY_HOOK_URL,
   // STAGING_DEPLOY_HOOK_URL, EMAIL_FROM) live in the dashboard, under Runtime.
   "vars": {},
+  // Sign-in and invite endpoints: 10 POSTs a minute per address (site/worker.ts).
+  "ratelimits": [
+    {
+      "name": "AUTH_LIMIT",
+      "namespace_id": "1001",
+      "simple": { "limit": 10, "period": 60 },
+    },
+  ],
   "observability": { "enabled": true },
   // EmDash's maintenance tasks (scheduled publishing, cleanup).
   "triggers": {
