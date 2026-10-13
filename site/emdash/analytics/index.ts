@@ -106,11 +106,22 @@ async function hogql(key: string, query: string): Promise<unknown[][]> {
   return body?.results ?? [];
 }
 
+/** Названі події сайту (public/heatmaps.js, src/lib/track.ts) – підписи для менеджерів. */
+const ACTIONS: Record<string, string> = {
+  case_open: "Відкрили справу з реєстру",
+  registry_search: "Шукали в реєстрі",
+  registry_filter_changed: "Змінили фільтр у реєстрі",
+  source_open: "Перейшли до джерела",
+  decision_pdf_click: "Відкрили PDF рішення",
+  support_click: "Натиснули «Підтримати»",
+  language_switch: "Перемкнули мову",
+};
+
 async function posthog(vars: Vars, days: number) {
   const key = vars.POSTHOG_PERSONAL_API_KEY?.trim();
   if (!key) return { ok: false as const, reason: "Не підключено: немає секрету POSTHOG_PERSONAL_API_KEY." };
   const since = `timestamp >= now() - toIntervalDay(${days})`;
-  const [clicks, scroll] = await Promise.all([
+  const [clicks, scroll, actions, cases] = await Promise.all([
     hogql(
       key,
       `SELECT properties.$pathname AS path, count() AS n FROM events
@@ -125,12 +136,28 @@ async function posthog(vars: Vars, days: number) {
        WHERE event = '$pageleave' AND ${since} AND properties.$prev_pageview_max_scroll_percentage IS NOT NULL
        GROUP BY path HAVING n >= 3 ORDER BY n DESC LIMIT 10`,
     ),
+    hogql(
+      key,
+      `SELECT event, count() AS n FROM events
+       WHERE event IN (${Object.keys(ACTIONS).map((e) => `'${e}'`).join(", ")}) AND ${since}
+       GROUP BY event ORDER BY n DESC`,
+    ),
+    hogql(
+      key,
+      `SELECT properties.case_slug AS slug, count() AS n FROM events
+       WHERE event = 'case_open' AND ${since} AND slug IS NOT NULL
+       GROUP BY slug ORDER BY n DESC LIMIT 10`,
+    ),
   ]);
+  const counted = new Map(actions.map(([event, n]) => [String(event), Number(n)]));
   return {
     ok: true as const,
     data: {
       clicks: clicks.map(([path, n]) => ({ label: String(path ?? "—"), value: Number(n) })),
       scroll: scroll.map(([path, depth, n]) => ({ label: String(path ?? "—"), value: Number(depth), views: Number(n) })),
+      /* Усі дії, і з нулем: «PDF не відкрив ніхто» – теж відповідь. */
+      actions: Object.entries(ACTIONS).map(([event, label]) => ({ label, value: counted.get(event) ?? 0 })),
+      cases: cases.map(([slug, n]) => ({ label: `/uk/cases/${String(slug)}`, value: Number(n) })),
       heatmapsUrl: `${POSTHOG_API}/project/${POSTHOG_PROJECT}/heatmaps`,
       site: SITE,
     },

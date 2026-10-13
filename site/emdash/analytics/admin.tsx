@@ -21,7 +21,7 @@ type Summary = {
     devices: Row[];
     days: Row[];
   }>;
-  posthog: Section<{ clicks: Row[]; scroll: Row[]; heatmapsUrl: string; site: string }>;
+  posthog: Section<{ clicks: Row[]; scroll: Row[]; actions: Row[]; cases: Row[]; heatmapsUrl: string; site: string }>;
 };
 
 const CSS = `
@@ -385,6 +385,28 @@ function AnalyticsPage() {
             </section>
           </div>
         </>
+      )}
+
+      {ph?.ok && (
+        <section className="nsva-card">
+          <h2>Що роблять читачі (PostHog)</h2>
+          <div className="nsva-grid">
+            <div>
+              <p className="nsva-note">
+                Скільки разів за період. Без cookies одна людина не впізнається між сторінками, тому це дії, а не
+                люди.
+              </p>
+              <Rows rows={ph.data.actions} />
+            </div>
+            <div>
+              <p className="nsva-note">Які справи найчастіше відкривають з реєстру.</p>
+              {/* Справу рахуємо однією, якою б мовою її не відкрили – без «(UA)». */}
+              <Rows
+                rows={ph.data.cases.map((r) => ({ ...r, label: (name(names, r.label) ?? r.label).replace(/ \(UA\)$/, "") }))}
+              />
+            </div>
+          </div>
+        </section>
       )}
 
       {ph && (
