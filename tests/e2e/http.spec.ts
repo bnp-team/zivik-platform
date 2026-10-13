@@ -67,7 +67,11 @@ test("robots.txt keeps crawlers out of the admin and blocks CCBot", async ({ req
       if (/^disallow$/i.test(key) && groups.length) groups.at(-1)!.disallow.push(value);
     }
   }
-  const rulesFor = (agent: string) => groups.find((g) => g.agents.includes(agent.toLowerCase()))?.disallow ?? [];
+  /* Every group naming the agent, merged – RFC 9309 §2.2.1, and what Google
+     and Bing do. The bnp.works zone prepends Cloudflare's managed block with
+     its own `User-agent: *`, so ours is not the first such group. */
+  const rulesFor = (agent: string) =>
+    groups.filter((g) => g.agents.includes(agent.toLowerCase())).flatMap((g) => g.disallow);
   expect(rulesFor("*"), "User-Agent: *").toContain("/_emdash/");
   expect(rulesFor("CCBot"), "User-Agent: CCBot").toContain("/");
 });
