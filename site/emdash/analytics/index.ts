@@ -308,6 +308,13 @@ export function createPlugin() {
     id: "nsv-analytics",
     version: "1.0.0",
     capabilities: ["content:read"],
+    /* The menu entry. A native plugin's manifest is read from here, not from
+       the descriptor's adminPages in astro.config.mjs – without this the page
+       worked by its address but had no item in the admin's sidebar. */
+    admin: {
+      entry: "nsv-analytics/admin",
+      pages: [{ path: "/", label: "Аналітика", icon: "chart-bar" }],
+    },
     routes: {
       /* Рівень того, хто бачить чернетки (Contributor), а не будь-якого
          зареєстрованого: маршрути витрачають ключі Cloudflare і PostHog. */
