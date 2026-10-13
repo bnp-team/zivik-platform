@@ -39,6 +39,15 @@ const nextConfig: NextConfig = {
         source: "/:path*",
         headers: securityHeaders,
       },
+      /* The Vercel deployment is the old home (zivik-platform.vercel.app,
+         nasvitlo.vercel.app); the site lives on nasvitlo.ucu.edu.ua. Its
+         copies stay out of the index whatever SITE_INDEXABLE says there –
+         until the dashboard redirects them for good (docs/LAUNCH.md). */
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "(?<host>.+)\\.vercel\\.app" }],
+        headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }],
+      },
     ];
   },
 };

@@ -1,9 +1,16 @@
 # Запуск: чекліст публічного відкриття
 
-Сьогодні сайт живе на `https://nasvitlo.vm-55d.workers.dev`, закритий від
-пошуковиків (`noindex`) і без аналітики. Усе, що потрібно для запуску, уже
-є в коді й **вимкнено**, доки власник не дасть значення. Цей документ — у
-якому порядку ці значення давати і куди клацати.
+Стан на 13.10.2026 (SEO-аудит Астри): основний домен
+`https://nasvitlo.ucu.edu.ua` уже відповідає; копії –
+`nasvitlo.botpartners.workers.dev` (Worker, акаунт botsDev) і старий Vercel
+(`zivik-platform.vercel.app` → `nasvitlo.vercel.app`). Сайт закритий від
+пошуковиків (`noindex`), аналітика – Cloudflare Web Analytics і PostHog.
+Цей документ – у якому порядку давати решту значень і куди клацати.
+
+Що вже тримає код, незалежно від змінних: копії на `*.workers.dev` і
+`*.vercel.app` завжди віддають `X-Robots-Tag: noindex` (`astro.config.mjs`,
+`next.config.ts`), а збірка staging (`cf:build:staging`) не індексується й
+не вантажить аналітику, навіть якщо успадкувала змінні production.
 
 Усі змінні нижче — **змінні збірки**: сторінки пререндерені, тож нове
 значення діє лише після нової збірки. Де їх задавати:
@@ -21,6 +28,10 @@
 | `SITE_INDEXABLE=true` | індексацію: знімає `noindex` (мета-тег і `X-Robots-Tag`), додає sitemap у `robots.txt` | `noindex, nofollow` на кожній сторінці |
 | `GOOGLE_SITE_VERIFICATION` | `<meta name="google-site-verification">` на всіх сторінках | тега немає |
 | `NEXT_PUBLIC_CF_ANALYTICS_TOKEN` | маячок Cloudflare Web Analytics, два джерела в CSP, абзац про аналітику в політиці конфіденційності й нову дату редакції | ні маячка, ні джерел у CSP, політика каже «аналітики немає» |
+| `NEXT_PUBLIC_POSTHOG_KEY` | хітмапи й події PostHog (`public/heatmaps.js`), абзаци про PostHog у політиці | PostHog не завантажується |
+
+Для staging-збірки `SITE_INDEXABLE`, обидва ключі аналітики й
+`GOOGLE_SITE_VERIFICATION` ігноруються завжди.
 
 ---
 
@@ -62,10 +73,14 @@
 - [ ] Перевірити у вихідному коді сторінки (`view-source:`):
       `<link rel="canonical" href="https://<домен>/uk">`,
       `og:url` — з новим доменом.
-- [ ] Старі адреси (`*.workers.dev`, `zivik-platform.vercel.app`) — або
-      вимкнути, або переадресувати на новий домен (Vercel: Domains →
-      Redirect; workers.dev: Settings → Domains & Routes → вимкнути
-      `workers.dev`), щоб у пошуку не було двох копій сайту.
+- [ ] Старі адреси – **постійний редирект (301/308)** на відповідну адресу
+      основного домену: Vercel – обидві (`zivik-platform.vercel.app`,
+      `nasvitlo.vercel.app`) → Project → Settings → Domains → Redirect to
+      `nasvitlo.ucu.edu.ua`, Permanent. `noindex` на цих копіях код уже
+      ставить, але сигнали посилань переносить лише редирект.
+- [ ] `nasvitlo.botpartners.workers.dev` **не вимикати навмання**: staging
+      бере з нього медіа (`wrangler.jsonc`). Спершу перевести медіа staging
+      на основний домен, потім – редирект або вимкнення workers.dev.
 
 ## 3. Правові сторінки
 
@@ -108,7 +123,18 @@
 - [ ] Search Console → **URL inspection** → `https://<домен>/uk` →
       **Request indexing** (і так само для `/en`).
 
-## 6. Аналітика (Cloudflare Web Analytics, без cookie)
+## 6. Аналітика (Cloudflare Web Analytics і PostHog, без cookie)
+
+PostHog (`public/heatmaps.js`): пам'ять замість cookie, без записів сесій,
+autocapture лише натискань, тексти й атрибути елементів масковані, з адрес
+відкинуто параметри й фрагмент. Події: `registry_search`,
+`registry_filter_changed`, `case_open`, `source_open`, `decision_pdf_click`,
+`language_switch`, `support_click` – лише контрольовані значення.
+
+- [ ] PostHog → Project settings: **Discard client IP data** увімкнено;
+      строк зберігання, доступи, DPA – підтвердити й узгодити з текстом
+      політики (`src/content/legal.ts`). Поки це не підтверджено – не
+      давати `NEXT_PUBLIC_POSTHOG_KEY` збірці.
 
 - [ ] Cloudflare → **Analytics & Logs** → **Web Analytics** → **Add a
       site** → ввести домен → **Done**. Якщо домен у зоні Cloudflare,
@@ -149,10 +175,9 @@
       <https://www.opengraph.xyz/> або LinkedIn Post Inspector
       (<https://www.linkedin.com/post-inspector/>) — картинка, заголовок,
       опис, адреса з новим доменом.
-- [ ] Огляди, створені в адмінці, поки не мають власної картки
-      (`/og/cases/<slug>.png` генерує `scripts/og-cards.py` вручну — docs/GAPS.md,
-      3.2): згенерувати картки для всіх опублікованих оглядів перед
-      анонсом.
+- [ ] Картки оглядів (`/og/cases/<slug>.png`) збірка генерує сама
+      (`npm run og` у `cf:build`) – перевірити, що для кожного
+      опублікованого огляду картка є.
 - [ ] Facebook кешує картки: після зміни — Sharing Debugger
       (<https://developers.facebook.com/tools/debug/>) → **Scrape Again**.
 

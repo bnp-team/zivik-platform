@@ -96,7 +96,7 @@ const revisedWithoutAnalytics = "2026-08-25";
 const revisedWithAnalytics = "2026-09-26";
 /* Хітмапи PostHog (NEXT_PUBLIC_POSTHOG_KEY) – абзац нижче й пункт у
    «Передаванні даних»; редакція від дня, коли їх написано. */
-const revisedWithHeatmaps = "2026-10-08";
+const revisedWithHeatmaps = "2026-10-13";
 export const legalRevisedIso = heatmapsEnabled
   ? revisedWithHeatmaps
   : analyticsEnabled
@@ -142,7 +142,10 @@ export const legalRevised: Localized = Object.fromEntries(
  * Хітмапи PostHog – лише в збірці з NEXT_PUBLIC_POSTHOG_KEY. Що стверджує
  * текст – з налаштувань у `public/heatmaps.js` і в проєкті PostHog:
  * `persistence: "memory"` (нічого в cookie чи сховищах браузера), записи
- * сесій вимкнено, «Discard client IP data» увімкнено, хостинг – EU Cloud.
+ * сесій вимкнено, тексти й атрибути масковані, адреси без параметрів,
+ * іменовані події з контрольованими значеннями (`public/heatmaps.js`,
+ * `lib/track.ts`), хостинг – EU Cloud. «Discard client IP data» – налаштування
+ * проєкту в PostHog, з коду не перевіряється (docs/LAUNCH.md, розділ 6).
  * Змінивши будь-що з цього, змінити й текст.
  */
 const heatmapBlocks: LegalBlock[] = heatmapsEnabled
@@ -157,8 +160,8 @@ const heatmapBlocks: LegalBlock[] = heatmapsEnabled
       {
         kind: "p",
         text: {
-          uk: "PostHog отримує адресу сторінки й сторінки, з якої ви перейшли, місця натискань і глибину прокрутки, тип браузера й пристрою та країну. IP-адресу він використовує лише для визначення країни й не зберігає. Записів сеансів – відео того, що відбувається на екрані, – ми не ведемо, а вміст полів введення не збирається. Мета й підстава ті самі – законний інтерес Факультету робити бібліотеку зручною; блокувальник вмісту так само вимикає і цей скрипт.",
-          en: "PostHog receives the page address and the referring page, click positions and scroll depth, the browser and device type, and the country. It uses the IP address only to determine the country and does not store it. We record no session replays – no video of what happens on the screen – and the content of input fields is not collected. The purpose and ground are the same: the Faculty’s legitimate interest in making the library easy to use; a content blocker disables this script too.",
+          uk: "PostHog отримує адресу сторінки й сторінки, з якої ви перейшли (без параметрів після «?»), місця натискань і глибину прокрутки, тип браузера й пристрою та країну. Тексти на сторінці й вміст полів введення не збираються. Окремо ми рахуємо кілька дій: пошук і фільтри в реєстрі (лише довжину запиту й кількість результатів, не сам запит), перехід з реєстру до огляду, до першоджерела чи PDF рішення, перемикання мови й перехід на сторінку підтримки. IP-адресу він використовує лише для визначення країни й не зберігає. Записів сеансів – відео того, що відбувається на екрані, – ми не ведемо. Мета й підстава ті самі – законний інтерес Факультету робити бібліотеку зручною; блокувальник вмісту так само вимикає і цей скрипт.",
+          en: "PostHog receives the page address and the referring page (without anything after «?»), click positions and scroll depth, the browser and device type, and the country. Text on the page and the content of input fields are not collected. We also count a few actions: searching and filtering in the registry (only the length of the query and the number of results, not the query itself), moving from the registry to a summary, opening a primary source or a decision PDF, switching language, and following the link to the support page. It uses the IP address only to determine the country and does not store it. We record no session replays – no video of what happens on the screen. The purpose and ground are the same: the Faculty’s legitimate interest in making the library easy to use; a content blocker disables this script too.",
         },
       },
     ]

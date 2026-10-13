@@ -12,6 +12,7 @@ import {
   type ReactNode,
 } from "react";
 import { usePathname } from "next/navigation";
+import { track } from "@/lib/track";
 import { defaultLocale, foreignLang, isLocale } from "@/i18n/config";
 import { plural, type PluralForms } from "@/i18n/plural";
 import {
@@ -1176,6 +1177,39 @@ export default function RegistryTable({
     inWriteup,
     sort,
   ]);
+
+  /* Analytics (lib/track.ts): once the reader stops typing, how long the
+     query was and how many rows it left – never the words. A filter change
+     sends which filter and how many of its options are on. */
+  const resultCount = view.length;
+  useEffect(() => {
+    if (!q.trim()) return;
+    const timer = setTimeout(
+      () => track("registry_search", { query_length: q.trim().length, results: resultCount }),
+      1200,
+    );
+    return () => clearTimeout(timer);
+  }, [q, resultCount]);
+  const filterSig = useRef<string | null>(null);
+  useEffect(() => {
+    const sig = JSON.stringify([court, stage, outcome, material]);
+    const prev = filterSig.current;
+    filterSig.current = sig;
+    if (prev === null) return;
+    const [pc, ps, po, pm] = JSON.parse(prev) as string[][];
+    const changed = [
+      ["court", court, pc],
+      ["stage", stage, ps],
+      ["outcome", outcome, po],
+      ["material", material, pm],
+    ].find(([, now, was]) => (now as string[]).join() !== (was as string[]).join());
+    if (!changed) return;
+    track("registry_filter_changed", {
+      filter: changed[0] as string,
+      selected: (changed[1] as string[]).length,
+      results: resultCount,
+    });
+  }, [court, stage, outcome, material, resultCount]);
 
   /** Which hidden fields earned a row its place, when the visible ones did not. */
   const why = useCallback(

@@ -43,8 +43,15 @@ const buildEnv = [
   "NEXT_PUBLIC_POSTHOG_KEY",
   "GOOGLE_SITE_VERIFICATION",
 ];
+/* A staging build compiles drafts. It is never indexed and never counted,
+   whatever variables it inherited from production: these four are blanked
+   for it here, so a copied SITE_INDEXABLE or analytics key cannot turn a
+   draft into a search result or into the production numbers. Cloudflare
+   Access in front of staging is the other, separate layer. */
+const staging = process.env.NSV_STAGING === "1";
+const STAGING_OFF = ["SITE_INDEXABLE", "NEXT_PUBLIC_CF_ANALYTICS_TOKEN", "NEXT_PUBLIC_POSTHOG_KEY", "GOOGLE_SITE_VERIFICATION"];
 const define = Object.fromEntries(
-  buildEnv.map((k) => [`process.env.${k}`, JSON.stringify(process.env[k])]),
+  buildEnv.map((k) => [`process.env.${k}`, JSON.stringify(staging && STAGING_OFF.includes(k) ? undefined : process.env[k])]),
 );
 /* When the content snapshot this build compiles was taken, for the Worker's
    cron to compare against the latest publish in D1 (site/worker.ts). Null
@@ -61,7 +68,7 @@ const define = Object.fromEntries(
 /* The staging build (package.json cf:build:staging). Staging is a second
    Worker on the same D1: its cron would run EmDash's scheduled publishing
    and cleanup a second time, against production data. */
-define.__NSV_STAGING__ = JSON.stringify(process.env.NSV_STAGING === "1");
+define.__NSV_STAGING__ = JSON.stringify(staging);
 /* Who may publish from the admin (site/emdash/review-policy.ts): an EmDash
    role level, 50 (administrator) unless the build says otherwise. */
 define.__NSV_PUBLISH_MIN_ROLE__ = JSON.stringify(
@@ -86,8 +93,24 @@ const headersFile = {
       const lines = [
         "",
         "/*",
-        ...securityHeaders.map((h) => `  ${h.key}: ${h.value}`),
+        /* securityHeaders reads SITE_INDEXABLE straight from the process, not
+           through `define` – so for staging the header is held to noindex
+           here as well. */
+        ...securityHeaders
+          .filter((h) => !(staging && h.key === "X-Robots-Tag"))
+          .map((h) => `  ${h.key}: ${h.value}`),
+        ...(staging ? ["  X-Robots-Tag: noindex, nofollow"] : []),
         "  Strict-Transport-Security: max-age=63072000; includeSubDomains",
+        "",
+        /* The same files answer on the Worker's workers.dev addresses
+           (production and staging). Their canonical already names the main
+           domain, but a canonical only suggests; this keeps those copies out
+           of the index even once SITE_INDEXABLE opens the main one. A
+           redirect would be the stronger move – that is a dashboard
+           decision (docs/LAUNCH.md), and staging's media still loads from
+           the workers.dev host (wrangler.jsonc). */
+        "https://:worker.:account.workers.dev/*",
+        "  X-Robots-Tag: noindex",
         "",
         /* Portraits and logos are unhashed files that change about once a
            year. Left at the asset server's max-age=0 they were revalidated on

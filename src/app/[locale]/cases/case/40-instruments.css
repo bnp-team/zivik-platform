@@ -7,7 +7,7 @@
    of them, and the values in the ledger would simply have gone out. */
 .casepage .takings {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
   gap: var(--space-6) clamp(24px, 4vw, 48px);
 }
 .casepage .taking[data-shape="grid"] {
@@ -1116,7 +1116,7 @@
 .casepage .attr-routes {
   position: relative;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
   gap: var(--space-6) clamp(24px, 4vw, 48px);
   margin-top: 0;
   padding-top: var(--space-5);

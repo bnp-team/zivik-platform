@@ -39,15 +39,25 @@ export { PluginBridge };
  */
 const HSTS = "max-age=63072000; includeSubDomains";
 
-function localeRedirect(request: Request): Response {
-  let locale: string = defaultLocale;
-  for (const part of (request.headers.get("accept-language") ?? "").split(",")) {
-    const tag = part.split(";")[0].trim().slice(0, 2).toLowerCase();
-    if (isLocale(tag)) {
-      locale = tag;
-      break;
-    }
+/* The reader's preferred site language, by the weights they sent: `uk;q=0,
+   en;q=1` is English, not Ukrainian because it came first. A weight of 0
+   means «not this one». Ties keep the reader's order. */
+function preferredLocale(header: string): string {
+  let best: { locale: string; q: number } | null = null;
+  for (const part of header.split(",")) {
+    const [range, ...params] = part.split(";");
+    const tag = range.trim().slice(0, 2).toLowerCase();
+    if (!isLocale(tag)) continue;
+    const qParam = params.map((p) => p.trim()).find((p) => p.startsWith("q="));
+    const q = qParam ? Number(qParam.slice(2)) : 1;
+    if (!(q > 0)) continue;
+    if (!best || q > best.q) best = { locale: tag, q };
   }
+  return best?.locale ?? defaultLocale;
+}
+
+function localeRedirect(request: Request): Response {
+  const locale = preferredLocale(request.headers.get("accept-language") ?? "");
   return new Response(null, {
     status: 307,
     headers: {
@@ -155,8 +165,15 @@ export default {
         { headers: { "cache-control": "no-store", "strict-transport-security": HSTS } },
       );
     }
-    const response = await handler.fetch!(request, env, ctx);
+    let response = await handler.fetch!(request, env, ctx);
     if (response.status === 101) return response;
+    /* A missing /en/… page answers in English (site/pages/[locale]/404.astro);
+       the default 404 is Ukrainian. Still a 404 – only the text changes. */
+    if (response.status === 404 && /^\/en(\/|$)/.test(routed) && response.headers.get("content-type")?.startsWith("text/html")) {
+      const assets = (env as unknown as { ASSETS?: Fetcher }).ASSETS;
+      const en = await assets?.fetch(new URL("/en/404", request.url)).catch(() => null);
+      if (en?.ok) response = new Response(en.body, { status: 404, headers: en.headers });
+    }
     const out = new Response(response.body, response);
     if (!out.headers.has("strict-transport-security")) out.headers.set("strict-transport-security", HSTS);
     out.headers.delete("server-timing");

@@ -1658,9 +1658,12 @@ export default async function CasePage({
         /* The article's dates, not the decision's. `datePublished` carried
            the judgment date, so a summary of the 2018 Oschadbank award read as
            a 2018 article. The decision's date is `about.datePublished` below;
-           the summary's own is the date its context was last verified, where
-           one is recorded, and absent where it is not rather than invented. */
-        ...(summary.asOf ? { datePublished: summary.asOf, dateModified: summary.asOf } : {}),
+           the summary's own `asOf` is when its context was last verified –
+           a modification date. It used to be `datePublished` too, so every
+           re-check moved the article's first publication forward. The first
+           publication date is not recorded in the content, and is left out
+           rather than invented. */
+        ...(summary.asOf ? { dateModified: summary.asOf } : {}),
         author: { "@type": "Organization", name: dict.footer.org, url: `${siteUrl}/${locale}/about` },
         /*
          * The decision itself is a court document, not legislation; the

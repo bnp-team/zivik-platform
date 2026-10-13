@@ -1,0 +1,20 @@
+---
+/**
+ * The not-found page in each language, prerendered as /uk/404 and /en/404.
+ *
+ * A missing address finds no file, so the Worker answers it, and the single
+ * /404 was always Ukrainian – an English reader who mistyped an /en/ address
+ * got a Ukrainian page. site/worker.ts serves this one for /en/… instead.
+ */
+import Document from "../../layouts/Document.astro";
+import { notFoundPage } from "../../lib/route";
+import { isLocale, locales } from "@/i18n/config";
+
+export const prerender = true;
+export const getStaticPaths = () => locales.map((locale) => ({ params: { locale } }));
+
+const { locale } = Astro.params;
+const resolved = await notFoundPage(Astro, isLocale(locale ?? "") ? (locale as (typeof locales)[number]) : undefined);
+---
+
+<Document {...resolved} />

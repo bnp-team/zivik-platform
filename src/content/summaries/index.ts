@@ -108,10 +108,17 @@ export const SUMMARIES: Record<string, DecisionSummary> = Object.assign(
   }
 }
 
-/** Freshness of a page: its context-verification date, else the decision date. */
+/**
+ * When the summary page last changed in substance: its context-verification
+ * date (`asOf`), or nothing.
+ *
+ * It used to fall back to the decision's date, so the 2018 Oschadbank award
+ * told crawlers its summary page had not changed since 2018. A sitemap
+ * `lastmod` is the page's last significant change, not the date of the event
+ * it reports; where that is not recorded, no date is better than a wrong one.
+ */
 export function summaryLastModified(slug: string): string | undefined {
-  const s = SUMMARIES[slug];
-  return s?.asOf ?? s?.judgment.date;
+  return SUMMARIES[slug]?.asOf;
 }
 
 /**

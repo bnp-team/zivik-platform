@@ -39,7 +39,7 @@
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
   gap: var(--space-3);
   align-items: start;
 }
@@ -227,7 +227,7 @@
 }
 .casepage .rung-people {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
   gap: var(--space-3);
   /* Cards keep the height their own text needs. Grid stretches items by
      default, and the open detail panel shares this grid, so selecting a

@@ -165,8 +165,8 @@ export async function runRoute(astro: AstroGlobal, page: NextPageModule): Promis
   return outcome.resolved;
 }
 
-export async function notFoundPage(astro: AstroGlobal): Promise<Resolved> {
-  const outcome = await notFoundOutcome(defaultLocale, pagePath(astro));
+export async function notFoundPage(astro: AstroGlobal, locale: Locale = defaultLocale): Promise<Resolved> {
+  const outcome = await notFoundOutcome(locale, pagePath(astro));
   astro.response.status = 404;
   return (outcome as Extract<Outcome, { kind: "page" }>).resolved;
 }
