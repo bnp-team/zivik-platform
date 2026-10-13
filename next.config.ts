@@ -32,6 +32,22 @@ const nextConfig: NextConfig = {
     root: path.join(__dirname),
   },
 
+  /**
+   * The old Vercel addresses move to the site's home for good: 308, path
+   * kept. Only these two hosts – preview deployments
+   * (nasvitlo-git-…vercel.app) and the Vercel staging project keep serving
+   * themselves, under the noindex below. Vercel cannot redirect a domain to
+   * one outside the project, so this lives here rather than in its dashboard.
+   */
+  async redirects() {
+    return ["nasvitlo.vercel.app", "zivik-platform.vercel.app"].map((host) => ({
+      source: "/:path*",
+      has: [{ type: "host" as const, value: host.replace(/\./g, "\\.") }],
+      destination: "https://nasvitlo.ucu.edu.ua/:path*",
+      permanent: true,
+    }));
+  },
+
   /** Baseline security headers — see src/lib/security-headers.ts. */
   async headers() {
     return [
