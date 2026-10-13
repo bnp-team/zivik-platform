@@ -151,6 +151,13 @@ export default {
   async fetch(request, env, ctx) {
     const { pathname } = new URL(request.url);
     if (pathname === "/") return localeRedirect(request);
+    /* Search Console ownership file. Served here, not from public/: the
+       static layer drops ".html" with a 307, and Google will not follow it. */
+    if (pathname === "/googlecbc3798074ebaa75.html") {
+      return new Response("google-site-verification: googlecbc3798074ebaa75.html", {
+        headers: { "content-type": "text/html; charset=utf-8", "strict-transport-security": HSTS },
+      });
+    }
     const routed = routedPath(pathname);
     if (routed.startsWith("/_emdash/api/search") && !hasSession(request)) {
       return new Response("Not found", { status: 404, headers: { "strict-transport-security": HSTS } });
