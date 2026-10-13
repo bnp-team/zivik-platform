@@ -31,6 +31,15 @@
  * (marked as unverified: it is whatever the registrant typed), the host the
  * code is sent to, and to leave the administrative permissions unticked.
  *
+ * Nobody who may publish can hand an application a token. An OAuth token
+ * carries its owner's role to every /_emdash/api route, and review-policy's
+ * "the assistant never publishes" looks at the MCP route, not the token – so
+ * an Admin's consent let the assistant publish over REST (security audit
+ * 2026-10-13; it happened once, by being signed in as oneself when claude.ai
+ * opened the consent page). At or above PUBLISH_MIN_ROLE the consent page is
+ * replaced by one that says to sign in as the assistant's bot account, and an
+ * approval POST is refused; denying still goes through.
+ *
  * And search and the full health reply need a signed-in user. site/worker.ts
  * turns them away when there is no session cookie, but a cookie of any value,
  * or an encoded path (`%73earch`, `//`), got past it; here the path is the one
@@ -159,10 +168,52 @@ async function explainConsent(url: URL, response: Response): Promise<Response> {
   return new Response(html, { status: response.status, headers });
 }
 
+/** The consent page for someone who may publish: no form, a way out. */
+function assistantOnly(url: URL, status: number): Response {
+  const back = url.pathname + url.search;
+  const html = `<!doctype html><html lang="uk"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex">
+<title>Підключення асистента – НаСвітло</title>
+<style>body{font:16px/1.5 system-ui,sans-serif;max-width:34rem;margin:12vh auto;padding:0 16px;color:#1d1d1f;background:#fff}
+@media (prefers-color-scheme:dark){body{color:#f2f2f2;background:#161616}}
+button{font:inherit;padding:.6em 1.2em;border-radius:8px;border:1px solid currentColor;background:transparent;color:inherit;cursor:pointer}
+code{font-size:.95em}</style></head><body>
+<h1>Асистента підключають від імені бота</h1>
+<p>Ви увійшли з правом публікувати. Доступ, виданий від вашого імені, дав би асистентові
+опублікувати текст без перевірки, тож від цього облікового запису підключення заборонене.</p>
+<p>Вийдіть і увійдіть як бот асистента – <code>v.martyniuk+nasvitlo-assistant@ucu.edu.ua</code>
+(лист прийде у вашу пошту УКУ). Потім знову натисніть «Connect» у claude.ai.</p>
+<p><button id="out" type="button">Вийти й увійти як бот</button></p>
+<script>
+document.getElementById("out").onclick = async () => {
+  await fetch("/_emdash/api/auth/logout", { method: "POST", headers: { "X-EmDash-Request": "1" } }).catch(() => {});
+  location.href = "/_emdash/admin/login?redirect=" + encodeURIComponent(${JSON.stringify(back)});
+};
+</script></body></html>`;
+  return new Response(html, {
+    status,
+    headers: {
+      "content-type": "text/html; charset=utf-8",
+      "cache-control": "no-store",
+      "content-security-policy":
+        "default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; connect-src 'self'; form-action 'none'; frame-ancestors 'none'; base-uri 'none'",
+    },
+  });
+}
+
 export const onRequest = defineMiddleware(async (context, next) => {
   const { pathname } = context.url;
-  if (pathname === "/_emdash/oauth/authorize" && context.request.method === "GET") {
-    return explainConsent(context.url, await next());
+  if (pathname === "/_emdash/oauth/authorize") {
+    const role = (context.locals as { user?: { role: number } }).user?.role ?? 0;
+    const publisher = role >= __NSV_PUBLISH_MIN_ROLE__;
+    if (context.request.method === "GET") {
+      return publisher ? assistantOnly(context.url, 403) : explainConsent(context.url, await next());
+    }
+    if (context.request.method === "POST" && publisher) {
+      const form = await context.request.clone().formData().catch(() => null);
+      if (form?.get("action") !== "deny") return assistantOnly(context.url, 403);
+    }
+    return next();
   }
   if (!pathname.startsWith("/_emdash/api/")) return next();
 
