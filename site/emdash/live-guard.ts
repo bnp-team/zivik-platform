@@ -43,11 +43,16 @@ export function createPlugin() {
           );
         },
       },
-      "content:beforeDelete": async (event: { collection: string; id: string }, ctx: PluginContext) => {
-        const item = await ctx.content?.get(event.collection, event.id);
-        if (item?.status !== "published" && !item?.scheduledAt) return;
-        ctx.log.info(`delete refused (${event.collection}/${event.id}): published or scheduled – unpublish first`);
-        return false;
+      /* "abort": if the entry cannot be read, the trash is refused, not let
+         through – by default EmDash treats a failed hook as «allowed». */
+      "content:beforeDelete": {
+        errorPolicy: "abort",
+        handler: async (event: { collection: string; id: string }, ctx: PluginContext) => {
+          const item = await ctx.content?.get(event.collection, event.id);
+          if (item?.status !== "published" && !item?.scheduledAt) return;
+          ctx.log.info(`delete refused (${event.collection}/${event.id}): published or scheduled – unpublish first`);
+          return false;
+        },
       },
     },
   });

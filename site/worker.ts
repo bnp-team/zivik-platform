@@ -117,22 +117,39 @@ async function retryMissedPublish(env: { DB: D1Database }) {
   });
 }
 
+/* A cheap first filter only: it saves the Worker from waking EmDash for a
+   visitor with no cookie at all. A cookie of any value passes it, so the
+   decision – a signed-in user – is made again in site/middleware.ts, after
+   EmDash has resolved the session. */
 const hasSession = (request: Request) =>
   /(?:^|;\s*)astro-session=/.test(request.headers.get("cookie") ?? "");
+
+/* The path EmDash routes on: Astro decodes it and folds `//` before matching,
+   so `/_emdash/api/%73earch` and `//_emdash/api/search` are search too. */
+function routedPath(pathname: string): string {
+  let path = pathname;
+  try {
+    path = decodeURI(pathname);
+  } catch {
+    /* a malformed escape is routed as it stands */
+  }
+  return path.replace(/\/{2,}/g, "/");
+}
 
 export default {
   ...handler,
   async fetch(request, env, ctx) {
     const { pathname } = new URL(request.url);
     if (pathname === "/") return localeRedirect(request);
-    if (pathname.startsWith("/_emdash/api/search") && !hasSession(request)) {
+    const routed = routedPath(pathname);
+    if (routed.startsWith("/_emdash/api/search") && !hasSession(request)) {
       return new Response("Not found", { status: 404, headers: { "strict-transport-security": HSTS } });
     }
     /* The health probe answers anyone, and EmDash's answer names its exact
        version – a free lookup against the next advisory. A monitor needs to
        know it is up, not which release; the admin, with its session, still
        gets the full reply. */
-    if (pathname === "/_emdash/api/health" && !hasSession(request)) {
+    if (/^\/_emdash\/api\/health\/?$/.test(routed) && !hasSession(request)) {
       return Response.json(
         { success: true, data: { product: "emdash" } },
         { headers: { "cache-control": "no-store", "strict-transport-security": HSTS } },

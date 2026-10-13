@@ -74,6 +74,11 @@ const country = (code: string) => {
   }
 };
 
+/* Власні ключі лише: мітки приходять з аналітики, яку може підробити будь-хто,
+   і «__proto__» дав би Object.prototype замість назви. */
+const name = (names: Record<string, string> | undefined, key: string) =>
+  names && Object.hasOwn(names, key) ? names[key] : undefined;
+
 function Rows({ rows, names, unit = "" }: { rows: Row[]; names?: Record<string, string>; unit?: string }) {
   if (!rows.length) return <p className="nsva-note">Поки немає даних.</p>;
   const max = Math.max(...rows.map((r) => r.value), 1);
@@ -82,7 +87,7 @@ function Rows({ rows, names, unit = "" }: { rows: Row[]; names?: Record<string, 
       {rows.map((r) => (
         <li className="nsva-row" key={r.label} title={r.label}>
           <i style={{ width: `${(r.value / max) * 100}%` }} />
-          <span>{names?.[r.label.replace(/\/$/, "")] ?? names?.[r.label] ?? r.label}</span>
+          <span>{name(names, r.label.replace(/\/$/, "")) ?? name(names, r.label) ?? r.label}</span>
           <em>
             {fmt(r.value)}
             {unit}

@@ -208,7 +208,10 @@ async function titles(ctx: PluginContext): Promise<Record<string, string>> {
   }
   for (const [collection, base] of [["summaries", "cases"], ["posts", "blog"]] as const) {
     try {
-      const page = await ctx.content?.list(collection, { limit: 200 });
+      /* Опубліковані лише: плагінний доступ до вмісту віддає й чернетки,
+         а маршрути відкриті кожному, хто бачить чернетки, – назва
+         неопублікованого рішення не має з'являтися поруч з адресами. */
+      const page = await ctx.content?.list(collection, { limit: 200, where: { status: "published" } });
       for (const item of page?.items ?? []) {
         const d = item.data as Record<string, unknown>;
         const label = String(d.list_label ?? d.title_uk ?? item.slug ?? "");
@@ -279,12 +282,14 @@ export function createPlugin() {
     version: "1.0.0",
     capabilities: ["content:read"],
     routes: {
+      /* Рівень того, хто бачить чернетки (Contributor), а не будь-якого
+         зареєстрованого: маршрути витрачають ключі Cloudflare і PostHog. */
       summary: {
-        permission: "content:read",
+        permission: "content:read_drafts",
         handler: async (ctx) => summary(ctx),
       },
       heatmap: {
-        permission: "content:read",
+        permission: "content:read_drafts",
         handler: async (ctx) => heatmapRoute(ctx),
       },
     },
