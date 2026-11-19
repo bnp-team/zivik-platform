@@ -31,7 +31,11 @@ permissions:
 
 jobs:
   e2e:
-    runs-on: ubuntu-latest
+    # Не ubuntu-latest: у листопаді 2026 вона стала 26.04, а Playwright 1.56
+    # там не ставить Chromium («does not support chromium on ubuntu26.04»),
+    # і набір падав щодня з 6.11, ще до першого тесту. Перейти на новішу
+    # Ubuntu – разом з оновленням @playwright/test.
+    runs-on: ubuntu-24.04
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4

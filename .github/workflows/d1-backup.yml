@@ -85,10 +85,16 @@ jobs:
           DB: nasvitlo-trial
         run: |
           set -euo pipefail
+          # wrangler друкує годинне посилання на НЕЗАШИФРОВАНИЙ дамп в R2
+          # («You can also download your export from the following URL…»).
+          # Журнал Actions публічного репозиторію бачить будь-хто, тож вивід
+          # іде в файл, а в журнал – лише з прихованими посиланнями.
+          redact() { sed -E 's#https?://[^[:space:]]*#<посилання приховано>#g'; }
           # Повний дамп — основний шлях.
-          if npx wrangler d1 export "$DB" --remote --output backup.sql --skip-confirmation 2>&1 | tee export.log; then
+          if npx wrangler d1 export "$DB" --remote --output backup.sql --skip-confirmation > export.log 2>&1; then
+            redact < export.log
             mode=full
-          elif grep -qi "virtual" export.log; then
+          elif redact < export.log && grep -qi "virtual" export.log; then
             # D1 не експортує віртуальні таблиці. EmDash тримає пошуковий
             # індекс у FTS5 (`_emdash_fts_<колекція>` + службові
             # `_emdash_fts_*_data/_idx/_content/_docsize/_config`), тож якщо
@@ -103,7 +109,7 @@ jobs:
             mapfile -t tables < <(node -e 'const r=JSON.parse(require("fs").readFileSync("tables.json","utf8"));for(const t of r[0].results)console.log(t.name)')
             args=()
             for t in "${tables[@]}"; do args+=(--table "$t"); done
-            npx wrangler d1 export "$DB" --remote --output backup.sql --skip-confirmation "${args[@]}"
+            npx wrangler d1 export "$DB" --remote --output backup.sql --skip-confirmation "${args[@]}" 2>&1 | redact
             # Тригери, що пишуть у FTS-таблицю, прибираємо з дампу: інакше
             # перший же INSERT у таблицю контенту під час відновлення впаде
             # на відсутній `_emdash_fts_*`. EmDash створить їх заново разом
@@ -129,6 +135,7 @@ jobs:
             exit 1
           fi
           test -s backup.sql
+          rm -f export.log
           echo "MODE=$mode" >> "$GITHUB_ENV"
 
       - name: Compress and encrypt
