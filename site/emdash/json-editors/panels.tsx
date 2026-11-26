@@ -5,7 +5,7 @@
  * «figures» and «sums» fields.
  *
  * All of it reads the *saved* entry (EmDash hands a panel the saved entry, not
- * the form as it is being typed), so it follows «Зберегти». The bars under a
+ * the form as it is being typed), so it follows each saved draft. The bars under a
  * field are drawn from the field's own value and move as it is typed.
  *
  * Colours are literals, not tokens: this is the admin, where the site's
@@ -148,7 +148,7 @@ export function SummaryOverview({ entry }: { collection: string; entry: { data?:
   return (
     <div style={{ display: "grid", gap: 4, fontSize: 13 }}>
       <div style={{ opacity: 0.7, marginBottom: 4 }}>
-        На сторінці буде розділів: <b>{shown}</b> з {rows.length}. Оновлюється після «Зберегти».
+        На сторінці буде розділів: <b>{shown}</b> з {rows.length}. Оновлюється, коли чернетку збережено.
       </div>
       {rows.map((r) => (
         <div key={r.label} title={MARK[r.state].text} style={{ display: "flex", gap: 8, opacity: MARK[r.state].opacity }}>
@@ -216,7 +216,7 @@ export function StagingPanel({ collection, entry }: { collection: string; entry:
     <div style={{ display: "grid", gap: 8, fontSize: 13 }}>
       <div style={{ opacity: 0.75 }}>
         Чернетки видно на закритій копії сайту (staging). Вона перезбирається не миттєво – до кількох хвилин, – тож після
-        «Зберегти» трохи зачекайте, відкрийте сторінку, і лише тоді публікуйте. Вхід – за листом Cloudflare на дозволену
+        збереження трохи зачекайте, відкрийте сторінку, і лише тоді публікуйте. Вхід – за листом Cloudflare на дозволену
         адресу. Якщо правки довго не з’являються, скажіть адміністраторці.
       </div>
       <div style={{ display: "flex", gap: 8 }}>

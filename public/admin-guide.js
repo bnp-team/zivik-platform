@@ -71,9 +71,29 @@
 
   /* ── Finding things ─────────────────────────────────────────────────── */
 
+  /* A collapsed sidebar group (EmDash 1.x) keeps its links at full size
+     inside a zero-height box with overflow hidden: they measure as visible
+     but are clipped away, and the tour ringed the empty spot below the
+     group – on «Сайт» for the «Бібліотека» step. So an element that an
+     ancestor with overflow hidden cuts off entirely does not count – up to
+     the nearest scroll box, since a step scrolls its element into view.
+     (Not aria-hidden: EmDash's own dialogs set it on the whole admin.) */
+  const clipped = (el, r) => {
+    for (let p = el.parentElement; p && p !== document.body; p = p.parentElement) {
+      const s = getComputedStyle(p);
+      if (/auto|scroll/.test(s.overflowX + s.overflowY)) return false;
+      const cutsX = s.overflowX === "hidden" || s.overflowX === "clip";
+      const cutsY = s.overflowY === "hidden" || s.overflowY === "clip";
+      if (!cutsX && !cutsY) continue;
+      const b = p.getBoundingClientRect();
+      if (cutsY && (r.bottom <= b.top || r.top >= b.bottom)) return true;
+      if (cutsX && (r.right <= b.left || r.left >= b.right)) return true;
+    }
+    return false;
+  };
   const visible = (el) => {
     const r = el.getBoundingClientRect();
-    return r.width > 0 && r.height > 0 && getComputedStyle(el).visibility !== "hidden";
+    return r.width > 0 && r.height > 0 && getComputedStyle(el).visibility !== "hidden" && !clipped(el, r);
   };
   const text = (el) => (el.textContent || "").replace(/\s+/g, " ").trim();
 
@@ -158,8 +178,9 @@
         id: "publish-flow",
         title: "Як зміна потрапляє на сайт",
         body:
-          "<b>Save (Зберегти)</b> – чернетка: на сайті нічого не змінюється.<br>" +
-          "<b>Publish (Опублікувати)</b> – сайт перезбирається, і за ~2 хвилини зміна видно всім.<br><br>" +
+          "<b>Чернетка</b> – правки зберігаються самі за кілька секунд (у нового запису є ще кнопка " +
+          "«Save draft»): на сайті нічого не змінюється.<br>" +
+          "<b>«Опублікувати зараз» / «Опублікувати зміни»</b> – сайт перезбирається, і за ~2 хвилини зміну видно всім.<br><br>" +
           "Відкрийте будь-який запис – гід покаже, як працює форма.",
       },
     ],
@@ -179,22 +200,27 @@
       },
       {
         id: "save",
-        target: [{ text: ["Save", "Saved", "Зберегти", "Збережено"] }],
-        title: "Зберегти",
-        body: "Зберігає чернетку. На сайті нічого не змінюється, доки запис не опубліковано.",
+        /* «Save draft» on a new entry; its label carries the hidden «Saving…»
+           and «Saved» states too, so it is matched by its start. A published
+           entry has no save button since EmDash 1.x – it saves by itself. */
+        target: [{ text: ["Save draft", "Save", "Зберегти", "Saved", "Збережено"], starts: true, in: "button" }],
+        title: "Зберегти чернетку",
+        body:
+          "Зберігає чернетку. Правки зберігаються й самі за кілька секунд, тож в опублікованому записі " +
+          "цієї кнопки немає. На сайті нічого не змінюється, доки запис не опубліковано.",
       },
       {
         id: "publish",
         target: [{ text: ["Publish changes", "Publish", "Опублікувати"], starts: true, in: "button" }],
         title: "Опублікувати",
         body:
-          "Надсилає зміни на сайт: за ~2 хвилини їх видно всім. Для вже опублікованого запису кнопка " +
-          "називається «Publish changes». Публікує адміністратор.",
+          "Надсилає зміни на сайт: за ~2 хвилини їх видно всім. Для нового запису кнопка зветься " +
+          "«Опублікувати зараз», для вже опублікованого – «Опублікувати зміни». Публікує адміністратор.",
       },
       {
         id: "live-view",
-        target: [{ text: ["Live View", "Переглянути наживо"] }],
-        title: "Live View",
+        target: [{ text: ["Live View", "Перегляд наживо", "Переглянути наживо"] }],
+        title: "Перегляд наживо (Live View)",
         body: "Відкриває сторінку цього запису на сайті. Після публікації зачекайте ~2 хвилини й оновіть.",
       },
       {
@@ -419,7 +445,7 @@
       return;
     }
     /* Wait for the app to draw its menu or form before pointing at it. */
-    const ready = name === "editor" ? find(TOURS.editor[2].target) : find([{ href: "/content/summaries" }]);
+    const ready = name === "editor" ? find(TOURS.editor[2].target) : find(TOURS.intro[1].target);
     if (!ready && ++waiting <= 20) return;
     lastPath = path;
     waiting = 0;
